@@ -17,6 +17,16 @@
 		272A2C812766602F00E8DC9C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272A2C572766602F00E8DC9C /* ContentView.swift */; };
 		272A2C822766602F00E8DC9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 272A2C582766602F00E8DC9C /* Assets.xcassets */; };
 		272A2C832766602F00E8DC9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 272A2C582766602F00E8DC9C /* Assets.xcassets */; };
+		272A2C932766634F00E8DC9C /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272A2C922766634F00E8DC9C /* LockView.swift */; };
+		272A2C942766634F00E8DC9C /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272A2C922766634F00E8DC9C /* LockView.swift */; };
+		27CAB0A62766BDF90064877A /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0A52766BDF90064877A /* Preferences.swift */; };
+		27CAB0A72766BDF90064877A /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0A52766BDF90064877A /* Preferences.swift */; };
+		27CAB0A82766BDF90064877A /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0A52766BDF90064877A /* Preferences.swift */; };
+		27CAB0A92766BDF90064877A /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0A52766BDF90064877A /* Preferences.swift */; };
+		27CAB0AB2766BE450064877A /* Vault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0AA2766BE450064877A /* Vault.swift */; };
+		27CAB0AC2766BE450064877A /* Vault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0AA2766BE450064877A /* Vault.swift */; };
+		27CAB0AD2766BE450064877A /* Vault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0AA2766BE450064877A /* Vault.swift */; };
+		27CAB0AE2766BE450064877A /* Vault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0AA2766BE450064877A /* Vault.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +59,10 @@
 		272A2C762766602F00E8DC9C /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		272A2C7A2766602F00E8DC9C /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		272A2C7C2766602F00E8DC9C /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
+		272A2C922766634F00E8DC9C /* LockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockView.swift; sourceTree = "<group>"; };
+		27CAB0A42766A3230064877A /* PasswordVault (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PasswordVault (iOS).entitlements"; sourceTree = "<group>"; };
+		27CAB0A52766BDF90064877A /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = SOURCE_ROOT; };
+		27CAB0AA2766BE450064877A /* Vault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vault.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +100,7 @@
 		272A2C502766602E00E8DC9C = {
 			isa = PBXGroup;
 			children = (
+				27CAB0A42766A3230064877A /* PasswordVault (iOS).entitlements */,
 				272A2C552766602F00E8DC9C /* Shared */,
 				272A2C642766602F00E8DC9C /* macOS */,
 				272A2C6D2766602F00E8DC9C /* Tests iOS */,
@@ -97,8 +112,11 @@
 		272A2C552766602F00E8DC9C /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				272A2C562766602F00E8DC9C /* PasswordVaultApp.swift */,
 				272A2C572766602F00E8DC9C /* ContentView.swift */,
+				272A2C922766634F00E8DC9C /* LockView.swift */,
+				272A2C562766602F00E8DC9C /* PasswordVaultApp.swift */,
+				27CAB0A52766BDF90064877A /* Preferences.swift */,
+				27CAB0AA2766BE450064877A /* Vault.swift */,
 				272A2C582766602F00E8DC9C /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -301,6 +319,9 @@
 			files = (
 				272A2C802766602F00E8DC9C /* ContentView.swift in Sources */,
 				272A2C7E2766602F00E8DC9C /* PasswordVaultApp.swift in Sources */,
+				27CAB0A62766BDF90064877A /* Preferences.swift in Sources */,
+				272A2C932766634F00E8DC9C /* LockView.swift in Sources */,
+				27CAB0AB2766BE450064877A /* Vault.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +331,9 @@
 			files = (
 				272A2C812766602F00E8DC9C /* ContentView.swift in Sources */,
 				272A2C7F2766602F00E8DC9C /* PasswordVaultApp.swift in Sources */,
+				27CAB0A72766BDF90064877A /* Preferences.swift in Sources */,
+				272A2C942766634F00E8DC9C /* LockView.swift in Sources */,
+				27CAB0AC2766BE450064877A /* Vault.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +343,8 @@
 			files = (
 				272A2C712766602F00E8DC9C /* Tests_iOSLaunchTests.swift in Sources */,
 				272A2C6F2766602F00E8DC9C /* Tests_iOS.swift in Sources */,
+				27CAB0AD2766BE450064877A /* Vault.swift in Sources */,
+				27CAB0A82766BDF90064877A /* Preferences.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +354,8 @@
 			files = (
 				272A2C7D2766602F00E8DC9C /* Tests_macOSLaunchTests.swift in Sources */,
 				272A2C7B2766602F00E8DC9C /* Tests_macOS.swift in Sources */,
+				27CAB0AE2766BE450064877A /* Vault.swift in Sources */,
+				27CAB0A92766BDF90064877A /* Preferences.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,6 +491,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "PasswordVault (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = F42C985T48;
@@ -482,6 +511,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.PasswordVault";
 				PRODUCT_NAME = PasswordVault;
 				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -493,6 +523,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "PasswordVault (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = F42C985T48;
@@ -512,6 +543,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.PasswordVault";
 				PRODUCT_NAME = PasswordVault;
 				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -11,7 +11,7 @@ import SwiftUI
 struct PasswordVaultApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LockView()
         }
     }
 }
