@@ -13,8 +13,8 @@
 		272A2C7D2766602F00E8DC9C /* Tests_macOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272A2C7C2766602F00E8DC9C /* Tests_macOSLaunchTests.swift */; };
 		272A2C7E2766602F00E8DC9C /* PasswordVaultApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272A2C562766602F00E8DC9C /* PasswordVaultApp.swift */; };
 		272A2C7F2766602F00E8DC9C /* PasswordVaultApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272A2C562766602F00E8DC9C /* PasswordVaultApp.swift */; };
-		272A2C802766602F00E8DC9C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272A2C572766602F00E8DC9C /* ContentView.swift */; };
-		272A2C812766602F00E8DC9C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272A2C572766602F00E8DC9C /* ContentView.swift */; };
+		272A2C802766602F00E8DC9C /* VaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272A2C572766602F00E8DC9C /* VaultView.swift */; };
+		272A2C812766602F00E8DC9C /* VaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272A2C572766602F00E8DC9C /* VaultView.swift */; };
 		272A2C822766602F00E8DC9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 272A2C582766602F00E8DC9C /* Assets.xcassets */; };
 		272A2C832766602F00E8DC9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 272A2C582766602F00E8DC9C /* Assets.xcassets */; };
 		272A2C932766634F00E8DC9C /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272A2C922766634F00E8DC9C /* LockView.swift */; };
@@ -27,6 +27,10 @@
 		27CAB0AC2766BE450064877A /* Vault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0AA2766BE450064877A /* Vault.swift */; };
 		27CAB0AD2766BE450064877A /* Vault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0AA2766BE450064877A /* Vault.swift */; };
 		27CAB0AE2766BE450064877A /* Vault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0AA2766BE450064877A /* Vault.swift */; };
+		27CAB0B02767D4650064877A /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0AF2767D4650064877A /* Login.swift */; };
+		27CAB0B12767D4650064877A /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0AF2767D4650064877A /* Login.swift */; };
+		27CAB0B22767D4650064877A /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0AF2767D4650064877A /* Login.swift */; };
+		27CAB0B32767D4650064877A /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0AF2767D4650064877A /* Login.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +52,7 @@
 
 /* Begin PBXFileReference section */
 		272A2C562766602F00E8DC9C /* PasswordVaultApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordVaultApp.swift; sourceTree = "<group>"; };
-		272A2C572766602F00E8DC9C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		272A2C572766602F00E8DC9C /* VaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultView.swift; sourceTree = "<group>"; };
 		272A2C582766602F00E8DC9C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		272A2C5D2766602F00E8DC9C /* PasswordVault.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PasswordVault.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		272A2C632766602F00E8DC9C /* PasswordVault.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PasswordVault.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,6 +67,7 @@
 		27CAB0A42766A3230064877A /* PasswordVault (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PasswordVault (iOS).entitlements"; sourceTree = "<group>"; };
 		27CAB0A52766BDF90064877A /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = SOURCE_ROOT; };
 		27CAB0AA2766BE450064877A /* Vault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vault.swift; sourceTree = "<group>"; };
+		27CAB0AF2767D4650064877A /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,8 +117,9 @@
 		272A2C552766602F00E8DC9C /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				272A2C572766602F00E8DC9C /* ContentView.swift */,
+				272A2C572766602F00E8DC9C /* VaultView.swift */,
 				272A2C922766634F00E8DC9C /* LockView.swift */,
+				27CAB0AF2767D4650064877A /* Login.swift */,
 				272A2C562766602F00E8DC9C /* PasswordVaultApp.swift */,
 				27CAB0A52766BDF90064877A /* Preferences.swift */,
 				27CAB0AA2766BE450064877A /* Vault.swift */,
@@ -317,9 +323,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				272A2C802766602F00E8DC9C /* ContentView.swift in Sources */,
+				272A2C802766602F00E8DC9C /* VaultView.swift in Sources */,
 				272A2C7E2766602F00E8DC9C /* PasswordVaultApp.swift in Sources */,
 				27CAB0A62766BDF90064877A /* Preferences.swift in Sources */,
+				27CAB0B02767D4650064877A /* Login.swift in Sources */,
 				272A2C932766634F00E8DC9C /* LockView.swift in Sources */,
 				27CAB0AB2766BE450064877A /* Vault.swift in Sources */,
 			);
@@ -329,9 +336,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				272A2C812766602F00E8DC9C /* ContentView.swift in Sources */,
+				272A2C812766602F00E8DC9C /* VaultView.swift in Sources */,
 				272A2C7F2766602F00E8DC9C /* PasswordVaultApp.swift in Sources */,
 				27CAB0A72766BDF90064877A /* Preferences.swift in Sources */,
+				27CAB0B12767D4650064877A /* Login.swift in Sources */,
 				272A2C942766634F00E8DC9C /* LockView.swift in Sources */,
 				27CAB0AC2766BE450064877A /* Vault.swift in Sources */,
 			);
@@ -342,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				272A2C712766602F00E8DC9C /* Tests_iOSLaunchTests.swift in Sources */,
+				27CAB0B22767D4650064877A /* Login.swift in Sources */,
 				272A2C6F2766602F00E8DC9C /* Tests_iOS.swift in Sources */,
 				27CAB0AD2766BE450064877A /* Vault.swift in Sources */,
 				27CAB0A82766BDF90064877A /* Preferences.swift in Sources */,
@@ -353,6 +362,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				272A2C7D2766602F00E8DC9C /* Tests_macOSLaunchTests.swift in Sources */,
+				27CAB0B32767D4650064877A /* Login.swift in Sources */,
 				272A2C7B2766602F00E8DC9C /* Tests_macOS.swift in Sources */,
 				27CAB0AE2766BE450064877A /* Vault.swift in Sources */,
 				27CAB0A92766BDF90064877A /* Preferences.swift in Sources */,

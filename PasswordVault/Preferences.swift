@@ -12,4 +12,6 @@ func vaultLocation() -> String {
 }
 
 func setVaultLocation(location: String) {
+	let mydefaults: UserDefaults = UserDefaults.standard
+	mydefaults.set(location, forKey: "Vault Location")
 }

@@ -11,7 +11,7 @@ struct LockView: View {
     var body: some View {
 		NavigationView {
 			VStack {
-				NavigationLink(destination: ContentView()) {
+				NavigationLink(destination: VaultView()) {
 					Image(systemName: "lock.circle")
 						.font(.title)
 					Text("Login")

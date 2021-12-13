@@ -6,3 +6,17 @@
 //
 
 import Foundation
+
+class Vault {
+	func open() -> Bool {
+		return false
+	}
+
+	func close() -> Bool {
+		return false
+	}
+
+	func listContents() -> [String] {
+		return []
+	}
+}
