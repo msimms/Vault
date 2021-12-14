@@ -7,5 +7,8 @@
 
 import Foundation
 
-class Login {
+class LoginItem: Item {
+	var website: String?
+	var username: String?
+	var email: String?
 }

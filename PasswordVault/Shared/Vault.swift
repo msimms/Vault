@@ -16,7 +16,7 @@ class Vault {
 		return false
 	}
 
-	func listContents() -> [String] {
+	func listItems() -> [Item] {
 		return []
 	}
 }

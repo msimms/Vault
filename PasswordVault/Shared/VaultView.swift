@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct VaultView: View {
-    var body: some View {
+	var items: [Item] = [];
+
+	var body: some View {
 		List(0..<5) { item in
 			Image(systemName: "note")
 			VStack(alignment: .leading) {
