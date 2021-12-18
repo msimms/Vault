@@ -7,6 +7,6 @@
 
 import Foundation
 
-class Item {
+class VaultItem {
 	var note: String?
 }

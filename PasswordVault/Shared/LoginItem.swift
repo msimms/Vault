@@ -7,7 +7,7 @@
 
 import Foundation
 
-class LoginItem: Item {
+class LoginItem: VaultItem {
 	var website: String?
 	var username: String?
 	var email: String?

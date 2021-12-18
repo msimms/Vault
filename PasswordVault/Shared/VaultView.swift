@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct VaultView: View {
-	var items: [Item] = [];
+	@ObservedObject var appModel = AppState.shared
 
 	var body: some View {
 		List(0..<5) { item in

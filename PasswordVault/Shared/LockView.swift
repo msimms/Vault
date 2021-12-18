@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct LockView: View {
-    var body: some View {
+	@ObservedObject var appModel = AppState.shared
+
+	var body: some View {
 		NavigationView {
 			VStack {
 				NavigationLink(destination: VaultView()) {

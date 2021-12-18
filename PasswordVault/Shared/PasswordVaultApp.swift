@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct PasswordVaultApp: App {
+	var state = AppState()
     var body: some Scene {
         WindowGroup {
             LockView()
