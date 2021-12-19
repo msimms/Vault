@@ -10,9 +10,13 @@ import Foundation
 class AppState : ObservableObject {
 	static let shared = AppState()
 
-	var vault: Vault = Vault()
+	private var vault: Vault = Vault()
 
 	func vaultExists() -> Bool {
 		return false
+	}
+
+	func createVault(vaultLocation: String, password: String) -> Bool {
+		return vault.create(location: vaultLocation, key: password)
 	}
 }

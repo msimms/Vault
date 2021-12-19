@@ -10,21 +10,37 @@ import Foundation
 class Vault {
 	@Published var vaultItems: [VaultItem] = []
 
-	var vaultLocation: String?
+	var vaultDirUrl: URL? // Complete path to the directory containing the vault
 	var masterKey: String?
 
 	func create(location: String, key: String) -> Bool {
-		let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-		let documentsDirectory = paths[0]
-		let docURL = URL(string: documentsDirectory)!
-		let vaultPath = docURL.appendingPathComponent(location)
-		let vaultFile = vaultPath.appendingPathComponent("vault.json")
 
-		if !FileManager.default.fileExists(atPath: vaultPath.path) {
+		// Sanity check the parameters.
+		if location.count == 0 {
+			return false
+		}
+		if key.count == 0 {
+			return false
+		}
+
+		// Make sure any existing vaults are closed.
+		if !self.close() {
+			return false
+		}
+
+		let fileManager = FileManager.default
+		self.vaultDirUrl = URL(string: location)!
+		let vaultFileUrl = self.vaultDirUrl?.appendingPathComponent("vault.json")
+
+		// Does anything exist at the vault file's path?
+		if !fileManager.fileExists(atPath: vaultFileUrl!.path) {
 			do {
-				try FileManager.default.createDirectory(atPath: vaultPath.path, withIntermediateDirectories: true, attributes: nil)
+				try fileManager.createDirectory(atPath: self.vaultDirUrl!.path, withIntermediateDirectories: true, attributes: nil)
 
-				if (FileManager.default.createFile(atPath: vaultFile.absoluteString, contents: nil, attributes: nil)) {
+				// Create the vault's main file.
+				if (fileManager.createFile(atPath: vaultFileUrl!.absoluteString, contents: nil, attributes: nil)) {
+					
+					// Bcrypt the key.
 				}
 			} catch {
 				print(error.localizedDescription)
@@ -39,18 +55,17 @@ class Vault {
 
 	func readItems() -> Bool {
 		let fileManager = FileManager.default
-		let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+		let vaultFileUrl = self.vaultDirUrl?.appendingPathComponent("vault.json")
 
-		do {
-			let fileURLs = try fileManager.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil)
-		} catch {
+		// Does anything exist at the vault file's path?
+		if fileManager.fileExists(atPath: vaultFileUrl!.path) {
 		}
 		return false
 	}
 
 	func close() -> Bool {
-		self.vaultLocation = ""
+		self.vaultDirUrl = URL(string: "")
 		self.masterKey = ""
-		return false
+		return true
 	}
 }
