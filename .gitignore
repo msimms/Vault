@@ -2,7 +2,6 @@ build/
 DerivedData/
 
 ## Various settings
-build/
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -14,7 +13,6 @@ build/
 xcuserdata
 *.xccheckout
 *.moved-aside
-DerivedData
 *.xcuserstate
 *.xcworkspacedata
 
