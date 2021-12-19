@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		2709C269276D80A9008812AD /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2709C268276D80A9008812AD /* AppState.swift */; };
 		2709C26A276D80A9008812AD /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2709C268276D80A9008812AD /* AppState.swift */; };
+		2709C26C276EA9FD008812AD /* NewVaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2709C26B276EA9FD008812AD /* NewVaultView.swift */; };
+		2709C26D276EA9FD008812AD /* NewVaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2709C26B276EA9FD008812AD /* NewVaultView.swift */; };
+		2709C26F276EB376008812AD /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2709C26E276EB376008812AD /* AppView.swift */; };
+		2709C270276EB376008812AD /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2709C26E276EB376008812AD /* AppView.swift */; };
 		272A2C6F2766602F00E8DC9C /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272A2C6E2766602F00E8DC9C /* Tests_iOS.swift */; };
 		272A2C712766602F00E8DC9C /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272A2C702766602F00E8DC9C /* Tests_iOSLaunchTests.swift */; };
 		272A2C7B2766602F00E8DC9C /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272A2C7A2766602F00E8DC9C /* Tests_macOS.swift */; };
@@ -58,6 +62,8 @@
 
 /* Begin PBXFileReference section */
 		2709C268276D80A9008812AD /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		2709C26B276EA9FD008812AD /* NewVaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVaultView.swift; sourceTree = "<group>"; };
+		2709C26E276EB376008812AD /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		272A2C562766602F00E8DC9C /* PasswordVaultApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordVaultApp.swift; sourceTree = "<group>"; };
 		272A2C572766602F00E8DC9C /* VaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultView.swift; sourceTree = "<group>"; };
 		272A2C582766602F00E8DC9C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -126,8 +132,10 @@
 			isa = PBXGroup;
 			children = (
 				2709C268276D80A9008812AD /* AppState.swift */,
+				2709C26E276EB376008812AD /* AppView.swift */,
 				272A2C922766634F00E8DC9C /* LockView.swift */,
 				27CAB0AF2767D4650064877A /* LoginItem.swift */,
+				2709C26B276EA9FD008812AD /* NewVaultView.swift */,
 				272A2C562766602F00E8DC9C /* PasswordVaultApp.swift */,
 				27CAB0A52766BDF90064877A /* Preferences.swift */,
 				27CAB0AA2766BE450064877A /* Vault.swift */,
@@ -335,11 +343,13 @@
 			files = (
 				272A2C802766602F00E8DC9C /* VaultView.swift in Sources */,
 				272A2C7E2766602F00E8DC9C /* PasswordVaultApp.swift in Sources */,
+				2709C26C276EA9FD008812AD /* NewVaultView.swift in Sources */,
 				27CAB0A62766BDF90064877A /* Preferences.swift in Sources */,
 				27CAB0B02767D4650064877A /* LoginItem.swift in Sources */,
 				27CAB0B52767D99C0064877A /* VaultItem.swift in Sources */,
 				272A2C932766634F00E8DC9C /* LockView.swift in Sources */,
 				27CAB0AB2766BE450064877A /* Vault.swift in Sources */,
+				2709C26F276EB376008812AD /* AppView.swift in Sources */,
 				2709C269276D80A9008812AD /* AppState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,11 +360,13 @@
 			files = (
 				272A2C812766602F00E8DC9C /* VaultView.swift in Sources */,
 				272A2C7F2766602F00E8DC9C /* PasswordVaultApp.swift in Sources */,
+				2709C26D276EA9FD008812AD /* NewVaultView.swift in Sources */,
 				27CAB0A72766BDF90064877A /* Preferences.swift in Sources */,
 				27CAB0B12767D4650064877A /* LoginItem.swift in Sources */,
 				27CAB0B62767D99C0064877A /* VaultItem.swift in Sources */,
 				272A2C942766634F00E8DC9C /* LockView.swift in Sources */,
 				27CAB0AC2766BE450064877A /* Vault.swift in Sources */,
+				2709C270276EB376008812AD /* AppView.swift in Sources */,
 				2709C26A276D80A9008812AD /* AppState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
