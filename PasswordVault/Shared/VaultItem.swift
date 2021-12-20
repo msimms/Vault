@@ -7,6 +7,14 @@
 
 import Foundation
 
-class VaultItem {
-	var note: String?
+class VaultItem: Codable, Identifiable {
+	enum CodingKeys: CodingKey {
+		case id
+		case note
+		case vaultVersion
+	}
+	
+	var id = UUID()
+	var note: String
+	var vaultVersion: UInt8
 }
