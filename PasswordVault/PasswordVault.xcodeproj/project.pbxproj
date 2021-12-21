@@ -25,6 +25,10 @@
 		272A2C832766602F00E8DC9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 272A2C582766602F00E8DC9C /* Assets.xcassets */; };
 		272A2C932766634F00E8DC9C /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272A2C922766634F00E8DC9C /* LockView.swift */; };
 		272A2C942766634F00E8DC9C /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272A2C922766634F00E8DC9C /* LockView.swift */; };
+		27384FB0277270C8002BD39D /* Crypto in Frameworks */ = {isa = PBXBuildFile; productRef = 27384FAF277270C8002BD39D /* Crypto */; };
+		27384FB2277270C8002BD39D /* _CryptoExtras in Frameworks */ = {isa = PBXBuildFile; productRef = 27384FB1277270C8002BD39D /* _CryptoExtras */; };
+		27384FB427727237002BD39D /* AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27384FB327727237002BD39D /* AES.swift */; };
+		27384FB527727237002BD39D /* AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27384FB327727237002BD39D /* AES.swift */; };
 		27CAB0A62766BDF90064877A /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0A52766BDF90064877A /* Preferences.swift */; };
 		27CAB0A72766BDF90064877A /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0A52766BDF90064877A /* Preferences.swift */; };
 		27CAB0A82766BDF90064877A /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0A52766BDF90064877A /* Preferences.swift */; };
@@ -77,6 +81,7 @@
 		272A2C7A2766602F00E8DC9C /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		272A2C7C2766602F00E8DC9C /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
 		272A2C922766634F00E8DC9C /* LockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockView.swift; sourceTree = "<group>"; };
+		27384FB327727237002BD39D /* AES.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AES.swift; sourceTree = "<group>"; };
 		27CAB0A42766A3230064877A /* PasswordVault (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PasswordVault (iOS).entitlements"; sourceTree = "<group>"; };
 		27CAB0A52766BDF90064877A /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = SOURCE_ROOT; };
 		27CAB0AA2766BE450064877A /* Vault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vault.swift; sourceTree = "<group>"; };
@@ -89,6 +94,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27384FB2277270C8002BD39D /* _CryptoExtras in Frameworks */,
+				27384FB0277270C8002BD39D /* Crypto in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,6 +138,7 @@
 		272A2C552766602F00E8DC9C /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				27384FB327727237002BD39D /* AES.swift */,
 				2709C268276D80A9008812AD /* AppState.swift */,
 				2709C26E276EB376008812AD /* AppView.swift */,
 				272A2C922766634F00E8DC9C /* LockView.swift */,
@@ -199,6 +207,10 @@
 			dependencies = (
 			);
 			name = "PasswordVault (iOS)";
+			packageProductDependencies = (
+				27384FAF277270C8002BD39D /* Crypto */,
+				27384FB1277270C8002BD39D /* _CryptoExtras */,
+			);
 			productName = "PasswordVault (iOS)";
 			productReference = 272A2C5D2766602F00E8DC9C /* PasswordVault.app */;
 			productType = "com.apple.product-type.application";
@@ -291,6 +303,9 @@
 				Base,
 			);
 			mainGroup = 272A2C502766602E00E8DC9C;
+			packageReferences = (
+				27384FAE277270C8002BD39D /* XCRemoteSwiftPackageReference "swift-crypto" */,
+			);
 			productRefGroup = 272A2C5E2766602F00E8DC9C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -343,6 +358,7 @@
 			files = (
 				272A2C802766602F00E8DC9C /* VaultView.swift in Sources */,
 				272A2C7E2766602F00E8DC9C /* PasswordVaultApp.swift in Sources */,
+				27384FB427727237002BD39D /* AES.swift in Sources */,
 				2709C26C276EA9FD008812AD /* NewVaultView.swift in Sources */,
 				27CAB0A62766BDF90064877A /* Preferences.swift in Sources */,
 				27CAB0B02767D4650064877A /* LoginItem.swift in Sources */,
@@ -360,6 +376,7 @@
 			files = (
 				272A2C812766602F00E8DC9C /* VaultView.swift in Sources */,
 				272A2C7F2766602F00E8DC9C /* PasswordVaultApp.swift in Sources */,
+				27384FB527727237002BD39D /* AES.swift in Sources */,
 				2709C26D276EA9FD008812AD /* NewVaultView.swift in Sources */,
 				27CAB0A72766BDF90064877A /* Preferences.swift in Sources */,
 				27CAB0B12767D4650064877A /* LoginItem.swift in Sources */,
@@ -797,6 +814,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		27384FAE277270C8002BD39D /* XCRemoteSwiftPackageReference "swift-crypto" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-crypto.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		27384FAF277270C8002BD39D /* Crypto */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 27384FAE277270C8002BD39D /* XCRemoteSwiftPackageReference "swift-crypto" */;
+			productName = Crypto;
+		};
+		27384FB1277270C8002BD39D /* _CryptoExtras */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 27384FAE277270C8002BD39D /* XCRemoteSwiftPackageReference "swift-crypto" */;
+			productName = _CryptoExtras;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 272A2C512766602E00E8DC9C /* Project object */;
 }
