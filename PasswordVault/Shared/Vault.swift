@@ -26,6 +26,22 @@ class Vault {
 	var masterKey: String?
 	var index: VaultIndex?
 
+	func generateKey() -> Data? {
+
+		var keyData = Data(count: 32)
+		let result = keyData.withUnsafeMutableBytes {
+			SecRandomCopyBytes(kSecRandomDefault, 32, $0.baseAddress!)
+		}
+		if result == errSecSuccess {
+			return keyData
+		}
+		return nil
+	}
+	
+	func encodeBytes(inData: Data) -> String? {
+		return inData.base64EncodedString()
+	}
+
 	func create(location: String, key: String) -> Bool {
 
 		// Sanity check the parameters.
@@ -56,8 +72,11 @@ class Vault {
 					// Bcrypt the user key.
 
 					// Generate a random master key.
+					let masterKey = self.generateKey();
 
 					// Encrypt the master key with the user key.
+
+					// Encode the master key for writing.
 				}
 			} catch {
 				print(error.localizedDescription)
