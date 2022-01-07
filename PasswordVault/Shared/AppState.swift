@@ -13,6 +13,11 @@ class AppState : ObservableObject {
 	private var vault: Vault = Vault()
 
 	func vaultExists() -> Bool {
+		let location = Preferences.vaultLocation()
+		if location != nil {
+			let fileManager = FileManager.default
+			return fileManager.fileExists(atPath: location!)
+		}
 		return false
 	}
 

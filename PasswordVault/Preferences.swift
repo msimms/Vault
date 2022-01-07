@@ -8,11 +8,12 @@
 import Foundation
 
 class Preferences {
-	func vaultLocation() -> String {
-		return "";
+	static func vaultLocation() -> String? {
+		let mydefaults: UserDefaults = UserDefaults.standard
+		return mydefaults.string(forKey: "Vault Location")
 	}
 
-	func setVaultLocation(location: String) {
+	static func setVaultLocation(location: String) {
 		let mydefaults: UserDefaults = UserDefaults.standard
 		mydefaults.set(location, forKey: "Vault Location")
 	}
