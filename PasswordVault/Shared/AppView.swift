@@ -9,13 +9,42 @@ import SwiftUI
 
 struct AppView: View {
 	@ObservedObject var appModel = AppState.shared
+	@State var pushed : Bool = false
 
 	var body: some View {
-		if appModel.vaultExists() {
-			LockView()
-		}
-		else {
-			NewVaultView()
+		NavigationView {
+			if !appModel.vaultExists() {
+				NavigationView{
+					VStack{
+						NavigationLink(
+							destination: LockView(isPushed: self.$pushed),
+							isActive: self.$pushed
+						) { EmptyView() }
+						Button("Open Vault") {
+							self.pushed = true
+						}
+						.padding()
+						.background(Color.blue)
+						.cornerRadius(40)
+					}
+				}
+			}
+			else {
+				NavigationView{
+					VStack{
+						NavigationLink(
+							destination: NewVaultView(isPushed: self.$pushed),
+							isActive: self.$pushed
+						) { EmptyView() }
+						Button("Create Vault") {
+							self.pushed = true
+						}
+						.padding()
+						.background(Color.blue)
+						.cornerRadius(40)
+					}
+				}
+			}
 		}
 	}
 }

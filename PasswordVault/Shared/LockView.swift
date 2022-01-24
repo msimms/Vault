@@ -9,11 +9,12 @@ import SwiftUI
 
 struct LockView: View {
 	@ObservedObject var appModel = AppState.shared
+	@Binding var isPushed : Bool
 
 	var body: some View {
 		NavigationView {
 			VStack {
-				NavigationLink(destination: VaultView()) {
+				NavigationLink(destination: VaultView(isPushed: $isPushed)) {
 					Image(systemName: "lock.circle")
 						.font(.title)
 					Text("Login")
@@ -27,10 +28,4 @@ struct LockView: View {
 			}
 		}
 	}
-}
-
-struct LockView_Previews: PreviewProvider {
-    static var previews: some View {
-        LockView()
-    }
 }

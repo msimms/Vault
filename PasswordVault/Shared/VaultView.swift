@@ -9,6 +9,7 @@ import SwiftUI
 
 struct VaultView: View {
 	@ObservedObject var appModel = AppState.shared
+	@Binding var isPushed : Bool
 
 	var body: some View {
 		List(0..<5) { item in
@@ -20,10 +21,4 @@ struct VaultView: View {
 			}
 		}
 	}
-}
-
-struct VaultView_Previews: PreviewProvider {
-    static var previews: some View {
-		VaultView()
-    }
 }

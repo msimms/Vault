@@ -37,7 +37,7 @@ class Vault {
 		}
 		return nil
 	}
-	
+
 	func encodeBytes(inData: Data) -> String? {
 		return inData.base64EncodedString()
 	}
@@ -57,13 +57,18 @@ class Vault {
 			return false
 		}
 
+		var result = false
 		let fileManager = FileManager.default
+
+		// Build the file URL for the vault.
 		self.vaultDirUrl = URL(string: location)!
+		self.vaultDirUrl = self.vaultDirUrl?.appendingPathComponent("PasswordVault")
 		let vaultFileUrl = self.vaultDirUrl?.appendingPathComponent(vaultFileName)
 
 		// Does anything exist at the vault file's path?
 		if !fileManager.fileExists(atPath: vaultFileUrl!.path) {
 			do {
+				// Create the parent directory.
 				try fileManager.createDirectory(atPath: self.vaultDirUrl!.path, withIntermediateDirectories: true, attributes: nil)
 
 				// Create the vault's main file.
@@ -72,17 +77,21 @@ class Vault {
 					// Bcrypt the user key.
 
 					// Generate a random master key.
-					let masterKey = self.generateKey();
+					let masterKey = self.generateKey()
+					guard let unwrappedMasterKey = masterKey else { return result }
 
 					// Encrypt the master key with the user key.
+					let encryptedMasterKey = try aesCBCEncrypt(data: unwrappedMasterKey, keyData: Data(key.utf8))
 
 					// Encode the master key for writing.
+					
+					result = true
 				}
 			} catch {
 				print(error.localizedDescription)
 			}
 		}
-		return false
+		return result
 	}
 
 	func open(location: String, key: String) -> Bool {
