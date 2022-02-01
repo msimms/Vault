@@ -15,9 +15,11 @@ struct VaultView: View {
 		List(0..<5) { item in
 			Image(systemName: "note")
 			VStack(alignment: .leading) {
-				Text("Login")
-				Text("Some Website")
-					.font(.subheadline)
+				NavigationLink(destination: LoginItemView()) {
+					Text("Login")
+					Text("Some Website")
+						.font(.subheadline)
+				}
 			}
 		}
 	}

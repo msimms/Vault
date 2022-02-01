@@ -46,7 +46,7 @@ struct NewVaultView: View {
 					SecureField("", text: $confirmPassword)
 
 					// Allows the user to select the vault location
-					Button("Select Location...") {
+					/*Button("Select Location...") {
 						let panel = NSOpenPanel()
 
 						panel.allowsMultipleSelection = false
@@ -58,7 +58,7 @@ struct NewVaultView: View {
 					}
 					.padding()
 					.background(Color.blue)
-					.cornerRadius(40)
+					.cornerRadius(40)*/
 
 					// Creates the vault
 					Button("Create") {

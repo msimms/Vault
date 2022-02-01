@@ -10,16 +10,18 @@ import SwiftUI
 struct AppView: View {
 	@ObservedObject var appModel = AppState.shared
 	@State var pushed : Bool = false
+	@State var selection: Int? = nil
 
 	var body: some View {
 		NavigationView {
 			if !appModel.vaultExists() {
-				NavigationView{
-					VStack{
+				NavigationView {
+					VStack {
 						NavigationLink(
 							destination: LockView(isPushed: self.$pushed),
 							isActive: self.$pushed
 						) { EmptyView() }
+						.hidden()
 						Button("Open Vault") {
 							self.pushed = true
 						}
@@ -30,12 +32,13 @@ struct AppView: View {
 				}
 			}
 			else {
-				NavigationView{
-					VStack{
+				NavigationView {
+					VStack {
 						NavigationLink(
 							destination: NewVaultView(isPushed: self.$pushed),
 							isActive: self.$pushed
 						) { EmptyView() }
+						.hidden()
 						Button("Create Vault") {
 							self.pushed = true
 						}
