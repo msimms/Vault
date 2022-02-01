@@ -10,7 +10,6 @@ import SwiftUI
 struct AppView: View {
 	@ObservedObject var appModel = AppState.shared
 	@State var pushed : Bool = false
-	@State var selection: Int? = nil
 
 	var body: some View {
 		NavigationView {
@@ -27,7 +26,9 @@ struct AppView: View {
 						}
 						.padding()
 						.background(Color.blue)
+						.foregroundColor(.white)
 						.cornerRadius(40)
+						.padding()
 					}
 				}
 			}
@@ -44,7 +45,9 @@ struct AppView: View {
 						}
 						.padding()
 						.background(Color.blue)
+						.foregroundColor(.white)
 						.cornerRadius(40)
+						.padding()
 					}
 				}
 			}

@@ -7,14 +7,16 @@
 
 import SwiftUI
 
+// Displays a login item from the vault.
 struct LoginItemView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+	@ObservedObject var appModel = AppState.shared
+	@Binding var isPushed : Bool
 
-struct LoginItemView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginItemView()
+	var body: some View {
+		NavigationView {
+			VStack {
+		        Text("Hello World")
+			}
+		}
     }
 }

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+#if os(macOS)
 func openFolderSelection() -> URL? {
 	let openPanel = NSOpenPanel()
 
@@ -23,7 +24,9 @@ func openFolderSelection() -> URL? {
 	}
 	return openPanel.url
 }
+#endif
 
+// Prompts the user for everything needed to create a new vault.
 struct NewVaultView: View {
 	@ObservedObject var appModel = AppState.shared
 	@Binding var isPushed : Bool
@@ -56,9 +59,10 @@ struct NewVaultView: View {
 							vaultLocation = panel.directoryURL?.absoluteString ?? ""
 						}
 					}
-					.padding()
 					.background(Color.blue)
-					.cornerRadius(40)*/
+					.foregroundColor(.white)
+					.cornerRadius(40)
+					.padding()*/
 
 					// Creates the vault
 					Button("Create") {
@@ -86,9 +90,10 @@ struct NewVaultView: View {
 					.alert("Failed to create the vault", isPresented: $showingVaultCreationFailedAlert) {
 						Button("OK", role: .cancel) { }
 					}
-					.padding()
 					.background(Color.blue)
+					.foregroundColor(.white)
 					.cornerRadius(40)
+					.padding()
 				}
 			}
 			.frame(width: 300, height: 200)

@@ -7,24 +7,30 @@
 
 import SwiftUI
 
+// Prompts the user for the credentials to open the vault.
 struct LockView: View {
 	@ObservedObject var appModel = AppState.shared
 	@Binding var isPushed : Bool
+	@State private var password: String = ""
 
 	var body: some View {
 		NavigationView {
 			VStack {
+				// Password
+				Label("Password", systemImage: "lock.circle")
+				SecureField("", text: $password)
+
+				// Login button
 				NavigationLink(destination: VaultView(isPushed: $isPushed)) {
 					Image(systemName: "lock.circle")
-						.font(.title)
 					Text("Login")
 						.fontWeight(.semibold)
-						.font(.title)
 				}
 				.padding()
-				.foregroundColor(.white)
 				.background(Color.blue)
+				.foregroundColor(.white)
 				.cornerRadius(40)
+				.padding()
 			}
 		}
 	}
