@@ -26,7 +26,8 @@ class Vault {
 	var masterKey: String?
 	var index: VaultIndex?
 
-	func generateKey() -> Data? {
+	/// Utility function for creating the master key.
+	func generateMasterKey() -> Data? {
 
 		var keyData = Data(count: 32)
 		let result = keyData.withUnsafeMutableBytes {
@@ -77,7 +78,7 @@ class Vault {
 					// Bcrypt the user key.
 
 					// Generate a random master key.
-					let masterKey = self.generateKey()
+					let masterKey = self.generateMasterKey()
 					guard let unwrappedMasterKey = masterKey else { return result }
 
 					// Encrypt the master key with the user key.
@@ -94,11 +95,12 @@ class Vault {
 		return result
 	}
 
+	/// Opens the vault by opening the master vault file and decoding it.
 	func open(location: String, key: String) -> Bool {
 		let fileManager = FileManager.default
 		let vaultFileUrl = self.vaultDirUrl?.appendingPathComponent(vaultFileName)
 
-		// Does anything exist at the vault file's path?
+		// Does anything exist at the vault master file's path?
 		if fileManager.fileExists(atPath: vaultFileUrl!.path) {
 			
 			// Read the index file.
@@ -109,6 +111,8 @@ class Vault {
 			// Validate the provided key.
 
 			// Decrypt the master key.
+			
+			return true
 		}
 		return false
 	}
@@ -124,6 +128,7 @@ class Vault {
 		return false
 	}
 
+	/// Closes the vault by clearing any data we have that is associated with it.
 	func close() -> Bool {
 		self.vaultDirUrl = URL(string: "")
 		self.masterKey = ""

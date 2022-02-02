@@ -31,6 +31,8 @@
 		27384FB527727237002BD39D /* AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27384FB327727237002BD39D /* AES.swift */; };
 		276A059227A8903500B030E1 /* LoginItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276A059127A8903500B030E1 /* LoginItemView.swift */; };
 		276A059327A8903500B030E1 /* LoginItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276A059127A8903500B030E1 /* LoginItemView.swift */; };
+		276A059527AB17F900B030E1 /* VaultMasterFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276A059427AB17F900B030E1 /* VaultMasterFile.swift */; };
+		276A059627AB17F900B030E1 /* VaultMasterFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276A059427AB17F900B030E1 /* VaultMasterFile.swift */; };
 		277788F9279CDC9C000C19DF /* FileUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277788F8279CDC9C000C19DF /* FileUtils.swift */; };
 		277788FA279CDC9C000C19DF /* FileUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277788F8279CDC9C000C19DF /* FileUtils.swift */; };
 		27CAB0A62766BDF90064877A /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0A52766BDF90064877A /* Preferences.swift */; };
@@ -87,6 +89,8 @@
 		272A2C922766634F00E8DC9C /* LockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockView.swift; sourceTree = "<group>"; };
 		27384FB327727237002BD39D /* AES.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AES.swift; sourceTree = "<group>"; };
 		276A059127A8903500B030E1 /* LoginItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginItemView.swift; sourceTree = "<group>"; };
+		276A059427AB17F900B030E1 /* VaultMasterFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultMasterFile.swift; sourceTree = "<group>"; };
+		276A059A27AB279C00B030E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		277788F8279CDC9C000C19DF /* FileUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUtils.swift; sourceTree = "<group>"; };
 		27CAB0A42766A3230064877A /* PasswordVault (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PasswordVault (iOS).entitlements"; sourceTree = "<group>"; };
 		27CAB0A52766BDF90064877A /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = SOURCE_ROOT; };
@@ -144,6 +148,7 @@
 		272A2C552766602F00E8DC9C /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				276A059A27AB279C00B030E1 /* Info.plist */,
 				27384FB327727237002BD39D /* AES.swift */,
 				2709C268276D80A9008812AD /* AppState.swift */,
 				2709C26E276EB376008812AD /* AppView.swift */,
@@ -156,6 +161,7 @@
 				27CAB0A52766BDF90064877A /* Preferences.swift */,
 				27CAB0AA2766BE450064877A /* Vault.swift */,
 				27CAB0B42767D99C0064877A /* VaultItem.swift */,
+				276A059427AB17F900B030E1 /* VaultMasterFile.swift */,
 				272A2C572766602F00E8DC9C /* VaultView.swift */,
 				272A2C582766602F00E8DC9C /* Assets.xcassets */,
 			);
@@ -372,6 +378,7 @@
 				2709C26C276EA9FD008812AD /* NewVaultView.swift in Sources */,
 				27CAB0A62766BDF90064877A /* Preferences.swift in Sources */,
 				27CAB0B02767D4650064877A /* LoginItem.swift in Sources */,
+				276A059527AB17F900B030E1 /* VaultMasterFile.swift in Sources */,
 				27CAB0B52767D99C0064877A /* VaultItem.swift in Sources */,
 				272A2C932766634F00E8DC9C /* LockView.swift in Sources */,
 				27CAB0AB2766BE450064877A /* Vault.swift in Sources */,
@@ -392,6 +399,7 @@
 				2709C26D276EA9FD008812AD /* NewVaultView.swift in Sources */,
 				27CAB0A72766BDF90064877A /* Preferences.swift in Sources */,
 				27CAB0B12767D4650064877A /* LoginItem.swift in Sources */,
+				276A059627AB17F900B030E1 /* VaultMasterFile.swift in Sources */,
 				27CAB0B62767D99C0064877A /* VaultItem.swift in Sources */,
 				272A2C942766634F00E8DC9C /* LockView.swift in Sources */,
 				27CAB0AC2766BE450064877A /* Vault.swift in Sources */,
@@ -493,6 +501,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -546,6 +556,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;

@@ -52,6 +52,7 @@ struct NewVaultView: View {
 					.padding()
 
 				// Allows the user to select the vault location
+#if os(macOS)
 				/*Button("Select Location...") {
 					let panel = NSOpenPanel()
 
@@ -66,6 +67,7 @@ struct NewVaultView: View {
 				.foregroundColor(.white)
 				.cornerRadius(40)
 				.padding()*/
+#endif
 
 				// Creates the vault
 				Button("Create") {
