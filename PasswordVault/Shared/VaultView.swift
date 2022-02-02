@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-// Displays all the items within the open vault.
+/// Displays all the items within the open vault.
 struct VaultView: View {
 	@ObservedObject var appModel = AppState.shared
 	@Binding var isPushed : Bool
 
 	var body: some View {
-		NavigationView {
+		VStack {
 			List(0..<5) { item in
 				Image(systemName: "note")
 				VStack(alignment: .leading) {

@@ -7,16 +7,14 @@
 
 import SwiftUI
 
-// Displays a login item from the vault.
+/// Displays a login item from the vault.
 struct LoginItemView: View {
 	@ObservedObject var appModel = AppState.shared
 	@Binding var isPushed : Bool
 
 	var body: some View {
-		NavigationView {
-			VStack {
-		        Text("Hello World")
-			}
+		VStack {
+			Text("Hello World")
 		}
     }
 }
