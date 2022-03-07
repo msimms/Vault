@@ -33,7 +33,6 @@
 		276A059327A8903500B030E1 /* LoginItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276A059127A8903500B030E1 /* LoginItemView.swift */; };
 		276A059527AB17F900B030E1 /* VaultMasterFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276A059427AB17F900B030E1 /* VaultMasterFile.swift */; };
 		276A059627AB17F900B030E1 /* VaultMasterFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276A059427AB17F900B030E1 /* VaultMasterFile.swift */; };
-		276A060B27AEFC8800B030E1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 276A060A27AEFC8800B030E1 /* Info.plist */; };
 		276A060C27AEFC8800B030E1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 276A060A27AEFC8800B030E1 /* Info.plist */; };
 		276A060F27AEFCC700B030E1 /* iOS in Resources */ = {isa = PBXBuildFile; fileRef = 276A060E27AEFCC700B030E1 /* iOS */; };
 		276A061027AEFCC700B030E1 /* iOS in Resources */ = {isa = PBXBuildFile; fileRef = 276A060E27AEFCC700B030E1 /* iOS */; };
@@ -342,7 +341,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				276A060F27AEFCC700B030E1 /* iOS in Resources */,
-				276A060B27AEFC8800B030E1 /* Info.plist in Resources */,
 				272A2C822766602F00E8DC9C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
