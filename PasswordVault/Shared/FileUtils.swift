@@ -7,10 +7,25 @@
 
 import Foundation
 
-func getDocumentsDirectory() -> URL {
-	// find all possible documents directories for this user
-	let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+func getICloudDirectory() -> URL {
+	let path = FileManager.default.url(forUbiquityContainerIdentifier: nil)
+	return path!
+}
 
-	// just send back the first one, which ought to be the only one
+func getDocumentsDirectory() -> URL {
+	let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
 	return paths[0]
+}
+
+func writeToFile(fileName: String, writeText: String) -> Bool {
+	let desktopURL = try! FileManager.default.url(for: .desktopDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+	let fileURL = desktopURL.appendingPathComponent(fileName).appendingPathExtension("txt")
+
+	do {
+		try writeText.write(to: fileURL, atomically: true, encoding: String.Encoding.utf8)
+	} catch let error as NSError {
+		print("Error: Failed to write: \n\(error)" )
+		return false
+	}
+	return true
 }

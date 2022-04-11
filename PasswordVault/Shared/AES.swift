@@ -14,7 +14,7 @@ enum AESError: Error {
 	case CryptorError((String, Int))
 }
 
-// The iv is prefixed to the encrypted data
+/// The iv is prefixed to the encrypted data
 func aesCBCEncrypt(data: Data, keyData: Data) throws -> Data {
 	let keyLength = keyData.count
 	let validKeyLengths = [kCCKeySizeAES128, kCCKeySizeAES192, kCCKeySizeAES256]
@@ -61,7 +61,7 @@ func aesCBCEncrypt(data: Data, keyData: Data) throws -> Data {
 	return cryptData;
 }
 
-// The iv is prefixed to the encrypted data
+/// The iv is prefixed to the encrypted data
 func aesCBCDecrypt(data: Data, keyData: Data) throws -> Data? {
 	let keyLength = keyData.count
 	let validKeyLengths = [kCCKeySizeAES128, kCCKeySizeAES192, kCCKeySizeAES256]

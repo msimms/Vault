@@ -43,12 +43,10 @@ class Vault {
 		return inData.base64EncodedString()
 	}
 
+	/// Creates the vault. If the location is not provided then the vault is created on the user's iCloud drive.
 	func create(location: String, key: String) -> Bool {
 
 		// Sanity check the parameters.
-		if location.count == 0 {
-			return false
-		}
 		if key.count == 0 {
 			return false
 		}
@@ -59,21 +57,29 @@ class Vault {
 		}
 
 		var result = false
-		let fileManager = FileManager.default
 
-		// Build the file URL for the vault.
-		self.vaultDirUrl = URL(string: location)!
+		// Build the URL for the vault's directory.
+		if location.count == 0 {
+			self.vaultDirUrl = getICloudDirectory()
+		}
+		else {
+			self.vaultDirUrl = URL(string: location)!
+		}
 		self.vaultDirUrl = self.vaultDirUrl?.appendingPathComponent("PasswordVault")
-		let vaultFileUrl = self.vaultDirUrl?.appendingPathComponent(vaultFileName)
 
-		// Does anything exist at the vault file's path?
-		if !fileManager.fileExists(atPath: vaultFileUrl!.path) {
+		// Build the URL for the vault's master file.
+		let vaultMasterFileUrl = self.vaultDirUrl?.appendingPathComponent(vaultFileName)
+
+		// Does anything exist at the vault master file's path?
+		let fileManager = FileManager.default
+		if !fileManager.fileExists(atPath: vaultMasterFileUrl!.path) {
 			do {
+
 				// Create the parent directory.
 				try fileManager.createDirectory(atPath: self.vaultDirUrl!.path, withIntermediateDirectories: true, attributes: nil)
 
-				// Create the vault's main file.
-				if (fileManager.createFile(atPath: vaultFileUrl!.absoluteString, contents: nil, attributes: nil)) {
+				// Create the vault's master file.
+				if (fileManager.createFile(atPath: vaultMasterFileUrl!.absoluteString, contents: nil, attributes: nil)) {
 
 					// Bcrypt the user key.
 
@@ -85,9 +91,13 @@ class Vault {
 					let encryptedMasterKey = try aesCBCEncrypt(data: unwrappedMasterKey, keyData: Data(key.utf8))
 
 					// Encode the master key for writing.
-					
+
 					result = true
 				}
+				else {
+				}
+			} catch let error as NSError {
+				print("Error: Failed to write: \n\(error)" )
 			} catch {
 				print(error.localizedDescription)
 			}
