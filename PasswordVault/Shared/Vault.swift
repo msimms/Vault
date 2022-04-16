@@ -58,22 +58,23 @@ class Vault {
 			return false
 		}
 
-		// Build the URL for the vault's directory. If a location was provided then
-		// use it, otherwise assume the user's iCloud directory.
-		if location.count == 0 {
-			self.vaultDirUrl = FileManager.default.url(forUbiquityContainerIdentifier: nil)
-		}
-		else {
-			self.vaultDirUrl = URL(string: location)
-		}
-		self.vaultDirUrl = self.vaultDirUrl?.appendingPathComponent("PasswordVault")
+		do {
+			// Build the URL for the vault's directory. If a location was provided then
+			// use it, otherwise assume the user's iCloud directory.
+			if location.count == 0 {
+				self.vaultDirUrl = FileManager.default.url(forUbiquityContainerIdentifier: nil)
+			}
+			else {
+				self.vaultDirUrl = URL(string: location)
+			}
+			self.vaultDirUrl = self.vaultDirUrl?.appendingPathComponent("PasswordVault")
 
-		// Build the URL for the vault's master file.
-		let vaultMasterFileUrl = self.vaultDirUrl?.appendingPathComponent(vaultFileName)
+			// Build the URL for the vault's master file.
+			let vaultMasterFileUrl = self.vaultDirUrl?.appendingPathComponent(vaultFileName)
 
-		// Does anything exist at the vault master file's path?
-		if !FileManager.default.fileExists(atPath: vaultMasterFileUrl!.path) {
-			do {
+			// Does anything exist at the vault master file's path?
+			if !FileManager.default.fileExists(atPath: vaultMasterFileUrl!.path) {
+
 				// Create the parent directory.
 				let path = self.vaultDirUrl!.path
 				try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
@@ -91,16 +92,21 @@ class Vault {
 
 					// Base 64 encode the master key for writing.
 
+					// Encode everything as JSON.
+					let encoder = JSONEncoder()
+
+					// Write it out.
+
 					result = true
 				}
 				else {
 					print("Failed to create the vault's master file.")
 				}
-			} catch let error as NSError {
-				print("Error: Failed to write: \n\(error)")
-			} catch {
-				print(error.localizedDescription)
 			}
+		} catch let error as NSError {
+			print("Error: Failed to write: \n\(error)")
+		} catch {
+			print(error.localizedDescription)
 		}
 		return result
 	}
