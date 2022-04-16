@@ -46,6 +46,8 @@ class Vault {
 	/// Creates the vault. If the location is not provided then the vault is created on the user's iCloud drive.
 	func create(location: String, key: String) -> Bool {
 
+		var result = false
+
 		// Sanity check the parameters.
 		if key.count == 0 {
 			return false
@@ -56,14 +58,13 @@ class Vault {
 			return false
 		}
 
-		var result = false
-
-		// Build the URL for the vault's directory.
+		// Build the URL for the vault's directory. If a location was provided then
+		// use it, otherwise assume the user's iCloud directory.
 		if location.count == 0 {
-			self.vaultDirUrl = getICloudDirectory()
+			self.vaultDirUrl = FileManager.default.url(forUbiquityContainerIdentifier: nil)
 		}
 		else {
-			self.vaultDirUrl = URL(string: location)!
+			self.vaultDirUrl = URL(string: location)
 		}
 		self.vaultDirUrl = self.vaultDirUrl?.appendingPathComponent("PasswordVault")
 
@@ -71,17 +72,15 @@ class Vault {
 		let vaultMasterFileUrl = self.vaultDirUrl?.appendingPathComponent(vaultFileName)
 
 		// Does anything exist at the vault master file's path?
-		let fileManager = FileManager.default
-		if !fileManager.fileExists(atPath: vaultMasterFileUrl!.path) {
+		if !FileManager.default.fileExists(atPath: vaultMasterFileUrl!.path) {
 			do {
-
 				// Create the parent directory.
-				try fileManager.createDirectory(atPath: self.vaultDirUrl!.path, withIntermediateDirectories: true, attributes: nil)
+				let path = self.vaultDirUrl!.path
+				try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
 
 				// Create the vault's master file.
-				if (fileManager.createFile(atPath: vaultMasterFileUrl!.absoluteString, contents: nil, attributes: nil)) {
-
-					// Bcrypt the user key.
+				let masterFilePath = vaultMasterFileUrl!.absoluteString
+				if (FileManager.default.createFile(atPath: masterFilePath, contents: nil, attributes: nil)) {
 
 					// Generate a random master key.
 					let masterKey = self.generateMasterKey()
@@ -90,14 +89,15 @@ class Vault {
 					// Encrypt the master key with the user key.
 					let encryptedMasterKey = try aesCBCEncrypt(data: unwrappedMasterKey, keyData: Data(key.utf8))
 
-					// Encode the master key for writing.
+					// Base 64 encode the master key for writing.
 
 					result = true
 				}
 				else {
+					print("Failed to create the vault's master file.")
 				}
 			} catch let error as NSError {
-				print("Error: Failed to write: \n\(error)" )
+				print("Error: Failed to write: \n\(error)")
 			} catch {
 				print(error.localizedDescription)
 			}
@@ -113,7 +113,7 @@ class Vault {
 		// Does anything exist at the vault master file's path?
 		if fileManager.fileExists(atPath: vaultFileUrl!.path) {
 			
-			// Read the index file.
+			// Read the master file.
 			let data = try? Data(contentsOf: vaultFileUrl!)
 			let index = try? JSONDecoder().decode(VaultIndex.self, from: data!)
 			self.index = index!

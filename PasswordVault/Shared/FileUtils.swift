@@ -7,16 +7,6 @@
 
 import Foundation
 
-func getICloudDirectory() -> URL {
-	let path = FileManager.default.url(forUbiquityContainerIdentifier: nil)
-	return path!
-}
-
-func getDocumentsDirectory() -> URL {
-	let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-	return paths[0]
-}
-
 func writeToFile(fileName: String, writeText: String) -> Bool {
 	let desktopURL = try! FileManager.default.url(for: .desktopDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
 	let fileURL = desktopURL.appendingPathComponent(fileName).appendingPathExtension("txt")
