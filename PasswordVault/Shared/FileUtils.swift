@@ -19,3 +19,16 @@ func writeToFile(fileName: String, writeText: String) -> Bool {
 	}
 	return true
 }
+
+func contentsOfDir(dirName: URL) -> [URL] {
+	let fileManager = FileManager.default
+
+	do {
+		let contents = try fileManager.contentsOfDirectory(atPath: dirName.path)
+
+		let urls = contents.map { return dirName.appendingPathComponent($0) }
+		return urls
+	} catch {
+	}
+	return []
+}
