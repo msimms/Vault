@@ -21,9 +21,18 @@ class AppState : ObservableObject {
 
 	/// Creates a vault at the specified location.
 	func createVault(vaultLocation: String, password: String) -> Bool {
-		return vault.create(location: vaultLocation, key: password)
+		do {
+			try vault.create(location: vaultLocation, key: password)
+			Preferences.setVaultLocation(location: vaultLocation)
+			return true
+		} catch let error as NSError {
+			print("Error: Failed to write: \n\(error)")
+		} catch {
+			print(error.localizedDescription)
+		}
+		return false
 	}
-	
+
 	/// Returns true if we should open the vault, based on the supplied credentials; false otherwise.
 	func validLogin(password: String) -> Bool {
 		return false

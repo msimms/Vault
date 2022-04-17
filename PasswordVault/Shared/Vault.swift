@@ -59,119 +59,102 @@ class Vault {
 	}
 
 	/// Creates the vault. If the location is not provided then the vault is created on the user's iCloud drive.
-	func create(location: String, key: String) -> Bool {
-
-		var result = false
+	func create(location: String, key: String) throws {
 
 		// Sanity check the parameters.
 		if key.count == 0 {
-			return false
+			throw VaultException.runtimeError("A key was not provided.")
 		}
 
 		// Make sure any existing vaults are closed.
 		if !self.close() {
-			return false
+			throw VaultException.runtimeError("The vault is already open.")
 		}
 
-		do {
-			// Build the URL for the vault's directory. If a location was provided then
-			// use it, otherwise assume the user's iCloud directory.
-			let vaultMasterFileUrl = self.buildVaultMasterFileUrl(location: location)
+		// Build the URL for the vault's directory. If a location was provided then
+		// use it, otherwise assume the user's iCloud directory.
+		let vaultMasterFileUrl = self.buildVaultMasterFileUrl(location: location)
 
-			// Does anything exist at the vault master file's path?
-			if !FileManager.default.fileExists(atPath: vaultMasterFileUrl!.path) {
+		// Does anything exist at the vault master file's path?
+		if !FileManager.default.fileExists(atPath: vaultMasterFileUrl!.path) {
 
-				// Create the parent directory.
-				try FileManager.default.createDirectory(at: self.vaultDirUrl!, withIntermediateDirectories: true, attributes: nil)
+			// Create the parent directory.
+			try FileManager.default.createDirectory(at: self.vaultDirUrl!, withIntermediateDirectories: true, attributes: nil)
 
-				// Create the vault's master file.
-				if (FileManager.default.createFile(atPath: vaultMasterFileUrl!.path, contents: nil, attributes: nil)) {
+			// Create the vault's master file.
+			if (FileManager.default.createFile(atPath: vaultMasterFileUrl!.path, contents: nil, attributes: nil)) {
 
-					// Generate a random master key.
-					let masterKey = self.generateMasterKey()
-					guard let unwrappedMasterKey = masterKey else { return result }
-
-					// Encrypt the master key with the user key.
-					let encryptedMasterKey = try aesCBCEncrypt(data: unwrappedMasterKey, keyData: Data(key.utf8))
-
-					// Base 64 encode the master key for writing.
-					let base64MasterKey = encryptedMasterKey.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
-
-					// Encode everything as JSON.
-					let vaultData = VaultIndex(vaultVersion: 0, encryptedMasterKey: base64MasterKey)
-					let encoder = JSONEncoder()
-					let jsonString = try encoder.encode(vaultData)
-
-					// Write it out.
-					try jsonString.write(to: vaultMasterFileUrl!)
-
-					result = true
+				// Generate a random master key.
+				let masterKey = self.generateMasterKey()
+				guard let unwrappedMasterKey = masterKey else {
+					throw VaultException.runtimeError("Error generating master key.")
 				}
-				else {
-					print("Failed to create the vault's master file.")
-				}
+
+				// Encrypt the master key with the user key.
+				let encryptedMasterKey = try aesCBCEncrypt(data: unwrappedMasterKey, keyData: Data(key.utf8))
+
+				// Base64 encode the master key for writing.
+				let base64MasterKey = encryptedMasterKey.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
+
+				// Encode everything as JSON.
+				let vaultData = VaultIndex(vaultVersion: 0, encryptedMasterKey: base64MasterKey)
+				let encoder = JSONEncoder()
+				let jsonString = try encoder.encode(vaultData)
+
+				// Write it out.
+				try jsonString.write(to: vaultMasterFileUrl!)
+
 			}
 			else {
-				print("A vault already exists at that location.")
+				throw VaultException.runtimeError("Failed to create the vault's master file.")
 			}
-		} catch let error as NSError {
-			print("Error: Failed to write: \n\(error)")
-		} catch {
-			print(error.localizedDescription)
 		}
-		return result
+		else {
+			throw VaultException.runtimeError("A vault already exists at that location.")
+		}
 	}
 
 	/// Opens the vault by opening the master vault file and decoding it.
-	func open(location: String, key: String) -> Bool {
-
-		var result = false
+	func open(location: String, key: String) throws {
 
 		// Sanity check the parameters.
 		if key.count == 0 {
-			return false
+			throw VaultException.runtimeError("A key was not provided.")
 		}
 
 		// Make sure any existing vaults are closed.
 		if !self.close() {
-			return false
+			throw VaultException.runtimeError("The vault is already open.")
 		}
 
-		do {
-			// Build the URL for the vault's directory. If a location was provided then
-			// use it, otherwise assume the user's iCloud directory.
-			let vaultMasterFileUrl = self.buildVaultMasterFileUrl(location: location)
+		// Build the URL for the vault's directory. If a location was provided then
+		// use it, otherwise assume the user's iCloud directory.
+		let vaultMasterFileUrl = self.buildVaultMasterFileUrl(location: location)
 
-			// Does anything exist at the vault master file's path?
-			if FileManager.default.fileExists(atPath: vaultMasterFileUrl!.path) {
+		// Does anything exist at the vault master file's path?
+		if FileManager.default.fileExists(atPath: vaultMasterFileUrl!.path) {
 
-				// Read the master file.
-				let data = try? Data(contentsOf: vaultMasterFileUrl!)
-				let index = try? JSONDecoder().decode(VaultIndex.self, from: data!)
+			// Read the master file.
+			let data = try? Data(contentsOf: vaultMasterFileUrl!)
+			let jsonString = try? JSONDecoder().decode(VaultIndex.self, from: data!)
 
-				// Validate the provided key.
+			// Validate the provided key.
 
-				// Decrypt the master key.
-				
-				return true
-			}
-			else {
-				
-			}
+			// Decrypt the master key.
+			
 		}
-		return false
+		else {
+			
+		}
 	}
 
 	/// Completely deletes the vault and all it's items.
-	func delete(location: String, key: String) -> Bool {
-		var result = false
+	func delete(location: String, key: String) throws {
 
 		// Sanity check the parameters.
 		if key.count == 0 {
-			return false
+			throw VaultException.runtimeError("A key was not provided.")
 		}
-
-		return false
 	}
 
 	func readItems() -> Bool {
