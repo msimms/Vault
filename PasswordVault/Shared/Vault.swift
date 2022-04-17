@@ -76,12 +76,10 @@ class Vault {
 			if !FileManager.default.fileExists(atPath: vaultMasterFileUrl!.path) {
 
 				// Create the parent directory.
-				let path = self.vaultDirUrl!.path
-				try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
+				try FileManager.default.createDirectory(at: self.vaultDirUrl!, withIntermediateDirectories: true, attributes: nil)
 
 				// Create the vault's master file.
-				let masterFilePath = vaultMasterFileUrl!.absoluteString
-				if (FileManager.default.createFile(atPath: masterFilePath, contents: nil, attributes: nil)) {
+				if (FileManager.default.createFile(atPath: vaultMasterFileUrl!.path, contents: nil, attributes: nil)) {
 
 					// Generate a random master key.
 					let masterKey = self.generateMasterKey()
@@ -96,12 +94,17 @@ class Vault {
 					let encoder = JSONEncoder()
 
 					// Write it out.
+					let jsonString = "foo"
+					try jsonString.write(to: vaultMasterFileUrl!, atomically: true, encoding: .utf8)
 
 					result = true
 				}
 				else {
 					print("Failed to create the vault's master file.")
 				}
+			}
+			else {
+				print("A vault already exists at that location.")
 			}
 		} catch let error as NSError {
 			print("Error: Failed to write: \n\(error)")
