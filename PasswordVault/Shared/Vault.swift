@@ -7,15 +7,10 @@
 
 import Foundation
 
-class VaultIndex: Codable, Identifiable {
-	enum CodingKeys: CodingKey {
-		case encocdedMaster
-		case vaultVersion
-	}
-	
-	var id = UUID()
-	var encocdedMaster: String
+/// Encapsulates the data stored in the vault's master file
+struct VaultIndex: Codable {
 	var vaultVersion: UInt8
+	var encryptedMasterKey: String
 }
 
 class Vault {
@@ -24,7 +19,6 @@ class Vault {
 	let vaultFileName = "vault.json"
 	var vaultDirUrl: URL? // Complete path to the directory containing the vault
 	var masterKey: String?
-	var index: VaultIndex?
 
 	/// Utility function for creating the master key.
 	func generateMasterKey() -> Data? {
@@ -41,6 +35,27 @@ class Vault {
 
 	func encodeBytes(inData: Data) -> String? {
 		return inData.base64EncodedString()
+	}
+
+	func buildVaultMasterFileUrl(location: String) -> URL? {
+		// Build the URL for the vault's directory. If a location was provided then
+		// use it, otherwise assume the user's iCloud directory.
+		if location.count == 0 {
+			self.vaultDirUrl = FileManager.default.url(forUbiquityContainerIdentifier: nil)
+		}
+		else {
+			self.vaultDirUrl = URL(string: location)
+		}
+		self.vaultDirUrl = self.vaultDirUrl?.appendingPathComponent("PasswordVault")
+
+		// Build the URL for the vault's master file.
+		return self.vaultDirUrl?.appendingPathComponent(vaultFileName)
+	}
+
+	/// Returns true if a vault exists (spexcifically the vault index file) at the location stored in the user preferences.
+	func vaultExists(location: String) -> Bool {
+		let vaultMasterFileUrl = self.buildVaultMasterFileUrl(location: location)
+		return FileManager.default.fileExists(atPath: vaultMasterFileUrl!.path)
 	}
 
 	/// Creates the vault. If the location is not provided then the vault is created on the user's iCloud drive.
@@ -61,16 +76,7 @@ class Vault {
 		do {
 			// Build the URL for the vault's directory. If a location was provided then
 			// use it, otherwise assume the user's iCloud directory.
-			if location.count == 0 {
-				self.vaultDirUrl = FileManager.default.url(forUbiquityContainerIdentifier: nil)
-			}
-			else {
-				self.vaultDirUrl = URL(string: location)
-			}
-			self.vaultDirUrl = self.vaultDirUrl?.appendingPathComponent("PasswordVault")
-
-			// Build the URL for the vault's master file.
-			let vaultMasterFileUrl = self.vaultDirUrl?.appendingPathComponent(vaultFileName)
+			let vaultMasterFileUrl = self.buildVaultMasterFileUrl(location: location)
 
 			// Does anything exist at the vault master file's path?
 			if !FileManager.default.fileExists(atPath: vaultMasterFileUrl!.path) {
@@ -89,13 +95,15 @@ class Vault {
 					let encryptedMasterKey = try aesCBCEncrypt(data: unwrappedMasterKey, keyData: Data(key.utf8))
 
 					// Base 64 encode the master key for writing.
+					let base64MasterKey = encryptedMasterKey.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
 
 					// Encode everything as JSON.
+					let vaultData = VaultIndex(vaultVersion: 0, encryptedMasterKey: base64MasterKey)
 					let encoder = JSONEncoder()
+					let jsonString = try encoder.encode(vaultData)
 
 					// Write it out.
-					let jsonString = "foo"
-					try jsonString.write(to: vaultMasterFileUrl!, atomically: true, encoding: .utf8)
+					try jsonString.write(to: vaultMasterFileUrl!)
 
 					result = true
 				}
@@ -116,23 +124,53 @@ class Vault {
 
 	/// Opens the vault by opening the master vault file and decoding it.
 	func open(location: String, key: String) -> Bool {
-		let fileManager = FileManager.default
-		let vaultFileUrl = self.vaultDirUrl?.appendingPathComponent(vaultFileName)
 
-		// Does anything exist at the vault master file's path?
-		if fileManager.fileExists(atPath: vaultFileUrl!.path) {
-			
-			// Read the master file.
-			let data = try? Data(contentsOf: vaultFileUrl!)
-			let index = try? JSONDecoder().decode(VaultIndex.self, from: data!)
-			self.index = index!
+		var result = false
 
-			// Validate the provided key.
-
-			// Decrypt the master key.
-			
-			return true
+		// Sanity check the parameters.
+		if key.count == 0 {
+			return false
 		}
+
+		// Make sure any existing vaults are closed.
+		if !self.close() {
+			return false
+		}
+
+		do {
+			// Build the URL for the vault's directory. If a location was provided then
+			// use it, otherwise assume the user's iCloud directory.
+			let vaultMasterFileUrl = self.buildVaultMasterFileUrl(location: location)
+
+			// Does anything exist at the vault master file's path?
+			if FileManager.default.fileExists(atPath: vaultMasterFileUrl!.path) {
+
+				// Read the master file.
+				let data = try? Data(contentsOf: vaultMasterFileUrl!)
+				let index = try? JSONDecoder().decode(VaultIndex.self, from: data!)
+
+				// Validate the provided key.
+
+				// Decrypt the master key.
+				
+				return true
+			}
+			else {
+				
+			}
+		}
+		return false
+	}
+
+	/// Completely deletes the vault and all it's items.
+	func delete(location: String, key: String) -> Bool {
+		var result = false
+
+		// Sanity check the parameters.
+		if key.count == 0 {
+			return false
+		}
+
 		return false
 	}
 
