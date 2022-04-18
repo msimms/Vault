@@ -14,21 +14,34 @@ struct AppView: View {
 
 	var body: some View {
 		NavigationView {
+			
+			// If we can't find a vault then ask the user to create one.
+			// If one exists then prompt the user to open it.
+			// If one exists and is open/unlocked then display it.
 			if appModel.vaultExists() {
-				VStack {
-					NavigationLink(
-						destination: LockView(isPushed: self.$pushed),
-						isActive: self.$pushed
-					) { EmptyView() }
-					.hidden()
-					Button("Open Vault") {
-						self.pushed = true
+				if appModel.vaultIsOpen() {
+					VStack {
+						VaultView(isPushed: self.$pushed)
 					}
-					.padding()
-					.background(Color.blue)
-					.foregroundColor(.white)
-					.cornerRadius(40)
-					.padding()
+				}
+				else {
+					VStack {
+						NavigationLink(
+							destination: LockView(isPushed: self.$pushed),
+							isActive: self.$pushed
+						) {
+							EmptyView()
+						}
+						.hidden()
+						Button("Open Vault") {
+							self.pushed = true
+						}
+						.padding()
+						.background(Color.blue)
+						.foregroundColor(.white)
+						.cornerRadius(40)
+						.padding()
+					}
 				}
 			}
 			else {
@@ -48,6 +61,8 @@ struct AppView: View {
 					.padding()
 				}
 			}
+		}
+		.onAppear {
 		}
 	}
 }

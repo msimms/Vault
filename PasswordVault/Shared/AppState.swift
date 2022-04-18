@@ -12,11 +12,16 @@ class AppState : ObservableObject {
 
 	private var vault: Vault = Vault()
 
-	/// Returns true if a vault exists (spexcifically the vault index file) at the location stored in the user preferences.
+	/// Returns true if a vault exists (specifically the vault index file) at the location stored in the user preferences.
 	func vaultExists() -> Bool {
 		let vaultLocation = Preferences.vaultLocation()
 		guard let unwrappedLocation = vaultLocation else { return false }
-		return vault.vaultExists(location: unwrappedLocation);
+		return vault.exists(location: unwrappedLocation);
+	}
+
+	/// Returns true if a vault is open, i.e. unlocked.
+	func vaultIsOpen() -> Bool {
+		return vault.isOpen();
 	}
 
 	/// Creates a vault at the specified location.

@@ -16,31 +16,36 @@ struct LockView: View {
 	@State private var showingVaultOpenFailedAlert = false
 
 	var body: some View {
-		VStack {
-			// Password
-			Label("Password", systemImage: "lock.circle")
-			SecureField("", text: $password)
-				.textFieldStyle(RoundedBorderTextFieldStyle())
+		NavigationView {
+			VStack {
+				// Password
+				Label("Password", systemImage: "lock.circle")
+				SecureField("", text: $password)
+					.textFieldStyle(RoundedBorderTextFieldStyle())
+					.padding()
+
+				// Opens the vault
+				Button("Open") {
+
+					// Open the vault.
+					if self.appModel.openVault(password: self.password) {
+
+						// Show the vault by popping to the root view controller.
+						self.isPushed = false
+					}
+					else {
+						self.showingVaultOpenFailedAlert = true
+					}
+				}
+				.alert("Failed to create the vault", isPresented: $showingVaultOpenFailedAlert) {
+					Button("OK", role: .cancel) { }
+				}
 				.padding()
-
-			// Opens the vault
-			Button("Open") {
-
-				// Open the vault.
-				if self.appModel.openVault(password: self.password) {
-				}
-				else {
-					self.showingVaultOpenFailedAlert = true
-				}
+				.background(Color.blue)
+				.foregroundColor(.white)
+				.cornerRadius(40)
+				.padding()
 			}
-			.alert("Failed to create the vault", isPresented: $showingVaultOpenFailedAlert) {
-				Button("OK", role: .cancel) { }
-			}
-			.padding()
-			.background(Color.blue)
-			.foregroundColor(.white)
-			.cornerRadius(40)
-			.padding()
 		}
 	}
 }

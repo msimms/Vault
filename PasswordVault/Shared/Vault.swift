@@ -51,9 +51,15 @@ class Vault {
 	}
 
 	/// Returns true if a vault exists (spexcifically the vault index file) at the location stored in the user preferences.
-	func vaultExists(location: String) -> Bool {
+	func exists(location: String) -> Bool {
 		let vaultMasterFileUrl = self.buildVaultMasterFileUrl(location: location)
 		return FileManager.default.fileExists(atPath: vaultMasterFileUrl!.path)
+	}
+
+	/// Returns true if a vault is open, i.e. unlocked.
+	func isOpen() -> Bool {
+		guard let unwrappedMasterKey = masterKey else { return false }
+		return unwrappedMasterKey.isEmpty;
 	}
 
 	/// Creates the vault. If the location is not provided then the vault is created on the user's iCloud drive.
