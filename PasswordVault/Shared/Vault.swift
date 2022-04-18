@@ -34,10 +34,7 @@ class Vault {
 		return nil
 	}
 
-	func encodeBytes(inData: Data) -> String? {
-		return inData.base64EncodedString()
-	}
-
+	/// Utility function for building the URL to the vault's master file.
 	func buildVaultMasterFileUrl(location: String) -> URL? {
 		// Build the URL for the vault's directory. If a location was provided then
 		// use it, otherwise assume the user's iCloud directory.
@@ -50,7 +47,7 @@ class Vault {
 		self.vaultDirUrl = self.vaultDirUrl?.appendingPathComponent("PasswordVault")
 
 		// Build the URL for the vault's master file.
-		return self.vaultDirUrl?.appendingPathComponent(vaultFileName)
+		return self.vaultDirUrl?.appendingPathComponent(self.vaultFileName)
 	}
 
 	/// Returns true if a vault exists (spexcifically the vault index file) at the location stored in the user preferences.

@@ -34,7 +34,7 @@ class AppState : ObservableObject {
 	}
 
 	/// Opens the vault by opening the master vault file and decoding it.
-	func open(password: String) -> Bool {
+	func openVault(password: String) -> Bool {
 		do {
 			let vaultLocation = Preferences.vaultLocation()
 			guard let unwrappedLocation = vaultLocation else { return false }

@@ -27,7 +27,7 @@ struct LockView: View {
 			Button("Open") {
 
 				// Open the vault.
-				if self.appModel.open(password: self.password) {
+				if self.appModel.openVault(password: self.password) {
 				}
 				else {
 					self.showingVaultOpenFailedAlert = true
