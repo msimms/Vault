@@ -13,6 +13,7 @@ struct LockView: View {
 	@Binding var isPushed : Bool
 	@State var pushed : Bool = false
 	@State private var password: String = ""
+	@State private var showingVaultOpenFailedAlert = false
 
 	var body: some View {
 		VStack {
@@ -22,11 +23,18 @@ struct LockView: View {
 				.textFieldStyle(RoundedBorderTextFieldStyle())
 				.padding()
 
-			// Login button
-			NavigationLink(destination: VaultView(isPushed: self.$pushed), isActive: self.$pushed) {
-				Image(systemName: "lock.circle")
-				Text("Login")
-					.fontWeight(.semibold)
+			// Opens the vault
+			Button("Open") {
+
+				// Open the vault.
+				if self.appModel.open(password: self.password) {
+				}
+				else {
+					self.showingVaultOpenFailedAlert = true
+				}
+			}
+			.alert("Failed to create the vault", isPresented: $showingVaultOpenFailedAlert) {
+				Button("OK", role: .cancel) { }
 			}
 			.padding()
 			.background(Color.blue)

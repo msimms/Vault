@@ -151,7 +151,7 @@ class Vault {
 			// Decrypt the master key.
 		}
 		else {
-			
+			throw VaultException.runtimeError("Cannot find the vault.")
 		}
 	}
 

@@ -14,8 +14,8 @@ class AppState : ObservableObject {
 
 	/// Returns true if a vault exists (spexcifically the vault index file) at the location stored in the user preferences.
 	func vaultExists() -> Bool {
-		let location = Preferences.vaultLocation()
-		guard let unwrappedLocation = location else { return false }
+		let vaultLocation = Preferences.vaultLocation()
+		guard let unwrappedLocation = vaultLocation else { return false }
 		return vault.vaultExists(location: unwrappedLocation);
 	}
 
@@ -24,6 +24,21 @@ class AppState : ObservableObject {
 		do {
 			try vault.create(location: vaultLocation, key: password)
 			Preferences.setVaultLocation(location: vaultLocation)
+			return true
+		} catch let error as NSError {
+			print("Error: Failed to write: \n\(error)")
+		} catch {
+			print(error.localizedDescription)
+		}
+		return false
+	}
+
+	/// Opens the vault by opening the master vault file and decoding it.
+	func open(password: String) -> Bool {
+		do {
+			let vaultLocation = Preferences.vaultLocation()
+			guard let unwrappedLocation = vaultLocation else { return false }
+			try vault.open(location: unwrappedLocation, key: password)
 			return true
 		} catch let error as NSError {
 			print("Error: Failed to write: \n\(error)")
