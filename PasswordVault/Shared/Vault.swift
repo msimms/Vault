@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CryptoKit
 
 /// Encapsulates the data stored in the vault's master file
 struct VaultIndex: Codable {
@@ -90,8 +91,11 @@ class Vault {
 					throw VaultException.runtimeError("Error generating master key.")
 				}
 
+				// Hash the user key. This gives us something that is apparently random that is also 256-bits in length.
+				let userKeyDigest = SHA256.hash(data: Data(key.utf8))
+
 				// Encrypt the master key with the user key.
-				let encryptedMasterKey = try aesCBCEncrypt(data: unwrappedMasterKey, keyData: Data(key.utf8))
+				let encryptedMasterKey = try aesCBCEncrypt(data: unwrappedMasterKey, keyData: Data(userKeyDigest))
 
 				// Base64 encode the master key for writing.
 				let base64MasterKey = encryptedMasterKey.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
@@ -103,7 +107,6 @@ class Vault {
 
 				// Write it out.
 				try jsonString.write(to: vaultMasterFileUrl!)
-
 			}
 			else {
 				throw VaultException.runtimeError("Failed to create the vault's master file.")
@@ -136,12 +139,16 @@ class Vault {
 
 			// Read the master file.
 			let data = try? Data(contentsOf: vaultMasterFileUrl!)
+
+			// Parse the JSON string.
 			let jsonString = try? JSONDecoder().decode(VaultIndex.self, from: data!)
+
+			// Hash the user key to get the 256-bit key that we will use to decrypt the master key.
+			let userKeyDigest = SHA256.hash(data: Data(key.utf8))
 
 			// Validate the provided key.
 
 			// Decrypt the master key.
-			
 		}
 		else {
 			
@@ -157,7 +164,7 @@ class Vault {
 		}
 	}
 
-	func readItems() -> Bool {
+	func readVaultItems() -> Bool {
 		let fileManager = FileManager.default
 
 		do {
