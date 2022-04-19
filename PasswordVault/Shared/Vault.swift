@@ -36,6 +36,7 @@ class Vault {
 
 	/// Utility function for building the URL to the vault's master file.
 	func buildVaultMasterFileUrl(location: String) -> URL? {
+
 		// Build the URL for the vault's directory. If a location was provided then
 		// use it, otherwise assume the user's iCloud directory.
 		if location.count == 0 {

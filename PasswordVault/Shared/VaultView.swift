@@ -13,14 +13,16 @@ struct VaultView: View {
 	@Binding var isPushed : Bool
 
 	var body: some View {
-		VStack {
-			List(0..<5) { item in
-				Image(systemName: "note")
-				VStack(alignment: .leading) {
-					NavigationLink(destination: LoginItemView(isPushed: $isPushed)) {
-						Text("Login")
-						Text("Some Website")
-							.font(.subheadline)
+		NavigationView {
+			VStack {
+				List(0..<5) { item in
+					Image(systemName: "note")
+					VStack(alignment: .leading) {
+						NavigationLink(destination: LoginItemView(isPushed: $isPushed)) {
+							Text("Login")
+							Text("Some Website")
+								.font(.subheadline)
+						}
 					}
 				}
 			}

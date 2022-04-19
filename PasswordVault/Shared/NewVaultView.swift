@@ -30,6 +30,7 @@ func openFolderSelection() -> URL? {
 struct NewVaultView: View {
 	@ObservedObject var appModel = AppState.shared
 	@Binding var isPushed : Bool
+
 	@State private var password: String = ""
 	@State private var confirmPassword: String = ""
 	@State private var vaultLocation: String = ""
