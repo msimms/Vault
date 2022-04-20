@@ -7,13 +7,12 @@
 
 import SwiftUI
 
+/// Used to indicate the state of the vault (open, closed, etc.) so the view can be rendered correctly..
 enum VaultState {
 	case VaultNotCreated
 	case VaultClosed
 	case VaultOpen
 }
-
-/// Used to indicate which state the vault should be displayed.
 final class VaultDisplayState: ObservableObject {
 	static let shared = VaultDisplayState()
 	@Published var vaultState: VaultState = VaultState.VaultNotCreated
@@ -22,19 +21,19 @@ final class VaultDisplayState: ObservableObject {
 		self.vaultState = vaultState
 	}
 
-	func stateText() -> String {
+	func createButtonText() -> String {
 		switch (self.vaultState) {
 		case VaultState.VaultNotCreated:
 			return "Create Vault"
 		case VaultState.VaultClosed:
 			return "Open Vault"
 		case VaultState.VaultOpen:
-			return "Close Vault"
+			return "View Vault"
 		}
 	}
 
 	@ViewBuilder
-	func stateView(isPushed: Binding<Bool>) -> some View {
+	func createView(isPushed: Binding<Bool>) -> some View {
 		switch (self.vaultState) {
 		case VaultState.VaultNotCreated:
 			NewVaultView(isPushed: isPushed)
@@ -50,7 +49,7 @@ final class VaultDisplayState: ObservableObject {
 struct AppView: View {
 	@ObservedObject var appModel = AppState.shared
 	@ObservedObject var viewModel = VaultDisplayState.shared
-	@State var pushed : Bool = false
+	@State var pushed : Bool = true
 
 	var body: some View {
 		NavigationView {
@@ -61,13 +60,13 @@ struct AppView: View {
 
 			VStack {
 				NavigationLink(
-					destination: viewModel.stateView(isPushed: self.$pushed),
+					destination: viewModel.createView(isPushed: self.$pushed),
 					isActive: self.$pushed
 				) {
 					EmptyView()
 				}
 				.hidden()
-				Button(viewModel.stateText()) {
+				Button(viewModel.createButtonText()) {
 					self.pushed = true
 				}
 				.padding()
@@ -75,6 +74,7 @@ struct AppView: View {
 				.foregroundColor(.white)
 				.cornerRadius(40)
 				.padding()
+				.frame(width: 160)
 			}
 		}
 	}

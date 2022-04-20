@@ -98,6 +98,8 @@ class Vault {
 				// Hash the user key. This gives us something that is apparently random that is also 256-bits in length.
 				let userKeyDigest = SHA256.hash(data: Data(key.utf8))
 
+				// Compute the HMAC.
+				
 				// Encrypt the master key with the user key.
 				let encryptedMasterKey = try aesCBCEncrypt(data: unwrappedMasterKey, keyData: Data(userKeyDigest))
 
@@ -168,15 +170,18 @@ class Vault {
 		}
 	}
 
-	func readVaultItems() -> Bool {
+	func readItems() -> Array<LoginItem> {
 		let fileManager = FileManager.default
 
 		do {
-			_ = try fileManager.contentsOfDirectory(at: self.vaultDirUrl!, includingPropertiesForKeys: nil)
+			let dirListing = try fileManager.contentsOfDirectory(at: self.vaultDirUrl!, includingPropertiesForKeys: nil)
+			for listing in dirListing {
+				print(listing)
+			}
 		}
 		catch {
 		}
-		return false
+		return []
 	}
 
 	/// Closes the vault by clearing any data we have that is associated with it.
