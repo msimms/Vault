@@ -84,6 +84,23 @@ class AppState : ObservableObject {
 		return false
 	}
 
+	/// Adds a new item to the vault.
+	func addItemToVault(item: VaultItem) -> Bool {
+		vault.addItem(item: item)
+		return false
+	}
+
+	/// Removes an item from the vault.
+	func deleteItemFromVault(item: VaultItem) -> Bool {
+		vault.deleteItem(item: item)
+		return false
+	}
+
+	/// Securely closes the vault.
+	func closeVault() -> Bool {
+		return vault.close()
+	}
+
 	/// Returns true if we should open the vault, based on the supplied credentials; false otherwise.
 	func validLogin(password: String) -> Bool {
 		return false

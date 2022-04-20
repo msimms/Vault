@@ -194,7 +194,8 @@ class Vault {
 		}
 	}
 
-	func readItems() -> Array<LoginItem> {
+	/// Returns all the items in the vault.
+	func readItems() -> Array<VaultItem> {
 		let fileManager = FileManager.default
 
 		do {
@@ -206,6 +207,14 @@ class Vault {
 		catch {
 		}
 		return []
+	}
+
+	/// Adds a new item to the vault.
+	func addItem(item: VaultItem) {
+	}
+
+	/// Removes an item from the vault.
+	func deleteItem(item: VaultItem) {
 	}
 
 	/// Closes the vault by clearing any data we have that is associated with it.
