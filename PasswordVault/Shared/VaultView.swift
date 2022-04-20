@@ -51,5 +51,12 @@ struct VaultView: View {
 				}
 			}
 		}
+		.toolbar {
+			ToolbarItem() {
+				Button(action: {}) {
+					Image(systemName: "plus")
+				}
+			}
+		}
 	}
 }
