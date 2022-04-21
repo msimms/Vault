@@ -53,8 +53,16 @@ struct VaultView: View {
 		}
 		.toolbar {
 			ToolbarItem() {
-				Button(action: {}) {
-					Image(systemName: "plus")
+				Menu {
+					Button(action: {}) {
+						Label("Login", systemImage: "lock")
+					}
+					Button(action: {}) {
+						Label("Note", systemImage: "doc")
+					}
+				}
+				label: {
+					Label("Add", systemImage: "plus")
 				}
 			}
 		}
