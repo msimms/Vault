@@ -31,7 +31,7 @@
 
 import Foundation
 
-class VaultItem: Codable, Identifiable {
+class SecureVaultItem: Codable, Identifiable {
 	enum CodingKeys: CodingKey {
 		case id
 		case note
@@ -41,6 +41,11 @@ class VaultItem: Codable, Identifiable {
 	var id = UUID()
 	var note: String
 	var vaultVersion: UInt8
+
+	init() {
+		self.note = ""
+		self.vaultVersion = Vault.kCurrentVaultVersion
+	}
 
 	/// Creates the file for the vault item.
 	func create(location: String, key: String) -> Bool {

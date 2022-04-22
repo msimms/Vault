@@ -1,8 +1,8 @@
 //
-//  ContentView.swift
-//  Shared
+//  NoteItem.swift
+//  PasswordVault
 //
-//  Created by Michael Simms on 12/12/21.
+//  Created by Michael Simms on 4/22/22.
 //
 
 // -*- coding: utf-8 -*-
@@ -29,42 +29,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import SwiftUI
+import Foundation
 
-/// Displays all the items within the open vault.
-struct VaultView: View {
-	@ObservedObject var appModel = AppState.shared
-	@Binding var isPushed : Bool
-
-	var body: some View {
-		NavigationView {
-			VStack {
-				List(0..<5) { item in
-					Image(systemName: "note")
-					VStack(alignment: .leading) {
-						NavigationLink(destination: LoginItemView(isPushed: $isPushed)) {
-							Text("Login")
-							Text("Some Website")
-								.font(.subheadline)
-						}
-					}
-				}
-			}
-		}
-		.toolbar {
-			ToolbarItem() {
-				Menu {
-					Button(action: {}) {
-						Label("Login", systemImage: "lock")
-					}
-					Button(action: {}) {
-						Label("Note", systemImage: "doc")
-					}
-				}
-				label: {
-					Label("Add", systemImage: "plus")
-				}
-			}
-		}
-	}
+class SecureNoteItem: SecureVaultItem {
+	var blob: String?
 }

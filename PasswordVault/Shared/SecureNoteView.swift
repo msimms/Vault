@@ -1,8 +1,8 @@
 //
-//  Login.swift
+//  NoteView.swift
 //  PasswordVault
 //
-//  Created by Michael Simms on 12/13/21.
+//  Created by Michael Simms on 4/22/22.
 //
 
 // -*- coding: utf-8 -*-
@@ -29,10 +29,24 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import Foundation
+import SwiftUI
 
-class LoginItem: VaultItem {
-	var website: String?
-	var username: String?
-	var email: String?
+/// Displays a login item from the vault.
+struct SecureNoteView: View {
+	@ObservedObject var appModel = AppState.shared
+	@Binding var isPushed : Bool
+	var item : SecureNoteItem
+
+	var body: some View {
+		VStack {
+			Text("Hello World!")
+		}
+	}
+
+	func title() -> String? {
+		return "Note"
+	}
+	func subtitle() -> String? {
+		return ""
+	}
 }

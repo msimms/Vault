@@ -15,14 +15,18 @@
 		2709C270276EB376008812AD /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2709C26E276EB376008812AD /* AppView.swift */; };
 		271CBCC7280CC83700265841 /* VaultException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBCC6280CC83700265841 /* VaultException.swift */; };
 		271CBCC8280CC83700265841 /* VaultException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBCC6280CC83700265841 /* VaultException.swift */; };
+		271CBCCA2812EAD500265841 /* SecureNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBCC92812EAD500265841 /* SecureNoteView.swift */; };
+		271CBCCB2812EAD500265841 /* SecureNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBCC92812EAD500265841 /* SecureNoteView.swift */; };
+		271CBCCD2812EB7000265841 /* SecureNoteItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBCCC2812EB7000265841 /* SecureNoteItem.swift */; };
+		271CBCCE2812EB7000265841 /* SecureNoteItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBCCC2812EB7000265841 /* SecureNoteItem.swift */; };
 		272A2C6F2766602F00E8DC9C /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272A2C6E2766602F00E8DC9C /* Tests_iOS.swift */; };
 		272A2C712766602F00E8DC9C /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272A2C702766602F00E8DC9C /* Tests_iOSLaunchTests.swift */; };
 		272A2C7B2766602F00E8DC9C /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272A2C7A2766602F00E8DC9C /* Tests_macOS.swift */; };
 		272A2C7D2766602F00E8DC9C /* Tests_macOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272A2C7C2766602F00E8DC9C /* Tests_macOSLaunchTests.swift */; };
 		272A2C7E2766602F00E8DC9C /* PasswordVaultApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272A2C562766602F00E8DC9C /* PasswordVaultApp.swift */; };
 		272A2C7F2766602F00E8DC9C /* PasswordVaultApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272A2C562766602F00E8DC9C /* PasswordVaultApp.swift */; };
-		272A2C802766602F00E8DC9C /* VaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272A2C572766602F00E8DC9C /* VaultView.swift */; };
-		272A2C812766602F00E8DC9C /* VaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272A2C572766602F00E8DC9C /* VaultView.swift */; };
+		272A2C802766602F00E8DC9C /* OpenVaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272A2C572766602F00E8DC9C /* OpenVaultView.swift */; };
+		272A2C812766602F00E8DC9C /* OpenVaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272A2C572766602F00E8DC9C /* OpenVaultView.swift */; };
 		272A2C822766602F00E8DC9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 272A2C582766602F00E8DC9C /* Assets.xcassets */; };
 		272A2C832766602F00E8DC9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 272A2C582766602F00E8DC9C /* Assets.xcassets */; };
 		272A2C932766634F00E8DC9C /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272A2C922766634F00E8DC9C /* LockView.swift */; };
@@ -31,8 +35,8 @@
 		27384FB2277270C8002BD39D /* _CryptoExtras in Frameworks */ = {isa = PBXBuildFile; productRef = 27384FB1277270C8002BD39D /* _CryptoExtras */; };
 		27384FB427727237002BD39D /* AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27384FB327727237002BD39D /* AES.swift */; };
 		27384FB527727237002BD39D /* AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27384FB327727237002BD39D /* AES.swift */; };
-		276A059227A8903500B030E1 /* LoginItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276A059127A8903500B030E1 /* LoginItemView.swift */; };
-		276A059327A8903500B030E1 /* LoginItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276A059127A8903500B030E1 /* LoginItemView.swift */; };
+		276A059227A8903500B030E1 /* SecureLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276A059127A8903500B030E1 /* SecureLoginView.swift */; };
+		276A059327A8903500B030E1 /* SecureLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276A059127A8903500B030E1 /* SecureLoginView.swift */; };
 		276A059527AB17F900B030E1 /* VaultMasterFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276A059427AB17F900B030E1 /* VaultMasterFile.swift */; };
 		276A059627AB17F900B030E1 /* VaultMasterFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276A059427AB17F900B030E1 /* VaultMasterFile.swift */; };
 		276A060C27AEFC8800B030E1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 276A060A27AEFC8800B030E1 /* Info.plist */; };
@@ -42,18 +46,20 @@
 		276A061327AEFF3400B030E1 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276A061127AEFF3400B030E1 /* Preferences.swift */; };
 		277788F9279CDC9C000C19DF /* FileUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277788F8279CDC9C000C19DF /* FileUtils.swift */; };
 		277788FA279CDC9C000C19DF /* FileUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277788F8279CDC9C000C19DF /* FileUtils.swift */; };
+		27B03ACF2812F60F009131E8 /* Crypto in Frameworks */ = {isa = PBXBuildFile; productRef = 27B03ACE2812F60F009131E8 /* Crypto */; };
+		27B03AD12812F60F009131E8 /* _CryptoExtras in Frameworks */ = {isa = PBXBuildFile; productRef = 27B03AD02812F60F009131E8 /* _CryptoExtras */; };
 		27CAB0AB2766BE450064877A /* Vault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0AA2766BE450064877A /* Vault.swift */; };
 		27CAB0AC2766BE450064877A /* Vault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0AA2766BE450064877A /* Vault.swift */; };
 		27CAB0AD2766BE450064877A /* Vault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0AA2766BE450064877A /* Vault.swift */; };
 		27CAB0AE2766BE450064877A /* Vault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0AA2766BE450064877A /* Vault.swift */; };
-		27CAB0B02767D4650064877A /* LoginItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0AF2767D4650064877A /* LoginItem.swift */; };
-		27CAB0B12767D4650064877A /* LoginItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0AF2767D4650064877A /* LoginItem.swift */; };
-		27CAB0B22767D4650064877A /* LoginItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0AF2767D4650064877A /* LoginItem.swift */; };
-		27CAB0B32767D4650064877A /* LoginItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0AF2767D4650064877A /* LoginItem.swift */; };
-		27CAB0B52767D99C0064877A /* VaultItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0B42767D99C0064877A /* VaultItem.swift */; };
-		27CAB0B62767D99C0064877A /* VaultItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0B42767D99C0064877A /* VaultItem.swift */; };
-		27CAB0B72767D99C0064877A /* VaultItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0B42767D99C0064877A /* VaultItem.swift */; };
-		27CAB0B82767D99C0064877A /* VaultItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0B42767D99C0064877A /* VaultItem.swift */; };
+		27CAB0B02767D4650064877A /* SecureLoginItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0AF2767D4650064877A /* SecureLoginItem.swift */; };
+		27CAB0B12767D4650064877A /* SecureLoginItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0AF2767D4650064877A /* SecureLoginItem.swift */; };
+		27CAB0B22767D4650064877A /* SecureLoginItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0AF2767D4650064877A /* SecureLoginItem.swift */; };
+		27CAB0B32767D4650064877A /* SecureLoginItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0AF2767D4650064877A /* SecureLoginItem.swift */; };
+		27CAB0B52767D99C0064877A /* SecureVaultItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0B42767D99C0064877A /* SecureVaultItem.swift */; };
+		27CAB0B62767D99C0064877A /* SecureVaultItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0B42767D99C0064877A /* SecureVaultItem.swift */; };
+		27CAB0B72767D99C0064877A /* SecureVaultItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0B42767D99C0064877A /* SecureVaultItem.swift */; };
+		27CAB0B82767D99C0064877A /* SecureVaultItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0B42767D99C0064877A /* SecureVaultItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,8 +84,10 @@
 		2709C26B276EA9FD008812AD /* NewVaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVaultView.swift; sourceTree = "<group>"; };
 		2709C26E276EB376008812AD /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		271CBCC6280CC83700265841 /* VaultException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultException.swift; sourceTree = "<group>"; };
+		271CBCC92812EAD500265841 /* SecureNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureNoteView.swift; sourceTree = "<group>"; };
+		271CBCCC2812EB7000265841 /* SecureNoteItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureNoteItem.swift; sourceTree = "<group>"; };
 		272A2C562766602F00E8DC9C /* PasswordVaultApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordVaultApp.swift; sourceTree = "<group>"; };
-		272A2C572766602F00E8DC9C /* VaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultView.swift; sourceTree = "<group>"; };
+		272A2C572766602F00E8DC9C /* OpenVaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenVaultView.swift; sourceTree = "<group>"; };
 		272A2C582766602F00E8DC9C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		272A2C5D2766602F00E8DC9C /* PasswordVault.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PasswordVault.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		272A2C632766602F00E8DC9C /* PasswordVault.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PasswordVault.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,7 +100,7 @@
 		272A2C7C2766602F00E8DC9C /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
 		272A2C922766634F00E8DC9C /* LockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockView.swift; sourceTree = "<group>"; };
 		27384FB327727237002BD39D /* AES.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AES.swift; sourceTree = "<group>"; };
-		276A059127A8903500B030E1 /* LoginItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginItemView.swift; sourceTree = "<group>"; };
+		276A059127A8903500B030E1 /* SecureLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureLoginView.swift; sourceTree = "<group>"; };
 		276A059427AB17F900B030E1 /* VaultMasterFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultMasterFile.swift; sourceTree = "<group>"; };
 		276A060A27AEFC8800B030E1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		276A060E27AEFCC700B030E1 /* iOS */ = {isa = PBXFileReference; lastKnownFileType = folder; path = iOS; sourceTree = "<group>"; };
@@ -101,8 +109,8 @@
 		2796569F2803A77C008A792F /* PasswordVault--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "PasswordVault--iOS--Info.plist"; sourceTree = "<group>"; };
 		27CAB0A42766A3230064877A /* PasswordVault (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PasswordVault (iOS).entitlements"; sourceTree = "<group>"; };
 		27CAB0AA2766BE450064877A /* Vault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vault.swift; sourceTree = "<group>"; };
-		27CAB0AF2767D4650064877A /* LoginItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginItem.swift; sourceTree = "<group>"; };
-		27CAB0B42767D99C0064877A /* VaultItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultItem.swift; sourceTree = "<group>"; };
+		27CAB0AF2767D4650064877A /* SecureLoginItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureLoginItem.swift; sourceTree = "<group>"; };
+		27CAB0B42767D99C0064877A /* SecureVaultItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureVaultItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +118,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27B03AD12812F60F009131E8 /* _CryptoExtras in Frameworks */,
+				27B03ACF2812F60F009131E8 /* Crypto in Frameworks */,
 				27384FB2277270C8002BD39D /* _CryptoExtras in Frameworks */,
 				27384FB0277270C8002BD39D /* Crypto in Frameworks */,
 			);
@@ -161,16 +171,18 @@
 				2709C26E276EB376008812AD /* AppView.swift */,
 				277788F8279CDC9C000C19DF /* FileUtils.swift */,
 				272A2C922766634F00E8DC9C /* LockView.swift */,
-				27CAB0AF2767D4650064877A /* LoginItem.swift */,
-				276A059127A8903500B030E1 /* LoginItemView.swift */,
 				2709C26B276EA9FD008812AD /* NewVaultView.swift */,
+				272A2C572766602F00E8DC9C /* OpenVaultView.swift */,
 				272A2C562766602F00E8DC9C /* PasswordVaultApp.swift */,
 				276A061127AEFF3400B030E1 /* Preferences.swift */,
+				27CAB0AF2767D4650064877A /* SecureLoginItem.swift */,
+				276A059127A8903500B030E1 /* SecureLoginView.swift */,
+				271CBCCC2812EB7000265841 /* SecureNoteItem.swift */,
+				271CBCC92812EAD500265841 /* SecureNoteView.swift */,
+				27CAB0B42767D99C0064877A /* SecureVaultItem.swift */,
 				27CAB0AA2766BE450064877A /* Vault.swift */,
 				271CBCC6280CC83700265841 /* VaultException.swift */,
-				27CAB0B42767D99C0064877A /* VaultItem.swift */,
 				276A059427AB17F900B030E1 /* VaultMasterFile.swift */,
-				272A2C572766602F00E8DC9C /* VaultView.swift */,
 				272A2C582766602F00E8DC9C /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -233,6 +245,8 @@
 			packageProductDependencies = (
 				27384FAF277270C8002BD39D /* Crypto */,
 				27384FB1277270C8002BD39D /* _CryptoExtras */,
+				27B03ACE2812F60F009131E8 /* Crypto */,
+				27B03AD02812F60F009131E8 /* _CryptoExtras */,
 			);
 			productName = "PasswordVault (iOS)";
 			productReference = 272A2C5D2766602F00E8DC9C /* PasswordVault.app */;
@@ -328,6 +342,7 @@
 			mainGroup = 272A2C502766602E00E8DC9C;
 			packageReferences = (
 				27384FAE277270C8002BD39D /* XCRemoteSwiftPackageReference "swift-crypto" */,
+				27B03ACD2812F60F009131E8 /* XCRemoteSwiftPackageReference "swift-crypto" */,
 			);
 			productRefGroup = 272A2C5E2766602F00E8DC9C /* Products */;
 			projectDirPath = "";
@@ -382,16 +397,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				272A2C802766602F00E8DC9C /* VaultView.swift in Sources */,
+				272A2C802766602F00E8DC9C /* OpenVaultView.swift in Sources */,
 				272A2C7E2766602F00E8DC9C /* PasswordVaultApp.swift in Sources */,
 				27384FB427727237002BD39D /* AES.swift in Sources */,
-				276A059227A8903500B030E1 /* LoginItemView.swift in Sources */,
+				276A059227A8903500B030E1 /* SecureLoginView.swift in Sources */,
+				271CBCCD2812EB7000265841 /* SecureNoteItem.swift in Sources */,
 				277788F9279CDC9C000C19DF /* FileUtils.swift in Sources */,
 				2709C26C276EA9FD008812AD /* NewVaultView.swift in Sources */,
-				27CAB0B02767D4650064877A /* LoginItem.swift in Sources */,
+				27CAB0B02767D4650064877A /* SecureLoginItem.swift in Sources */,
 				276A059527AB17F900B030E1 /* VaultMasterFile.swift in Sources */,
 				276A061227AEFF3400B030E1 /* Preferences.swift in Sources */,
-				27CAB0B52767D99C0064877A /* VaultItem.swift in Sources */,
+				27CAB0B52767D99C0064877A /* SecureVaultItem.swift in Sources */,
+				271CBCCA2812EAD500265841 /* SecureNoteView.swift in Sources */,
 				271CBCC7280CC83700265841 /* VaultException.swift in Sources */,
 				272A2C932766634F00E8DC9C /* LockView.swift in Sources */,
 				27CAB0AB2766BE450064877A /* Vault.swift in Sources */,
@@ -404,16 +421,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				272A2C812766602F00E8DC9C /* VaultView.swift in Sources */,
+				272A2C812766602F00E8DC9C /* OpenVaultView.swift in Sources */,
 				272A2C7F2766602F00E8DC9C /* PasswordVaultApp.swift in Sources */,
 				27384FB527727237002BD39D /* AES.swift in Sources */,
-				276A059327A8903500B030E1 /* LoginItemView.swift in Sources */,
+				276A059327A8903500B030E1 /* SecureLoginView.swift in Sources */,
+				271CBCCE2812EB7000265841 /* SecureNoteItem.swift in Sources */,
 				277788FA279CDC9C000C19DF /* FileUtils.swift in Sources */,
 				2709C26D276EA9FD008812AD /* NewVaultView.swift in Sources */,
-				27CAB0B12767D4650064877A /* LoginItem.swift in Sources */,
+				27CAB0B12767D4650064877A /* SecureLoginItem.swift in Sources */,
 				276A059627AB17F900B030E1 /* VaultMasterFile.swift in Sources */,
 				276A061327AEFF3400B030E1 /* Preferences.swift in Sources */,
-				27CAB0B62767D99C0064877A /* VaultItem.swift in Sources */,
+				27CAB0B62767D99C0064877A /* SecureVaultItem.swift in Sources */,
+				271CBCCB2812EAD500265841 /* SecureNoteView.swift in Sources */,
 				271CBCC8280CC83700265841 /* VaultException.swift in Sources */,
 				272A2C942766634F00E8DC9C /* LockView.swift in Sources */,
 				27CAB0AC2766BE450064877A /* Vault.swift in Sources */,
@@ -427,10 +446,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				272A2C712766602F00E8DC9C /* Tests_iOSLaunchTests.swift in Sources */,
-				27CAB0B22767D4650064877A /* LoginItem.swift in Sources */,
+				27CAB0B22767D4650064877A /* SecureLoginItem.swift in Sources */,
 				272A2C6F2766602F00E8DC9C /* Tests_iOS.swift in Sources */,
 				27CAB0AD2766BE450064877A /* Vault.swift in Sources */,
-				27CAB0B72767D99C0064877A /* VaultItem.swift in Sources */,
+				27CAB0B72767D99C0064877A /* SecureVaultItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,10 +458,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				272A2C7D2766602F00E8DC9C /* Tests_macOSLaunchTests.swift in Sources */,
-				27CAB0B32767D4650064877A /* LoginItem.swift in Sources */,
+				27CAB0B32767D4650064877A /* SecureLoginItem.swift in Sources */,
 				272A2C7B2766602F00E8DC9C /* Tests_macOS.swift in Sources */,
 				27CAB0AE2766BE450064877A /* Vault.swift in Sources */,
-				27CAB0B82767D99C0064877A /* VaultItem.swift in Sources */,
+				27CAB0B82767D99C0064877A /* SecureVaultItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -862,6 +881,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		27B03ACD2812F60F009131E8 /* XCRemoteSwiftPackageReference "swift-crypto" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-crypto.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -871,6 +898,16 @@
 			productName = Crypto;
 		};
 		27384FB1277270C8002BD39D /* _CryptoExtras */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 27384FAE277270C8002BD39D /* XCRemoteSwiftPackageReference "swift-crypto" */;
+			productName = _CryptoExtras;
+		};
+		27B03ACE2812F60F009131E8 /* Crypto */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 27384FAE277270C8002BD39D /* XCRemoteSwiftPackageReference "swift-crypto" */;
+			productName = Crypto;
+		};
+		27B03AD02812F60F009131E8 /* _CryptoExtras */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 27384FAE277270C8002BD39D /* XCRemoteSwiftPackageReference "swift-crypto" */;
 			productName = _CryptoExtras;

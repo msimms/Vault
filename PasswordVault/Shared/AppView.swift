@@ -47,24 +47,18 @@ final class VaultDisplayState: ObservableObject {
 
 	func createButtonText() -> String {
 		switch (self.vaultState) {
-		case VaultState.VaultNotCreated:
-			return "Create Vault"
-		case VaultState.VaultClosed:
-			return "Open Vault"
-		case VaultState.VaultOpen:
-			return "View Vault"
+		case VaultState.VaultNotCreated: return "Create Vault"
+		case VaultState.VaultClosed: return "Open Vault"
+		case VaultState.VaultOpen: return "View Vault"
 		}
 	}
 
 	@ViewBuilder
 	func createView(isPushed: Binding<Bool>) -> some View {
 		switch (self.vaultState) {
-		case VaultState.VaultNotCreated:
-			NewVaultView(isPushed: isPushed)
-		case VaultState.VaultClosed:
-			LockView(isPushed: isPushed)
-		case VaultState.VaultOpen:
-			VaultView(isPushed: isPushed)
+		case VaultState.VaultNotCreated: NewVaultView(isPushed: isPushed)
+		case VaultState.VaultClosed: LockView(isPushed: isPushed)
+		case VaultState.VaultOpen: OpenVaultView(isPushed: isPushed)
 		}
 	}
 }

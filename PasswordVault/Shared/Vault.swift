@@ -39,7 +39,8 @@ struct VaultIndex: Codable {
 }
 
 class Vault {
-	@Published var vaultItems: [VaultItem] = []
+	public static let kCurrentVaultVersion: UInt8 = 0
+	var vaultItems: [SecureVaultItem] = []
 
 	let vaultFileName = "vault.json"
 	var vaultDirUrl: URL? // Complete path to the directory containing the vault
@@ -195,7 +196,7 @@ class Vault {
 	}
 
 	/// Returns all the items in the vault.
-	func readItems() -> Array<VaultItem> {
+	func readItems() -> Array<SecureVaultItem> {
 		let fileManager = FileManager.default
 
 		do {
@@ -203,18 +204,31 @@ class Vault {
 			for listing in dirListing {
 				print(listing)
 			}
+			
+			// test data
+			let testItem1 = SecureLoginItem()
+			testItem1.email = "foo@bar.com"
+			testItem1.username = "foo@bar.com"
+			testItem1.website = "example.com"
+			vaultItems.append(testItem1)
+
+			let testItem2 = SecureLoginItem()
+			testItem2.email = "bar@bar.com"
+			testItem2.username = "bar@bar.com"
+			testItem2.website = "example.com"
+			vaultItems.append(testItem2)
 		}
 		catch {
 		}
-		return []
+		return vaultItems
 	}
 
 	/// Adds a new item to the vault.
-	func addItem(item: VaultItem) {
+	func addItem(item: SecureVaultItem) {
 	}
 
 	/// Removes an item from the vault.
-	func deleteItem(item: VaultItem) {
+	func deleteItem(item: SecureVaultItem) {
 	}
 
 	/// Closes the vault by clearing any data we have that is associated with it.

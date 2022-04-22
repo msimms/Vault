@@ -84,14 +84,19 @@ class AppState : ObservableObject {
 		return false
 	}
 
+	/// Returns all the items in the vault.
+	func readItemsFromVault() -> Array<SecureVaultItem> {
+		return vault.readItems()
+	}
+
 	/// Adds a new item to the vault.
-	func addItemToVault(item: VaultItem) -> Bool {
+	func addItemToVault(item: SecureVaultItem) -> Bool {
 		vault.addItem(item: item)
 		return false
 	}
 
 	/// Removes an item from the vault.
-	func deleteItemFromVault(item: VaultItem) -> Bool {
+	func deleteItemFromVault(item: SecureVaultItem) -> Bool {
 		vault.deleteItem(item: item)
 		return false
 	}

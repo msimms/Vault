@@ -1,8 +1,8 @@
 //
-//  LoginItemView.swift
-//  PasswordVault
+//  ContentView.swift
+//  Shared
 //
-//  Created by Michael Simms on 1/31/22.
+//  Created by Michael Simms on 12/12/21.
 //
 
 // -*- coding: utf-8 -*-
@@ -31,14 +31,50 @@
 
 import SwiftUI
 
-/// Displays a login item from the vault.
-struct LoginItemView: View {
+@ViewBuilder
+func createVaultItemView(isPushed: Binding<Bool>, item: SecureVaultItem) -> some View {
+	switch item {
+	case is SecureLoginItem: SecureLoginView(isPushed: isPushed, item: item as! SecureLoginItem)
+	case is SecureNoteItem: SecureNoteView(isPushed: isPushed, item: item as! SecureNoteItem)
+	default: EmptyView()
+	}
+}
+
+/// Displays all the items within the open vault.
+struct OpenVaultView: View {
 	@ObservedObject var appModel = AppState.shared
 	@Binding var isPushed : Bool
 
 	var body: some View {
-		VStack {
-			Text("Hello World")
+		NavigationView {
+			VStack {
+				List(appModel.readItemsFromVault()) { item in
+					Image(systemName: "note")
+					VStack(alignment: .leading) {
+						let itemView = createVaultItemView(isPushed: $isPushed, item: item)
+						NavigationLink(destination: itemView) {
+							Text("Login")
+							Text("Some Website")
+								.font(.subheadline)
+						}
+					}
+				}
+			}
 		}
-    }
+		.toolbar {
+			ToolbarItem() {
+				Menu {
+					Button(action: {}) {
+						Label("Login", systemImage: "lock")
+					}
+					Button(action: {}) {
+						Label("Note", systemImage: "doc")
+					}
+				}
+				label: {
+					Label("Add", systemImage: "plus")
+				}
+			}
+		}
+	}
 }
