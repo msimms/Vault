@@ -32,7 +32,7 @@
 import Foundation
 
 class SecureLoginItem: SecureVaultItem {
-	var website: String?
-	var username: String?
-	var email: String?
+	var website: String = ""
+	var username: String = ""
+	var email: String = ""
 }

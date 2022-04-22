@@ -35,18 +35,32 @@ import SwiftUI
 struct SecureLoginView: View {
 	@ObservedObject var appModel = AppState.shared
 	@Binding var isPushed : Bool
-	var item : SecureLoginItem
+	@State var item : SecureLoginItem
 
 	var body: some View {
-		VStack {
-			Text("Hello World")
+		VStack(alignment: .leading) {
+			Text("Login")
+				.fontWeight(.heavy)
+				.font(.system(size: 32))
+				.multilineTextAlignment(.center)
+			Spacer()
+			Text("Website")
+				.fontWeight(.heavy)
+			TextField("Website", text: $item.website)
+			Text("Username")
+				.fontWeight(.heavy)
+			TextField("Username", text: $item.username)
+			Text("Email")
+				.fontWeight(.heavy)
+			TextField("Email", text: $item.email)
+			Spacer()
 		}
     }
 
-	func title() -> String? {
+	func title() -> String {
 		return item.website
 	}
-	func subtitle() -> String? {
+	func subtitle() -> String {
 		return item.email
 	}
 }

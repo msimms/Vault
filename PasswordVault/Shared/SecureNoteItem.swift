@@ -32,5 +32,6 @@
 import Foundation
 
 class SecureNoteItem: SecureVaultItem {
-	var blob: String?
+	var title: String = ""
+	var blob: String = ""
 }

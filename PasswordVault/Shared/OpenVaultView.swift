@@ -40,6 +40,22 @@ func createVaultItemView(isPushed: Binding<Bool>, item: SecureVaultItem) -> some
 	}
 }
 
+func title(item: SecureVaultItem) -> String {
+	switch item {
+	case is SecureLoginItem: let item2 = item as! SecureLoginItem; return item2.website;
+	case is SecureNoteItem: let item2 = item as! SecureNoteItem; return item2.title;
+	default: return ""
+	}
+}
+
+func subtitle(item: SecureVaultItem) -> String {
+	switch item {
+	case is SecureLoginItem: let item2 = item as! SecureLoginItem; return item2.email;
+	case is SecureNoteItem: return "";
+	default: return ""
+	}
+}
+
 /// Displays all the items within the open vault.
 struct OpenVaultView: View {
 	@ObservedObject var appModel = AppState.shared
@@ -53,8 +69,8 @@ struct OpenVaultView: View {
 					VStack(alignment: .leading) {
 						let itemView = createVaultItemView(isPushed: $isPushed, item: item)
 						NavigationLink(destination: itemView) {
-							Text("Login")
-							Text("Some Website")
+							Text(title(item: item))
+							Text(subtitle(item: item))
 								.font(.subheadline)
 						}
 					}

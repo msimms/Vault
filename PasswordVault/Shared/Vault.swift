@@ -217,6 +217,11 @@ class Vault {
 			testItem2.username = "bar@bar.com"
 			testItem2.website = "example.com"
 			vaultItems.append(testItem2)
+
+			let testItem3 = SecureNoteItem()
+			testItem3.title = "Secret Note"
+			testItem3.blob = "hello world"
+			vaultItems.append(testItem3)
 		}
 		catch {
 		}

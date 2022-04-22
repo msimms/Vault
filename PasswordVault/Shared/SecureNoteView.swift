@@ -35,18 +35,24 @@ import SwiftUI
 struct SecureNoteView: View {
 	@ObservedObject var appModel = AppState.shared
 	@Binding var isPushed : Bool
-	var item : SecureNoteItem
+	@State var item : SecureNoteItem
 
 	var body: some View {
-		VStack {
-			Text("Hello World!")
+		VStack(alignment: .leading) {
+			Text("Note")
+				.fontWeight(.heavy)
+				.font(.system(size: 32))
+				.multilineTextAlignment(.center)
+			Spacer()
+			TextField("Blob", text: $item.blob)
+			Spacer()
 		}
 	}
 
-	func title() -> String? {
+	func title() -> String {
 		return "Note"
 	}
-	func subtitle() -> String? {
+	func subtitle() -> String {
 		return ""
 	}
 }
