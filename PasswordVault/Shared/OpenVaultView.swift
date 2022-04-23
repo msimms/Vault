@@ -62,6 +62,8 @@ struct OpenVaultView: View {
 	@Binding var isPushed : Bool
 
 	var body: some View {
+		
+		// List of all items in the vault.
 		NavigationView {
 			VStack {
 				List(appModel.readItemsFromVault()) { item in
@@ -78,13 +80,20 @@ struct OpenVaultView: View {
 			}
 		}
 		.toolbar {
+			
+			// Toolbar item for creating new entries.
 			ToolbarItem() {
 				Menu {
-					Button(action: {}) {
+					Button(action: {
+					}) {
 						Label("Login", systemImage: "lock")
+							.labelStyle(.titleAndIcon)
 					}
-					Button(action: {}) {
+
+					Button(action: {
+					}) {
 						Label("Note", systemImage: "doc")
+							.labelStyle(.titleAndIcon)
 					}
 				}
 				label: {
