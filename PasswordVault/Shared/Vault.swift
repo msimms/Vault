@@ -44,7 +44,7 @@ class Vault {
 
 	let vaultFileName = "vault.json"
 	var vaultDirUrl: URL? // Complete path to the directory containing the vault
-	var masterKey: String?
+	var masterKey: Data?
 
 	/// Utility function for creating the master key.
 	func generateMasterKey() -> Data? {
@@ -115,20 +115,23 @@ class Vault {
 			if (FileManager.default.createFile(atPath: vaultMasterFileUrl!.path, contents: nil, attributes: nil)) {
 
 				// Generate a random master key.
-				let masterKey = self.generateMasterKey()
-				guard let unwrappedMasterKey = masterKey else {
+				self.masterKey = self.generateMasterKey()
+				guard let unwrappedMasterKey = self.masterKey else {
 					throw VaultException.runtimeError("Error generating master key.")
 				}
 
-				// Hash the user key. This gives us something that is apparently random that is also 256-bits in length.
+				// Compute the AES key from the key provided by the user.
 				let userKeyDigest = SHA256.hash(data: Data(key.utf8))
+				let userKey = SymmetricKey(data: Data(userKeyDigest))
+				let userKeyBytes = userKey.withUnsafeBytes { return Data(Array($0)) }
 
-				// Compute the HMAC.
-				
-				// Encrypt the master key with the user key.
-				let encryptedMasterKey = try aesCBCEncrypt(data: unwrappedMasterKey, keyData: Data(userKeyDigest))
+				// Encrypt the randomly generated master key with the AES key we derived from the user key.
+				let encryptedMasterKey = try aesCBCEncrypt(data: unwrappedMasterKey, keyData: userKeyBytes)
 
-				// Base64 encode the master key for writing.
+				// Compute the HMAC of the encrypted master key.
+				let signature = HMAC<SHA256>.authenticationCode(for: encryptedMasterKey, using: userKey)
+
+				// Base64 encode the encrypted master key for writing.
 				let base64MasterKey = encryptedMasterKey.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
 
 				// Encode everything as JSON.
@@ -168,16 +171,22 @@ class Vault {
 		// Does anything exist at the vault master file's path?
 		if FileManager.default.fileExists(atPath: vaultMasterFileUrl!.path) {
 
+			// Compute the AES key from the key provided by the user.
+			let userKeyDigest = SHA256.hash(data: Data(key.utf8))
+			let userKey = SymmetricKey(data: Data(userKeyDigest))
+			let userKeyBytes = userKey.withUnsafeBytes { return Data(Array($0)) }
+
 			// Read the master file.
 			let data = try? Data(contentsOf: vaultMasterFileUrl!)
 
 			// Parse the JSON string.
 			let jsonString = try? JSONDecoder().decode(VaultIndex.self, from: data!)
 
-			// Hash the user key to get the 256-bit key that we will use to decrypt the master key.
-			let userKeyDigest = SHA256.hash(data: Data(key.utf8))
+			// Base64 decode the encrypted master key as read from the file.
+			let base64MasterKey = Data(base64Encoded: jsonString!.encryptedMasterKey)
 
-			// Validate the provided key.
+			// Compute the HMAC of the encrypted master key.
+			let signature = HMAC<SHA256>.authenticationCode(for: base64MasterKey!, using: userKey)
 
 			// Decrypt the master key.
 		}
@@ -193,6 +202,10 @@ class Vault {
 		if key.count == 0 {
 			throw VaultException.runtimeError("A key was not provided.")
 		}
+	}
+	
+	func find(id: UUID) -> SecureVaultItem? {
+		return nil
 	}
 
 	/// Returns all the items in the vault.
@@ -235,15 +248,24 @@ class Vault {
 		if !isOpen() {
 			throw VaultException.runtimeError("The vault is not open.")
 		}
-		
+
 		// Make sure the item does not already exist in the vault.
+		if find(id: item.id) != nil {
+			throw VaultException.runtimeError("Duplicate vault item.")
+		}
+
+		// Unwrap the master key.
+		guard let unwrappedMasterKey = self.masterKey else {
+			throw VaultException.runtimeError("Error retrieving the master key.")
+		}
 
 		// Build the JSON representation.
 		
 		// Encrypt with the master key.
 		
 		// Append the HMAC.
-		
+//		let signature = HMAC<SHA256>.authenticationCode(for: Data(jsonString.utf8), using: key)
+
 		// Write it out.
 	}
 
@@ -254,8 +276,21 @@ class Vault {
 		if !isOpen() {
 			throw VaultException.runtimeError("The vault is not open.")
 		}
-		
+
 		// Find the item in the vault.
+		if find(id: item.id) == nil {
+			throw VaultException.runtimeError("Item not found.")
+		}
+
+		// Unwrap the master key.
+		guard let unwrappedMasterKey = self.masterKey else {
+			throw VaultException.runtimeError("Error retrieving the master key.")
+		}
+
+		// Encrypt with the master key.
+
+		// Append the HMAC.
+//		let signature = HMAC<SHA256>.authenticationCode(for: Data(jsonString.utf8), using: key)
 	}
 
 	/// Removes an item from the vault.
@@ -267,7 +302,10 @@ class Vault {
 		}
 
 		// Find the item in the vault.
-		
+		if find(id: item.id) == nil {
+			throw VaultException.runtimeError("Item not found.")
+		}
+
 		// Remove it from memory.
 		
 		// Remove it from disk.
@@ -276,7 +314,7 @@ class Vault {
 	/// Closes the vault by clearing any data we have that is associated with it.
 	func close() -> Bool {
 		self.vaultDirUrl = URL(string: "")
-		self.masterKey = ""
+		self.masterKey = nil
 		return true
 	}
 }
