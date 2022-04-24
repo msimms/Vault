@@ -91,13 +91,37 @@ class AppState : ObservableObject {
 
 	/// Adds a new item to the vault.
 	func addItemToVault(item: SecureVaultItem) -> Bool {
-		vault.addItem(item: item)
+		do {
+			try vault.addItem(item: item)
+		} catch let error as NSError {
+			print("Error: Failed to write: \n\(error)")
+		} catch {
+			print(error.localizedDescription)
+		}
+		return false
+	}
+
+	/// Adds a new item to the vault.
+	func updateVaultItem(item: SecureVaultItem) -> Bool {
+		do {
+			try vault.updateItem(item: item)
+		} catch let error as NSError {
+			print("Error: Failed to write: \n\(error)")
+		} catch {
+			print(error.localizedDescription)
+		}
 		return false
 	}
 
 	/// Removes an item from the vault.
 	func deleteItemFromVault(item: SecureVaultItem) -> Bool {
-		vault.deleteItem(item: item)
+		do {
+			try vault.deleteItem(item: item)
+		} catch let error as NSError {
+			print("Error: Failed to write: \n\(error)")
+		} catch {
+			print(error.localizedDescription)
+		}
 		return false
 	}
 

@@ -46,6 +46,9 @@ struct SecureNoteView: View {
 			Spacer()
 			TextField("Blob", text: $item.blob)
 			Spacer()
+			Button("Save") {
+				self.appModel.updateVaultItem(item: self.item)
+			}
 		}
 	}
 

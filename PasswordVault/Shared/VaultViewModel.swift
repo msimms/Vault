@@ -31,7 +31,39 @@ import Combine
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-protocol VaultView : ObservableObject {
+protocol VaultViewModel : ObservableObject {
 	var title: String { get set }
 	var subtitle: String { get set }
+}
+
+struct VaultItemView<Model>: View where Model: VaultViewModel {
+	@ObservedObject var viewModel: Model
+
+	var body: some View {
+		VStack {
+			TextField("Item Title", text: $viewModel.title)
+			TextField("Item Subtitle", text: $viewModel.subtitle)
+		}
+	}
+}
+
+extension VaultViewModel {
+	var title: String {
+		get { "Defaullt Title" }
+		set { }
+	}
+	var subtitle: String {
+		get { "Default Subtitle" }
+		set { }
+	}
+}
+
+class SecureLoginModel: VaultViewModel {
+	@Published var title: String
+	@Published var subtitle: String
+
+	init(_ title: String, subtitle: String) {
+		self.title = title
+		self.subtitle = subtitle
+	}
 }

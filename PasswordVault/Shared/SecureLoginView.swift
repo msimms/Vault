@@ -54,6 +54,9 @@ struct SecureLoginView: View {
 				.fontWeight(.heavy)
 			TextField("Email", text: $item.email)
 			Spacer()
+			Button("Save") {
+				self.appModel.updateVaultItem(item: self.item)
+			}
 		}
     }
 

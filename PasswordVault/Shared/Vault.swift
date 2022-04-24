@@ -229,11 +229,48 @@ class Vault {
 	}
 
 	/// Adds a new item to the vault.
-	func addItem(item: SecureVaultItem) {
+	func addItem(item: SecureVaultItem) throws {
+
+		// Sanity check.
+		if !isOpen() {
+			throw VaultException.runtimeError("The vault is not open.")
+		}
+		
+		// Make sure the item does not already exist in the vault.
+
+		// Build the JSON representation.
+		
+		// Encrypt with the master key.
+		
+		// Append the HMAC.
+		
+		// Write it out.
+	}
+
+	/// Updates an existing item in the vault.
+	func updateItem(item: SecureVaultItem) throws {
+
+		// Sanity check.
+		if !isOpen() {
+			throw VaultException.runtimeError("The vault is not open.")
+		}
+		
+		// Find the item in the vault.
 	}
 
 	/// Removes an item from the vault.
-	func deleteItem(item: SecureVaultItem) {
+	func deleteItem(item: SecureVaultItem) throws {
+
+		// Sanity check.
+		if !isOpen() {
+			throw VaultException.runtimeError("The vault is not open.")
+		}
+
+		// Find the item in the vault.
+		
+		// Remove it from memory.
+		
+		// Remove it from disk.
 	}
 
 	/// Closes the vault by clearing any data we have that is associated with it.
