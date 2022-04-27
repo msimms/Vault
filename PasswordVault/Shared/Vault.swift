@@ -90,8 +90,8 @@ class Vault {
 
 	/// Returns true if a vault is open, i.e. unlocked.
 	func isOpen() -> Bool {
-		guard let unwrappedMasterKey = masterKey else { return false }
-		return unwrappedMasterKey.isEmpty;
+		guard let unwrappedMasterKey = self.masterKey else { return false }
+		return !unwrappedMasterKey.isEmpty;
 	}
 
 	/// Creates the vault. If the location is not provided then the vault is created on the user's iCloud drive.
@@ -202,14 +202,14 @@ class Vault {
 			let derivedUserKey = HKDF<SHA256>.deriveKey(inputKeyMaterial: userProvidedKey, salt: salt!, outputByteCount: 32)
 
 			// Compute the HMAC of the encrypted master key.
-			let signature = HMAC<SHA256>.authenticationCode(for: unwrappedDecodedMasterKey, using: derivedUserKey)
+			let signature = HMAC<SHA256>.authenticationCode(for: unwrappedDecodedMasterKey, using: userProvidedKey)
 			let computedSigBytes = Data(signature)
 			if computedSigBytes != unwrappedDecodedSignature {
 				throw VaultException.runtimeError("Error reading the vault file.")
 			}
 
 			// Decrypt the master key.
-			let decryptedMasterKey = try! AES.GCM.open(AES.GCM.SealedBox(combined: unwrappedDecodedMasterKey), using: derivedUserKey)
+			self.masterKey = try! AES.GCM.open(AES.GCM.SealedBox(combined: unwrappedDecodedMasterKey), using: derivedUserKey)
 		}
 		else {
 			throw VaultException.runtimeError("Cannot find the vault.")
