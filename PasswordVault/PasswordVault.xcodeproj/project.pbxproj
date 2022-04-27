@@ -33,8 +33,6 @@
 		272A2C942766634F00E8DC9C /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272A2C922766634F00E8DC9C /* LockView.swift */; };
 		27384FB0277270C8002BD39D /* Crypto in Frameworks */ = {isa = PBXBuildFile; productRef = 27384FAF277270C8002BD39D /* Crypto */; };
 		27384FB2277270C8002BD39D /* _CryptoExtras in Frameworks */ = {isa = PBXBuildFile; productRef = 27384FB1277270C8002BD39D /* _CryptoExtras */; };
-		27384FB427727237002BD39D /* AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27384FB327727237002BD39D /* AES.swift */; };
-		27384FB527727237002BD39D /* AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27384FB327727237002BD39D /* AES.swift */; };
 		276A059227A8903500B030E1 /* SecureLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276A059127A8903500B030E1 /* SecureLoginView.swift */; };
 		276A059327A8903500B030E1 /* SecureLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276A059127A8903500B030E1 /* SecureLoginView.swift */; };
 		276A059527AB17F900B030E1 /* VaultMasterFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276A059427AB17F900B030E1 /* VaultMasterFile.swift */; };
@@ -99,7 +97,6 @@
 		272A2C7A2766602F00E8DC9C /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		272A2C7C2766602F00E8DC9C /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
 		272A2C922766634F00E8DC9C /* LockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockView.swift; sourceTree = "<group>"; };
-		27384FB327727237002BD39D /* AES.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AES.swift; sourceTree = "<group>"; };
 		276A059127A8903500B030E1 /* SecureLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureLoginView.swift; sourceTree = "<group>"; };
 		276A059427AB17F900B030E1 /* VaultMasterFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultMasterFile.swift; sourceTree = "<group>"; };
 		276A060A27AEFC8800B030E1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -166,7 +163,6 @@
 		272A2C552766602F00E8DC9C /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				27384FB327727237002BD39D /* AES.swift */,
 				2709C268276D80A9008812AD /* AppState.swift */,
 				2709C26E276EB376008812AD /* AppView.swift */,
 				277788F8279CDC9C000C19DF /* FileUtils.swift */,
@@ -399,7 +395,6 @@
 			files = (
 				272A2C802766602F00E8DC9C /* OpenVaultView.swift in Sources */,
 				272A2C7E2766602F00E8DC9C /* PasswordVaultApp.swift in Sources */,
-				27384FB427727237002BD39D /* AES.swift in Sources */,
 				276A059227A8903500B030E1 /* SecureLoginView.swift in Sources */,
 				271CBCCD2812EB7000265841 /* SecureNoteItem.swift in Sources */,
 				277788F9279CDC9C000C19DF /* FileUtils.swift in Sources */,
@@ -423,7 +418,6 @@
 			files = (
 				272A2C812766602F00E8DC9C /* OpenVaultView.swift in Sources */,
 				272A2C7F2766602F00E8DC9C /* PasswordVaultApp.swift in Sources */,
-				27384FB527727237002BD39D /* AES.swift in Sources */,
 				276A059327A8903500B030E1 /* SecureLoginView.swift in Sources */,
 				271CBCCE2812EB7000265841 /* SecureNoteItem.swift in Sources */,
 				277788FA279CDC9C000C19DF /* FileUtils.swift in Sources */,

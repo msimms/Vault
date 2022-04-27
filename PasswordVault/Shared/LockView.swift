@@ -61,7 +61,7 @@ struct LockView: View {
 						self.showingVaultOpenFailedAlert = true
 					}
 				}
-				.alert("Failed to create the vault", isPresented: $showingVaultOpenFailedAlert) {
+				.alert("Failed to open the vault", isPresented: $showingVaultOpenFailedAlert) {
 					Button("OK", role: .cancel) { }
 				}
 				.padding()
