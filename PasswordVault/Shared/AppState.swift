@@ -86,7 +86,9 @@ class AppState : ObservableObject {
 
 	/// Returns all the items in the vault.
 	func readItemsFromVault() -> Array<SecureVaultItem> {
-		return vault.readItems()
+		let vaultLocation = Preferences.vaultLocation()
+		guard let unwrappedLocation = vaultLocation else { return [] }
+		return vault.readItems(location: unwrappedLocation)
 	}
 
 	/// Adds a new item to the vault.

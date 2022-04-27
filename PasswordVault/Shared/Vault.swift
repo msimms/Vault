@@ -38,9 +38,18 @@ struct VaultIndex: Codable {
 	var vaultVersion: UInt8
 	// Master secret that is used encrypt the vault items, protected using the key provided by the user
 	var encryptedMasterKey: String
-	// Salt that is added to the key provided by the user
-	var salt: String
 	// HMAC signature of the encrypted master key
+	var signature: String
+}
+
+/// Encapsulates the data stored in an encrypted vault item file.
+struct VaultItem: Codable {
+	// File version information
+	var vaultVersion: UInt8
+	// Master secret that is used encrypt the vault items, protected using the master key from the vault index
+	// Once decrypted this should contain another JSON string, specific to the type of data being stored.
+	var encryptedContents: String
+	// HMAC signature of the encrypted contents
 	var signature: String
 }
 
@@ -48,7 +57,6 @@ class Vault {
 	public static let kCurrentVaultVersion: UInt8 = 0
 	var vaultItems: [SecureVaultItem] = []
 
-	let vaultFileName = "vault.json"
 	var vaultDirUrl: URL? // Complete path to the directory containing the vault
 	var masterKey: Data?
 
@@ -79,7 +87,22 @@ class Vault {
 		self.vaultDirUrl = self.vaultDirUrl?.appendingPathComponent("PasswordVault")
 
 		// Build the URL for the vault's master file.
-		return self.vaultDirUrl?.appendingPathComponent(self.vaultFileName)
+		return self.vaultDirUrl?.appendingPathComponent("vault.json")
+	}
+
+	/// Utility function for building the URL to the directory containing the vault items.
+	func buildVaultItemsDirUrl(location: String) -> URL? {
+
+		// Build the URL for the vault's directory. If a location was provided then
+		// use it, otherwise assume the user's iCloud directory.
+		if location.count == 0 {
+			self.vaultDirUrl = FileManager.default.url(forUbiquityContainerIdentifier: nil)
+		}
+		else {
+			self.vaultDirUrl = URL(string: location)
+		}
+		self.vaultDirUrl = self.vaultDirUrl?.appendingPathComponent("PasswordVault")
+		return self.vaultDirUrl?.appendingPathComponent("items")
 	}
 
 	/// Returns true if a vault exists (spexcifically the vault index file) at the location stored in the user preferences.
@@ -124,9 +147,10 @@ class Vault {
 			}
 
 			// Use a key derivation function to compute the AES key from the key provided by the user.
+			// For a salt, we'll hash the key provided by the user.
 			let userProvidedKey = SymmetricKey(data: Data(key.utf8))
-			let salt = self.generateRandomBytes()
-			let derivedUserKey = HKDF<SHA256>.deriveKey(inputKeyMaterial: userProvidedKey, salt: salt!, outputByteCount: 32)
+			let salt = Data(SHA256.hash(data: Data(key.utf8)))
+			let derivedUserKey = HKDF<SHA256>.deriveKey(inputKeyMaterial: userProvidedKey, salt: salt, outputByteCount: 32)
 
 			// Encrypt the randomly generated master key with the AES key we derived from the user key.
 			let encryptedMasterKey = try! AES.GCM.seal(unwrappedMasterKey, using: derivedUserKey).combined
@@ -137,10 +161,9 @@ class Vault {
 
 			// Base64 encode the binary things so they can be written as JSON.
 			let base64MasterKey = encryptedMasterKey?.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
-			let base64Salt = salt?.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
 
 			// Encode everything as JSON.
-			let vaultData = VaultIndex(vaultVersion: 0, encryptedMasterKey: base64MasterKey!, salt: base64Salt!, signature: base64Signature)
+			let vaultData = VaultIndex(vaultVersion: 0, encryptedMasterKey: base64MasterKey!, signature: base64Signature)
 			let encoder = JSONEncoder()
 			let jsonData = try encoder.encode(vaultData)
 			let jsonStr = String(data: jsonData, encoding: .utf8)!
@@ -188,8 +211,8 @@ class Vault {
 				throw VaultException.runtimeError("Error reading the vault file.")
 			}
 
-			// Base64 decode the salt as read from the file.
-			let salt = Data(base64Encoded: unwrappedJsonString.salt)
+			// Compute the salt from the key provided by the user.
+			let salt = Data(SHA256.hash(data: Data(key.utf8)))
 
 			// Base64 decode the encrypted master key as read from the file.
 			let decodedSignature = Data(base64Encoded: unwrappedJsonString.signature)
@@ -199,7 +222,7 @@ class Vault {
 
 			// Compute the AES key from the key provided by the user.
 			let userProvidedKey = SymmetricKey(data: Data(key.utf8))
-			let derivedUserKey = HKDF<SHA256>.deriveKey(inputKeyMaterial: userProvidedKey, salt: salt!, outputByteCount: 32)
+			let derivedUserKey = HKDF<SHA256>.deriveKey(inputKeyMaterial: userProvidedKey, salt: salt, outputByteCount: 32)
 
 			// Compute the HMAC of the encrypted master key.
 			let signature = HMAC<SHA256>.authenticationCode(for: unwrappedDecodedMasterKey, using: userProvidedKey)
@@ -230,13 +253,22 @@ class Vault {
 	}
 
 	/// Returns all the items in the vault.
-	func readItems() -> Array<SecureVaultItem> {
+	func readItems(location: String) -> Array<SecureVaultItem> {
 		let fileManager = FileManager.default
 
 		do {
-			let dirListing = try fileManager.contentsOfDirectory(at: self.vaultDirUrl!, includingPropertiesForKeys: nil)
+			let itemsDir = self.buildVaultItemsDirUrl(location: location)
+			let dirListing = try fileManager.contentsOfDirectory(at: itemsDir!, includingPropertiesForKeys: nil)
 			for listing in dirListing {
-				print(listing)
+	
+				// Read the master file.
+				let data = try? Data(contentsOf: listing)
+				
+				// Parse the JSON string.
+				let jsonString = try? JSONDecoder().decode(VaultItem.self, from: data!)
+				guard let unwrappedJsonString = jsonString else {
+					throw VaultException.runtimeError("Error reading the vault item file.")
+				}
 			}
 			
 			// test data
