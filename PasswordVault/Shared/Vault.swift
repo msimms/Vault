@@ -117,43 +117,36 @@ class Vault {
 			// Create the parent directory.
 			try FileManager.default.createDirectory(at: self.vaultDirUrl!, withIntermediateDirectories: true, attributes: nil)
 
-			// Create the vault's master file.
-			if (FileManager.default.createFile(atPath: vaultMasterFileUrl!.path, contents: nil, attributes: nil)) {
-
-				// Generate a random master key. This is the key we will use to encrypt vault items.
-				self.masterKey = self.generateRandomBytes()
-				guard let unwrappedMasterKey = self.masterKey else {
-					throw VaultException.runtimeError("Error generating master key.")
-				}
-
-				// Use a key derivation function to compute the AES key from the key provided by the user.
-				let userProvidedKey = SymmetricKey(data: Data(key.utf8))
-				let salt = self.generateRandomBytes()
-				let derivedUserKey = HKDF<SHA256>.deriveKey(inputKeyMaterial: userProvidedKey, salt: salt!, outputByteCount: 32)
-
-				// Encrypt the randomly generated master key with the AES key we derived from the user key.
-				let encryptedMasterKey = try! AES.GCM.seal(unwrappedMasterKey, using: derivedUserKey).combined
-
-				// Compute the HMAC of the encrypted master key.
-				let signature = HMAC<SHA256>.authenticationCode(for: encryptedMasterKey!, using: userProvidedKey)
-				let base64Signature = Data(signature).base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
-
-				// Base64 encode the binary things so they can be written as JSON.
-				let base64MasterKey = encryptedMasterKey?.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
-				let base64Salt = salt?.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
-
-				// Encode everything as JSON.
-				let vaultData = VaultIndex(vaultVersion: 0, encryptedMasterKey: base64MasterKey!, salt: base64Salt!, signature: base64Signature)
-				let encoder = JSONEncoder()
-				var jsonString = try encoder.encode(vaultData)
-				jsonString.append(0)
-
-				// Write it out.
-				try jsonString.write(to: vaultMasterFileUrl!)
+			// Generate a random master key. This is the key we will use to encrypt vault items.
+			self.masterKey = self.generateRandomBytes()
+			guard let unwrappedMasterKey = self.masterKey else {
+				throw VaultException.runtimeError("Error generating master key.")
 			}
-			else {
-				throw VaultException.runtimeError("Failed to create the vault's master file.")
-			}
+
+			// Use a key derivation function to compute the AES key from the key provided by the user.
+			let userProvidedKey = SymmetricKey(data: Data(key.utf8))
+			let salt = self.generateRandomBytes()
+			let derivedUserKey = HKDF<SHA256>.deriveKey(inputKeyMaterial: userProvidedKey, salt: salt!, outputByteCount: 32)
+
+			// Encrypt the randomly generated master key with the AES key we derived from the user key.
+			let encryptedMasterKey = try! AES.GCM.seal(unwrappedMasterKey, using: derivedUserKey).combined
+
+			// Compute the HMAC of the encrypted master key.
+			let signature = HMAC<SHA256>.authenticationCode(for: encryptedMasterKey!, using: userProvidedKey)
+			let base64Signature = Data(signature).base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
+
+			// Base64 encode the binary things so they can be written as JSON.
+			let base64MasterKey = encryptedMasterKey?.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
+			let base64Salt = salt?.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
+
+			// Encode everything as JSON.
+			let vaultData = VaultIndex(vaultVersion: 0, encryptedMasterKey: base64MasterKey!, salt: base64Salt!, signature: base64Signature)
+			let encoder = JSONEncoder()
+			let jsonData = try encoder.encode(vaultData)
+			let jsonStr = String(data: jsonData, encoding: .utf8)!
+
+			// Write it out.
+			try jsonStr.write(to: vaultMasterFileUrl!, atomically: true, encoding: String.Encoding.utf8)
 		}
 		else {
 			throw VaultException.runtimeError("A vault already exists at that location.")
@@ -210,7 +203,8 @@ class Vault {
 
 			// Compute the HMAC of the encrypted master key.
 			let signature = HMAC<SHA256>.authenticationCode(for: unwrappedDecodedMasterKey, using: derivedUserKey)
-			if Data(signature) != unwrappedDecodedSignature {
+			let computedSigBytes = Data(signature)
+			if computedSigBytes != unwrappedDecodedSignature {
 				throw VaultException.runtimeError("Error reading the vault file.")
 			}
 
