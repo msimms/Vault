@@ -49,7 +49,7 @@ struct LockView: View {
 					.padding()
 
 				// Opens the vault
-				Button("Open") {
+				Button {
 
 					// Open the vault.
 					if self.appModel.openVault(password: self.password) {
@@ -60,8 +60,10 @@ struct LockView: View {
 					else {
 						self.showingVaultOpenFailedAlert = true
 					}
+				} label: {
+					Label("Open", systemImage: "lock")
 				}
-				.alert("Failed to open the vault", isPresented: $showingVaultOpenFailedAlert) {
+				.alert("Failed to open the vault!", isPresented: $showingVaultOpenFailedAlert) {
 					Button("OK", role: .cancel) { }
 				}
 				.padding()

@@ -94,8 +94,8 @@ struct NewVaultView: View {
 				.padding()*/
 #endif
 
-				// Creates the vault
-				Button("Create") {
+				// Opens the vault
+				Button {
 
 					// Make sure the passwords match.
 					if password == confirmPassword && password.count > 8 {
@@ -113,6 +113,8 @@ struct NewVaultView: View {
 					else {
 						self.showingPasswordsDoNotMatchAlert = true
 					}
+				} label: {
+					Label("Create", systemImage: "lock")
 				}
 				.alert("The passwords do not match or are not long enough", isPresented: $showingPasswordsDoNotMatchAlert) {
 					Button("OK", role: .cancel) { }

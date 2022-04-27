@@ -36,6 +36,8 @@ struct SecureLoginView: View {
 	@ObservedObject var appModel = AppState.shared
 	@Binding var isPushed : Bool
 	@State var item : SecureLoginItem
+	@State private var showingFailedToUpdateAlert = false
+	@State private var showingFailedToDeleteAlert = false
 
 	var body: some View {
 		VStack(alignment: .leading) {
@@ -54,8 +56,25 @@ struct SecureLoginView: View {
 				.fontWeight(.heavy)
 			TextField("Email", text: $item.email)
 			Spacer()
-			Button("Save") {
-				self.appModel.updateVaultItem(item: self.item)
+			HStack() {
+				Button {
+					if !self.appModel.updateVaultItem(item: self.item) {
+					}
+				} label: {
+					Label("Save", systemImage: "square.and.arrow.down")
+				}
+				.alert("Failed to update the vault item!", isPresented: $showingFailedToUpdateAlert) {
+					Button("OK", role: .cancel) { }
+				}
+				Button {
+					if !self.appModel.deleteItemFromVault(item: self.item) {
+					}
+				} label: {
+					Label("Delete", systemImage: "trash")
+				}
+				.alert("Failed to delete the vault item!", isPresented: $showingFailedToDeleteAlert) {
+					Button("OK", role: .cancel) { }
+				}
 			}
 		}
     }
