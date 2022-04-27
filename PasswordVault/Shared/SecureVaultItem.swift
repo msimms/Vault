@@ -48,7 +48,7 @@ class SecureVaultItem: Codable, Identifiable {
 	}
 
 	/// Creates the file for the vault item.
-	func create(location: String, key: String) -> Bool {
+	func create(location: URL, key: Data) -> Bool {
 
 		var result = false
 

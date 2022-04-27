@@ -257,7 +257,10 @@ class Vault {
 		let fileManager = FileManager.default
 
 		do {
+			// Location of vault items. Each file in this directory represents a single vault item.
 			let itemsDir = self.buildVaultItemsDirUrl(location: location)
+
+			// List all the items in the vault items directory.
 			let dirListing = try fileManager.contentsOfDirectory(at: itemsDir!, includingPropertiesForKeys: nil)
 			for listing in dirListing {
 	
@@ -295,7 +298,7 @@ class Vault {
 	}
 
 	/// Adds a new item to the vault.
-	func addItem(item: SecureVaultItem) throws {
+	func addItem(location: String, item: SecureVaultItem) throws {
 
 		// Sanity check.
 		if !isOpen() {
@@ -312,42 +315,27 @@ class Vault {
 			throw VaultException.runtimeError("Error retrieving the master key.")
 		}
 
-		// Build the JSON representation.
-		
-		// Encrypt with the master key.
-		
-		// Append the HMAC.
-//		let signature = HMAC<SHA256>.authenticationCode(for: Data(jsonString.utf8), using: key)
+		// Location of vault items. Each file in this directory represents a single vault item.
+		let itemsDir = self.buildVaultItemsDirUrl(location: location)
 
 		// Write it out.
+		if !item.create(location: itemsDir!, key: unwrappedMasterKey) {
+			throw VaultException.runtimeError("Error when saving a vault item.")
+		}
 	}
 
 	/// Updates an existing item in the vault.
-	func updateItem(item: SecureVaultItem) throws {
+	func updateItem(location: String, item: SecureVaultItem) throws {
 
-		// Sanity check.
-		if !isOpen() {
-			throw VaultException.runtimeError("The vault is not open.")
-		}
+		// Delete the existing item.
+		try self.deleteItem(location: location, item: item)
 
-		// Find the item in the vault.
-		if find(id: item.id) == nil {
-			throw VaultException.runtimeError("Item not found.")
-		}
-
-		// Unwrap the master key.
-		guard let unwrappedMasterKey = self.masterKey else {
-			throw VaultException.runtimeError("Error retrieving the master key.")
-		}
-
-		// Encrypt with the master key.
-
-		// Append the HMAC.
-//		let signature = HMAC<SHA256>.authenticationCode(for: Data(jsonString.utf8), using: key)
+		// Write out the updated version.
+		try self.addItem(location: location, item: item)
 	}
 
 	/// Removes an item from the vault.
-	func deleteItem(item: SecureVaultItem) throws {
+	func deleteItem(location: String, item: SecureVaultItem) throws {
 
 		// Sanity check.
 		if !isOpen() {
@@ -361,6 +349,9 @@ class Vault {
 
 		// Remove it from memory.
 		
+		// Location of vault items. Each file in this directory represents a single vault item.
+		let itemsDir = self.buildVaultItemsDirUrl(location: location)
+
 		// Remove it from disk.
 	}
 
