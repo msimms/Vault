@@ -5,9 +5,7 @@
 //  Created by Michael Simms on 12/13/21.
 //
 
-// -*- coding: utf-8 -*-
-//
-// # MIT License
+// MIT License
 //
 // Copyright (c) 2022 Mike Simms
 //

@@ -84,9 +84,16 @@ class AppState : ObservableObject {
 
 	/// Returns all the items in the vault.
 	func readItemsFromVault() -> Array<SecureVaultItem> {
-		let vaultLocation = Preferences.vaultLocation()
-		guard let unwrappedLocation = vaultLocation else { return [] }
-		return vault.readItems(location: unwrappedLocation)
+		do {
+			let vaultLocation = Preferences.vaultLocation()
+			guard let unwrappedLocation = vaultLocation else { return [] }
+			return try vault.readItems(location: unwrappedLocation)
+		} catch let error as NSError {
+			print("Error: Failed to read: \n\(error)")
+		} catch {
+			print(error.localizedDescription)
+		}
+		return []
 	}
 
 	/// Adds a new item to the vault.
@@ -110,7 +117,7 @@ class AppState : ObservableObject {
 			guard let unwrappedLocation = vaultLocation else { return false }
 			try vault.updateItem(location: unwrappedLocation, item: item)
 		} catch let error as NSError {
-			print("Error: Failed to write: \n\(error)")
+			print("Error: Failed to update: \n\(error)")
 		} catch {
 			print(error.localizedDescription)
 		}
@@ -124,7 +131,7 @@ class AppState : ObservableObject {
 			guard let unwrappedLocation = vaultLocation else { return false }
 			try vault.deleteItem(location: unwrappedLocation, item: item)
 		} catch let error as NSError {
-			print("Error: Failed to write: \n\(error)")
+			print("Error: Failed to delete: \n\(error)")
 		} catch {
 			print(error.localizedDescription)
 		}

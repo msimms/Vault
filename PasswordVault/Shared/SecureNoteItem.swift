@@ -5,9 +5,7 @@
 //  Created by Michael Simms on 4/22/22.
 //
 
-// -*- coding: utf-8 -*-
-//
-// # MIT License
+// MIT License
 //
 // Copyright (c) 2022 Mike Simms
 //
@@ -33,5 +31,4 @@ import Foundation
 
 class SecureNoteItem: SecureVaultItem {
 	var title: String = ""
-	var blob: String = ""
 }

@@ -5,9 +5,7 @@
 //  Created by Michael Simms on 12/13/21.
 //
 
-// -*- coding: utf-8 -*-
-//
-// # MIT License
+// MIT License
 //
 // Copyright (c) 2022 Mike Simms
 //
@@ -34,29 +32,25 @@ import Foundation
 class SecureVaultItem: Codable, Identifiable {
 	enum CodingKeys: CodingKey {
 		case id
-		case note
 		case vaultVersion
+		case note
 	}
-	
+
 	var id = UUID()
-	var note: String
 	var vaultVersion: UInt8
+	var note: String
 
 	init() {
-		self.note = ""
 		self.vaultVersion = Vault.kCurrentVaultVersion
+		self.note = ""
 	}
 
 	/// Creates the file for the vault item.
-	func create(location: URL, key: Data) -> Bool {
-
-		var result = false
+	func write(location: URL, key: Data) throws {
 
 		// Sanity check the parameters.
 		if key.count == 0 {
-			return false
+			throw VaultException.runtimeError("Error when saving a vault item.")
 		}
-		
-		return result
 	}
 }

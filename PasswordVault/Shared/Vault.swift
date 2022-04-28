@@ -5,9 +5,7 @@
 //  Created by Michael Simms on 12/12/21.
 //
 
-// -*- coding: utf-8 -*-
-//
-// # MIT License
+// MIT License
 //
 // Copyright (c) 2022 Mike Simms
 //
@@ -39,17 +37,6 @@ struct VaultIndex: Codable {
 	// Master secret that is used encrypt the vault items, protected using the key provided by the user
 	var encryptedMasterKey: String
 	// HMAC signature of the encrypted master key
-	var signature: String
-}
-
-/// Encapsulates the data stored in an encrypted vault item file.
-struct VaultItem: Codable {
-	// File version information
-	var vaultVersion: UInt8
-	// Master secret that is used encrypt the vault items, protected using the master key from the vault index
-	// Once decrypted this should contain another JSON string, specific to the type of data being stored.
-	var encryptedContents: String
-	// HMAC signature of the encrypted contents
 	var signature: String
 }
 
@@ -253,46 +240,18 @@ class Vault {
 	}
 
 	/// Returns all the items in the vault.
-	func readItems(location: String) -> Array<SecureVaultItem> {
-		let fileManager = FileManager.default
+	func readItems(location: String) throws -> Array<SecureVaultItem> {
 
-		do {
-			// Location of vault items. Each file in this directory represents a single vault item.
-			let itemsDir = self.buildVaultItemsDirUrl(location: location)
+		// Location of vault items. Each file in this directory represents a single vault item.
+		let itemsDir = self.buildVaultItemsDirUrl(location: location)
 
-			// List all the items in the vault items directory.
-			let dirListing = try fileManager.contentsOfDirectory(at: itemsDir!, includingPropertiesForKeys: nil)
-			for listing in dirListing {
-	
-				// Read the master file.
-				let data = try? Data(contentsOf: listing)
-				
-				// Parse the JSON string.
-				let jsonString = try? JSONDecoder().decode(VaultItem.self, from: data!)
-				guard let unwrappedJsonString = jsonString else {
-					throw VaultException.runtimeError("Error reading the vault item file.")
-				}
-			}
-			
-			// test data
-			let testItem1 = SecureLoginItem()
-			testItem1.email = "foo@bar.com"
-			testItem1.username = "foo@bar.com"
-			testItem1.website = "example.com"
-			vaultItems.append(testItem1)
+		// List all the items in the vault items directory.
+		let dirListing = try FileManager.default.contentsOfDirectory(at: itemsDir!, includingPropertiesForKeys: nil)
+		for listing in dirListing {
 
-			let testItem2 = SecureLoginItem()
-			testItem2.email = "bar@bar.com"
-			testItem2.username = "bar@bar.com"
-			testItem2.website = "example.com"
-			vaultItems.append(testItem2)
-
-			let testItem3 = SecureNoteItem()
-			testItem3.title = "Secret Note"
-			testItem3.blob = "hello world"
-			vaultItems.append(testItem3)
-		}
-		catch {
+			// Parse the file.
+			let item = try createVaultItemFromFile(location: listing, key: self.masterKey!)
+			vaultItems.append(item!)
 		}
 		return vaultItems
 	}
@@ -319,9 +278,7 @@ class Vault {
 		let itemsDir = self.buildVaultItemsDirUrl(location: location)
 
 		// Write it out.
-		if !item.create(location: itemsDir!, key: unwrappedMasterKey) {
-			throw VaultException.runtimeError("Error when saving a vault item.")
-		}
+		try item.write(location: itemsDir!, key: unwrappedMasterKey)
 	}
 
 	/// Updates an existing item in the vault.

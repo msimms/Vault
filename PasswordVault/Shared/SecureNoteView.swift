@@ -44,7 +44,7 @@ struct SecureNoteView: View {
 				.font(.system(size: 32))
 				.multilineTextAlignment(.center)
 			Spacer()
-			TextField("Blob", text: $item.blob)
+			TextField("Blob", text: $item.note)
 			Spacer()
 			HStack() {
 				Button {
