@@ -38,6 +38,14 @@ func createVaultItemView(isPushed: Binding<Bool>, item: SecureVaultItem, isNewIt
 	}
 }
 
+func icon(item: SecureVaultItem) -> String {
+	switch item {
+	case is SecureLoginItem: return "lock";
+	case is SecureNoteItem: return "note";
+	default: return ""
+	}
+}
+
 func title(item: SecureVaultItem) -> String {
 	switch item {
 	case is SecureLoginItem: let item2 = item as! SecureLoginItem; return item2.website;
@@ -67,15 +75,20 @@ struct OpenVaultView: View {
 
 			VStack {
 
+				Spacer()
+
 				// List of all items in the vault.
 				List(appModel.readItemsFromVault()) { item in
-					Image(systemName: "note")
+					Image(systemName: icon(item: item))
 					VStack(alignment: .leading) {
 						let itemView = createVaultItemView(isPushed: $isPushed, item: item, isNewItem: false)
 						NavigationLink(destination: itemView) {
-							Text(title(item: item))
-							Text(subtitle(item: item))
-								.font(.subheadline)
+							VStack(alignment: .leading) {
+								Text(title(item: item))
+									.font(.headline)
+								Text(subtitle(item: item))
+									.font(.subheadline)
+							}
 						}
 					}
 				}
