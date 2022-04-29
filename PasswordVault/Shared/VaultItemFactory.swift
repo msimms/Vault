@@ -30,26 +30,41 @@
 import Foundation
 import CryptoKit
 
-func createVaultItemFromFile(location: URL, key: Data) throws -> SecureVaultItem? {
+func createVaultItemFromFile(location: URL, masterKey: Data) throws -> SecureVaultItem? {
 
 	// Read the file.
 	let data = try Data(contentsOf: location)
 
+	// The key needs to be stored as a SymmetricKey object so we can use it in future calls.
+	let keyObj = SymmetricKey(data: masterKey)
+
 	// Parse the JSON string.
-	let tempItem = try JSONDecoder().decode(VaultItemEncoding.self, from: data)
+	let outerVaultItem = try JSONDecoder().decode(VaultItemEncoding.self, from: data)
 
-	// Validate the signature.
-
-	// Decrypt into a JSON string.
-	let keyObj = SymmetricKey(data: key)
-	let decodedContents = Data(base64Encoded: tempItem.encryptedContents)
+	// Base64 decode the signature from the file. This signature is used to validate the encrypted contents.
+	let decodedSignature = Data(base64Encoded: outerVaultItem.signature)
+	guard let unwrappedDecodedSignature = decodedSignature else {
+		throw VaultException.runtimeError("Error reading the vault item file.")
+	}
+	
+	// Base64 decode the encrypted signature.
+	let decodedContents = Data(base64Encoded: outerVaultItem.encryptedContents)
 	guard let unwrappedDecodedContents = decodedContents else {
 		throw VaultException.runtimeError("Error reading the vault item file.")
 	}
+
+	// Validate the signature.
+	let signature = HMAC<SHA256>.authenticationCode(for: unwrappedDecodedContents, using: keyObj)
+	let computedSigBytes = Data(signature)
+	if computedSigBytes != unwrappedDecodedSignature {
+		throw VaultException.runtimeError("Error reading the vault item file.")
+	}
+
+	// Decrypt the inner JSON string.
 	let decryptedDecodedContents = try AES.GCM.open(AES.GCM.SealedBox(combined: unwrappedDecodedContents), using: keyObj)
 
 	// Now we know the type of the underlying data so we can create an object of the correct type.
-	switch tempItem.itemType {
+	switch outerVaultItem.itemType {
 	case VaultItemType.login:
 		let json = try JSONDecoder().decode(LoginItemEncoding.self, from: decryptedDecodedContents)
 		return SecureLoginItem(json: json)

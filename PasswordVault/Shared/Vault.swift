@@ -201,7 +201,7 @@ class Vault {
 			// Compute the salt from the key provided by the user.
 			let salt = Data(SHA256.hash(data: Data(key.utf8)))
 
-			// Base64 decode the encrypted master key as read from the file.
+			// Base64 decode the signature from the file. This signature is used to validate the master key.
 			let decodedSignature = Data(base64Encoded: unwrappedJsonString.signature)
 			guard let unwrappedDecodedSignature = decodedSignature else {
 				throw VaultException.runtimeError("Error reading the vault file.")
@@ -250,7 +250,7 @@ class Vault {
 		for listing in dirListing {
 
 			// Parse the file.
-			let item = try createVaultItemFromFile(location: listing, key: self.masterKey!)
+			let item = try createVaultItemFromFile(location: listing, masterKey: self.masterKey!)
 			vaultItems.append(item!)
 		}
 		return vaultItems
