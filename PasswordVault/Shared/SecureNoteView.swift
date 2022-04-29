@@ -34,6 +34,8 @@ struct SecureNoteView: View {
 	@ObservedObject var appModel = AppState.shared
 	@Binding var isPushed : Bool
 	@State var item : SecureNoteItem
+	@State var isNewItem = true
+	@State private var showingFailedToAddAlert = false
 	@State private var showingFailedToUpdateAlert = false
 	@State private var showingFailedToDeleteAlert = false
 
@@ -47,18 +49,28 @@ struct SecureNoteView: View {
 			TextField("Blob", text: $item.note)
 			Spacer()
 			HStack() {
-				Button {
-					if !self.appModel.updateVaultItem(item: self.item) {
+				if self.isNewItem {
+					Button {
+						showingFailedToAddAlert = !self.appModel.addItemToVault(item: self.item)
+					} label: {
+						Label("Save", systemImage: "square.and.arrow.down")
 					}
-				} label: {
-					Label("Save", systemImage: "square.and.arrow.down")
+					.alert("Failed to add the vault item!", isPresented: $showingFailedToAddAlert) {
+						Button("OK", role: .cancel) { }
+					}
 				}
-				.alert("Failed to update the vault item!", isPresented: $showingFailedToUpdateAlert) {
-					Button("OK", role: .cancel) { }
+				else {
+					Button {
+						showingFailedToUpdateAlert = !self.appModel.updateVaultItem(item: self.item)
+					} label: {
+						Label("Save", systemImage: "square.and.arrow.down")
+					}
+					.alert("Failed to update the vault item!", isPresented: $showingFailedToUpdateAlert) {
+						Button("OK", role: .cancel) { }
+					}
 				}
 				Button {
-					if !self.appModel.deleteItemFromVault(item: self.item) {
-					}
+					showingFailedToDeleteAlert = !self.appModel.deleteItemFromVault(item: self.item)
 				} label: {
 					Label("Delete", systemImage: "trash")
 				}

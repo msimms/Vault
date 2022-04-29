@@ -269,13 +269,18 @@ class Vault {
 			throw VaultException.runtimeError("Duplicate vault item.")
 		}
 
+		// Location of vault items. Each file in this directory represents a single vault item.
+		let itemsDir = self.buildVaultItemsDirUrl(location: location)
+
+		// Does the vault's item directory actually exist? If not, create it.
+		if !FileManager.default.fileExists(atPath: itemsDir!.path) {
+			try FileManager.default.createDirectory(at: itemsDir!, withIntermediateDirectories: true, attributes: nil)
+		}
+
 		// Unwrap the master key.
 		guard let unwrappedMasterKey = self.masterKey else {
 			throw VaultException.runtimeError("Error retrieving the master key.")
 		}
-
-		// Location of vault items. Each file in this directory represents a single vault item.
-		let itemsDir = self.buildVaultItemsDirUrl(location: location)
 
 		// Write it out.
 		try item.write(location: itemsDir!, key: unwrappedMasterKey)

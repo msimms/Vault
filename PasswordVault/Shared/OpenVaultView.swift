@@ -30,10 +30,10 @@
 import SwiftUI
 
 @ViewBuilder
-func createVaultItemView(isPushed: Binding<Bool>, item: SecureVaultItem) -> some View {
+func createVaultItemView(isPushed: Binding<Bool>, item: SecureVaultItem, isNewItem: Bool) -> some View {
 	switch item {
-	case is SecureLoginItem: SecureLoginView(isPushed: isPushed, item: item as! SecureLoginItem)
-	case is SecureNoteItem: SecureNoteView(isPushed: isPushed, item: item as! SecureNoteItem)
+	case is SecureLoginItem: SecureLoginView(isPushed: isPushed, item: item as! SecureLoginItem, isNewItem: isNewItem)
+	case is SecureNoteItem: SecureNoteView(isPushed: isPushed, item: item as! SecureNoteItem, isNewItem: isNewItem)
 	default: EmptyView()
 	}
 }
@@ -71,7 +71,7 @@ struct OpenVaultView: View {
 				List(appModel.readItemsFromVault()) { item in
 					Image(systemName: "note")
 					VStack(alignment: .leading) {
-						let itemView = createVaultItemView(isPushed: $isPushed, item: item)
+						let itemView = createVaultItemView(isPushed: $isPushed, item: item, isNewItem: false)
 						NavigationLink(destination: itemView) {
 							Text(title(item: item))
 							Text(subtitle(item: item))
@@ -83,7 +83,7 @@ struct OpenVaultView: View {
 			.background(
 				
 				// Show a blank view for the user to enter new information.
-				NavigationLink(destination: createVaultItemView(isPushed: $isPushed, item: self.newItem), isActive: $showNewItem) {}
+				NavigationLink(destination: createVaultItemView(isPushed: $isPushed, item: self.newItem, isNewItem: true), isActive: $showNewItem) {}
 			)
 		}
 		.toolbar {
