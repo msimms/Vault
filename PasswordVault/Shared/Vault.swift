@@ -150,7 +150,7 @@ class Vault {
 			let base64MasterKey = encryptedMasterKey?.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
 
 			// Encode everything as JSON.
-			let vaultData = VaultIndex(vaultVersion: 0, encryptedMasterKey: base64MasterKey!, signature: base64Signature)
+			let vaultData = VaultIndex(vaultVersion: Vault.kCurrentVaultVersion, encryptedMasterKey: base64MasterKey!, signature: base64Signature)
 			let encoder = JSONEncoder()
 			let jsonData = try encoder.encode(vaultData)
 			let jsonStr = String(data: jsonData, encoding: .utf8)!
@@ -283,7 +283,7 @@ class Vault {
 		}
 
 		// Write it out.
-		try item.write(location: itemsDir!, key: unwrappedMasterKey)
+		try item.write(locationOfVaultItems: itemsDir!, masterKey: unwrappedMasterKey)
 	}
 
 	/// Updates an existing item in the vault.

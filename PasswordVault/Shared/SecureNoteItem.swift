@@ -29,6 +29,40 @@
 
 import Foundation
 
+struct NoteItemEncoding: Codable {
+	var vaultVersion: UInt8
+	var title: String
+	var note: String
+}
+
 class SecureNoteItem: SecureVaultItem {
 	var title: String = ""
+	var note: String = ""
+
+	/// Constructors
+	required init(from decoder: Decoder) throws {
+		fatalError("init(from:) has not been implemented")
+	}
+	override init() {
+		super.init()
+	}
+	init(json: NoteItemEncoding) {
+		super.init(json: json)
+
+		self.title = json.title
+		self.note = json.note
+	}
+
+	/// Creates the file for the vault item.
+	override func write(locationOfVaultItems: URL, masterKey: Data) throws {
+
+		// Encode everything as JSON.
+		let vaultData = NoteItemEncoding(vaultVersion: self.vaultVersion, title: self.title, note: self.note)
+		let encoder = JSONEncoder()
+		let jsonData = try encoder.encode(vaultData)
+		let jsonStr = String(data: jsonData, encoding: .utf8)!
+
+		// Encrypt and write the data.
+		try super.write(locationOfVaultItems: locationOfVaultItems, masterKey: masterKey, contents: jsonStr, itemType: VaultItemType.note)
+	}
 }

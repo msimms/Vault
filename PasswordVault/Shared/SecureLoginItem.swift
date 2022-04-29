@@ -29,8 +29,46 @@
 
 import Foundation
 
+struct LoginItemEncoding: Codable {
+	var vaultVersion: UInt8
+	var note: String
+	var website: String
+	var username: String
+	var email: String
+}
+
 class SecureLoginItem: SecureVaultItem {
 	var website: String = ""
 	var username: String = ""
 	var email: String = ""
+	var note: String = ""
+
+	/// Constructors
+	required init(from decoder: Decoder) throws {
+		fatalError("init(from:) has not been implemented")
+	}
+	override init() {
+		super.init()
+	}
+	init(json: LoginItemEncoding) {
+		super.init(json: json)
+
+		self.note = json.note
+		self.website = json.website
+		self.username = json.username
+		self.email = json.email
+	}
+
+	/// Creates the file for the vault item.
+	override func write(locationOfVaultItems: URL, masterKey: Data) throws {
+
+		// Encode everything as JSON.
+		let vaultData = LoginItemEncoding(vaultVersion: self.vaultVersion, note: self.note, website: self.website, username: self.username, email: self.email)
+		let encoder = JSONEncoder()
+		let jsonData = try encoder.encode(vaultData)
+		let jsonStr = String(data: jsonData, encoding: .utf8)!
+
+		// Encrypt and write the data.
+		try super.write(locationOfVaultItems: locationOfVaultItems, masterKey: masterKey, contents: jsonStr, itemType: VaultItemType.login)
+	}
 }

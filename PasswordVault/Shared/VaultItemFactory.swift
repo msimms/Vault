@@ -30,35 +30,6 @@
 import Foundation
 import CryptoKit
 
-enum VaultItemType: UInt8, Codable {
-	case login
-	case note
-}
-
-/// Encapsulates the data stored in an encrypted vault item file.
-struct VaultItemEncoding: Codable {
-	// File version information
-	var vaultVersion: UInt8
-	// Item type enumeration
-	var itemType: VaultItemType
-	// Master secret that is used encrypt the vault items, protected using the master key from the vault index
-	// Once decrypted this should contain another JSON string, specific to the type of data being stored.
-	var encryptedContents: String
-	// HMAC signature of the encrypted contents
-	var signature: String
-}
-
-struct LoginItemEncoding: Codable {
-	var note: String
-	var website: String
-	var username: String
-	var email: String
-}
-
-struct NoteItemEncoding: Codable {
-	var note: String
-}
-
 func createVaultItemFromFile(location: URL, key: Data) throws -> SecureVaultItem? {
 
 	// Read the file.
@@ -66,29 +37,24 @@ func createVaultItemFromFile(location: URL, key: Data) throws -> SecureVaultItem
 
 	// Parse the JSON string.
 	let tempItem = try JSONDecoder().decode(VaultItemEncoding.self, from: data)
-	
-	// Decrypt the subitem.
-	let key2 = SymmetricKey(data: key)
+
+	// Validate the signature.
+
+	// Decrypt into a JSON string.
+	let keyObj = SymmetricKey(data: key)
 	let decodedContents = Data(base64Encoded: tempItem.encryptedContents)
 	guard let unwrappedDecodedContents = decodedContents else {
 		throw VaultException.runtimeError("Error reading the vault item file.")
 	}
-	let decryptedDecodedContents = try! AES.GCM.open(AES.GCM.SealedBox(combined: unwrappedDecodedContents), using: key2)
+	let decryptedDecodedContents = try AES.GCM.open(AES.GCM.SealedBox(combined: unwrappedDecodedContents), using: keyObj)
 
 	// Now we know the type of the underlying data so we can create an object of the correct type.
 	switch tempItem.itemType {
 	case VaultItemType.login:
-		let subItem = try JSONDecoder().decode(LoginItemEncoding.self, from: decryptedDecodedContents)
-		let item = SecureLoginItem()
-		item.note = subItem.note
-		item.website = subItem.website
-		item.username = subItem.username
-		item.email = subItem.email
-		return item
+		let json = try JSONDecoder().decode(LoginItemEncoding.self, from: decryptedDecodedContents)
+		return SecureLoginItem(json: json)
 	case VaultItemType.note:
-		let subItem = try JSONDecoder().decode(NoteItemEncoding.self, from: decryptedDecodedContents)
-		let item = SecureNoteItem()
-		item.note = subItem.note
-		return item
+		let json = try JSONDecoder().decode(NoteItemEncoding.self, from: decryptedDecodedContents)
+		return SecureNoteItem(json: json)
 	}
 }

@@ -107,7 +107,7 @@ class AppState : ObservableObject {
 		} catch {
 			print(error.localizedDescription)
 		}
-		return false
+		return true
 	}
 
 	/// Adds a new item to the vault.
@@ -121,7 +121,7 @@ class AppState : ObservableObject {
 		} catch {
 			print(error.localizedDescription)
 		}
-		return false
+		return true
 	}
 
 	/// Removes an item from the vault.
@@ -135,7 +135,7 @@ class AppState : ObservableObject {
 		} catch {
 			print(error.localizedDescription)
 		}
-		return false
+		return true
 	}
 
 	/// Securely closes the vault.
