@@ -78,7 +78,8 @@ struct OpenVaultView: View {
 				Spacer()
 
 				// List of all items in the vault.
-				List(appModel.readItemsFromVault()) { item in
+				let items = Array(appModel.readItemsFromVault().values)
+				List(items) { item in
 					Image(systemName: icon(item: item))
 					VStack(alignment: .leading) {
 						let itemView = createVaultItemView(isPushed: $isPushed, item: item, isNewItem: false)

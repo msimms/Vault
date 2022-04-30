@@ -113,6 +113,7 @@ struct NewVaultView: View {
 					}
 				} label: {
 					Label("Create", systemImage: "lock")
+						.padding()
 				}
 				.alert("The passwords do not match or are not long enough", isPresented: $showingPasswordsDoNotMatchAlert) {
 					Button("OK", role: .cancel) { }

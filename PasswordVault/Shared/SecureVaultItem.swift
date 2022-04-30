@@ -40,6 +40,8 @@ enum VaultItemType: UInt8, Codable {
 struct VaultItemEncoding: Codable {
 	// File version information
 	var vaultVersion: UInt8
+	// Unique identifier
+	var id: UUID
 	// Item type enumeration
 	var itemType: VaultItemType
 	// Master secret that is used encrypt the vault items, protected using the master key from the vault index
@@ -87,7 +89,7 @@ class SecureVaultItem: Codable, Identifiable {
 		let base64Signature = Data(signature).base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
 
 		// Wrap the encoded contents into another JSON object, which will be written to the file.
-		let vaultData = VaultItemEncoding(vaultVersion: self.vaultVersion, itemType: itemType, encryptedContents: base64Contents, signature: base64Signature)
+		let vaultData = VaultItemEncoding(vaultVersion: self.vaultVersion, id: self.id, itemType: itemType, encryptedContents: base64Contents, signature: base64Signature)
 		let encoder = JSONEncoder()
 		let jsonData = try encoder.encode(vaultData)
 		let jsonStr = String(data: jsonData, encoding: .utf8)!

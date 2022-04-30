@@ -45,10 +45,13 @@ struct SecureNoteView: View {
 				.fontWeight(.heavy)
 				.font(.system(size: 32))
 				.multilineTextAlignment(.center)
-			Spacer()
-			TextField("Blob", text: $item.note)
+			Divider()
+			VStack(alignment: .leading) {
+				TextEditor(text: $item.note)
+			}
 			Spacer()
 			HStack() {
+				Spacer()
 				if self.isNewItem {
 					Button {
 						showingFailedToAddAlert = !self.appModel.addItemToVault(item: self.item)

@@ -42,7 +42,7 @@ struct VaultIndex: Codable {
 
 class Vault {
 	public static let kCurrentVaultVersion: UInt8 = 0
-	var vaultItems: [SecureVaultItem] = []
+	var vaultItems: [UUID: SecureVaultItem] = [:]
 
 	var vaultDirUrl: URL? // Complete path to the directory containing the vault
 	var masterKey: Data?
@@ -236,11 +236,11 @@ class Vault {
 	}
 	
 	func find(id: UUID) -> SecureVaultItem? {
-		return nil
+		return self.vaultItems[id]
 	}
 
 	/// Returns all the items in the vault.
-	func readItems(location: String) throws -> Array<SecureVaultItem> {
+	func readItems(location: String) throws -> [UUID: SecureVaultItem] {
 
 		// Location of vault items. Each file in this directory represents a single vault item.
 		let itemsDir = self.buildVaultItemsDirUrl(location: location)
@@ -251,9 +251,12 @@ class Vault {
 
 			// Parse the file.
 			let item = try createVaultItemFromFile(location: listing, masterKey: self.masterKey!)
-			vaultItems.append(item!)
+			guard let unwrappedItem = item else {
+				throw VaultException.runtimeError("Error reading vault items.")
+			}
+			self.vaultItems[unwrappedItem.id] = unwrappedItem
 		}
-		return vaultItems
+		return self.vaultItems
 	}
 
 	/// Adds a new item to the vault.
@@ -310,11 +313,15 @@ class Vault {
 		}
 
 		// Remove it from memory.
-		
+		self.vaultItems.removeValue(forKey: item.id)
+
 		// Location of vault items. Each file in this directory represents a single vault item.
 		let itemsDir = self.buildVaultItemsDirUrl(location: location)
 
 		// Remove it from disk.
+		// The file name is just the UUID of the item.
+		let fileLocation = itemsDir!.appendingPathComponent(item.id.uuidString)
+		try FileManager.default.removeItem(at: fileLocation)
 	}
 
 	/// Closes the vault by clearing any data we have that is associated with it.

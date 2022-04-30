@@ -45,18 +45,24 @@ struct SecureLoginView: View {
 				.fontWeight(.heavy)
 				.font(.system(size: 32))
 				.multilineTextAlignment(.center)
+			Divider()
+			VStack(alignment: .leading) {
+				Text("Website")
+					.fontWeight(.heavy)
+				TextField("Website", text: $item.website)
+				Text("Username")
+					.fontWeight(.heavy)
+				TextField("Username", text: $item.username)
+				Text("Email")
+					.fontWeight(.heavy)
+				TextField("Email", text: $item.email)
+				Text("Notes")
+					.fontWeight(.heavy)
+				TextEditor(text: $item.note)
+			}
 			Spacer()
-			Text("Website")
-				.fontWeight(.heavy)
-			TextField("Website", text: $item.website)
-			Text("Username")
-				.fontWeight(.heavy)
-			TextField("Username", text: $item.username)
-			Text("Email")
-				.fontWeight(.heavy)
-			TextField("Email", text: $item.email)
-			Spacer()
-			HStack() {
+			HStack(spacing: 10) {
+				Spacer()
 				if self.isNewItem {
 					Button {
 						showingFailedToAddAlert = !self.appModel.addItemToVault(item: self.item)

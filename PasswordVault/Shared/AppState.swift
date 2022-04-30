@@ -83,17 +83,17 @@ class AppState : ObservableObject {
 	}
 
 	/// Returns all the items in the vault.
-	func readItemsFromVault() -> Array<SecureVaultItem> {
+	func readItemsFromVault() -> [UUID: SecureVaultItem] {
 		do {
 			let vaultLocation = Preferences.vaultLocation()
-			guard let unwrappedLocation = vaultLocation else { return [] }
+			guard let unwrappedLocation = vaultLocation else { return [:] }
 			return try vault.readItems(location: unwrappedLocation)
 		} catch let error as NSError {
 			print("Error: Failed to read: \n\(error)")
 		} catch {
 			print(error.localizedDescription)
 		}
-		return []
+		return [:]
 	}
 
 	/// Adds a new item to the vault.

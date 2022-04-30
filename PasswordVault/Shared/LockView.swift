@@ -60,13 +60,14 @@ struct LockView: View {
 					}
 				} label: {
 					Label("Open", systemImage: "lock")
+						.padding()
 				}
 				.alert("Failed to open the vault!", isPresented: $showingVaultOpenFailedAlert) {
 					Button("OK", role: .cancel) { }
 				}
 				.padding()
-				.background(Color.blue)
 				.foregroundColor(.white)
+				.background(Color.blue)
 				.cornerRadius(40)
 				.padding()
 			}
