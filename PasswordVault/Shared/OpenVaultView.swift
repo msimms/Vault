@@ -66,63 +66,61 @@ func subtitle(item: SecureVaultItem) -> String {
 struct OpenVaultView: View {
 	@ObservedObject var appModel = AppState.shared
 	@Binding var isPushed : Bool
-	@State var showNewItem = false
+	@State var showNewItem : Bool = false
 	@State var newItem : SecureVaultItem = SecureVaultItem()
+	@State private var items : Array<SecureVaultItem> = []
 
 	var body: some View {
 
 		NavigationView {
 
-			VStack {
-
-				Spacer()
-
-				// List of all items in the vault.
-				let items = Array(appModel.readItemsFromVault().values)
-				List(items) { item in
-					Image(systemName: icon(item: item))
-					VStack(alignment: .leading) {
-						let itemView = createVaultItemView(isPushed: $isPushed, item: item, isNewItem: false)
-						NavigationLink(destination: itemView) {
-							VStack(alignment: .leading) {
-								Text(title(item: item))
-									.font(.headline)
-								Text(subtitle(item: item))
-									.font(.subheadline)
-							}
+			// List of all items in the vault.
+			List(self.items) { item in
+				Image(systemName: icon(item: item))
+				VStack(alignment: .leading) {
+					let itemView = createVaultItemView(isPushed: $isPushed, item: item, isNewItem: false)
+					NavigationLink(destination: itemView) {
+						VStack(alignment: .leading) {
+							Text(title(item: item))
+								.font(.headline)
+							Text(subtitle(item: item))
+								.font(.subheadline)
 						}
 					}
 				}
 			}
+			.padding(10)
+			.onAppear(perform: { self.items = Array(appModel.readItemsFromVault().values) }
+			)
 			.background(
 				
 				// Show a blank view for the user to enter new information.
 				NavigationLink(destination: createVaultItemView(isPushed: $isPushed, item: self.newItem, isNewItem: true), isActive: $showNewItem) {}
 			)
-		}
-		.toolbar {
+			.toolbar {
 
-			// Toolbar item for creating new entries.
-			ToolbarItem() {
-				Menu {
-					Button(action: {
-						self.newItem = SecureLoginItem()
-						showNewItem = true
-					}) {
-						Label("Login", systemImage: "lock")
-							.labelStyle(.titleAndIcon)
-					}
+				// Toolbar item for creating new entries.
+				ToolbarItem() {
+					Menu {
+						Button(action: {
+							self.newItem = SecureLoginItem()
+							showNewItem = true
+						}) {
+							Label("Login", systemImage: "lock")
+								.labelStyle(.titleAndIcon)
+						}
 
-					Button(action: {
-						self.newItem = SecureNoteItem()
-						showNewItem = true
-					}) {
-						Label("Note", systemImage: "doc")
-							.labelStyle(.titleAndIcon)
+						Button(action: {
+							self.newItem = SecureNoteItem()
+							showNewItem = true
+						}) {
+							Label("Note", systemImage: "doc")
+								.labelStyle(.titleAndIcon)
+						}
 					}
-				}
-				label: {
-					Label("Add", systemImage: "plus")
+					label: {
+						Label("Add", systemImage: "plus")
+					}
 				}
 			}
 		}

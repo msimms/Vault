@@ -60,73 +60,71 @@ struct NewVaultView: View {
 	@State private var showingVaultCreationFailedAlert = false
 
 	var body: some View {
-		Form {
-			VStack(alignment: .center) {
-				// Password
-				Label("Password", systemImage: "lock.circle")
-				SecureField("", text: $password)
-					.textFieldStyle(RoundedBorderTextFieldStyle())
-					.padding()
+		VStack(alignment: .center) {
+			// Password
+			Label("Password", systemImage: "lock.circle")
+			SecureField("", text: $password)
+				.textFieldStyle(RoundedBorderTextFieldStyle())
+				.padding()
 
-				// Password Confirmation
-				Label("Confirm Password", systemImage: "lock.circle")
-				SecureField("", text: $confirmPassword)
-					.textFieldStyle(RoundedBorderTextFieldStyle())
-					.padding()
+			// Password Confirmation
+			Label("Confirm Password", systemImage: "lock.circle")
+			SecureField("", text: $confirmPassword)
+				.textFieldStyle(RoundedBorderTextFieldStyle())
+				.padding()
 
-				// Allows the user to select the vault location
+			// Allows the user to select the vault location
 #if os(macOS)
-				/*Button("Select Location...") {
-					let panel = NSOpenPanel()
+			/*Button("Select Location...") {
+				let panel = NSOpenPanel()
 
-					panel.allowsMultipleSelection = false
-					panel.canChooseDirectories = true
+				panel.allowsMultipleSelection = false
+				panel.canChooseDirectories = true
 
-					if panel.runModal() == .OK {
-						vaultLocation = panel.directoryURL?.absoluteString ?? ""
-					}
+				if panel.runModal() == .OK {
+					vaultLocation = panel.directoryURL?.absoluteString ?? ""
 				}
-				.background(Color.blue)
-				.foregroundColor(.white)
-				.cornerRadius(40)
-				.padding()*/
+			}
+			.background(Color.blue)
+			.foregroundColor(.white)
+			.cornerRadius(40)
+			.padding()*/
 #endif
 
-				// Opens the vault
-				Button {
+			// Opens the vault
+			Button {
 
-					// Make sure the passwords match.
-					if password == confirmPassword && password.count > 8 {
+				// Make sure the passwords match.
+				if password == confirmPassword && password.count > 8 {
 
-						// Create the vault.
-						if self.appModel.createVault(vaultLocation: self.vaultLocation, password: self.password) {
-							
-							// Show the vault by popping to the root view controller.
-							self.isPushed = false
-						}
-						else {
-							self.showingVaultCreationFailedAlert = true
-						}
+					// Create the vault.
+					if self.appModel.createVault(vaultLocation: self.vaultLocation, password: self.password) {
+						
+						// Show the vault by popping to the root view controller.
+						self.isPushed = false
 					}
 					else {
-						self.showingPasswordsDoNotMatchAlert = true
+						self.showingVaultCreationFailedAlert = true
 					}
-				} label: {
-					Label("Create", systemImage: "lock")
-						.padding()
 				}
-				.alert("The passwords do not match or are not long enough", isPresented: $showingPasswordsDoNotMatchAlert) {
-					Button("OK", role: .cancel) { }
+				else {
+					self.showingPasswordsDoNotMatchAlert = true
 				}
-				.alert("Failed to create the vault", isPresented: $showingVaultCreationFailedAlert) {
-					Button("OK", role: .cancel) { }
-				}
-				.padding()
-				.background(Color.blue)
-				.foregroundColor(.white)
-				.cornerRadius(40)
-				.padding()
+			} label: {
+				Label("Create", systemImage: "lock")
+					.padding()
 			}
+			.alert("The passwords do not match or are not long enough", isPresented: $showingPasswordsDoNotMatchAlert) {
+				Button("OK", role: .cancel) { }
+			}
+			.alert("Failed to create the vault", isPresented: $showingVaultCreationFailedAlert) {
+				Button("OK", role: .cancel) { }
+			}
+			.padding()
+			.background(Color.blue)
+			.foregroundColor(.white)
+			.cornerRadius(40)
+			.padding()
 		}
 	}
 }

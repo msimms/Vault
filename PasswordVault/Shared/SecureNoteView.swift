@@ -77,6 +77,7 @@ struct SecureNoteView: View {
 				}
 				Button {
 					showingFailedToDeleteAlert = !self.appModel.deleteItemFromVault(item: self.item)
+					self.isPushed = false
 				} label: {
 					Label("Delete", systemImage: "trash")
 				}
@@ -85,6 +86,7 @@ struct SecureNoteView: View {
 				}
 			}
 		}
+		.padding(10)
 	}
 
 	func title() -> String {
