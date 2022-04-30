@@ -45,6 +45,9 @@ struct SecureNoteView: View {
 				.fontWeight(.heavy)
 				.font(.system(size: 32))
 				.multilineTextAlignment(.center)
+			Text("Title")
+				.fontWeight(.heavy)
+			TextField("Title", text: $item.title)
 			Divider()
 			VStack(alignment: .leading) {
 				TextEditor(text: $item.note)
