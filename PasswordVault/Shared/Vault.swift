@@ -42,10 +42,13 @@ struct VaultIndex: Codable {
 
 class Vault {
 	public static let kCurrentVaultVersion: UInt8 = 0
-	var vaultItems: [UUID: SecureVaultItem] = [:]
 
-	var vaultDirUrl: URL? // Complete path to the directory containing the vault
-	var masterKey: Data?
+	// Cache of all vault items, populated once the vault has been unlocked.
+	private var vaultItems: [UUID: SecureVaultItem] = [:]
+	/// Complete path to the directory containing the vault
+	private var vaultDirUrl: URL?
+	/// The key used for encrypting and decrypting vault items; this key is randomly generated and protected by the user's key/password
+	private var masterKey: Data?
 
 	/// Utility function for creating the master key.
 	func generateRandomBytes() -> Data? {
@@ -245,6 +248,9 @@ class Vault {
 		// Location of vault items. Each file in this directory represents a single vault item.
 		let itemsDir = self.buildVaultItemsDirUrl(location: location)
 
+		// Clear the cache.
+		self.vaultItems.removeAll()
+		
 		// List all the items in the vault items directory.
 		let dirListing = try FileManager.default.contentsOfDirectory(at: itemsDir!, includingPropertiesForKeys: nil)
 		for listing in dirListing {
@@ -254,6 +260,8 @@ class Vault {
 			guard let unwrappedItem = item else {
 				throw VaultException.runtimeError("Error reading vault items.")
 			}
+			
+			// Update the list.
 			self.vaultItems[unwrappedItem.id] = unwrappedItem
 		}
 		return self.vaultItems
