@@ -34,6 +34,7 @@ class AppState : ObservableObject {
 	static let shared = AppState()
 	private var vault: Vault = Vault()
 	@ObservedObject var viewModel = VaultDisplayState.shared
+	@Published var vaultItems: [UUID: SecureVaultItem] = [:]
 
 	init() {
 		self.updateState()
@@ -72,6 +73,7 @@ class AppState : ObservableObject {
 			let vaultLocation = Preferences.vaultLocation()
 			guard let unwrappedLocation = vaultLocation else { return false }
 			try vault.open(location: unwrappedLocation, key: password)
+			try self.vaultItems = vault.readItems(location: unwrappedLocation)
 			self.updateState()
 			return true
 		} catch let error as NSError {
@@ -82,26 +84,13 @@ class AppState : ObservableObject {
 		return false
 	}
 
-	/// Returns all the items in the vault.
-	func readItemsFromVault() -> [UUID: SecureVaultItem] {
-		do {
-			let vaultLocation = Preferences.vaultLocation()
-			guard let unwrappedLocation = vaultLocation else { return [:] }
-			return try vault.readItems(location: unwrappedLocation)
-		} catch let error as NSError {
-			print("Error: Failed to read: \n\(error)")
-		} catch {
-			print(error.localizedDescription)
-		}
-		return [:]
-	}
-
 	/// Adds a new item to the vault.
 	func addItemToVault(item: SecureVaultItem) -> Bool {
 		do {
 			let vaultLocation = Preferences.vaultLocation()
 			guard let unwrappedLocation = vaultLocation else { return false }
 			try vault.addItem(location: unwrappedLocation, item: item)
+			try self.vaultItems = vault.readItems(location: unwrappedLocation)
 		} catch let error as NSError {
 			print("Error: Failed to write: \n\(error)")
 		} catch {
@@ -116,6 +105,7 @@ class AppState : ObservableObject {
 			let vaultLocation = Preferences.vaultLocation()
 			guard let unwrappedLocation = vaultLocation else { return false }
 			try vault.updateItem(location: unwrappedLocation, item: item)
+			try self.vaultItems = vault.readItems(location: unwrappedLocation)
 		} catch let error as NSError {
 			print("Error: Failed to update: \n\(error)")
 		} catch {
@@ -130,6 +120,7 @@ class AppState : ObservableObject {
 			let vaultLocation = Preferences.vaultLocation()
 			guard let unwrappedLocation = vaultLocation else { return false }
 			try vault.deleteItem(location: unwrappedLocation, item: item)
+			try self.vaultItems = vault.readItems(location: unwrappedLocation)
 		} catch let error as NSError {
 			print("Error: Failed to delete: \n\(error)")
 		} catch {

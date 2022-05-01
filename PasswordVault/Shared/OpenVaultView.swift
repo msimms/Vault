@@ -68,14 +68,14 @@ struct OpenVaultView: View {
 	@Binding var isPushed : Bool
 	@State var showNewItem : Bool = false
 	@State var newItem : SecureVaultItem = SecureVaultItem()
-	@State private var items : Array<SecureVaultItem> = []
 
 	var body: some View {
 
 		NavigationView {
 
 			// List of all items in the vault.
-			List(self.items) { item in
+			let items = Array(self.appModel.vaultItems.values)
+			List(items) { item in
 				Image(systemName: icon(item: item))
 				VStack(alignment: .leading) {
 					let itemView = createVaultItemView(isPushed: $isPushed, item: item, isNewItem: false)
@@ -90,8 +90,6 @@ struct OpenVaultView: View {
 				}
 			}
 			.padding(10)
-			.onAppear(perform: { self.items = Array(appModel.readItemsFromVault().values) }
-			)
 			.background(
 				
 				// Show a blank view for the user to enter new information.

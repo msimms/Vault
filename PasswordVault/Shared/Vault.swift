@@ -43,8 +43,6 @@ struct VaultIndex: Codable {
 class Vault {
 	public static let kCurrentVaultVersion: UInt8 = 0
 
-	// Cache of all vault items, populated once the vault has been unlocked.
-	private var vaultItems: [UUID: SecureVaultItem] = [:]
 	/// Complete path to the directory containing the vault
 	private var vaultDirUrl: URL?
 	/// The key used for encrypting and decrypting vault items; this key is randomly generated and protected by the user's key/password
@@ -237,20 +235,15 @@ class Vault {
 			throw VaultException.runtimeError("A key was not provided.")
 		}
 	}
-	
-	func find(id: UUID) -> SecureVaultItem? {
-		return self.vaultItems[id]
-	}
 
 	/// Returns all the items in the vault.
 	func readItems(location: String) throws -> [UUID: SecureVaultItem] {
 
+		var vaultItems: [UUID: SecureVaultItem] = [:]
+
 		// Location of vault items. Each file in this directory represents a single vault item.
 		let itemsDir = self.buildVaultItemsDirUrl(location: location)
 
-		// Clear the cache.
-		self.vaultItems.removeAll()
-		
 		// List all the items in the vault items directory.
 		let dirListing = try FileManager.default.contentsOfDirectory(at: itemsDir!, includingPropertiesForKeys: nil)
 		for listing in dirListing {
@@ -262,9 +255,9 @@ class Vault {
 			}
 			
 			// Update the list.
-			self.vaultItems[unwrappedItem.id] = unwrappedItem
+			vaultItems[unwrappedItem.id] = unwrappedItem
 		}
-		return self.vaultItems
+		return vaultItems
 	}
 
 	/// Adds a new item to the vault.
@@ -273,11 +266,6 @@ class Vault {
 		// Sanity check.
 		if !isOpen() {
 			throw VaultException.runtimeError("The vault is not open.")
-		}
-
-		// Make sure the item does not already exist in the vault.
-		if find(id: item.id) != nil {
-			throw VaultException.runtimeError("Duplicate vault item.")
 		}
 
 		// Location of vault items. Each file in this directory represents a single vault item.
@@ -314,14 +302,6 @@ class Vault {
 		if !isOpen() {
 			throw VaultException.runtimeError("The vault is not open.")
 		}
-
-		// Find the item in the vault.
-		if find(id: item.id) == nil {
-			throw VaultException.runtimeError("Item not found.")
-		}
-
-		// Remove it from memory.
-		self.vaultItems.removeValue(forKey: item.id)
 
 		// Location of vault items. Each file in this directory represents a single vault item.
 		let itemsDir = self.buildVaultItemsDirUrl(location: location)
