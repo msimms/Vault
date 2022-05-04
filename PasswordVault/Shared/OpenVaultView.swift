@@ -78,6 +78,7 @@ struct OpenVaultView: View {
 			List(items) { item in
 				Image(systemName: icon(item: item))
 				VStack(alignment: .leading) {
+
 					let itemView = createVaultItemView(isPushed: $isPushed, item: item, isNewItem: false)
 					NavigationLink(destination: itemView) {
 						VStack(alignment: .leading) {

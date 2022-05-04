@@ -77,7 +77,7 @@ class AppState : ObservableObject {
 			self.updateState()
 			return true
 		} catch let error as NSError {
-			print("Error: Failed to write: \n\(error)")
+			print("Error: Failed to read: \n\(error)")
 		} catch {
 			print(error.localizedDescription)
 		}

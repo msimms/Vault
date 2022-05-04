@@ -247,15 +247,19 @@ class Vault {
 		// List all the items in the vault items directory.
 		let dirListing = try FileManager.default.contentsOfDirectory(at: itemsDir!, includingPropertiesForKeys: nil)
 		for listing in dirListing {
-
-			// Parse the file.
-			let item = try createVaultItemFromFile(location: listing, masterKey: self.masterKey!)
-			guard let unwrappedItem = item else {
-				throw VaultException.runtimeError("Error reading vault items.")
-			}
 			
-			// Update the list.
-			vaultItems[unwrappedItem.id] = unwrappedItem
+			// If the file name is not a UUID then skip it as all valid files in this directory will have UUIDs for file names.
+			if UUID(uuidString: listing.lastPathComponent) != nil {
+
+				// Parse the file.
+				let item = try createVaultItemFromFile(location: listing, masterKey: self.masterKey!)
+				guard let unwrappedItem = item else {
+					throw VaultException.runtimeError("Error reading vault items.")
+				}
+				
+				// Update the list.
+				vaultItems[unwrappedItem.id] = unwrappedItem
+			}
 		}
 		return vaultItems
 	}
