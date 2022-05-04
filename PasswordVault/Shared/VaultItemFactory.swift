@@ -44,20 +44,20 @@ func createVaultItemFromFile(location: URL, masterKey: Data) throws -> SecureVau
 	// Base64 decode the signature from the file. This signature is used to validate the encrypted contents.
 	let decodedSignature = Data(base64Encoded: outerVaultItem.signature)
 	guard let unwrappedDecodedSignature = decodedSignature else {
-		throw VaultException.runtimeError("Error reading the vault item file.")
+		throw VaultException.runtimeError("Error reading the vault item file: " + location.absoluteString + ".")
 	}
 	
 	// Base64 decode the encrypted signature.
 	let decodedContents = Data(base64Encoded: outerVaultItem.encryptedContents)
 	guard let unwrappedDecodedContents = decodedContents else {
-		throw VaultException.runtimeError("Error reading the vault item file.")
+		throw VaultException.runtimeError("Error reading the vault item file: " + location.absoluteString + ".")
 	}
 
 	// Validate the signature.
 	let signature = HMAC<SHA256>.authenticationCode(for: unwrappedDecodedContents, using: keyObj)
 	let computedSigBytes = Data(signature)
 	if computedSigBytes != unwrappedDecodedSignature {
-		throw VaultException.runtimeError("Error reading the vault item file.")
+		throw VaultException.runtimeError("Error reading the vault item file: " + location.absoluteString + ".")
 	}
 
 	// Decrypt the inner JSON string.
