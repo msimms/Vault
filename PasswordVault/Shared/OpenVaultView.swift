@@ -96,30 +96,30 @@ struct OpenVaultView: View {
 				// Show a blank view for the user to enter new information.
 				NavigationLink(destination: createVaultItemView(isPushed: $isPushed, item: self.newItem, isNewItem: true), isActive: $showNewItem) {}
 			)
-			.toolbar {
+		}
+		.toolbar {
 
-				// Toolbar item for creating new entries.
-				ToolbarItem() {
-					Menu {
-						Button(action: {
-							self.newItem = SecureLoginItem()
-							showNewItem = true
-						}) {
-							Label("Login", systemImage: "lock")
-								.labelStyle(.titleAndIcon)
-						}
+			// Toolbar item for creating new entries.
+			ToolbarItem() {
+				Menu {
+					Button(action: {
+						self.newItem = SecureLoginItem()
+						showNewItem = true
+					}) {
+						Label("Login", systemImage: "lock")
+							.labelStyle(.titleAndIcon)
+					}
 
-						Button(action: {
-							self.newItem = SecureNoteItem()
-							showNewItem = true
-						}) {
-							Label("Note", systemImage: "doc")
-								.labelStyle(.titleAndIcon)
-						}
+					Button(action: {
+						self.newItem = SecureNoteItem()
+						showNewItem = true
+					}) {
+						Label("Note", systemImage: "doc")
+							.labelStyle(.titleAndIcon)
 					}
-					label: {
-						Label("Add", systemImage: "plus")
-					}
+				}
+				label: {
+					Label("Add", systemImage: "plus")
 				}
 			}
 		}
