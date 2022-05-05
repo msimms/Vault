@@ -30,7 +30,7 @@
 import Foundation
 import CryptoKit
 
-func createVaultItemFromFile(location: URL, masterKey: Data) throws -> SecureVaultItem? {
+func createVaultItemFromFile(location: URL, masterKey: Data) throws -> SecureVaultItem {
 
 	// Read the file.
 	let data = try Data(contentsOf: location)

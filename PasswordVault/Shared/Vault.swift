@@ -237,9 +237,9 @@ class Vault {
 	}
 
 	/// Returns all the items in the vault.
-	func readItems(location: String) throws -> [UUID: SecureVaultItem] {
+	func readItems(location: String) throws -> Array<SecureVaultItem> {
 
-		var vaultItems: [UUID: SecureVaultItem] = [:]
+		var vaultItems: Array<SecureVaultItem> = []
 
 		// Location of vault items. Each file in this directory represents a single vault item.
 		let itemsDir = self.buildVaultItemsDirUrl(location: location)
@@ -247,18 +247,16 @@ class Vault {
 		// List all the items in the vault items directory.
 		let dirListing = try FileManager.default.contentsOfDirectory(at: itemsDir!, includingPropertiesForKeys: nil)
 		for listing in dirListing {
-			
+
 			// If the file name is not a UUID then skip it as all valid files in this directory will have UUIDs for file names.
 			if UUID(uuidString: listing.lastPathComponent) != nil {
 
 				// Parse the file.
 				let item = try createVaultItemFromFile(location: listing, masterKey: self.masterKey!)
-				guard let unwrappedItem = item else {
-					throw VaultException.runtimeError("Error reading vault items.")
-				}
-				
+
 				// Update the list.
-				vaultItems[unwrappedItem.id] = unwrappedItem
+				let index = vaultItems.reduce(0) { $1 < item ? $0 + 1 : $0 }
+				vaultItems.insert(item, at: index)
 			}
 		}
 		return vaultItems

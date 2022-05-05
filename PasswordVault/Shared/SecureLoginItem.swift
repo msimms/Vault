@@ -71,4 +71,8 @@ class SecureLoginItem: SecureVaultItem {
 		// Encrypt and write the data.
 		try super.write(locationOfVaultItems: locationOfVaultItems, masterKey: masterKey, contents: jsonStr, itemType: VaultItemType.login)
 	}
+
+	override func title() -> String {
+		return self.website
+	}
 }

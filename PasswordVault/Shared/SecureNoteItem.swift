@@ -31,12 +31,12 @@ import Foundation
 
 struct NoteItemEncoding: Codable {
 	var vaultVersion: UInt8
-	var title: String
+	var heading: String
 	var note: String
 }
 
 class SecureNoteItem: SecureVaultItem {
-	var title: String = ""
+	var heading: String = ""
 	var note: String = ""
 
 	/// Constructors
@@ -49,7 +49,7 @@ class SecureNoteItem: SecureVaultItem {
 	init(json: NoteItemEncoding) {
 		super.init(json: json)
 
-		self.title = json.title
+		self.heading = json.heading
 		self.note = json.note
 	}
 
@@ -57,12 +57,16 @@ class SecureNoteItem: SecureVaultItem {
 	override func write(locationOfVaultItems: URL, masterKey: Data) throws {
 
 		// Encode everything as JSON.
-		let vaultData = NoteItemEncoding(vaultVersion: self.vaultVersion, title: self.title, note: self.note)
+		let vaultData = NoteItemEncoding(vaultVersion: self.vaultVersion, heading: self.heading, note: self.note)
 		let encoder = JSONEncoder()
 		let jsonData = try encoder.encode(vaultData)
 		let jsonStr = String(data: jsonData, encoding: .utf8)!
 
 		// Encrypt and write the data.
 		try super.write(locationOfVaultItems: locationOfVaultItems, masterKey: masterKey, contents: jsonStr, itemType: VaultItemType.note)
+	}
+
+	override func title() -> String {
+		return self.heading
 	}
 }

@@ -98,7 +98,7 @@ struct SecureLoginView: View {
     }
 
 	func title() -> String {
-		return item.website
+		return item.title()
 	}
 	func subtitle() -> String {
 		return item.email

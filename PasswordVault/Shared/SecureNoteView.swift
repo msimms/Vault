@@ -48,7 +48,7 @@ struct SecureNoteView: View {
 			Divider()
 			Text("Title")
 				.fontWeight(.heavy)
-			TextField("Title", text: $item.title)
+			TextField("Title", text: $item.heading)
 			VStack(alignment: .leading) {
 				TextEditor(text: $item.note)
 			}
@@ -90,7 +90,7 @@ struct SecureNoteView: View {
 	}
 
 	func title() -> String {
-		return "Note"
+		return item.title()
 	}
 	func subtitle() -> String {
 		return ""

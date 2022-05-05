@@ -48,8 +48,8 @@ func icon(item: SecureVaultItem) -> String {
 
 func title(item: SecureVaultItem) -> String {
 	switch item {
-	case is SecureLoginItem: let item2 = item as! SecureLoginItem; return item2.website;
-	case is SecureNoteItem: let item2 = item as! SecureNoteItem; return item2.title;
+	case is SecureLoginItem: let item2 = item as! SecureLoginItem; return item2.title();
+	case is SecureNoteItem: let item2 = item as! SecureNoteItem; return item2.title();
 	default: return ""
 	}
 }
@@ -74,7 +74,7 @@ struct OpenVaultView: View {
 		NavigationView {
 
 			// List of all items in the vault.
-			let items = Array(self.appModel.vaultItems.values)
+			let items = self.appModel.vaultItems
 			List(items) { item in
 				Image(systemName: icon(item: item))
 				VStack(alignment: .leading) {

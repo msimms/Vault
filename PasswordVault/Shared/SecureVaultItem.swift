@@ -51,7 +51,7 @@ struct VaultItemEncoding: Codable {
 	var signature: String
 }
 
-class SecureVaultItem: Codable, Identifiable {
+class SecureVaultItem: Codable, Identifiable, Comparable {
 	enum CodingKeys: CodingKey {
 		case id
 		case vaultVersion
@@ -104,4 +104,16 @@ class SecureVaultItem: Codable, Identifiable {
 	/// Creates the file for the vault item.
 	func write(locationOfVaultItems: URL, masterKey: Data) throws {
 	}
+
+	func title() -> String {
+		return ""
+	}
+}
+
+func < (lhs: SecureVaultItem, rhs: SecureVaultItem) -> Bool {
+	return lhs.title() < rhs.title()
+}
+
+func == (lhs: SecureVaultItem, rhs: SecureVaultItem) -> Bool {
+	return lhs.title() == rhs.title()
 }
