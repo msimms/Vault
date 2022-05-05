@@ -45,19 +45,15 @@ struct LockView: View {
 				SecureField("", text: $password)
 					.textFieldStyle(RoundedBorderTextFieldStyle())
 					.padding()
+					.onSubmit {
+						self.isPushed = !self.appModel.openVault(password: password)
+						self.showingVaultOpenFailedAlert = self.isPushed
+					}
 
 				// Opens the vault
 				Button {
-
-					// Open the vault.
-					if self.appModel.openVault(password: self.password) {
-
-						// Show the vault by popping to the root view controller.
-						self.isPushed = false
-					}
-					else {
-						self.showingVaultOpenFailedAlert = true
-					}
+					self.isPushed = !self.appModel.openVault(password: password)
+					self.showingVaultOpenFailedAlert = self.isPushed
 				} label: {
 					Label("Open", systemImage: "lock")
 						.padding()
