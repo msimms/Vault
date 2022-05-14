@@ -92,7 +92,7 @@ struct OpenVaultView: View {
 			}
 			.padding(10)
 			.background(
-				
+
 				// Show a blank view for the user to enter new information.
 				NavigationLink(destination: createVaultItemView(isPushed: $isPushed, item: self.newItem, isNewItem: true), isActive: $showNewItem) {}
 			)

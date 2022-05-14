@@ -32,6 +32,7 @@ import Foundation
 
 class AppState : ObservableObject {
 	static let shared = AppState()
+
 	private var vault: Vault = Vault()
 	@ObservedObject var viewModel = VaultDisplayState.shared
 	@Published var vaultItems: Array<SecureVaultItem> = []

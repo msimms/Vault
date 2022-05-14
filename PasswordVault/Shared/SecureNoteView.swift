@@ -64,6 +64,11 @@ struct SecureNoteView: View {
 					.alert("Failed to add the vault item!", isPresented: $showingFailedToAddAlert) {
 						Button("OK", role: .cancel) { }
 					}
+					Button {
+						self.isPushed = false
+					} label: {
+						Label("Cancel", systemImage: "trash")
+					}
 				}
 				else {
 					Button {
@@ -74,15 +79,15 @@ struct SecureNoteView: View {
 					.alert("Failed to update the vault item!", isPresented: $showingFailedToUpdateAlert) {
 						Button("OK", role: .cancel) { }
 					}
-				}
-				Button {
-					showingFailedToDeleteAlert = !self.appModel.deleteItemFromVault(item: self.item)
-					self.isPushed = false
-				} label: {
-					Label("Delete", systemImage: "trash")
-				}
-				.alert("Failed to delete the vault item!", isPresented: $showingFailedToDeleteAlert) {
-					Button("OK", role: .cancel) { }
+					Button {
+						showingFailedToDeleteAlert = !self.appModel.deleteItemFromVault(item: self.item)
+						self.isPushed = false
+					} label: {
+						Label("Delete", systemImage: "trash")
+					}
+					.alert("Failed to delete the vault item!", isPresented: $showingFailedToDeleteAlert) {
+						Button("OK", role: .cancel) { }
+					}
 				}
 			}
 		}
