@@ -35,6 +35,7 @@ class AppState : ObservableObject {
 	@ObservedObject var viewModel = VaultDisplayState.shared
 	@Published var vaultItems: Array<SecureVaultItem> = []
 
+	/// Constructor
 	init() {
 		self.updateState()
 	}

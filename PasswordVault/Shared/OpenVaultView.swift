@@ -65,19 +65,19 @@ struct OpenVaultView: View {
 	@ObservedObject var appModel = AppState.shared
 	@Binding var isPushed : Bool
 	@State var showNewItem : Bool = false
-	@State var newItem : SecureVaultItem = SecureVaultItem()
+	@State var newItemType : VaultItemType = VaultItemType.login
 
 	var body: some View {
 
 		NavigationView {
 
-			// List of all items in the vault.
+			// List of all of the items in the vault.
 			let items = self.appModel.vaultItems
 			List(items) { item in
 				Image(systemName: icon(item: item))
 				VStack(alignment: .leading) {
 
-					let itemView = createVaultItemView(isPushed: $isPushed, item: item, isNewItem: false)
+					let itemView = createVaultItemView(isPushed: self.$isPushed, item: item, isNewItem: false)
 					NavigationLink(destination: itemView) {
 						VStack(alignment: .leading) {
 							Text(title(item: item))
@@ -92,7 +92,7 @@ struct OpenVaultView: View {
 			.background(
 
 				// Show a blank view for the user to enter new information.
-				NavigationLink(destination: createVaultItemView(isPushed: $isPushed, item: self.newItem, isNewItem: true), isActive: $showNewItem) {}
+				NavigationLink(destination: NewItemView(isPushed: self.$isPushed, newItemType: self.$newItemType), isActive: $showNewItem) {}
 			)
 		}
 		.toolbar {
@@ -101,7 +101,7 @@ struct OpenVaultView: View {
 			ToolbarItem() {
 				Menu {
 					Button(action: {
-						self.newItem = SecureLoginItem()
+						self.newItemType = VaultItemType.login
 						showNewItem = true
 					}) {
 						Label("Login", systemImage: "lock")
@@ -109,7 +109,7 @@ struct OpenVaultView: View {
 					}
 
 					Button(action: {
-						self.newItem = SecureNoteItem()
+						self.newItemType = VaultItemType.note
 						showNewItem = true
 					}) {
 						Label("Note", systemImage: "doc")

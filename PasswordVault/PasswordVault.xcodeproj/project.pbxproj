@@ -13,6 +13,8 @@
 		2709C26D276EA9FD008812AD /* NewVaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2709C26B276EA9FD008812AD /* NewVaultView.swift */; };
 		2709C26F276EB376008812AD /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2709C26E276EB376008812AD /* AppView.swift */; };
 		2709C270276EB376008812AD /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2709C26E276EB376008812AD /* AppView.swift */; };
+		271B8284282FE751002F5D2C /* NewItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271B8283282FE751002F5D2C /* NewItemView.swift */; };
+		271B8285282FE751002F5D2C /* NewItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271B8283282FE751002F5D2C /* NewItemView.swift */; };
 		271CBCC7280CC83700265841 /* VaultException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBCC6280CC83700265841 /* VaultException.swift */; };
 		271CBCC8280CC83700265841 /* VaultException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBCC6280CC83700265841 /* VaultException.swift */; };
 		271CBCCA2812EAD500265841 /* SecureNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBCC92812EAD500265841 /* SecureNoteView.swift */; };
@@ -83,6 +85,7 @@
 		2709C268276D80A9008812AD /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		2709C26B276EA9FD008812AD /* NewVaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVaultView.swift; sourceTree = "<group>"; };
 		2709C26E276EB376008812AD /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
+		271B8283282FE751002F5D2C /* NewItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewItemView.swift; sourceTree = "<group>"; };
 		271CBCC6280CC83700265841 /* VaultException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultException.swift; sourceTree = "<group>"; };
 		271CBCC92812EAD500265841 /* SecureNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureNoteView.swift; sourceTree = "<group>"; };
 		271CBCCC2812EB7000265841 /* SecureNoteItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureNoteItem.swift; sourceTree = "<group>"; };
@@ -170,6 +173,7 @@
 				2709C26E276EB376008812AD /* AppView.swift */,
 				277788F8279CDC9C000C19DF /* FileUtils.swift */,
 				272A2C922766634F00E8DC9C /* LockView.swift */,
+				271B8283282FE751002F5D2C /* NewItemView.swift */,
 				2709C26B276EA9FD008812AD /* NewVaultView.swift */,
 				272A2C572766602F00E8DC9C /* OpenVaultView.swift */,
 				272A2C562766602F00E8DC9C /* PasswordVaultApp.swift */,
@@ -397,6 +401,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				271B8284282FE751002F5D2C /* NewItemView.swift in Sources */,
 				272A2C802766602F00E8DC9C /* OpenVaultView.swift in Sources */,
 				272A2C7E2766602F00E8DC9C /* PasswordVaultApp.swift in Sources */,
 				276A059227A8903500B030E1 /* SecureLoginView.swift in Sources */,
@@ -421,6 +426,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				271B8285282FE751002F5D2C /* NewItemView.swift in Sources */,
 				272A2C812766602F00E8DC9C /* OpenVaultView.swift in Sources */,
 				272A2C7F2766602F00E8DC9C /* PasswordVaultApp.swift in Sources */,
 				276A059327A8903500B030E1 /* SecureLoginView.swift in Sources */,
