@@ -64,6 +64,7 @@ class SecureNoteItem: SecureVaultItem {
 		try super.write(locationOfVaultItems: locationOfVaultItems, masterKey: masterKey, contents: jsonStr, itemType: VaultItemType.note)
 	}
 
+	/// Returns the string to use as the title when viewing this item.
 	override func title() -> String {
 		return self.heading
 	}

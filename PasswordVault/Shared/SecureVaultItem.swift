@@ -103,6 +103,7 @@ class SecureVaultItem: Codable, Identifiable, Comparable {
 	func write(locationOfVaultItems: URL, masterKey: Data) throws {
 	}
 
+	/// Returns the string to use as the title when viewing this item.
 	func title() -> String {
 		return ""
 	}

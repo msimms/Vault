@@ -29,10 +29,11 @@ import Foundation
 
 struct LoginItemEncoding: Codable {
 	var vaultVersion: UInt8
-	var note: String
 	var website: String
 	var username: String
 	var email: String
+	var note: String
+	var tags: Array<String>?
 }
 
 class SecureLoginItem: SecureVaultItem {
@@ -40,6 +41,7 @@ class SecureLoginItem: SecureVaultItem {
 	var username: String = ""
 	var email: String = ""
 	var note: String = ""
+	var tags: Array<String> = []
 
 	/// Constructors
 	required init(from decoder: Decoder) throws {
@@ -55,13 +57,16 @@ class SecureLoginItem: SecureVaultItem {
 		self.website = json.website
 		self.username = json.username
 		self.email = json.email
+		if json.tags != nil {
+			self.tags = json.tags!
+		}
 	}
 
 	/// Creates the file for the vault item.
 	override func write(locationOfVaultItems: URL, masterKey: Data) throws {
 
 		// Encode everything as JSON.
-		let vaultData = LoginItemEncoding(vaultVersion: self.vaultVersion, note: self.note, website: self.website, username: self.username, email: self.email)
+		let vaultData = LoginItemEncoding(vaultVersion: self.vaultVersion, website: self.website, username: self.username, email: self.email, note: self.note, tags: self.tags)
 		let encoder = JSONEncoder()
 		let jsonData = try encoder.encode(vaultData)
 		let jsonStr = String(data: jsonData, encoding: .utf8)!
@@ -70,6 +75,7 @@ class SecureLoginItem: SecureVaultItem {
 		try super.write(locationOfVaultItems: locationOfVaultItems, masterKey: masterKey, contents: jsonStr, itemType: VaultItemType.login)
 	}
 
+	/// Returns the string to use as the title when viewing this item.
 	override func title() -> String {
 		return self.website
 	}

@@ -57,6 +57,16 @@ struct SecureLoginView: View {
 				Text("Notes")
 					.fontWeight(.heavy)
 				TextEditor(text: $item.note)
+				Text("Tags")
+				HStack() {
+					ForEach($item.tags, id: \.self) { $tag in
+						Button(action: {}) {
+							HStack {
+								Text(tag)
+							}
+						}
+					}
+				}
 			}
 			Spacer()
 			HStack(spacing: 10) {
