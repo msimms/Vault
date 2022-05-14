@@ -89,11 +89,13 @@ struct OpenVaultView: View {
 				}
 			}
 			.padding(10)
+#if os(macOS)
 			.background(
 
 				// Show a blank view for the user to enter new information.
 				NavigationLink(destination: NewItemView(isPushed: self.$isPushed, newItemType: self.$newItemType), isActive: $showNewItem) {}
 			)
+#endif
 		}
 		.toolbar {
 
@@ -121,5 +123,12 @@ struct OpenVaultView: View {
 				}
 			}
 		}
+#if !os(macOS)
+		.background(
+
+			// Show a blank view for the user to enter new information.
+			NavigationLink(destination: NewItemView(isPushed: self.$isPushed, newItemType: self.$newItemType), isActive: $showNewItem) {}
+		)
+#endif
 	}
 }
