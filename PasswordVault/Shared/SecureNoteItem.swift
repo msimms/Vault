@@ -1,7 +1,5 @@
 //
-//  NoteItem.swift
-//  PasswordVault
-//
+//  SecureNoteItem.swift
 //  Created by Michael Simms on 4/22/22.
 //
 

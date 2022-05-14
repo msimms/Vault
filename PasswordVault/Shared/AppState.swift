@@ -1,7 +1,5 @@
 //
 //  AppState.swift
-//  PasswordVault
-//
 //  Created by Michael Simms on 12/17/21.
 //
 

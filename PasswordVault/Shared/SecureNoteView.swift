@@ -1,7 +1,5 @@
 //
-//  NoteView.swift
-//  PasswordVault
-//
+//  SecureNoteView.swift
 //  Created by Michael Simms on 4/22/22.
 //
 

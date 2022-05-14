@@ -1,7 +1,5 @@
 //
 //  FileUtils.swift
-//  PasswordVault
-//
 //  Created by Michael Simms on 1/22/22.
 //
 

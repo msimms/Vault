@@ -1,7 +1,5 @@
 //
 //  VaultItemFactory.swift
-//  PasswordVault
-//
 //  Created by Michael Simms on 4/28/22.
 //
 

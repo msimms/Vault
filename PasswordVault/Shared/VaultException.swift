@@ -1,7 +1,5 @@
 //
 //  VaultException.swift
-//  PasswordVault
-//
 //  Created by Michael Simms on 4/17/22.
 //
 

@@ -1,7 +1,5 @@
 //
-//  LoginItemView.swift
-//  PasswordVault
-//
+//  SecureLoginView.swift
 //  Created by Michael Simms on 1/31/22.
 //
 
