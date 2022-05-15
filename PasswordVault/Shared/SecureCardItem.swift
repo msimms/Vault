@@ -31,11 +31,15 @@ struct CardItemEncoding: Codable {
 	var vaultVersion: UInt8
 	var heading: String
 	var number: String
+	var note: String
+	var tags: Array<String>?
 }
 
 class SecureCardItem: SecureVaultItem {
 	var heading: String = ""
 	var number: String = ""
+	var note: String = ""
+	var tags: Array<String> = []
 
 	/// Constructors
 	required init(from decoder: Decoder) throws {
@@ -55,7 +59,7 @@ class SecureCardItem: SecureVaultItem {
 	override func write(locationOfVaultItems: URL, masterKey: Data) throws {
 
 		// Encode everything as JSON.
-		let vaultData = CardItemEncoding(vaultVersion: self.vaultVersion, heading: self.heading, number: self.number)
+		let vaultData = CardItemEncoding(vaultVersion: self.vaultVersion, heading: self.heading, number: self.number, note: self.note, tags: self.tags)
 		let encoder = JSONEncoder()
 		let jsonData = try encoder.encode(vaultData)
 		let jsonStr = String(data: jsonData, encoding: .utf8)!

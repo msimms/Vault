@@ -22,11 +22,27 @@ struct SecureCardView: View {
 				.font(.system(size: 32))
 				.multilineTextAlignment(.center)
 			Divider()
-			Text("Title")
-				.fontWeight(.heavy)
-			TextField("Title", text: $item.heading)
 			VStack(alignment: .leading) {
-				TextEditor(text: $item.number)
+				Text("Title")
+					.fontWeight(.heavy)
+				TextField("Title", text: $item.heading)
+				Text("Number")
+					.fontWeight(.heavy)
+				TextField("Number", text: $item.number)
+				Text("Notes")
+					.fontWeight(.heavy)
+				TextEditor(text: $item.note)
+				Text("Tags")
+					.fontWeight(.heavy)
+				HStack(spacing: 10) {
+					ForEach($item.tags, id: \.self) { $tag in
+						Button(action: {}) {
+							HStack {
+								Text(tag)
+							}
+						}
+					}
+				}
 			}
 			Spacer()
 			HStack() {
