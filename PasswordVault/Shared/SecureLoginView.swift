@@ -36,6 +36,7 @@ struct SecureLoginView: View {
 	@State private var showingFailedToAddAlert = false
 	@State private var showingFailedToUpdateAlert = false
 	@State private var showingFailedToDeleteAlert = false
+	@State private var newTag = ""
 
 	var body: some View {
 		VStack(alignment: .leading) {
@@ -58,7 +59,8 @@ struct SecureLoginView: View {
 					.fontWeight(.heavy)
 				TextEditor(text: $item.note)
 				Text("Tags")
-				HStack() {
+					.fontWeight(.heavy)
+				HStack(spacing: 10) {
 					ForEach($item.tags, id: \.self) { $tag in
 						Button(action: {}) {
 							HStack {
@@ -90,7 +92,7 @@ struct SecureLoginView: View {
 					Button {
 						showingFailedToUpdateAlert = !self.appModel.updateVaultItem(item: self.item)
 					} label: {
-						Label("Save", systemImage: "square.and.arrow.down")
+						Label("Edit", systemImage: "square.and.arrow.down")
 					}
 					.alert("Failed to update the vault item!", isPresented: $showingFailedToUpdateAlert) {
 						Button("OK", role: .cancel) { }
