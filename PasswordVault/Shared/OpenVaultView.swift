@@ -30,6 +30,7 @@ import SwiftUI
 @ViewBuilder
 func createVaultItemView(isPushed: Binding<Bool>, item: SecureVaultItem, isNewItem: Bool) -> some View {
 	switch item {
+	case is SecureCardItem: SecureCardView(isPushed: isPushed, item: item as! SecureCardItem, isNewItem: isNewItem)
 	case is SecureLoginItem: SecureLoginView(isPushed: isPushed, item: item as! SecureLoginItem, isNewItem: isNewItem)
 	case is SecureNoteItem: SecureNoteView(isPushed: isPushed, item: item as! SecureNoteItem, isNewItem: isNewItem)
 	default: EmptyView()
@@ -38,6 +39,7 @@ func createVaultItemView(isPushed: Binding<Bool>, item: SecureVaultItem, isNewIt
 
 func icon(item: SecureVaultItem) -> String {
 	switch item {
+	case is SecureCardItem: return "creditcard.and.123";
 	case is SecureLoginItem: return "lock";
 	case is SecureNoteItem: return "note";
 	default: return ""
@@ -46,6 +48,7 @@ func icon(item: SecureVaultItem) -> String {
 
 func title(item: SecureVaultItem) -> String {
 	switch item {
+	case is SecureCardItem: let item2 = item as! SecureCardItem; return item2.title();
 	case is SecureLoginItem: let item2 = item as! SecureLoginItem; return item2.title();
 	case is SecureNoteItem: let item2 = item as! SecureNoteItem; return item2.title();
 	default: return ""
@@ -54,6 +57,7 @@ func title(item: SecureVaultItem) -> String {
 
 func subtitle(item: SecureVaultItem) -> String {
 	switch item {
+	case is SecureCardItem: let item2 = item as! SecureCardItem; return item2.heading;
 	case is SecureLoginItem: let item2 = item as! SecureLoginItem; return item2.email;
 	case is SecureNoteItem: return "";
 	default: return ""
@@ -115,6 +119,14 @@ struct OpenVaultView: View {
 						showNewItem = true
 					}) {
 						Label("Note", systemImage: "doc")
+							.labelStyle(.titleAndIcon)
+					}
+
+					Button(action: {
+						self.newItemType = VaultItemType.card
+						showNewItem = true
+					}) {
+						Label("Card", systemImage: "creditcard.and.123")
 							.labelStyle(.titleAndIcon)
 					}
 				}

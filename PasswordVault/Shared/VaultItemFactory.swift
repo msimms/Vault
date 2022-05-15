@@ -73,5 +73,10 @@ func createVaultItemFromFile(location: URL, masterKey: Data) throws -> SecureVau
 		let newItem = SecureNoteItem(json: json)
 		newItem.id = outerVaultItem.id
 		return newItem
+	case VaultItemType.card:
+		let json = try JSONDecoder().decode(CardItemEncoding.self, from: decryptedDecodedContents)
+		let newItem = SecureCardItem(json: json)
+		newItem.id = outerVaultItem.id
+		return newItem
 	}
 }

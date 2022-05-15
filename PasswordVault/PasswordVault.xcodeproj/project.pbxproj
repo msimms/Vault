@@ -15,6 +15,10 @@
 		2709C270276EB376008812AD /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2709C26E276EB376008812AD /* AppView.swift */; };
 		271B8284282FE751002F5D2C /* NewItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271B8283282FE751002F5D2C /* NewItemView.swift */; };
 		271B8285282FE751002F5D2C /* NewItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271B8283282FE751002F5D2C /* NewItemView.swift */; };
+		271B828F283075E2002F5D2C /* SecureCardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271B828E283075E2002F5D2C /* SecureCardItem.swift */; };
+		271B8290283075E2002F5D2C /* SecureCardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271B828E283075E2002F5D2C /* SecureCardItem.swift */; };
+		271B82922830783F002F5D2C /* SecureCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271B82912830783F002F5D2C /* SecureCardView.swift */; };
+		271B82932830783F002F5D2C /* SecureCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271B82912830783F002F5D2C /* SecureCardView.swift */; };
 		271CBCC7280CC83700265841 /* VaultException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBCC6280CC83700265841 /* VaultException.swift */; };
 		271CBCC8280CC83700265841 /* VaultException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBCC6280CC83700265841 /* VaultException.swift */; };
 		271CBCCA2812EAD500265841 /* SecureNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBCC92812EAD500265841 /* SecureNoteView.swift */; };
@@ -86,6 +90,8 @@
 		2709C26B276EA9FD008812AD /* NewVaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVaultView.swift; sourceTree = "<group>"; };
 		2709C26E276EB376008812AD /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		271B8283282FE751002F5D2C /* NewItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewItemView.swift; sourceTree = "<group>"; };
+		271B828E283075E2002F5D2C /* SecureCardItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureCardItem.swift; sourceTree = "<group>"; };
+		271B82912830783F002F5D2C /* SecureCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureCardView.swift; sourceTree = "<group>"; };
 		271CBCC6280CC83700265841 /* VaultException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultException.swift; sourceTree = "<group>"; };
 		271CBCC92812EAD500265841 /* SecureNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureNoteView.swift; sourceTree = "<group>"; };
 		271CBCCC2812EB7000265841 /* SecureNoteItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureNoteItem.swift; sourceTree = "<group>"; };
@@ -178,6 +184,8 @@
 				272A2C572766602F00E8DC9C /* OpenVaultView.swift */,
 				272A2C562766602F00E8DC9C /* PasswordVaultApp.swift */,
 				276A061127AEFF3400B030E1 /* Preferences.swift */,
+				271B828E283075E2002F5D2C /* SecureCardItem.swift */,
+				271B82912830783F002F5D2C /* SecureCardView.swift */,
 				27CAB0AF2767D4650064877A /* SecureLoginItem.swift */,
 				276A059127A8903500B030E1 /* SecureLoginView.swift */,
 				271CBCCC2812EB7000265841 /* SecureNoteItem.swift */,
@@ -414,11 +422,13 @@
 				276A061227AEFF3400B030E1 /* Preferences.swift in Sources */,
 				27CAB0B52767D99C0064877A /* SecureVaultItem.swift in Sources */,
 				271CBCCA2812EAD500265841 /* SecureNoteView.swift in Sources */,
+				271B828F283075E2002F5D2C /* SecureCardItem.swift in Sources */,
 				271CBCC7280CC83700265841 /* VaultException.swift in Sources */,
 				272A2C932766634F00E8DC9C /* LockView.swift in Sources */,
 				27CAB0AB2766BE450064877A /* Vault.swift in Sources */,
 				2709C26F276EB376008812AD /* AppView.swift in Sources */,
 				2709C269276D80A9008812AD /* AppState.swift in Sources */,
+				271B82922830783F002F5D2C /* SecureCardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,11 +449,13 @@
 				276A061327AEFF3400B030E1 /* Preferences.swift in Sources */,
 				27CAB0B62767D99C0064877A /* SecureVaultItem.swift in Sources */,
 				271CBCCB2812EAD500265841 /* SecureNoteView.swift in Sources */,
+				271B8290283075E2002F5D2C /* SecureCardItem.swift in Sources */,
 				271CBCC8280CC83700265841 /* VaultException.swift in Sources */,
 				272A2C942766634F00E8DC9C /* LockView.swift in Sources */,
 				27CAB0AC2766BE450064877A /* Vault.swift in Sources */,
 				2709C270276EB376008812AD /* AppView.swift in Sources */,
 				2709C26A276D80A9008812AD /* AppState.swift in Sources */,
+				271B82932830783F002F5D2C /* SecureCardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

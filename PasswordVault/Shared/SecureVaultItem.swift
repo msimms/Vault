@@ -32,6 +32,7 @@ import CryptoKit
 enum VaultItemType: UInt8, Codable {
 	case login
 	case note
+	case card
 }
 
 /// Encapsulates the data stored in an encrypted vault item file.

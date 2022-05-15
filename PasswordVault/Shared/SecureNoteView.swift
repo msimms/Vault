@@ -72,7 +72,7 @@ struct SecureNoteView: View {
 					Button {
 						showingFailedToUpdateAlert = !self.appModel.updateVaultItem(item: self.item)
 					} label: {
-						Label("Edit", systemImage: "square.and.arrow.down")
+						Label("Edit", systemImage: "pencil")
 					}
 					.alert("Failed to update the vault item!", isPresented: $showingFailedToUpdateAlert) {
 						Button("OK", role: .cancel) { }
