@@ -1,6 +1,6 @@
 //
 //  SecureLoginView.swift
-//  Created by Michael Simms on 1/31/22.
+//  Created by Michael Simms on 7/27/22.
 //
 
 // MIT License
@@ -27,48 +27,18 @@
 
 import SwiftUI
 
-/// Displays a login item from the vault.
-struct SecureLoginView: View {
-	@ObservedObject var appModel = AppState.shared
-	@Binding var isPushed : Bool
-	@State var item : SecureLoginItem
-	@State var isNewItem = true
+struct LastModifiedView: View {
+	private let dateFormatter: DateFormatter
+	
+	init(isNewItem: Bool) {
+		self.dateFormatter = DateFormatter()
+		self.dateFormatter.dateStyle = .long
+		self.dateFormatter.timeStyle = .short
+	}
 
 	var body: some View {
-		VStack(alignment: .leading) {
-			Group() {
-				Text("Login")
-					.fontWeight(.heavy)
-					.font(.system(size: 32))
-					.multilineTextAlignment(.center)
-				Divider()
-				VStack(alignment: .leading) {
-					Text("Website")
-						.fontWeight(.heavy)
-					TextField("Website", text: $item.website)
-					Text("Username")
-						.fontWeight(.heavy)
-					TextField("Username", text: $item.username)
-					Text("Email")
-						.fontWeight(.heavy)
-					TextField("Email", text: $item.email)
-					Text("Notes")
-						.fontWeight(.heavy)
-					TextEditor(text: $item.note)
-					TagView(tags: item.tags)
-					LastModifiedView(isNewItem: isNewItem)
-				}
-			}
-			Spacer()
-			ItemButtonView(isPushed: self.$isPushed, item: self.item, isNewItem: self.isNewItem)
-		}
-		.padding(10)
-    }
-
-	func title() -> String {
-		return item.title()
-	}
-	func subtitle() -> String {
-		return item.email
+		Text("Last Modified")
+			.fontWeight(.heavy)
+		//Text(item.lastModifiedTime!, formatter: dateFormatter)
 	}
 }

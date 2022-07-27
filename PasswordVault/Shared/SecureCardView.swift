@@ -11,16 +11,6 @@ struct SecureCardView: View {
 	@Binding var isPushed : Bool
 	@State var item : SecureCardItem
 	@State var isNewItem = true
-	//private let dateFormatter: DateFormatter
-
-	/*init(isPushed: Binding<Bool>, item: SecureCardItem, isNewItem: Bool) {
-		self.isPushed = isPushed
-		self.item = item
-		self.isNewItem = isNewItem
-		self.dateFormatter = DateFormatter()
-		self.dateFormatter.dateStyle = .long
-		self.dateFormatter.timeStyle = .short
-	}*/
 
 	var body: some View {
 		VStack(alignment: .leading) {
@@ -41,9 +31,7 @@ struct SecureCardView: View {
 						.fontWeight(.heavy)
 					TextEditor(text: $item.note)
 					TagView(tags: item.tags)
-					Text("Last Modified")
-						.fontWeight(.heavy)
-					//Text(item.lastModifiedTime!, formatter: dateFormatter)
+					LastModifiedView(isNewItem: isNewItem)
 				}
 			}
 			Spacer()

@@ -70,6 +70,8 @@
 		27E6894328919CD700755424 /* TagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6894128919CD700755424 /* TagsView.swift */; };
 		27E6894528919F1600755424 /* ItemButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6894428919F1600755424 /* ItemButtonView.swift */; };
 		27E6894628919F1600755424 /* ItemButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6894428919F1600755424 /* ItemButtonView.swift */; };
+		27E689482891BF6900755424 /* LastModifiedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E689472891BF6900755424 /* LastModifiedView.swift */; };
+		27E689492891BF6900755424 /* LastModifiedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E689472891BF6900755424 /* LastModifiedView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +128,7 @@
 		27CAB0B42767D99C0064877A /* SecureVaultItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureVaultItem.swift; sourceTree = "<group>"; };
 		27E6894128919CD700755424 /* TagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsView.swift; sourceTree = "<group>"; };
 		27E6894428919F1600755424 /* ItemButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemButtonView.swift; sourceTree = "<group>"; };
+		27E689472891BF6900755424 /* LastModifiedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastModifiedView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +188,7 @@
 				2709C26E276EB376008812AD /* AppView.swift */,
 				277788F8279CDC9C000C19DF /* FileUtils.swift */,
 				27E6894428919F1600755424 /* ItemButtonView.swift */,
+				27E689472891BF6900755424 /* LastModifiedView.swift */,
 				272A2C922766634F00E8DC9C /* LockView.swift */,
 				271B8283282FE751002F5D2C /* NewItemView.swift */,
 				2709C26B276EA9FD008812AD /* NewVaultView.swift */,
@@ -417,6 +421,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27E689482891BF6900755424 /* LastModifiedView.swift in Sources */,
 				271B8284282FE751002F5D2C /* NewItemView.swift in Sources */,
 				272A2C802766602F00E8DC9C /* OpenVaultView.swift in Sources */,
 				27E6894228919CD700755424 /* TagsView.swift in Sources */,
@@ -446,6 +451,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27E689492891BF6900755424 /* LastModifiedView.swift in Sources */,
 				271B8285282FE751002F5D2C /* NewItemView.swift in Sources */,
 				272A2C812766602F00E8DC9C /* OpenVaultView.swift in Sources */,
 				27E6894328919CD700755424 /* TagsView.swift in Sources */,

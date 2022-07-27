@@ -48,9 +48,8 @@ struct SecureNoteView: View {
 				VStack(alignment: .leading) {
 					TextEditor(text: $item.note)
 				}
-				Text("Last Modified")
-					.fontWeight(.heavy)
-				Spacer()
+				//TagView(tags: item.tags)
+				LastModifiedView(isNewItem: isNewItem)
 			}
 			Spacer()
 			ItemButtonView(isPushed: self.$isPushed, item: self.item, isNewItem: self.isNewItem)
