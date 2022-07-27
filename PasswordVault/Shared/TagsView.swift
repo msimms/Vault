@@ -1,6 +1,6 @@
 //
-//  SecureNoteView.swift
-//  Created by Michael Simms on 4/22/22.
+//  SecureLoginView.swift
+//  Created by Michael Simms on 7/27/22.
 //
 
 // MIT License
@@ -27,41 +27,26 @@
 
 import SwiftUI
 
-/// Displays a login item from the vault.
-struct SecureNoteView: View {
-	@ObservedObject var appModel = AppState.shared
-	@Binding var isPushed : Bool
-	@State var item : SecureNoteItem
-	@State var isNewItem = true
+struct TagView: View {
+	@State var tags : Array<String>
+	@State private var newTag = ""
 
 	var body: some View {
-		VStack(alignment: .leading) {
-			Group() {
-				Text("Note")
-					.fontWeight(.heavy)
-					.font(.system(size: 32))
-					.multilineTextAlignment(.center)
-				Divider()
-				Text("Title")
-					.fontWeight(.heavy)
-				TextField("Title", text: $item.heading)
-				VStack(alignment: .leading) {
-					TextEditor(text: $item.note)
+		Text("Tags")
+			.fontWeight(.heavy)
+		HStack(spacing: 10) {
+			ForEach($tags, id: \.self) { $tag in
+				Button(action: {}) {
+					HStack {
+						Text(tag)
+					}
 				}
-				Text("Last Modified")
-					.fontWeight(.heavy)
-				Spacer()
 			}
-			Spacer()
-			ItemButtonView(isPushed: self.$isPushed, item: self.item, isNewItem: self.isNewItem)
+			Button(action: {}) {
+				HStack {
+					Text("Add Tag...")
+				}
+			}
 		}
-		.padding(10)
-	}
-
-	func title() -> String {
-		return item.title()
-	}
-	func subtitle() -> String {
-		return ""
 	}
 }

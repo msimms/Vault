@@ -11,77 +11,43 @@ struct SecureCardView: View {
 	@Binding var isPushed : Bool
 	@State var item : SecureCardItem
 	@State var isNewItem = true
-	@State private var showingFailedToAddAlert = false
-	@State private var showingFailedToUpdateAlert = false
-	@State private var showingFailedToDeleteAlert = false
+	//private let dateFormatter: DateFormatter
+
+	/*init(isPushed: Binding<Bool>, item: SecureCardItem, isNewItem: Bool) {
+		self.isPushed = isPushed
+		self.item = item
+		self.isNewItem = isNewItem
+		self.dateFormatter = DateFormatter()
+		self.dateFormatter.dateStyle = .long
+		self.dateFormatter.timeStyle = .short
+	}*/
 
 	var body: some View {
 		VStack(alignment: .leading) {
-			Text("Card")
-				.fontWeight(.heavy)
-				.font(.system(size: 32))
-				.multilineTextAlignment(.center)
-			Divider()
-			VStack(alignment: .leading) {
-				Text("Title")
+			Group() {
+				Text("Card")
 					.fontWeight(.heavy)
-				TextField("Title", text: $item.heading)
-				Text("Number")
-					.fontWeight(.heavy)
-				TextField("Number", text: $item.number)
-				Text("Notes")
-					.fontWeight(.heavy)
-				TextEditor(text: $item.note)
-				Text("Tags")
-					.fontWeight(.heavy)
-				HStack(spacing: 10) {
-					ForEach($item.tags, id: \.self) { $tag in
-						Button(action: {}) {
-							HStack {
-								Text(tag)
-							}
-						}
-					}
+					.font(.system(size: 32))
+					.multilineTextAlignment(.center)
+				Divider()
+				VStack(alignment: .leading) {
+					Text("Title")
+						.fontWeight(.heavy)
+					TextField("Title", text: $item.heading)
+					Text("Number")
+						.fontWeight(.heavy)
+					TextField("Number", text: $item.number)
+					Text("Notes")
+						.fontWeight(.heavy)
+					TextEditor(text: $item.note)
+					TagView(tags: item.tags)
+					Text("Last Modified")
+						.fontWeight(.heavy)
+					//Text(item.lastModifiedTime!, formatter: dateFormatter)
 				}
 			}
 			Spacer()
-			HStack() {
-				Spacer()
-				if self.isNewItem {
-					Button {
-						showingFailedToAddAlert = !self.appModel.addItemToVault(item: self.item)
-					} label: {
-						Label("Save", systemImage: "square.and.arrow.down")
-					}
-					.alert("Failed to add the vault item!", isPresented: $showingFailedToAddAlert) {
-						Button("OK", role: .cancel) { }
-					}
-					Button {
-						self.isPushed = false
-					} label: {
-						Label("Cancel", systemImage: "trash")
-					}
-				}
-				else {
-					Button {
-						showingFailedToUpdateAlert = !self.appModel.updateVaultItem(item: self.item)
-					} label: {
-						Label("Edit", systemImage: "square.and.arrow.down")
-					}
-					.alert("Failed to update the vault item!", isPresented: $showingFailedToUpdateAlert) {
-						Button("OK", role: .cancel) { }
-					}
-					Button {
-						showingFailedToDeleteAlert = !self.appModel.deleteItemFromVault(item: self.item)
-						self.isPushed = false
-					} label: {
-						Label("Delete", systemImage: "trash")
-					}
-					.alert("Failed to delete the vault item!", isPresented: $showingFailedToDeleteAlert) {
-						Button("OK", role: .cancel) { }
-					}
-				}
-			}
+			ItemButtonView(isPushed: self.$isPushed, item: self.item, isNewItem: self.isNewItem)
 		}
 		.padding(10)
 	}

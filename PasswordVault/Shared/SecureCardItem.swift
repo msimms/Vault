@@ -33,6 +33,7 @@ struct CardItemEncoding: Codable {
 	var number: String
 	var note: String
 	var tags: Array<String>?
+	var lastModifiedTime: Date?
 }
 
 class SecureCardItem: SecureVaultItem {
@@ -40,6 +41,7 @@ class SecureCardItem: SecureVaultItem {
 	var number: String = ""
 	var note: String = ""
 	var tags: Array<String> = []
+	var lastModifiedTime: Date?
 
 	/// Constructors
 	required init(from decoder: Decoder) throws {
@@ -59,13 +61,13 @@ class SecureCardItem: SecureVaultItem {
 	override func write(locationOfVaultItems: URL, masterKey: Data) throws {
 
 		// Encode everything as JSON.
-		let vaultData = CardItemEncoding(vaultVersion: self.vaultVersion, heading: self.heading, number: self.number, note: self.note, tags: self.tags)
+		let vaultData = CardItemEncoding(vaultVersion: self.vaultVersion, heading: self.heading, number: self.number, note: self.note, tags: self.tags, lastModifiedTime: self.lastModifiedTime)
 		let encoder = JSONEncoder()
 		let jsonData = try encoder.encode(vaultData)
 		let jsonStr = String(data: jsonData, encoding: .utf8)!
 
 		// Encrypt and write the data.
-		try super.write(locationOfVaultItems: locationOfVaultItems, masterKey: masterKey, contents: jsonStr, itemType: VaultItemType.note)
+		try super.write(locationOfVaultItems: locationOfVaultItems, masterKey: masterKey, contents: jsonStr, itemType: VaultItemType.card)
 	}
 
 	/// Returns the string to use as the title when viewing this item.
