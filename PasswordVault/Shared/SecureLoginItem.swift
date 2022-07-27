@@ -34,6 +34,7 @@ struct LoginItemEncoding: Codable {
 	var email: String
 	var note: String
 	var tags: Array<String>?
+	var lastModifiedTime: Date?
 }
 
 class SecureLoginItem: SecureVaultItem {
@@ -42,6 +43,7 @@ class SecureLoginItem: SecureVaultItem {
 	var email: String = ""
 	var note: String = ""
 	var tags: Array<String> = []
+	var lastModifiedTime: Date?
 
 	/// Constructors
 	required init(from decoder: Decoder) throws {
@@ -60,13 +62,14 @@ class SecureLoginItem: SecureVaultItem {
 		if json.tags != nil {
 			self.tags = json.tags!
 		}
+		self.lastModifiedTime = json.lastModifiedTime
 	}
 
 	/// Creates the file for the vault item.
 	override func write(locationOfVaultItems: URL, masterKey: Data) throws {
 
 		// Encode everything as JSON.
-		let vaultData = LoginItemEncoding(vaultVersion: self.vaultVersion, website: self.website, username: self.username, email: self.email, note: self.note, tags: self.tags)
+		let vaultData = LoginItemEncoding(vaultVersion: self.vaultVersion, website: self.website, username: self.username, email: self.email, note: self.note, tags: self.tags, lastModifiedTime: self.lastModifiedTime)
 		let encoder = JSONEncoder()
 		let jsonData = try encoder.encode(vaultData)
 		let jsonStr = String(data: jsonData, encoding: .utf8)!

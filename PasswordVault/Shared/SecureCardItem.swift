@@ -55,6 +55,11 @@ class SecureCardItem: SecureVaultItem {
 
 		self.heading = json.heading
 		self.number = json.number
+		self.note = json.note
+		if json.tags != nil {
+			self.tags = json.tags!
+		}
+		self.lastModifiedTime = json.lastModifiedTime
 	}
 
 	/// Creates the file for the vault item.
