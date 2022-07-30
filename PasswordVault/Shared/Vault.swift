@@ -246,8 +246,13 @@ class Vault {
 		let dirListing = try FileManager.default.contentsOfDirectory(at: itemsDir!, includingPropertiesForKeys: nil)
 		for listing in dirListing {
 
+			// Does the file need to be downloaded from iCloud?
+			if listing.lastPathComponent.contains(".icloud") {
+				try FileManager.default.startDownloadingUbiquitousItem(at: listing);
+			}
+
 			// If the file name is not a UUID then skip it as all valid files in this directory will have UUIDs for file names.
-			if UUID(uuidString: listing.lastPathComponent) != nil {
+			else if UUID(uuidString: listing.lastPathComponent) != nil {
 
 				// Parse the file.
 				let item = try createVaultItemFromFile(location: listing, masterKey: self.masterKey!)
