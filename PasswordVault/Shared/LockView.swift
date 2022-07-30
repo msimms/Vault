@@ -36,35 +36,36 @@ struct LockView: View {
 	@State private var showingVaultOpenFailedAlert = false
 
 	var body: some View {
-		NavigationView {
-			VStack {
-				// Password
-				Label("Password", systemImage: "lock.circle")
-				SecureField("", text: $password)
-					.textFieldStyle(RoundedBorderTextFieldStyle())
-					.padding()
-					.onSubmit {
-						self.isPushed = !self.appModel.openVault(password: password)
-						self.showingVaultOpenFailedAlert = self.isPushed
-					}
-
-				// Opens the vault
-				Button {
+		VStack {
+			// Password
+			Label("Password", systemImage: "lock.circle")
+			SecureField("", text: $password)
+				.textFieldStyle(RoundedBorderTextFieldStyle())
+				.padding()
+				.onSubmit {
 					self.isPushed = !self.appModel.openVault(password: password)
 					self.showingVaultOpenFailedAlert = self.isPushed
-				} label: {
-					Label("Open", systemImage: "lock")
-						.padding()
 				}
-				.alert("Failed to open the vault!", isPresented: $showingVaultOpenFailedAlert) {
-					Button("OK", role: .cancel) { }
-				}
-				.padding()
-				.foregroundColor(.white)
-				.background(Color.blue)
-				.cornerRadius(40)
-				.padding()
+
+			// Opens the vault
+			Button {
+				self.isPushed = !self.appModel.openVault(password: password)
+				self.showingVaultOpenFailedAlert = self.isPushed
+			} label: {
+				Label("Open", systemImage: "lock")
+					.padding()
 			}
+			.alert("Failed to open the vault!", isPresented: $showingVaultOpenFailedAlert) {
+				Button("OK", role: .cancel) { }
+			}
+			.padding()
+			.foregroundColor(.white)
+			.background(Color.blue)
+			.cornerRadius(40)
+			.padding()
+#if !os(macOS)
+			.navigationBarBackButtonHidden(true)
+#endif
 		}
 	}
 }
