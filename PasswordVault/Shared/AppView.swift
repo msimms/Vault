@@ -63,10 +63,12 @@ final class VaultDisplayState: ObservableObject {
 struct AppView: View {
 	@ObservedObject var appModel = AppState.shared
 	@ObservedObject var viewModel = VaultDisplayState.shared
+
 	@State var pushed : Bool = true
 	@State var active : Bool = true
 
 	var body: some View {
+
 		NavigationView {
 
 			// If we can't find a vault then ask the user to create one.
@@ -74,14 +76,17 @@ struct AppView: View {
 			// If one exists and is open/unlocked then display it.
 
 			VStack {
+				let itemView = viewModel.createView(isPushed: self.$pushed)
+				let buttonText = viewModel.createButtonText()
+
 				NavigationLink(
-					destination: viewModel.createView(isPushed: self.$pushed),
+					destination: itemView,
 					isActive: self.$active
 				) {
 					EmptyView()
 				}
 				.hidden()
-				Button(viewModel.createButtonText()) {
+				Button(buttonText) {
 					self.pushed = true
 				}
 				.padding()

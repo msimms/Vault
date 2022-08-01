@@ -58,7 +58,9 @@ struct NewVaultView: View {
 	@State private var showingVaultCreationFailedAlert = false
 
 	var body: some View {
+
 		VStack(alignment: .center) {
+
 			// Password
 			Label("Password", systemImage: "lock.circle")
 			SecureField("", text: $password)
