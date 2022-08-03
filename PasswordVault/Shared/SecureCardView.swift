@@ -31,7 +31,7 @@ struct SecureCardView: View {
 						.fontWeight(.heavy)
 					TextEditor(text: $item.note)
 					TagsView(tags: item.tags)
-					LastModifiedView(isNewItem: isNewItem)
+					LastModifiedView(isNewItem: isNewItem, timestamp: item.lastModifiedTime)
 				}
 			}
 			Spacer()

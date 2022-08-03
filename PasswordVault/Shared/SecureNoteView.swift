@@ -49,7 +49,7 @@ struct SecureNoteView: View {
 					TextEditor(text: $item.note)
 				}
 				//TagsView(tags: item.tags)
-				LastModifiedView(isNewItem: isNewItem)
+				LastModifiedView(isNewItem: isNewItem, timestamp: item.lastModifiedTime)
 			}
 			Spacer()
 			ItemButtonView(isPushed: self.$isPushed, item: self.item, isNewItem: self.isNewItem)

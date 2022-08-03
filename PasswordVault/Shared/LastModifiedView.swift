@@ -29,16 +29,20 @@ import SwiftUI
 
 struct LastModifiedView: View {
 	private let dateFormatter: DateFormatter
+	private var timestamp: Date?
 	
-	init(isNewItem: Bool) {
+	init(isNewItem: Bool, timestamp: Date?) {
 		self.dateFormatter = DateFormatter()
 		self.dateFormatter.dateStyle = .long
 		self.dateFormatter.timeStyle = .short
+		self.timestamp = timestamp
 	}
 
 	var body: some View {
-		Text("Last Modified")
-			.fontWeight(.heavy)
-		//Text(item.lastModifiedTime!, formatter: dateFormatter)
+		if (timestamp != nil) {
+			Text("Last Modified")
+				.fontWeight(.heavy)
+			Text(timestamp!, formatter: dateFormatter)
+		}
 	}
 }
