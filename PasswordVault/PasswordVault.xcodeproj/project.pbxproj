@@ -72,6 +72,8 @@
 		27E6894628919F1600755424 /* ItemButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6894428919F1600755424 /* ItemButtonView.swift */; };
 		27E689482891BF6900755424 /* LastModifiedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E689472891BF6900755424 /* LastModifiedView.swift */; };
 		27E689492891BF6900755424 /* LastModifiedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E689472891BF6900755424 /* LastModifiedView.swift */; };
+		27E6894B28997EA000755424 /* NewTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6894A28997EA000755424 /* NewTagView.swift */; };
+		27E6894C28997EA000755424 /* NewTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6894A28997EA000755424 /* NewTagView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +131,7 @@
 		27E6894128919CD700755424 /* TagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsView.swift; sourceTree = "<group>"; };
 		27E6894428919F1600755424 /* ItemButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemButtonView.swift; sourceTree = "<group>"; };
 		27E689472891BF6900755424 /* LastModifiedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastModifiedView.swift; sourceTree = "<group>"; };
+		27E6894A28997EA000755424 /* NewTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTagView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +194,7 @@
 				27E689472891BF6900755424 /* LastModifiedView.swift */,
 				272A2C922766634F00E8DC9C /* LockView.swift */,
 				271B8283282FE751002F5D2C /* NewItemView.swift */,
+				27E6894A28997EA000755424 /* NewTagView.swift */,
 				2709C26B276EA9FD008812AD /* NewVaultView.swift */,
 				272A2C572766602F00E8DC9C /* OpenVaultView.swift */,
 				272A2C562766602F00E8DC9C /* PasswordVaultApp.swift */,
@@ -433,6 +437,7 @@
 				2709C26C276EA9FD008812AD /* NewVaultView.swift in Sources */,
 				27CAB0B02767D4650064877A /* SecureLoginItem.swift in Sources */,
 				276A059527AB17F900B030E1 /* VaultMasterFile.swift in Sources */,
+				27E6894B28997EA000755424 /* NewTagView.swift in Sources */,
 				276A061227AEFF3400B030E1 /* Preferences.swift in Sources */,
 				27CAB0B52767D99C0064877A /* SecureVaultItem.swift in Sources */,
 				271CBCCA2812EAD500265841 /* SecureNoteView.swift in Sources */,
@@ -463,6 +468,7 @@
 				2709C26D276EA9FD008812AD /* NewVaultView.swift in Sources */,
 				27CAB0B12767D4650064877A /* SecureLoginItem.swift in Sources */,
 				276A059627AB17F900B030E1 /* VaultMasterFile.swift in Sources */,
+				27E6894C28997EA000755424 /* NewTagView.swift in Sources */,
 				276A061327AEFF3400B030E1 /* Preferences.swift in Sources */,
 				27CAB0B62767D99C0064877A /* SecureVaultItem.swift in Sources */,
 				271CBCCB2812EAD500265841 /* SecureNoteView.swift in Sources */,

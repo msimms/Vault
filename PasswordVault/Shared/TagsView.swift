@@ -27,23 +27,23 @@
 
 import SwiftUI
 
-struct TagView: View {
+struct TagsView: View {
 	@State var tags : Array<String>
-	@State private var newTag = ""
 
 	var body: some View {
-		Text("Tags")
-			.fontWeight(.heavy)
-		HStack(spacing: 10) {
-			ForEach($tags, id: \.self) { $tag in
-				Button(action: {}) {
-					HStack {
-						Text(tag)
+		Group() {
+			Text("Tags")
+				.fontWeight(.heavy)
+			HStack(spacing: 10) {
+				ForEach($tags, id: \.self) { $tag in
+					Button(action: {}) {
+						HStack {
+							Text(tag)
+						}
 					}
 				}
-			}
-			Button(action: {}) {
-				HStack {
+
+				NavigationLink(destination: NewTagView()) {
 					Text("Add Tag...")
 				}
 			}

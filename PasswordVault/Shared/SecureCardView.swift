@@ -30,7 +30,7 @@ struct SecureCardView: View {
 					Text("Notes")
 						.fontWeight(.heavy)
 					TextEditor(text: $item.note)
-					TagView(tags: item.tags)
+					TagsView(tags: item.tags)
 					LastModifiedView(isNewItem: isNewItem)
 				}
 			}
