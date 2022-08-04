@@ -60,12 +60,15 @@ class Vault {
 	}
 
 	/// Utility function for building the URL to the vault's master file.
-	func buildVaultMasterFileUrl(location: String) -> URL? {
+	func buildVaultMasterFileUrl(location: String) throws -> URL? {
 
 		// Build the URL for the vault's directory. If a location was provided then
 		// use it, otherwise assume the user's iCloud directory.
 		if location.count == 0 {
 			self.vaultDirUrl = FileManager.default.url(forUbiquityContainerIdentifier: nil)
+			if self.vaultDirUrl == nil {
+				throw VaultException.runtimeError("iCloud storage is disabled.")
+			}
 		}
 		else {
 			self.vaultDirUrl = URL(string: location)
@@ -92,8 +95,8 @@ class Vault {
 	}
 
 	/// Returns true if a vault exists (spexcifically the vault index file) at the location stored in the user preferences.
-	func exists(location: String) -> Bool {
-		let vaultMasterFileUrl = self.buildVaultMasterFileUrl(location: location)
+	func exists(location: String) throws -> Bool {
+		let vaultMasterFileUrl = try self.buildVaultMasterFileUrl(location: location)
 		return FileManager.default.fileExists(atPath: vaultMasterFileUrl!.path)
 	}
 
@@ -118,7 +121,7 @@ class Vault {
 
 		// Build the URL for the vault's directory. If a location was provided then
 		// use it, otherwise assume the user's iCloud directory.
-		let vaultMasterFileUrl = self.buildVaultMasterFileUrl(location: location)
+		let vaultMasterFileUrl = try self.buildVaultMasterFileUrl(location: location)
 
 		// Does anything exist at the vault master file's path?
 		if !FileManager.default.fileExists(atPath: vaultMasterFileUrl!.path) {
@@ -177,7 +180,7 @@ class Vault {
 
 		// Build the URL for the vault's directory. If a location was provided then
 		// use it, otherwise assume the user's iCloud directory.
-		let vaultMasterFileUrl = self.buildVaultMasterFileUrl(location: location)
+		let vaultMasterFileUrl = try self.buildVaultMasterFileUrl(location: location)
 
 		// Does anything exist at the vault master file's path?
 		if FileManager.default.fileExists(atPath: vaultMasterFileUrl!.path) {

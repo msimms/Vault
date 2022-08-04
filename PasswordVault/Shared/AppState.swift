@@ -41,10 +41,10 @@ class AppState : ObservableObject {
 	}
 
 	/// Returns true if a vault exists (specifically the vault index file) at the location stored in the user preferences.
-	func vaultExists() -> Bool {
+	func vaultExists() throws -> Bool {
 		let vaultLocation = Preferences.vaultLocation()
 		guard let unwrappedLocation = vaultLocation else { return false }
-		return vault.exists(location: unwrappedLocation);
+		return try vault.exists(location: unwrappedLocation);
 	}
 
 	/// Returns true if a vault is open, i.e. unlocked.
@@ -140,16 +140,22 @@ class AppState : ObservableObject {
 	}
 	
 	func updateState() {
-		if self.vaultExists() {
-			if self.vaultIsOpen() {
-				self.viewModel.update(vaultState: VaultState.VaultOpen)
+		do {
+			if try self.vaultExists() {
+				if self.vaultIsOpen() {
+					self.viewModel.update(vaultState: VaultState.VaultOpen)
+				}
+				else {
+					self.viewModel.update(vaultState: VaultState.VaultClosed)
+				}
 			}
 			else {
-				self.viewModel.update(vaultState: VaultState.VaultClosed)
+				self.viewModel.update(vaultState: VaultState.VaultNotCreated)
 			}
-		}
-		else {
-			self.viewModel.update(vaultState: VaultState.VaultNotCreated)
+		} catch let error as NSError {
+			print("Error: Failed to update state: \n\(error)")
+		} catch {
+			print(error.localizedDescription)
 		}
 	}
 }
