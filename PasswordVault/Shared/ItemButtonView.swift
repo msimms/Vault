@@ -35,6 +35,7 @@ struct ItemButtonView: View {
 	@State private var showingFailedToAddAlert = false
 	@State private var showingFailedToUpdateAlert = false
 	@State private var showingFailedToDeleteAlert = false
+	@State private var showingDeleteVaultItemAlert = false
 	@State private var editUpdateButtonTitle: String = "Edit"
 	@State private var editUpdateButtonImage: String = "pencil"
 	
@@ -50,6 +51,7 @@ struct ItemButtonView: View {
 				.alert("Failed to add the vault item!", isPresented: $showingFailedToAddAlert) {
 					Button("OK", role: .cancel) { }
 				}
+
 				Button {
 					self.isPushed = false
 				} label: {
@@ -71,11 +73,20 @@ struct ItemButtonView: View {
 				.alert("Failed to update the vault item!", isPresented: $showingFailedToUpdateAlert) {
 					Button("OK", role: .cancel) { }
 				}
+
 				Button {
-					showingFailedToDeleteAlert = !self.appModel.deleteItemFromVault(item: self.item)
-					self.isPushed = false
+					self.showingDeleteVaultItemAlert = true
 				} label: {
 					Label("Delete", systemImage: "trash")
+				}
+				.alert("Are you sure you want to do this? It cannot be undone.", isPresented: $showingDeleteVaultItemAlert) {
+					Button("No", role: .cancel) { }
+						.keyboardShortcut(.defaultAction)
+					Button("Yes") {
+						showingFailedToDeleteAlert = !self.appModel.deleteItemFromVault(item: self.item)
+						self.isPushed = false
+					}
+					.keyboardShortcut(.cancelAction)
 				}
 				.alert("Failed to delete the vault item!", isPresented: $showingFailedToDeleteAlert) {
 					Button("OK", role: .cancel) { }
