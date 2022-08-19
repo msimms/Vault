@@ -55,7 +55,7 @@ func createVaultItemFromFile(location: URL, masterKey: Data) throws -> SecureVau
 	let signature = HMAC<SHA256>.authenticationCode(for: unwrappedDecodedContents, using: keyObj)
 	let computedSigBytes = Data(signature)
 	if computedSigBytes != unwrappedDecodedSignature {
-		throw VaultException.runtimeError("Error reading the vault item file: " + location.absoluteString + ".")
+		throw VaultException.runtimeError("Error reading the vault item file (invalid signature): " + location.absoluteString + ".")
 	}
 
 	// Decrypt the inner JSON string.

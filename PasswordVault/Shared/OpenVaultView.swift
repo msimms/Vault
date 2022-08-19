@@ -70,6 +70,8 @@ struct OpenVaultView: View {
 	@Binding var isPushed : Bool
 	@State var showNewItem : Bool = false
 	@State var newItemType : VaultItemType = VaultItemType.login
+	@State private var showingFailedToDeleteAlert = false
+	@State private var showingDeleteVaultAlert = false
 
 	var body: some View {
 
@@ -105,33 +107,56 @@ struct OpenVaultView: View {
 
 			// Toolbar item for creating new entries.
 			ToolbarItem() {
-				Menu {
-					Button(action: {
-						self.newItemType = VaultItemType.login
-						showNewItem = true
-					}) {
-						Label("Login", systemImage: "lock")
-							.labelStyle(.titleAndIcon)
+				HStack {
+					Menu {
+						Button(action: {
+							self.newItemType = VaultItemType.login
+							showNewItem = true
+						}) {
+							Label("Login", systemImage: "lock")
+								.labelStyle(.titleAndIcon)
+						}
+
+						Button(action: {
+							self.newItemType = VaultItemType.note
+							showNewItem = true
+						}) {
+							Label("Note", systemImage: "doc")
+								.labelStyle(.titleAndIcon)
+						}
+
+						Button(action: {
+							self.newItemType = VaultItemType.card
+							showNewItem = true
+						}) {
+							Label("Card", systemImage: "creditcard.and.123")
+								.labelStyle(.titleAndIcon)
+						}
+					}
+					label: {
+						Label("Add", systemImage: "plus")
 					}
 
-					Button(action: {
-						self.newItemType = VaultItemType.note
-						showNewItem = true
-					}) {
-						Label("Note", systemImage: "doc")
-							.labelStyle(.titleAndIcon)
+					Menu {
+						Button(action: {
+							self.showingDeleteVaultAlert = true
+						}) {
+							Label("Delete Vault", systemImage: "trash")
+								.labelStyle(.titleAndIcon)
+						}
 					}
-
-					Button(action: {
-						self.newItemType = VaultItemType.card
-						showNewItem = true
-					}) {
-						Label("Card", systemImage: "creditcard.and.123")
-							.labelStyle(.titleAndIcon)
+					label: {
+						Label("File", systemImage: "folder")
 					}
-				}
-				label: {
-					Label("Add", systemImage: "plus")
+					.alert("Are you sure you want to do this? It cannot be undone.", isPresented: $showingDeleteVaultAlert) {
+						Button("No", role: .cancel) { }
+							.keyboardShortcut(.defaultAction)
+						Button("Yes") { self.showingFailedToDeleteAlert = !self.appModel.deleteVault() }
+							.keyboardShortcut(.cancelAction)
+					}
+					.alert("Failed to delete the vault!", isPresented: $showingFailedToDeleteAlert) {
+						Button("OK", role: .cancel) { }
+					}
 				}
 			}
 		}

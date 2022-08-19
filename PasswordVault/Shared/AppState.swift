@@ -91,12 +91,13 @@ class AppState : ObservableObject {
 			guard let unwrappedLocation = vaultLocation else { return false }
 			try vault.addItem(location: unwrappedLocation, item: item)
 			try self.vaultItems = vault.readItems(location: unwrappedLocation)
+			return true
 		} catch let error as NSError {
 			print("Error: Failed to write: \n\(error)")
 		} catch {
 			print(error.localizedDescription)
 		}
-		return true
+		return false
 	}
 
 	/// Adds a new item to the vault.
@@ -106,12 +107,13 @@ class AppState : ObservableObject {
 			guard let unwrappedLocation = vaultLocation else { return false }
 			try vault.updateItem(location: unwrappedLocation, item: item)
 			try self.vaultItems = vault.readItems(location: unwrappedLocation)
+			return true
 		} catch let error as NSError {
 			print("Error: Failed to update: \n\(error)")
 		} catch {
 			print(error.localizedDescription)
 		}
-		return true
+		return false
 	}
 
 	/// Removes an item from the vault.
@@ -121,17 +123,33 @@ class AppState : ObservableObject {
 			guard let unwrappedLocation = vaultLocation else { return false }
 			try vault.deleteItem(location: unwrappedLocation, item: item)
 			try self.vaultItems = vault.readItems(location: unwrappedLocation)
+			return true
 		} catch let error as NSError {
-			print("Error: Failed to delete: \n\(error)")
+			print("Error: Failed to delete the vault item: \n\(error)")
 		} catch {
 			print(error.localizedDescription)
 		}
-		return true
+		return false
 	}
 
 	/// Securely closes the vault.
 	func closeVault() -> Bool {
 		return vault.close()
+	}
+
+	/// Removes the entire vault.
+	func deleteVault() -> Bool {
+		do {
+			let vaultLocation = Preferences.vaultLocation()
+			guard let unwrappedLocation = vaultLocation else { return false }
+			try vault.delete(location: unwrappedLocation)
+			return true
+		} catch let error as NSError {
+			print("Error: Failed to delete the vault: \n\(error)")
+		} catch {
+			print(error.localizedDescription)
+		}
+		return false
 	}
 
 	/// Returns true if we should open the vault, based on the supplied credentials; false otherwise.

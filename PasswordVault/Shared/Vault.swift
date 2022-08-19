@@ -229,11 +229,28 @@ class Vault {
 	}
 
 	/// Completely deletes the vault and all it's items.
-	func delete(location: String, key: String) throws {
+	func delete(location: String) throws {
 
-		// Sanity check the parameters.
-		if key.count == 0 {
-			throw VaultException.runtimeError("A key was not provided.")
+		// Build the URL for the vault's directory. If a location was provided then
+		// use it, otherwise assume the user's iCloud directory.
+		let vaultMasterFileUrl = try self.buildVaultMasterFileUrl(location: location)
+		
+		// Does anything exist at the vault master file's path?
+		if FileManager.default.fileExists(atPath: vaultMasterFileUrl!.path) {
+			
+			// Location of vault items. Each file in this directory represents a single vault item.
+			let itemsDir = self.buildVaultItemsDirUrl(location: location)
+			
+			// List all the items in the vault items directory.
+			let dirListing = try FileManager.default.contentsOfDirectory(at: itemsDir!, includingPropertiesForKeys: nil)
+			for listing in dirListing {
+
+				// Delete the vault item file.
+				try FileManager.default.removeItem(at: listing)
+			}
+			
+			// Delete the master vault file.
+			try FileManager.default.removeItem(at: vaultMasterFileUrl!)
 		}
 	}
 
@@ -249,20 +266,26 @@ class Vault {
 		let dirListing = try FileManager.default.contentsOfDirectory(at: itemsDir!, includingPropertiesForKeys: nil)
 		for listing in dirListing {
 
-			// Does the file need to be downloaded from iCloud?
-			if listing.lastPathComponent.contains(".icloud") {
-				try FileManager.default.startDownloadingUbiquitousItem(at: listing);
-			}
+			do {
+				// Does the file need to be downloaded from iCloud?
+				if listing.lastPathComponent.contains(".icloud") {
+					try FileManager.default.startDownloadingUbiquitousItem(at: listing);
+				}
 
-			// If the file name is not a UUID then skip it as all valid files in this directory will have UUIDs for file names.
-			else if UUID(uuidString: listing.lastPathComponent) != nil {
+				// If the file name is not a UUID then skip it as all valid files in this directory will have UUIDs for file names.
+				else if UUID(uuidString: listing.lastPathComponent) != nil {
 
-				// Parse the file.
-				let item = try createVaultItemFromFile(location: listing, masterKey: self.masterKey!)
+					// Parse the file.
+					let item = try createVaultItemFromFile(location: listing, masterKey: self.masterKey!)
 
-				// Update the list.
-				let index = vaultItems.reduce(0) { $1 < item ? $0 + 1 : $0 }
-				vaultItems.insert(item, at: index)
+					// Update the list.
+					let index = vaultItems.reduce(0) { $1 < item ? $0 + 1 : $0 }
+					vaultItems.insert(item, at: index)
+				}
+			} catch let error as NSError {
+				print("Error: Failed to read: \n\(error)")
+			} catch {
+				print(error.localizedDescription)
 			}
 		}
 		return vaultItems

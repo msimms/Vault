@@ -69,11 +69,15 @@ struct NewVaultView: View {
 					TextField("Password", text: $password)
 						.textFieldStyle(RoundedBorderTextFieldStyle())
 						.padding()
+						.onSubmit {
+						}
 				}
 				else {
 					SecureField("Password", text: $password)
 						.textFieldStyle(RoundedBorderTextFieldStyle())
 						.padding()
+						.onSubmit {
+						}
 				}
 				Button(action: { self.showPassword.toggle() }) {
 					Image(systemName: "eye")
@@ -89,11 +93,15 @@ struct NewVaultView: View {
 					TextField("Confirm Password", text: $confirmPassword)
 						.textFieldStyle(RoundedBorderTextFieldStyle())
 						.padding()
+						.onSubmit {
+						}
 				}
 				else {
 					SecureField("Confirm Password", text: $confirmPassword)
 						.textFieldStyle(RoundedBorderTextFieldStyle())
 						.padding()
+						.onSubmit {
+						}
 				}
 				Button(action: { self.showPassword.toggle() }) {
 					Image(systemName: "eye")

@@ -23,15 +23,17 @@ struct SecureCardView: View {
 					.multilineTextAlignment(.center)
 				Divider()
 				VStack(alignment: .leading) {
-					Text("Title")
-						.fontWeight(.heavy)
-					TextField("Title", text: $item.heading)
-					Text("Number")
-						.fontWeight(.heavy)
-					TextField("Number", text: $item.number)
-					Text("Notes")
-						.fontWeight(.heavy)
-					TextEditor(text: $item.note)
+					Group() {
+						Text("Title")
+							.fontWeight(.heavy)
+						TextField("Title", text: $item.heading)
+						Text("Number")
+							.fontWeight(.heavy)
+						TextField("Number", text: $item.number)
+						Text("Notes")
+							.fontWeight(.heavy)
+						TextEditor(text: $item.note)
+					}
 					TagsView(isPushed: $isPushed, tags: item.tags)
 					LastModifiedView(isNewItem: isNewItem, timestamp: item.lastModifiedTime)
 				}
