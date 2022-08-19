@@ -30,9 +30,10 @@ import Foundation
 struct LoginItemEncoding: Codable {
 	var vaultVersion: UInt8
 	var website: String
-	var username: String
-	var email: String
-	var note: String
+	var username: String?
+	var email: String?
+	var password: String?
+	var note: String?
 	var tags: Array<String>?
 	var lastModifiedTime: Date?
 }
@@ -41,6 +42,7 @@ class SecureLoginItem: SecureVaultItem {
 	var website: String = ""
 	var username: String = ""
 	var email: String = ""
+	var password: String = ""
 	var note: String = ""
 	var tags: Array<String> = []
 	var lastModifiedTime: Date?
@@ -55,10 +57,19 @@ class SecureLoginItem: SecureVaultItem {
 	init(json: LoginItemEncoding) {
 		super.init(json: json)
 
-		self.note = json.note
+		if json.note != nil {
+			self.note = json.note!
+		}
 		self.website = json.website
-		self.username = json.username
-		self.email = json.email
+		if json.username != nil {
+			self.username = json.username!
+		}
+		if json.email != nil {
+			self.email = json.email!
+		}
+		if json.password != nil {
+			self.password = json.password!
+		}
 		if json.tags != nil {
 			self.tags = json.tags!
 		}
@@ -69,7 +80,7 @@ class SecureLoginItem: SecureVaultItem {
 	override func write(locationOfVaultItems: URL, masterKey: Data) throws {
 
 		// Encode everything as JSON.
-		let vaultData = LoginItemEncoding(vaultVersion: self.vaultVersion, website: self.website, username: self.username, email: self.email, note: self.note, tags: self.tags, lastModifiedTime: self.lastModifiedTime)
+		let vaultData = LoginItemEncoding(vaultVersion: self.vaultVersion, website: self.website, username: self.username, email: self.email, password: self.password, note: self.note, tags: self.tags, lastModifiedTime: self.lastModifiedTime)
 		let encoder = JSONEncoder()
 		let jsonData = try encoder.encode(vaultData)
 		let jsonStr = String(data: jsonData, encoding: .utf8)!

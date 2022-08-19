@@ -28,7 +28,10 @@
 import SwiftUI
 
 struct TagsView: View {
+	@ObservedObject var appModel = AppState.shared
+	@Binding var isPushed : Bool
 	@State var tags : Array<String>
+	@State var active : Bool = true
 
 	var body: some View {
 		Group() {
@@ -37,14 +40,14 @@ struct TagsView: View {
 			HStack(spacing: 10) {
 				ForEach($tags, id: \.self) { $tag in
 					Button(action: {}) {
-						HStack {
-							Text(tag)
-						}
+						Text(tag)
 					}
 				}
 
 				NavigationLink(destination: NewTagView()) {
-					Text("Add Tag...")
+					Button(action: {}) {
+						Text("Add Tag...")
+					}
 				}
 			}
 		}

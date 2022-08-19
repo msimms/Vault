@@ -35,7 +35,9 @@ struct SecureLoginView: View {
 	@State var isNewItem = true
 
 	var body: some View {
+
 		VStack(alignment: .leading) {
+
 			Group() {
 				Text("Login")
 					.fontWeight(.heavy)
@@ -43,22 +45,28 @@ struct SecureLoginView: View {
 					.multilineTextAlignment(.center)
 				Divider()
 				VStack(alignment: .leading) {
-					Text("Website")
-						.fontWeight(.heavy)
-					TextField("Website", text: $item.website)
-					Text("Username")
-						.fontWeight(.heavy)
-					TextField("Username", text: $item.username)
-					Text("Email")
-						.fontWeight(.heavy)
-					TextField("Email", text: $item.email)
-					Text("Notes")
-						.fontWeight(.heavy)
-					TextEditor(text: $item.note)
-					TagsView(tags: item.tags)
+					Group() {
+						Text("Website")
+							.fontWeight(.heavy)
+						TextField("Website", text: $item.website)
+						Text("Username")
+							.fontWeight(.heavy)
+						TextField("Username", text: $item.username)
+						Text("Email")
+							.fontWeight(.heavy)
+						TextField("Email", text: $item.email)
+						Text("Password")
+							.fontWeight(.heavy)
+						TextField("Password", text: $item.password)
+						Text("Notes")
+							.fontWeight(.heavy)
+						TextEditor(text: $item.note)
+					}
+					TagsView(isPushed: $isPushed, tags: item.tags)
 					LastModifiedView(isNewItem: isNewItem, timestamp: item.lastModifiedTime)
 				}
 			}
+
 			Spacer()
 			ItemButtonView(isPushed: self.$isPushed, item: self.item, isNewItem: self.isNewItem)
 		}

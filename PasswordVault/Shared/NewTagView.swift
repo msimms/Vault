@@ -36,9 +36,7 @@ struct NewTagView: View {
 		HStack(spacing: 10) {
 			Button(action: {
 			}) {
-				HStack {
-					Text("Save")
-				}
+				Text("Save")
 			}
 		}
 	}

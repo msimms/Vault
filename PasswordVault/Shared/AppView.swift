@@ -93,7 +93,6 @@ struct AppView: View {
 				.background(Color.blue)
 				.foregroundColor(.white)
 				.cornerRadius(40)
-				.padding()
 				.frame(width: 160)
 			}
 		}

@@ -35,7 +35,9 @@ struct SecureNoteView: View {
 	@State var isNewItem = true
 
 	var body: some View {
+
 		VStack(alignment: .leading) {
+
 			Group() {
 				Text("Note")
 					.fontWeight(.heavy)
@@ -48,9 +50,10 @@ struct SecureNoteView: View {
 				VStack(alignment: .leading) {
 					TextEditor(text: $item.note)
 				}
-				//TagsView(tags: item.tags)
+				//TagsView(isPushed: $isPushed, tags: item.tags)
 				LastModifiedView(isNewItem: isNewItem, timestamp: item.lastModifiedTime)
 			}
+
 			Spacer()
 			ItemButtonView(isPushed: self.$isPushed, item: self.item, isNewItem: self.isNewItem)
 		}
