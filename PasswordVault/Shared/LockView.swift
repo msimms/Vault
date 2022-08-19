@@ -34,18 +34,37 @@ struct LockView: View {
 	@State var pushed : Bool = false
 	@State private var password: String = ""
 	@State private var showingVaultOpenFailedAlert = false
+	@State private var showPassword = false
 
 	var body: some View {
 		VStack {
 			// Password
 			Label("Password", systemImage: "lock.circle")
-			SecureField("", text: $password)
-				.textFieldStyle(RoundedBorderTextFieldStyle())
-				.padding()
-				.onSubmit {
-					self.isPushed = !self.appModel.openVault(password: password)
-					self.showingVaultOpenFailedAlert = self.isPushed
+			ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
+				if showPassword {
+					TextField("Password", text: $password)
+						.textFieldStyle(RoundedBorderTextFieldStyle())
+						.padding()
+						.onSubmit {
+							self.isPushed = !self.appModel.openVault(password: password)
+							self.showingVaultOpenFailedAlert = self.isPushed
+						}
 				}
+				else {
+					SecureField("Password", text: $password)
+						.textFieldStyle(RoundedBorderTextFieldStyle())
+						.padding()
+						.onSubmit {
+							self.isPushed = !self.appModel.openVault(password: password)
+							self.showingVaultOpenFailedAlert = self.isPushed
+						}
+				}
+				Button(action: { self.showPassword.toggle() }) {
+					Image(systemName: "eye")
+						.foregroundColor(.secondary)
+				}
+				.padding()
+			})
 
 			// Opens the vault
 			Button {

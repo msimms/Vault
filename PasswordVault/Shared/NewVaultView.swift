@@ -56,6 +56,7 @@ struct NewVaultView: View {
 	@State private var vaultLocation: String = ""
 	@State private var showingPasswordsDoNotMatchAlert = false
 	@State private var showingVaultCreationFailedAlert = false
+	@State private var showPassword = false
 
 	var body: some View {
 
@@ -63,15 +64,43 @@ struct NewVaultView: View {
 
 			// Password
 			Label("Password", systemImage: "lock.circle")
-			SecureField("", text: $password)
-				.textFieldStyle(RoundedBorderTextFieldStyle())
+			ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
+				if showPassword {
+					TextField("Password", text: $password)
+						.textFieldStyle(RoundedBorderTextFieldStyle())
+						.padding()
+				}
+				else {
+					SecureField("Password", text: $password)
+						.textFieldStyle(RoundedBorderTextFieldStyle())
+						.padding()
+				}
+				Button(action: { self.showPassword.toggle() }) {
+					Image(systemName: "eye")
+						.foregroundColor(.secondary)
+				}
 				.padding()
+			})
 
 			// Password Confirmation
 			Label("Confirm Password", systemImage: "lock.circle")
-			SecureField("", text: $confirmPassword)
-				.textFieldStyle(RoundedBorderTextFieldStyle())
+			ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
+				if showPassword {
+					TextField("Confirm Password", text: $confirmPassword)
+						.textFieldStyle(RoundedBorderTextFieldStyle())
+						.padding()
+				}
+				else {
+					SecureField("Confirm Password", text: $confirmPassword)
+						.textFieldStyle(RoundedBorderTextFieldStyle())
+						.padding()
+				}
+				Button(action: { self.showPassword.toggle() }) {
+					Image(systemName: "eye")
+						.foregroundColor(.secondary)
+				}
 				.padding()
+			})
 
 			// Allows the user to select the vault location
 #if os(macOS)
