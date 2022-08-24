@@ -73,7 +73,7 @@ class Vault {
 		else {
 			self.vaultDirUrl = URL(string: location)
 		}
-		self.vaultDirUrl = self.vaultDirUrl?.appendingPathComponent("PasswordVault")
+		self.vaultDirUrl = self.vaultDirUrl?.appendingPathComponent("Documents")
 
 		// Build the URL for the vault's master file.
 		return self.vaultDirUrl?.appendingPathComponent("vault.json", isDirectory: false)
@@ -90,7 +90,7 @@ class Vault {
 		else {
 			self.vaultDirUrl = URL(string: location)
 		}
-		self.vaultDirUrl = self.vaultDirUrl?.appendingPathComponent("PasswordVault")
+		self.vaultDirUrl = self.vaultDirUrl?.appendingPathComponent("Documents")
 		return self.vaultDirUrl?.appendingPathComponent("items")
 	}
 
