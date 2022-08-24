@@ -29,7 +29,7 @@ import SwiftUI
 
 @main
 struct PasswordVaultApp: App {
-	var state = AppState()
+	var state = AppState.shared
     var body: some Scene {
         WindowGroup {
             AppView()

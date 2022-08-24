@@ -43,7 +43,6 @@
 		276A059327A8903500B030E1 /* SecureLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276A059127A8903500B030E1 /* SecureLoginView.swift */; };
 		276A059527AB17F900B030E1 /* VaultMasterFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276A059427AB17F900B030E1 /* VaultMasterFile.swift */; };
 		276A059627AB17F900B030E1 /* VaultMasterFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276A059427AB17F900B030E1 /* VaultMasterFile.swift */; };
-		276A060C27AEFC8800B030E1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 276A060A27AEFC8800B030E1 /* Info.plist */; };
 		276A060F27AEFCC700B030E1 /* iOS in Resources */ = {isa = PBXBuildFile; fileRef = 276A060E27AEFCC700B030E1 /* iOS */; };
 		276A061027AEFCC700B030E1 /* iOS in Resources */ = {isa = PBXBuildFile; fileRef = 276A060E27AEFCC700B030E1 /* iOS */; };
 		276A061227AEFF3400B030E1 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276A061127AEFF3400B030E1 /* Preferences.swift */; };
@@ -97,6 +96,7 @@
 		2709C268276D80A9008812AD /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		2709C26B276EA9FD008812AD /* NewVaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVaultView.swift; sourceTree = "<group>"; };
 		2709C26E276EB376008812AD /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
+		27196E1B28B05F56003F47D8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		271B8283282FE751002F5D2C /* NewItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewItemView.swift; sourceTree = "<group>"; };
 		271B828E283075E2002F5D2C /* SecureCardItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureCardItem.swift; sourceTree = "<group>"; };
 		271B82912830783F002F5D2C /* SecureCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureCardView.swift; sourceTree = "<group>"; };
@@ -118,13 +118,10 @@
 		272A2C922766634F00E8DC9C /* LockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockView.swift; sourceTree = "<group>"; };
 		276A059127A8903500B030E1 /* SecureLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureLoginView.swift; sourceTree = "<group>"; };
 		276A059427AB17F900B030E1 /* VaultMasterFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultMasterFile.swift; sourceTree = "<group>"; };
-		276A060A27AEFC8800B030E1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		276A060E27AEFCC700B030E1 /* iOS */ = {isa = PBXFileReference; lastKnownFileType = folder; path = iOS; sourceTree = "<group>"; };
 		276A061127AEFF3400B030E1 /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		277788F8279CDC9C000C19DF /* FileUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUtils.swift; sourceTree = "<group>"; };
-		2796569F2803A77C008A792F /* PasswordVault--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "PasswordVault--iOS--Info.plist"; sourceTree = "<group>"; };
 		27B03AD4281AFBA1009131E8 /* VaultItemFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultItemFactory.swift; sourceTree = "<group>"; };
-		27CAB0A42766A3230064877A /* PasswordVault (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PasswordVault (iOS).entitlements"; sourceTree = "<group>"; };
 		27CAB0AA2766BE450064877A /* Vault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vault.swift; sourceTree = "<group>"; };
 		27CAB0AF2767D4650064877A /* SecureLoginItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureLoginItem.swift; sourceTree = "<group>"; };
 		27CAB0B42767D99C0064877A /* SecureVaultItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureVaultItem.swift; sourceTree = "<group>"; };
@@ -173,8 +170,7 @@
 		272A2C502766602E00E8DC9C = {
 			isa = PBXGroup;
 			children = (
-				2796569F2803A77C008A792F /* PasswordVault--iOS--Info.plist */,
-				27CAB0A42766A3230064877A /* PasswordVault (iOS).entitlements */,
+				27196E1B28B05F56003F47D8 /* Info.plist */,
 				272A2C552766602F00E8DC9C /* Shared */,
 				276A060E27AEFCC700B030E1 /* iOS */,
 				272A2C642766602F00E8DC9C /* macOS */,
@@ -230,7 +226,6 @@
 		272A2C642766602F00E8DC9C /* macOS */ = {
 			isa = PBXGroup;
 			children = (
-				276A060A27AEFC8800B030E1 /* Info.plist */,
 				272A2C652766602F00E8DC9C /* macOS.entitlements */,
 			);
 			path = macOS;
@@ -399,7 +394,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				276A061027AEFCC700B030E1 /* iOS in Resources */,
-				276A060C27AEFC8800B030E1 /* Info.plist in Resources */,
 				272A2C832766602F00E8DC9C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -643,16 +637,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "PasswordVault (iOS).entitlements";
+				CODE_SIGN_ENTITLEMENTS = "iOS/PasswordVault (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = F42C985T48;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "PasswordVault--iOS--Info.plist";
+				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -676,16 +673,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "PasswordVault (iOS).entitlements";
+				CODE_SIGN_ENTITLEMENTS = "iOS/PasswordVault (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = F42C985T48;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "PasswordVault--iOS--Info.plist";
+				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -714,11 +714,13 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = F42C985T48;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -743,11 +745,13 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = F42C985T48;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

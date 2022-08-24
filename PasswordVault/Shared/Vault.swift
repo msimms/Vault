@@ -76,7 +76,7 @@ class Vault {
 		self.vaultDirUrl = self.vaultDirUrl?.appendingPathComponent("PasswordVault")
 
 		// Build the URL for the vault's master file.
-		return self.vaultDirUrl?.appendingPathComponent("vault.json")
+		return self.vaultDirUrl?.appendingPathComponent("vault.json", isDirectory: false)
 	}
 
 	/// Utility function for building the URL to the directory containing the vault items.
@@ -339,7 +339,7 @@ class Vault {
 
 		// Remove it from disk.
 		// The file name is just the UUID of the item.
-		let fileLocation = itemsDir!.appendingPathComponent(item.id.uuidString)
+		let fileLocation = itemsDir!.appendingPathComponent(item.id.uuidString, isDirectory: false)
 		try FileManager.default.removeItem(at: fileLocation)
 	}
 
