@@ -140,7 +140,7 @@ struct OpenVaultView: View {
 					Menu {
 						Button(action: {
 							self.appModel.closeVault()
-							self.isPushed = false
+							self.isPushed = false // Pop to the root view controller
 						}) {
 							Label("Close Vault", systemImage: "xmark.circle")
 								.labelStyle(.titleAndIcon)
@@ -161,7 +161,7 @@ struct OpenVaultView: View {
 						Button("Yes") {
 							self.showingFailedToDeleteAlert = !self.appModel.deleteVault()
 							self.appModel.closeVault()
-							self.isPushed = !self.showingFailedToDeleteAlert
+							self.isPushed = !self.showingFailedToDeleteAlert // Pop to the root view controller if successful
 						}
 							.keyboardShortcut(.cancelAction)
 					}
