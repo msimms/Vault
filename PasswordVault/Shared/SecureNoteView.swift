@@ -33,6 +33,7 @@ struct SecureNoteView: View {
 	@Binding var isPushed : Bool
 	@State var item : SecureNoteItem
 	@State var isNewItem = true
+	@State var isReadOnly = false
 
 	var body: some View {
 
@@ -44,18 +45,20 @@ struct SecureNoteView: View {
 					.font(.system(size: 32))
 					.multilineTextAlignment(.center)
 				Divider()
-				Text("Title")
-					.fontWeight(.heavy)
-				TextField("Title", text: $item.heading)
 				VStack(alignment: .leading) {
+					Text("Title")
+						.fontWeight(.heavy)
+					TextField("Title", text: $item.heading)
+						.disabled(isReadOnly)
 					TextEditor(text: $item.note)
+						.disabled(isReadOnly)
 				}
 				//TagsView(isPushed: $isPushed, tags: item.tags)
 				LastModifiedView(isNewItem: isNewItem, timestamp: item.lastModifiedTime)
 			}
 
 			Spacer()
-			ItemButtonView(isPushed: self.$isPushed, item: self.item, isNewItem: self.isNewItem)
+			ItemButtonView(isPushed: self.$isPushed, isReadOnly: self.$isReadOnly, item: self.item, isNewItem: self.isNewItem)
 		}
 		.padding(10)
 	}

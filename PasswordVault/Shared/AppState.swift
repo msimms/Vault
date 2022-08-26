@@ -60,7 +60,7 @@ class AppState : ObservableObject {
 			self.updateState()
 			return true
 		} catch let error as NSError {
-			print("Error: Failed to write: \n\(error)")
+			print("Error: Failed to create the vault: \n\(error)")
 		} catch {
 			print(error.localizedDescription)
 		}
@@ -77,7 +77,7 @@ class AppState : ObservableObject {
 			self.updateState()
 			return true
 		} catch let error as NSError {
-			print("Error: Failed to read: \n\(error)")
+			print("Error: Failed to open the vault: \n\(error)")
 		} catch {
 			print(error.localizedDescription)
 		}
@@ -93,7 +93,7 @@ class AppState : ObservableObject {
 			try self.vaultItems = vault.readItems(location: unwrappedLocation)
 			return true
 		} catch let error as NSError {
-			print("Error: Failed to write: \n\(error)")
+			print("Error: Failed to add an item to the vault: \n\(error)")
 		} catch {
 			print(error.localizedDescription)
 		}
@@ -109,7 +109,7 @@ class AppState : ObservableObject {
 			try self.vaultItems = vault.readItems(location: unwrappedLocation)
 			return true
 		} catch let error as NSError {
-			print("Error: Failed to update: \n\(error)")
+			print("Error: Failed to update the vault: \n\(error)")
 		} catch {
 			print(error.localizedDescription)
 		}
@@ -125,7 +125,7 @@ class AppState : ObservableObject {
 			try self.vaultItems = vault.readItems(location: unwrappedLocation)
 			return true
 		} catch let error as NSError {
-			print("Error: Failed to delete the vault item: \n\(error)")
+			print("Error: Failed to delete a vault item: \n\(error)")
 		} catch {
 			print(error.localizedDescription)
 		}

@@ -33,6 +33,7 @@ struct SecureLoginView: View {
 	@Binding var isPushed : Bool
 	@State var item : SecureLoginItem
 	@State var isNewItem = true
+	@State var isReadOnly = false
 
 	var body: some View {
 
@@ -49,18 +50,23 @@ struct SecureLoginView: View {
 						Text("Website")
 							.fontWeight(.heavy)
 						TextField("Website", text: $item.website)
+							.disabled(isReadOnly)
 						Text("Username")
 							.fontWeight(.heavy)
 						TextField("Username", text: $item.username)
+							.disabled(isReadOnly)
 						Text("Email")
 							.fontWeight(.heavy)
 						TextField("Email", text: $item.email)
+							.disabled(isReadOnly)
 						Text("Password")
 							.fontWeight(.heavy)
 						TextField("Password", text: $item.password)
+							.disabled(isReadOnly)
 						Text("Notes")
 							.fontWeight(.heavy)
 						TextEditor(text: $item.note)
+							.disabled(isReadOnly)
 					}
 					TagsView(isPushed: $isPushed, tags: item.tags)
 					LastModifiedView(isNewItem: isNewItem, timestamp: item.lastModifiedTime)
@@ -68,7 +74,7 @@ struct SecureLoginView: View {
 			}
 
 			Spacer()
-			ItemButtonView(isPushed: self.$isPushed, item: self.item, isNewItem: self.isNewItem)
+			ItemButtonView(isPushed: self.$isPushed, isReadOnly: self.$isReadOnly, item: self.item, isNewItem: self.isNewItem)
 		}
 		.padding(10)
     }

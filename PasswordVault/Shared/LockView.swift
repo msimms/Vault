@@ -36,8 +36,13 @@ struct LockView: View {
 	@State private var showPassword = false
 	
 	func openVault() {
-		self.isPushed = self.appModel.openVault(password: password)
-		self.showingVaultOpenFailedAlert = !self.isPushed
+		if self.appModel.openVault(password: password) {
+			self.isPushed = true
+			self.showingVaultOpenFailedAlert = false
+		}
+		else {
+			self.showingVaultOpenFailedAlert = true
+		}
 	}
 
 	var body: some View {

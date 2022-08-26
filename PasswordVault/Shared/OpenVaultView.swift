@@ -30,9 +30,9 @@ import SwiftUI
 @ViewBuilder
 func createVaultItemView(isPushed: Binding<Bool>, item: SecureVaultItem, isNewItem: Bool) -> some View {
 	switch item {
-	case is SecureCardItem: SecureCardView(isPushed: isPushed, item: item as! SecureCardItem, isNewItem: isNewItem)
-	case is SecureLoginItem: SecureLoginView(isPushed: isPushed, item: item as! SecureLoginItem, isNewItem: isNewItem)
-	case is SecureNoteItem: SecureNoteView(isPushed: isPushed, item: item as! SecureNoteItem, isNewItem: isNewItem)
+	case is SecureCardItem: SecureCardView(isPushed: isPushed, item: item as! SecureCardItem, isNewItem: isNewItem, isReadOnly: true)
+	case is SecureLoginItem: SecureLoginView(isPushed: isPushed, item: item as! SecureLoginItem, isNewItem: isNewItem, isReadOnly: true)
+	case is SecureNoteItem: SecureNoteView(isPushed: isPushed, item: item as! SecureNoteItem, isNewItem: isNewItem, isReadOnly: true)
 	default: EmptyView()
 	}
 }

@@ -11,6 +11,7 @@ struct SecureCardView: View {
 	@Binding var isPushed : Bool
 	@State var item : SecureCardItem
 	@State var isNewItem = true
+	@State var isReadOnly = false
 
 	var body: some View {
 
@@ -27,12 +28,15 @@ struct SecureCardView: View {
 						Text("Title")
 							.fontWeight(.heavy)
 						TextField("Title", text: $item.heading)
+							.disabled(isReadOnly)
 						Text("Number")
 							.fontWeight(.heavy)
 						TextField("Number", text: $item.number)
+							.disabled(isReadOnly)
 						Text("Notes")
 							.fontWeight(.heavy)
 						TextEditor(text: $item.note)
+							.disabled(isReadOnly)
 					}
 					TagsView(isPushed: $isPushed, tags: item.tags)
 					LastModifiedView(isNewItem: isNewItem, timestamp: item.lastModifiedTime)
@@ -40,7 +44,7 @@ struct SecureCardView: View {
 			}
 
 			Spacer()
-			ItemButtonView(isPushed: self.$isPushed, item: self.item, isNewItem: self.isNewItem)
+			ItemButtonView(isPushed: self.$isPushed, isReadOnly: self.$isReadOnly, item: self.item, isNewItem: self.isNewItem)
 		}
 		.padding(10)
 	}

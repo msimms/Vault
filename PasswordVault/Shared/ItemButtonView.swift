@@ -30,6 +30,7 @@ import SwiftUI
 struct ItemButtonView: View {
 	@ObservedObject var appModel = AppState.shared
 	@Binding var isPushed : Bool
+	@Binding var isReadOnly : Bool
 	@State var item : SecureVaultItem
 	@State var isNewItem = true
 	@State private var showingFailedToAddAlert = false
@@ -63,10 +64,12 @@ struct ItemButtonView: View {
 					if self.editUpdateButtonTitle == "Edit" {
 						editUpdateButtonTitle = "Update"
 						editUpdateButtonImage = "square.and.arrow.down"
+						self.isReadOnly = false
 					}
 					else if self.appModel.updateVaultItem(item: self.item) {
 						editUpdateButtonTitle = "Edit"
 						editUpdateButtonImage = "pencil"
+						self.isReadOnly = true
 					}
 					else {
 						showingFailedToUpdateAlert = true
