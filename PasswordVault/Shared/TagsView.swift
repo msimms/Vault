@@ -31,7 +31,6 @@ struct TagsView: View {
 	@ObservedObject var appModel = AppState.shared
 	@Binding var isPushed : Bool
 	@State var tags : Array<String>
-	@State var active : Bool = true
 
 	var body: some View {
 		Group() {
@@ -44,7 +43,7 @@ struct TagsView: View {
 					}
 				}
 
-				NavigationLink(destination: NewTagView()) {
+				NavigationLink(destination: NewTagView(), isActive: $isPushed) {
 					Button(action: {}) {
 						Text("Add Tag...")
 					}

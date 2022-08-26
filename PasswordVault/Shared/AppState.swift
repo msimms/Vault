@@ -133,8 +133,8 @@ class AppState : ObservableObject {
 	}
 
 	/// Securely closes the vault.
-	func closeVault() -> Bool {
-		return vault.close()
+	func closeVault() {
+		vault.close()
 	}
 
 	/// Removes the entire vault.

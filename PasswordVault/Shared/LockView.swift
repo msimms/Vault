@@ -31,10 +31,14 @@ import SwiftUI
 struct LockView: View {
 	@ObservedObject var appModel = AppState.shared
 	@Binding var isPushed : Bool
-	@State var pushed : Bool = false
 	@State private var password: String = ""
 	@State private var showingVaultOpenFailedAlert = false
 	@State private var showPassword = false
+	
+	func openVault() {
+		self.isPushed = self.appModel.openVault(password: password)
+		self.showingVaultOpenFailedAlert = !self.isPushed
+	}
 
 	var body: some View {
 		VStack {
@@ -46,8 +50,7 @@ struct LockView: View {
 						.textFieldStyle(RoundedBorderTextFieldStyle())
 						.padding()
 						.onSubmit {
-							self.isPushed = !self.appModel.openVault(password: password)
-							self.showingVaultOpenFailedAlert = self.isPushed
+							self.openVault()
 						}
 				}
 				else {
@@ -55,8 +58,7 @@ struct LockView: View {
 						.textFieldStyle(RoundedBorderTextFieldStyle())
 						.padding()
 						.onSubmit {
-							self.isPushed = !self.appModel.openVault(password: password)
-							self.showingVaultOpenFailedAlert = self.isPushed
+							self.openVault()
 						}
 				}
 				Button(action: { self.showPassword.toggle() }) {
@@ -68,8 +70,7 @@ struct LockView: View {
 
 			// Opens the vault
 			Button {
-				self.isPushed = !self.appModel.openVault(password: password)
-				self.showingVaultOpenFailedAlert = self.isPushed
+				openVault()
 			} label: {
 				Label("Open", systemImage: "lock")
 					.padding()

@@ -58,6 +58,26 @@ struct NewVaultView: View {
 	@State private var showingVaultCreationFailedAlert = false
 	@State private var showPassword = false
 
+	func createVault() {
+
+		// Make sure the passwords match.
+		if password == confirmPassword && password.count > 8 {
+			
+			// Create the vault.
+			if self.appModel.createVault(vaultLocation: self.vaultLocation, password: self.password) {
+				
+				// Show the vault by popping to the root view controller.
+				self.isPushed = false
+			}
+			else {
+				self.showingVaultCreationFailedAlert = true
+			}
+		}
+		else {
+			self.showingPasswordsDoNotMatchAlert = true
+		}
+	}
+
 	var body: some View {
 
 		VStack(alignment: .center) {
@@ -70,6 +90,7 @@ struct NewVaultView: View {
 						.textFieldStyle(RoundedBorderTextFieldStyle())
 						.padding()
 						.onSubmit {
+							createVault()
 						}
 				}
 				else {
@@ -77,6 +98,7 @@ struct NewVaultView: View {
 						.textFieldStyle(RoundedBorderTextFieldStyle())
 						.padding()
 						.onSubmit {
+							createVault()
 						}
 				}
 				Button(action: { self.showPassword.toggle() }) {
@@ -94,6 +116,7 @@ struct NewVaultView: View {
 						.textFieldStyle(RoundedBorderTextFieldStyle())
 						.padding()
 						.onSubmit {
+							createVault()
 						}
 				}
 				else {
@@ -101,6 +124,7 @@ struct NewVaultView: View {
 						.textFieldStyle(RoundedBorderTextFieldStyle())
 						.padding()
 						.onSubmit {
+							createVault()
 						}
 				}
 				Button(action: { self.showPassword.toggle() }) {
@@ -130,23 +154,7 @@ struct NewVaultView: View {
 
 			// Opens the vault
 			Button {
-
-				// Make sure the passwords match.
-				if password == confirmPassword && password.count > 8 {
-
-					// Create the vault.
-					if self.appModel.createVault(vaultLocation: self.vaultLocation, password: self.password) {
-						
-						// Show the vault by popping to the root view controller.
-						self.isPushed = false
-					}
-					else {
-						self.showingVaultCreationFailedAlert = true
-					}
-				}
-				else {
-					self.showingPasswordsDoNotMatchAlert = true
-				}
+				self.createVault()
 			} label: {
 				Label("Create", systemImage: "lock")
 					.padding()

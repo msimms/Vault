@@ -60,12 +60,16 @@ struct ItemButtonView: View {
 			}
 			else {
 				Button {
-					if (self.editUpdateButtonTitle == "Edit") {
+					if self.editUpdateButtonTitle == "Edit" {
 						editUpdateButtonTitle = "Update"
 						editUpdateButtonImage = "square.and.arrow.down"
 					}
+					else if self.appModel.updateVaultItem(item: self.item) {
+						editUpdateButtonTitle = "Edit"
+						editUpdateButtonImage = "pencil"
+					}
 					else {
-						showingFailedToUpdateAlert = !self.appModel.updateVaultItem(item: self.item)
+						showingFailedToUpdateAlert = true
 					}
 				} label: {
 					Label(editUpdateButtonTitle, systemImage: editUpdateButtonImage)
@@ -84,7 +88,7 @@ struct ItemButtonView: View {
 						.keyboardShortcut(.defaultAction)
 					Button("Yes") {
 						showingFailedToDeleteAlert = !self.appModel.deleteItemFromVault(item: self.item)
-						self.isPushed = false
+						self.isPushed = !showingFailedToDeleteAlert
 					}
 					.keyboardShortcut(.cancelAction)
 				}

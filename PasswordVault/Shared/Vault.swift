@@ -115,9 +115,7 @@ class Vault {
 		}
 
 		// Make sure any existing vaults are closed.
-		if !self.close() {
-			throw VaultException.runtimeError("The vault is already open.")
-		}
+		self.close()
 
 		// Build the URL for the vault's directory. If a location was provided then
 		// use it, otherwise assume the user's iCloud directory.
@@ -174,9 +172,7 @@ class Vault {
 		}
 
 		// Make sure any existing vaults are closed.
-		if !self.close() {
-			throw VaultException.runtimeError("The vault is already open.")
-		}
+		self.close()
 
 		// Build the URL for the vault's directory. If a location was provided then
 		// use it, otherwise assume the user's iCloud directory.
@@ -252,6 +248,9 @@ class Vault {
 			// Delete the master vault file.
 			try FileManager.default.removeItem(at: vaultMasterFileUrl!)
 		}
+
+		self.vaultDirUrl = URL(string: "")
+		self.masterKey = nil
 	}
 
 	/// Returns all the items in the vault.
@@ -344,9 +343,8 @@ class Vault {
 	}
 
 	/// Closes the vault by clearing any data we have that is associated with it.
-	func close() -> Bool {
+	func close() {
 		self.vaultDirUrl = URL(string: "")
 		self.masterKey = nil
-		return true
 	}
 }

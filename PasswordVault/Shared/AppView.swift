@@ -65,7 +65,6 @@ struct AppView: View {
 	@ObservedObject var viewModel = VaultDisplayState.shared
 
 	@State var pushed : Bool = true
-	@State var active : Bool = true
 
 	var body: some View {
 
@@ -81,7 +80,7 @@ struct AppView: View {
 
 				NavigationLink(
 					destination: itemView,
-					isActive: self.$active
+					isActive: self.$pushed
 				) {
 					EmptyView()
 				}

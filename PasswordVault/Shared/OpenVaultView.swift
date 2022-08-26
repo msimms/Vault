@@ -139,6 +139,13 @@ struct OpenVaultView: View {
 
 					Menu {
 						Button(action: {
+							self.appModel.closeVault()
+							self.isPushed = false
+						}) {
+							Label("Close Vault", systemImage: "xmark.circle")
+								.labelStyle(.titleAndIcon)
+						}
+						Button(action: {
 							self.showingDeleteVaultAlert = true
 						}) {
 							Label("Delete Vault", systemImage: "trash")
@@ -151,7 +158,11 @@ struct OpenVaultView: View {
 					.alert("Are you sure you want to do this? It cannot be undone.", isPresented: $showingDeleteVaultAlert) {
 						Button("No", role: .cancel) { }
 							.keyboardShortcut(.defaultAction)
-						Button("Yes") { self.showingFailedToDeleteAlert = !self.appModel.deleteVault() }
+						Button("Yes") {
+							self.showingFailedToDeleteAlert = !self.appModel.deleteVault()
+							self.appModel.closeVault()
+							self.isPushed = !self.showingFailedToDeleteAlert
+						}
 							.keyboardShortcut(.cancelAction)
 					}
 					.alert("Failed to delete the vault!", isPresented: $showingFailedToDeleteAlert) {
