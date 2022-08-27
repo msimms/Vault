@@ -1,6 +1,6 @@
 //
-//  TagsView.swift
-//  Created by Michael Simms on 7/27/22.
+//  PasswordGeneratorView.swift
+//  Created by Michael Simms on 8/26/22.
 //
 
 // MIT License
@@ -27,38 +27,12 @@
 
 import SwiftUI
 
-struct TagsView: View {
-	@ObservedObject var appModel = AppState.shared
-	@Binding var isPushed : Bool
-	@State var isShowingNewTagView : Bool = false
-	@State var tags : Array<String>
+struct PasswordGeneratorView: View {
 
 	var body: some View {
-		Group() {
-			Text("Tags")
+		VStack(alignment: .leading) {
+			Text("Suggested Password")
 				.fontWeight(.heavy)
-			HStack(spacing: 10) {
-				
-				List() {
-					// Existing tags
-					ForEach(self.$tags, id: \.self) { $tag in
-						Button(action: {}) {
-							Text(tag)
-						}
-					}
-
-					// Link for moving to the New Tag view.
-					ZStack() {
-						NavigationLink(destination: NewTagView(), isActive: self.$isShowingNewTagView) {
-						}
-						Button(action: {
-							self.isShowingNewTagView = true
-						}) {
-							Label("New Tag...", systemImage: "tag")
-						}
-					}
-				}
-			}
 		}
 	}
 }

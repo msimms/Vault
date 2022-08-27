@@ -31,9 +31,9 @@ struct NewTagView: View {
 	@State private var newTag = ""
 	
 	var body: some View {
-		Text("Tags")
-			.fontWeight(.heavy)
-		HStack(spacing: 10) {
+		VStack(alignment: .leading) {
+			Text("Tags")
+				.fontWeight(.heavy)
 			Button(action: {
 			}) {
 				Text("Save")

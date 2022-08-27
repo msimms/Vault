@@ -53,7 +53,7 @@ struct SecureNoteView: View {
 					TextEditor(text: $item.note)
 						.disabled(isReadOnly)
 				}
-				//TagsView(isPushed: $isPushed, tags: item.tags)
+				TagsView(isPushed: self.$isPushed, tags: item.tags)
 				LastModifiedView(isNewItem: isNewItem, timestamp: item.lastModifiedTime)
 			}
 

@@ -109,6 +109,8 @@ struct OpenVaultView: View {
 			ToolbarItem() {
 				HStack {
 					Menu {
+						
+						// New Login
 						Button(action: {
 							self.newItemType = VaultItemType.login
 							showNewItem = true
@@ -117,6 +119,7 @@ struct OpenVaultView: View {
 								.labelStyle(.titleAndIcon)
 						}
 
+						// New Note
 						Button(action: {
 							self.newItemType = VaultItemType.note
 							showNewItem = true
@@ -125,6 +128,7 @@ struct OpenVaultView: View {
 								.labelStyle(.titleAndIcon)
 						}
 
+						// New Card
 						Button(action: {
 							self.newItemType = VaultItemType.card
 							showNewItem = true
@@ -138,6 +142,7 @@ struct OpenVaultView: View {
 					}
 
 					Menu {
+						// Close the Vault
 						Button(action: {
 							self.appModel.closeVault()
 							self.isPushed = false // Pop to the root view controller
@@ -145,6 +150,8 @@ struct OpenVaultView: View {
 							Label("Close Vault", systemImage: "xmark.circle")
 								.labelStyle(.titleAndIcon)
 						}
+						
+						// Delete the Vault
 						Button(action: {
 							self.showingDeleteVaultAlert = true
 						}) {
@@ -159,9 +166,13 @@ struct OpenVaultView: View {
 						Button("No", role: .cancel) { }
 							.keyboardShortcut(.defaultAction)
 						Button("Yes") {
-							self.showingFailedToDeleteAlert = !self.appModel.deleteVault()
-							self.appModel.closeVault()
-							self.isPushed = !self.showingFailedToDeleteAlert // Pop to the root view controller if successful
+							if self.appModel.deleteVault() {
+								self.appModel.closeVault()
+								self.isPushed = false // Pop to the root view controller
+							}
+							else {
+								self.showingFailedToDeleteAlert = true
+							}
 						}
 							.keyboardShortcut(.cancelAction)
 					}

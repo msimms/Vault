@@ -34,6 +34,8 @@ struct SecureLoginView: View {
 	@State var item : SecureLoginItem
 	@State var isNewItem = true
 	@State var isReadOnly = false
+	@State var isShowingPasswordGenerator = false
+	@State private var showPassword = false
 
 	var body: some View {
 
@@ -61,14 +63,38 @@ struct SecureLoginView: View {
 							.disabled(isReadOnly)
 						Text("Password")
 							.fontWeight(.heavy)
-						TextField("Password", text: $item.password)
-							.disabled(isReadOnly)
+						ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
+							if showPassword {
+								TextField("Password", text: $item.password)
+									.disabled(isReadOnly)
+							}
+							else {
+								SecureField("Password", text: $item.password)
+									.disabled(isReadOnly)
+							}
+							HStack() {
+								Button(action: { self.showPassword.toggle() }) {
+									Image(systemName: "eye")
+										.foregroundColor(.secondary)
+								}
+								ZStack() {
+									NavigationLink(destination: PasswordGeneratorView(), isActive: self.$isShowingPasswordGenerator) {
+									}
+									Button(action: {
+										self.isShowingPasswordGenerator = true
+									}) {
+										Image(systemName: "arrow.clockwise")
+											.foregroundColor(.secondary)
+									}
+								}
+							}
+						})
 						Text("Notes")
 							.fontWeight(.heavy)
 						TextEditor(text: $item.note)
 							.disabled(isReadOnly)
 					}
-					TagsView(isPushed: $isPushed, tags: item.tags)
+					TagsView(isPushed: self.$isPushed, tags: item.tags)
 					LastModifiedView(isNewItem: isNewItem, timestamp: item.lastModifiedTime)
 				}
 			}
