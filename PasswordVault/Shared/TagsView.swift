@@ -34,6 +34,7 @@ struct TagsView: View {
 	@State var tags : Array<String>
 
 	var body: some View {
+
 		Group() {
 			Text("Tags")
 				.fontWeight(.heavy)
@@ -60,5 +61,7 @@ struct TagsView: View {
 				}
 			}
 		}
+		.padding(10)
+
 	}
 }

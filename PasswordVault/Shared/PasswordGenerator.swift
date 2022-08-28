@@ -1,6 +1,6 @@
 //
-//  PasswordGeneratorView.swift
-//  Created by Michael Simms on 8/26/22.
+//  PasswordGenerator.swift
+//  Created by Michael Simms on 8/27/22.
 //
 
 // MIT License
@@ -25,36 +25,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import SwiftUI
+import Foundation
 
-struct PasswordGeneratorView: View {
-	@State var suggestedPassword = ""
+class PasswordGenerator {
+	func generateUsingWords() -> String {
+		return ""
+	}
 
-	var body: some View {
-
-		VStack(alignment: .center) {
-			Text("Password Generator")
-				.fontWeight(.heavy)
-			Divider()
-			TextField("Suggested Password", text: $suggestedPassword)
-			Group() {
-				Button(action: {
-					let gen = PasswordGenerator()
-					self.suggestedPassword = gen.generateUsingWords()
-				}) {
-					Text("Generate With Words")
-				}
-				Button(action: {
-					let gen = PasswordGenerator()
-					self.suggestedPassword = gen.generateUsingCharacters()
-				}) {
-					Text("Generate With Characters")
-				}
-				Button(action: {
-				}) {
-					Label("Save", systemImage: "square.and.arrow.down")
-				}
-			}
-		}
+	func generateUsingCharacters() -> String {
+		return ""
 	}
 }
