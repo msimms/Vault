@@ -28,13 +28,15 @@
 import SwiftUI
 
 struct NewTagView: View {
+	@Binding var isPushed : Bool
 	@State private var newTag = ""
-	
+
 	var body: some View {
 		VStack(alignment: .leading) {
 			Text("Tags")
 				.fontWeight(.heavy)
 			Button(action: {
+				self.isPushed = false
 			}) {
 				Text("Save")
 			}

@@ -50,7 +50,7 @@ struct TagsView: View {
 
 					// Link for moving to the New Tag view.
 					ZStack() {
-						NavigationLink(destination: NewTagView(), isActive: self.$isShowingNewTagView) {
+						NavigationLink(destination: NewTagView(isPushed: self.$isShowingNewTagView), isActive: self.$isShowingNewTagView) {
 						}
 						Button(action: {
 							self.isShowingNewTagView = true

@@ -28,11 +28,15 @@
 import Foundation
 
 class PasswordGenerator {
-	func generateUsingWords() -> String {
-		return ""
+	func generateUsingWords(numWords: UInt8) -> String {
+		return "foo"
 	}
 
-	func generateUsingCharacters() -> String {
-		return ""
+	func generateUsingCharacters(numChars: UInt8, alphaNumOnly: Bool) -> String {
+		var letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+		if !alphaNumOnly {
+			letters += "!@#$%^&*()-=_+[]{};':,.<>?`~"
+		}
+		return String((0..<numChars).map{ _ in letters.randomElement()! })
 	}
 }

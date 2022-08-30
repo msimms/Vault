@@ -28,7 +28,12 @@
 import SwiftUI
 
 struct PasswordGeneratorView: View {
-	@State var suggestedPassword = ""
+	@Binding var isPushed : Bool
+	@Binding var suggestedPassword : String
+	@State private var numChars: Double = 8
+	@State private var numWords: Double = 3
+	@State private var alphaNumOnly = false
+	@State var gen = PasswordGenerator()
 
 	var body: some View {
 
@@ -38,23 +43,57 @@ struct PasswordGeneratorView: View {
 			Divider()
 			TextField("Suggested Password", text: $suggestedPassword)
 			Group() {
-				Button(action: {
-					let gen = PasswordGenerator()
-					self.suggestedPassword = gen.generateUsingWords()
-				}) {
-					Text("Generate With Words")
+				VStack() {
+					VStack() {
+						Text("Number of Characters")
+						Slider(value: self.$numChars, in: 0...32, step: 1)
+					}
+
+					VStack() {
+						Text("Number of Words")
+						Slider(value: self.$numWords, in: 0...6, step: 1)
+					}
+
+					HStack() {
+						Text("Alphanumerics Only")
+						Button(action: { self.alphaNumOnly.toggle() }) {
+							Label("", systemImage: "checkmark")
+						}
+					}
 				}
-				Button(action: {
-					let gen = PasswordGenerator()
-					self.suggestedPassword = gen.generateUsingCharacters()
-				}) {
-					Text("Generate With Characters")
+			}
+			Divider()
+			Group() {
+				HStack() {
+					Button(action: {
+						self.suggestedPassword = self.gen.generateUsingWords(numWords: 1)
+					}) {
+						Text("Generate With Words")
+					}
+					Button(action: {
+						self.suggestedPassword = self.gen.generateUsingCharacters(numChars: UInt8(self.numChars), alphaNumOnly: self.alphaNumOnly)
+					}) {
+						Text("Generate With Characters")
+					}
 				}
-				Button(action: {
-				}) {
-					Label("Save", systemImage: "square.and.arrow.down")
+			}
+			Divider()
+			Group() {
+				HStack() {
+					Button(action: {
+						self.isPushed = false
+					}) {
+						Text("Cancel")
+					}
+					Button(action: {
+						self.isPushed = false
+					}) {
+						Label("Save", systemImage: "square.and.arrow.down")
+					}
 				}
 			}
 		}
+		.padding(10)
+
 	}
 }

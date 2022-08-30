@@ -63,28 +63,32 @@ struct SecureLoginView: View {
 							.disabled(isReadOnly)
 						Text("Password")
 							.fontWeight(.heavy)
+					}
+					Group() {
 						ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
-							if showPassword {
-								TextField("Password", text: $item.password)
-									.disabled(isReadOnly)
-							}
-							else {
-								SecureField("Password", text: $item.password)
-									.disabled(isReadOnly)
-							}
-							HStack() {
-								Button(action: { self.showPassword.toggle() }) {
-									Image(systemName: "eye")
-										.foregroundColor(.secondary)
+							Group() {
+								if showPassword {
+									TextField("Password", text: $item.password)
+										.disabled(isReadOnly)
 								}
-								ZStack() {
-									NavigationLink(destination: PasswordGeneratorView(), isActive: self.$isShowingPasswordGenerator) {
-									}
-									Button(action: {
-										self.isShowingPasswordGenerator = true
-									}) {
-										Image(systemName: "arrow.clockwise")
+								else {
+									SecureField("Password", text: $item.password)
+										.disabled(isReadOnly)
+								}
+								HStack() {
+									Button(action: { self.showPassword.toggle() }) {
+										Image(systemName: "eye")
 											.foregroundColor(.secondary)
+									}
+									ZStack() {
+										NavigationLink(destination: PasswordGeneratorView(isPushed: self.$isShowingPasswordGenerator, suggestedPassword: self.$item.password), isActive: self.$isShowingPasswordGenerator) {
+										}
+										Button(action: {
+											self.isShowingPasswordGenerator = true
+										}) {
+											Image(systemName: "arrow.clockwise")
+												.foregroundColor(.secondary)
+										}
 									}
 								}
 							}
