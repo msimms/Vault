@@ -41,17 +41,33 @@ struct PasswordGeneratorView: View {
 			Text("Password Generator")
 				.fontWeight(.heavy)
 			Divider()
-			TextField("Suggested Password", text: $suggestedPassword)
+			TextField("Suggested Password", text: self.$suggestedPassword)
 			Group() {
 				VStack() {
 					VStack() {
 						Text("Number of Characters")
-						Slider(value: self.$numChars, in: 0...32, step: 1)
+						Slider(value: Binding(
+							get: {
+								self.numChars
+							},
+							set: {(newValue) in
+								self.numChars = newValue
+								self.suggestedPassword = self.gen.generateUsingCharacters(numChars: UInt8(self.numChars), alphaNumOnly: self.alphaNumOnly)
+							}
+						), in: 0...32, step: 1)
 					}
 
 					VStack() {
 						Text("Number of Words")
-						Slider(value: self.$numWords, in: 0...6, step: 1)
+						Slider(value: Binding(
+							get: {
+								self.numWords
+							},
+							set: {(newValue) in
+								self.numWords = newValue
+								self.suggestedPassword = self.gen.generateUsingWords(numWords: 1)
+							}
+						), in: 0...8, step: 1)
 					}
 
 					HStack() {
