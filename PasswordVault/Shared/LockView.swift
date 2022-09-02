@@ -34,7 +34,8 @@ struct LockView: View {
 	@State private var password: String = ""
 	@State private var showingVaultOpenFailedAlert = false
 	@State private var showPassword = false
-	
+	@State private var isBusy = false
+
 	func openVault() {
 		if self.appModel.openVault(password: password) {
 			self.isPushed = true
@@ -75,7 +76,9 @@ struct LockView: View {
 
 			// Opens the vault
 			Button {
+				self.isBusy = true
 				openVault()
+				self.isBusy = false
 			} label: {
 				Label("Open", systemImage: "lock")
 					.padding()
@@ -91,6 +94,9 @@ struct LockView: View {
 #if !os(macOS)
 			.navigationBarBackButtonHidden(true)
 #endif
+			.sheet(isPresented: $isBusy) {
+				ProgressView("Loading...")
+			}
 		}
 	}
 }
