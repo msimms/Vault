@@ -29,14 +29,15 @@ import SwiftUI
 
 struct PasswordGeneratorView: View {
 	@Binding var isPushed : Bool
-	@Binding var suggestedPassword : String
+	@Binding var existingPassword : String
+	@State var suggestedPassword : String = ""
 	@State private var numChars: Double = 8
 	@State private var numWords: Double = 3
 	@State private var alphaNumOnly = false
 	@State var gen = PasswordGenerator()
 
 	var body: some View {
-
+	
 		VStack(alignment: .center) {
 			Text("Password Generator")
 				.fontWeight(.heavy)
@@ -85,13 +86,16 @@ struct PasswordGeneratorView: View {
 						self.suggestedPassword = self.gen.generateUsingWords(numWords: 1)
 					}) {
 						Text("Generate With Words")
+							.frame(width: 256)
 					}
 					Button(action: {
 						self.suggestedPassword = self.gen.generateUsingCharacters(numChars: UInt8(self.numChars), alphaNumOnly: self.alphaNumOnly)
 					}) {
 						Text("Generate With Characters")
+							.frame(width: 256)
 					}
 				}
+				.padding(10)
 			}
 			Divider()
 			Group() {
@@ -102,11 +106,13 @@ struct PasswordGeneratorView: View {
 						Text("Cancel")
 					}
 					Button(action: {
+						self.existingPassword = self.suggestedPassword
 						self.isPushed = false
 					}) {
 						Label("Save", systemImage: "square.and.arrow.down")
 					}
 				}
+				.padding(10)
 			}
 		}
 		.padding(10)

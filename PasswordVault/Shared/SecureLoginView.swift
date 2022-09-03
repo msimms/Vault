@@ -76,12 +76,14 @@ struct SecureLoginView: View {
 										.disabled(isReadOnly)
 								}
 								HStack() {
-									Button(action: { self.showPassword.toggle() }) {
+									Button(action: {
+										self.showPassword.toggle()
+									}) {
 										Image(systemName: "eye")
 											.foregroundColor(.secondary)
 									}
 									ZStack() {
-										NavigationLink(destination: PasswordGeneratorView(isPushed: self.$isShowingPasswordGenerator, suggestedPassword: self.$item.password), isActive: self.$isShowingPasswordGenerator) {
+										NavigationLink(destination: PasswordGeneratorView(isPushed: self.$isShowingPasswordGenerator, existingPassword: self.$item.password, suggestedPassword: self.item.password), isActive: self.$isShowingPasswordGenerator) {
 										}
 										Button(action: {
 											self.isShowingPasswordGenerator = true
