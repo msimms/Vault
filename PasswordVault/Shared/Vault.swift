@@ -38,16 +38,102 @@ struct VaultIndex: Codable {
 	var signature: String
 }
 
-class Vault {
+class Vault : ObservableObject {
 	public static let kCurrentVaultVersion: UInt8 = 0
 
-	/// Complete path to the directory containing the vault
+	/// List of everything read from the vault.
+	@Published var vaultItems: Array<SecureVaultItem> = []
+	/// Complete path to the directory containing the vault.
 	private var vaultDirUrl: URL?
-	/// The key used for encrypting and decrypting vault items; this key is randomly generated and protected by the user's key/password
+	/// Complete path to the vault's master file..
+	private var vaultMasterFileUrl: URL?
+	/// Complete path to the directory containing the vault items. Each file in this directory represents a single vault item.
+	private var vaultItemsDirUrl: URL?
+	/// The key used for encrypting and decrypting vault items; this key is randomly generated and protected by the user's key/password.
 	private var masterKey: Data?
+	/// Semaphore that controls writes the vault item array.
+	private let vaultItemsSemaphore = DispatchSemaphore(value: 1)
+
+	private func insertVaultItem(item: SecureVaultItem) {
+
+		// Wait for the semaphore.
+		self.vaultItemsSemaphore.wait()
+		
+		// Insert sorted.
+		let index = self.vaultItems.reduce(0) { $1 < item ? $0 + 1 : $0 }
+		self.vaultItems.insert(item, at: index)
+
+		// Release the semaphore.
+		self.vaultItemsSemaphore.signal()
+	}
+	
+	private func processVaultFile(fileURL: URL) throws {
+
+		// Parse the file.
+		let item = try createVaultItemFromFile(location: fileURL, masterKey: self.masterKey!)
+		
+		// Update the list.
+		self.insertVaultItem(item: item)
+	}
+
+	private func downloadVaultMasterFile(fileToDownload: URL) throws {
+
+		var downloadedFileName = fileToDownload.deletingPathExtension().lastPathComponent
+		downloadedFileName.removeFirst()
+		
+		var query: NSMetadataQuery
+		query = NSMetadataQuery.init()
+		query.operationQueue = .main
+		query.predicate = NSPredicate(format: "%K LIKE %@", NSMetadataItemFSNameKey, downloadedFileName)
+		query.searchScopes = [ NSMetadataQueryUbiquitousDocumentsScope ]
+		
+		NotificationCenter.default.addObserver(forName: NSNotification.Name.NSMetadataQueryDidUpdate, object: query, queue: query.operationQueue) { (notification) in
+		}
+		
+		// Start monitoring.
+		query.start()
+		
+		// Start downloading.
+		try FileManager.default.startDownloadingUbiquitousItem(at: fileToDownload)
+	}
+
+	private func downloadVaultFile(fileToDownload: URL) throws {
+
+		var downloadedFileName = fileToDownload.deletingPathExtension().lastPathComponent
+		downloadedFileName.removeFirst()
+
+		var query: NSMetadataQuery
+		query = NSMetadataQuery.init()
+		query.operationQueue = .main
+		query.predicate = NSPredicate(format: "%K LIKE %@", NSMetadataItemFSNameKey, downloadedFileName)
+		query.searchScopes = [ NSMetadataQueryUbiquitousDocumentsScope ]
+		
+		NotificationCenter.default.addObserver(forName: NSNotification.Name.NSMetadataQueryDidUpdate, object: query, queue: query.operationQueue) { (notification) in
+
+			for item in query.results {
+				guard let item = item as? NSMetadataItem else { continue }
+				guard let fileURL = item.value(forAttribute: NSMetadataItemURLKey) as? URL else { continue }
+
+				do {
+					try self.processVaultFile(fileURL: fileURL)
+
+					query.stop()
+					NotificationCenter.default.removeObserver(self, name: NSNotification.Name.NSMetadataQueryDidUpdate, object: query)
+				} catch {
+					print(error.localizedDescription)
+				}
+			}
+		}
+		
+		// Start monitoring.
+		query.start()
+
+		// Start downloading.
+		try FileManager.default.startDownloadingUbiquitousItem(at: fileToDownload)
+	}
 
 	/// Utility function for creating the master key.
-	func generateRandomBytes() -> Data? {
+	private func generateRandomBytes() -> Data? {
 
 		var keyData = Data(count: 32)
 		let result = keyData.withUnsafeMutableBytes {
@@ -60,7 +146,7 @@ class Vault {
 	}
 
 	/// Utility function for building the URL to the vault's master file.
-	func buildVaultMasterFileUrl(location: String) throws -> URL? {
+	private func buildVaultUrls(location: String) throws {
 
 		// Build the URL for the vault's directory. If a location was provided then
 		// use it, otherwise assume the user's iCloud directory.
@@ -69,35 +155,23 @@ class Vault {
 			if self.vaultDirUrl == nil {
 				throw VaultException.runtimeError("iCloud storage is disabled.")
 			}
+			self.vaultDirUrl = self.vaultDirUrl?.appendingPathComponent("Documents")
 		}
 		else {
 			self.vaultDirUrl = URL(string: location)
 		}
-		self.vaultDirUrl = self.vaultDirUrl?.appendingPathComponent("Documents")
+
+		// URL for the vault items.
+		self.vaultItemsDirUrl = self.vaultDirUrl?.appendingPathComponent("items")
 
 		// Build the URL for the vault's master file.
-		return self.vaultDirUrl?.appendingPathComponent("vault.json", isDirectory: false)
-	}
-
-	/// Utility function for building the URL to the directory containing the vault items.
-	func buildVaultItemsDirUrl(location: String) -> URL? {
-
-		// Build the URL for the vault's directory. If a location was provided then
-		// use it, otherwise assume the user's iCloud directory.
-		if location.count == 0 {
-			self.vaultDirUrl = FileManager.default.url(forUbiquityContainerIdentifier: nil)
-		}
-		else {
-			self.vaultDirUrl = URL(string: location)
-		}
-		self.vaultDirUrl = self.vaultDirUrl?.appendingPathComponent("Documents")
-		return self.vaultDirUrl?.appendingPathComponent("items")
+		self.vaultMasterFileUrl = self.vaultDirUrl?.appendingPathComponent("vault.json", isDirectory: false)
 	}
 
 	/// Returns true if a vault exists (spexcifically the vault index file) at the location stored in the user preferences.
 	func exists(location: String) throws -> Bool {
-		let vaultMasterFileUrl = try self.buildVaultMasterFileUrl(location: location)
-		return FileManager.default.fileExists(atPath: vaultMasterFileUrl!.path)
+		try self.buildVaultUrls(location: location)
+		return FileManager.default.fileExists(atPath: self.vaultMasterFileUrl!.path)
 	}
 
 	/// Returns true if a vault is open, i.e. unlocked.
@@ -119,10 +193,10 @@ class Vault {
 
 		// Build the URL for the vault's directory. If a location was provided then
 		// use it, otherwise assume the user's iCloud directory.
-		let vaultMasterFileUrl = try self.buildVaultMasterFileUrl(location: location)
+		try self.buildVaultUrls(location: location)
 
 		// Does anything exist at the vault master file's path?
-		if !FileManager.default.fileExists(atPath: vaultMasterFileUrl!.path) {
+		if !FileManager.default.fileExists(atPath: self.vaultMasterFileUrl!.path) {
 
 			// Create the parent directory.
 			try FileManager.default.createDirectory(at: self.vaultDirUrl!, withIntermediateDirectories: true, attributes: nil)
@@ -156,7 +230,7 @@ class Vault {
 			let jsonStr = String(data: jsonData, encoding: .utf8)!
 
 			// Write it out.
-			try jsonStr.write(to: vaultMasterFileUrl!, atomically: true, encoding: String.Encoding.utf8)
+			try jsonStr.write(to: self.vaultMasterFileUrl!, atomically: true, encoding: String.Encoding.utf8)
 		}
 		else {
 			throw VaultException.runtimeError("A vault already exists at that location.")
@@ -164,7 +238,7 @@ class Vault {
 	}
 
 	/// Opens the vault by opening the master vault file and decoding it.
-	func open(location: String, key: String) throws {
+	func open(vaultLocation: String, key: String) throws {
 
 		// Sanity check the parameters.
 		if key.count == 0 {
@@ -176,13 +250,18 @@ class Vault {
 
 		// Build the URL for the vault's directory. If a location was provided then
 		// use it, otherwise assume the user's iCloud directory.
-		let vaultMasterFileUrl = try self.buildVaultMasterFileUrl(location: location)
+		try self.buildVaultUrls(location: vaultLocation)
+
+		// Does the file need to be downloaded from iCloud?
+		if self.vaultMasterFileUrl!.lastPathComponent.contains(".icloud") {
+			try self.downloadVaultMasterFile(fileToDownload: self.vaultMasterFileUrl!)
+		}
 
 		// Does anything exist at the vault master file's path?
-		if FileManager.default.fileExists(atPath: vaultMasterFileUrl!.path) {
+		if FileManager.default.fileExists(atPath: self.vaultMasterFileUrl!.path) {
 
 			// Read the master file.
-			let data = try? Data(contentsOf: vaultMasterFileUrl!)
+			let data = try? Data(contentsOf: self.vaultMasterFileUrl!)
 
 			// Parse the JSON string.
 			let jsonString = try? JSONDecoder().decode(VaultIndex.self, from: data!)
@@ -225,20 +304,18 @@ class Vault {
 	}
 
 	/// Completely deletes the vault and all it's items.
-	func delete(location: String) throws {
+	func delete() throws {
 
-		// Build the URL for the vault's directory. If a location was provided then
-		// use it, otherwise assume the user's iCloud directory.
-		let vaultMasterFileUrl = try self.buildVaultMasterFileUrl(location: location)
-		
+		// Sanity check.
+		if !isOpen() {
+			throw VaultException.runtimeError("The vault is not open.")
+		}
+
 		// Does anything exist at the vault master file's path?
-		if FileManager.default.fileExists(atPath: vaultMasterFileUrl!.path) {
-			
-			// Location of vault items. Each file in this directory represents a single vault item.
-			let itemsDir = self.buildVaultItemsDirUrl(location: location)
+		if FileManager.default.fileExists(atPath: self.vaultMasterFileUrl!.path) {
 			
 			// List all the items in the vault items directory.
-			let dirListing = try FileManager.default.contentsOfDirectory(at: itemsDir!, includingPropertiesForKeys: nil)
+			let dirListing = try FileManager.default.contentsOfDirectory(at: self.vaultItemsDirUrl!, includingPropertiesForKeys: nil)
 			for listing in dirListing {
 
 				// Delete the vault item file.
@@ -246,40 +323,36 @@ class Vault {
 			}
 			
 			// Delete the master vault file.
-			try FileManager.default.removeItem(at: vaultMasterFileUrl!)
+			try FileManager.default.removeItem(at: self.vaultMasterFileUrl!)
 		}
 
-		self.vaultDirUrl = URL(string: "")
-		self.masterKey = nil
+		self.close()
 	}
 
 	/// Returns all the items in the vault.
-	func readItems(location: String) throws -> Array<SecureVaultItem> {
+	func readItems() throws {
 
-		var vaultItems: Array<SecureVaultItem> = []
+		// Sanity check.
+		if !isOpen() {
+			throw VaultException.runtimeError("The vault is not open.")
+		}
 
-		// Location of vault items. Each file in this directory represents a single vault item.
-		let itemsDir = self.buildVaultItemsDirUrl(location: location)
+		// Clear any existing contents from the list.
+		self.vaultItems = []
 
 		// List all the items in the vault items directory.
-		let dirListing = try FileManager.default.contentsOfDirectory(at: itemsDir!, includingPropertiesForKeys: nil)
+		let dirListing = try FileManager.default.contentsOfDirectory(at: self.vaultItemsDirUrl!, includingPropertiesForKeys: nil)
 		for listing in dirListing {
 
 			do {
 				// Does the file need to be downloaded from iCloud?
 				if listing.lastPathComponent.contains(".icloud") {
-					try FileManager.default.startDownloadingUbiquitousItem(at: listing);
+					try self.downloadVaultFile(fileToDownload: listing)
 				}
 
 				// If the file name is not a UUID then skip it as all valid files in this directory will have UUIDs for file names.
 				else if UUID(uuidString: listing.lastPathComponent) != nil {
-
-					// Parse the file.
-					let item = try createVaultItemFromFile(location: listing, masterKey: self.masterKey!)
-
-					// Update the list.
-					let index = vaultItems.reduce(0) { $1 < item ? $0 + 1 : $0 }
-					vaultItems.insert(item, at: index)
+					try self.processVaultFile(fileURL: listing)
 				}
 			} catch let error as NSError {
 				print("Error: Failed to read: \n\(error)")
@@ -287,23 +360,19 @@ class Vault {
 				print(error.localizedDescription)
 			}
 		}
-		return vaultItems
 	}
 
 	/// Adds a new item to the vault.
-	func addItem(location: String, item: SecureVaultItem) throws {
+	func addItem(item: SecureVaultItem) throws {
 
 		// Sanity check.
 		if !isOpen() {
 			throw VaultException.runtimeError("The vault is not open.")
 		}
 
-		// Location of vault items. Each file in this directory represents a single vault item.
-		let itemsDir = self.buildVaultItemsDirUrl(location: location)
-
 		// Does the vault's item directory actually exist? If not, create it.
-		if !FileManager.default.fileExists(atPath: itemsDir!.path) {
-			try FileManager.default.createDirectory(at: itemsDir!, withIntermediateDirectories: true, attributes: nil)
+		if !FileManager.default.fileExists(atPath: self.vaultItemsDirUrl!.path) {
+			try FileManager.default.createDirectory(at: self.vaultItemsDirUrl!, withIntermediateDirectories: true, attributes: nil)
 		}
 
 		// Unwrap the master key.
@@ -312,39 +381,39 @@ class Vault {
 		}
 
 		// Write it out.
-		try item.write(locationOfVaultItems: itemsDir!, masterKey: unwrappedMasterKey)
-	}
-
-	/// Updates an existing item in the vault.
-	func updateItem(location: String, item: SecureVaultItem) throws {
-
-		// Delete the existing item.
-		try self.deleteItem(location: location, item: item)
-
-		// Write out the updated version.
-		try self.addItem(location: location, item: item)
+		try item.write(locationOfVaultItems: self.vaultItemsDirUrl!, masterKey: unwrappedMasterKey)
 	}
 
 	/// Removes an item from the vault.
-	func deleteItem(location: String, item: SecureVaultItem) throws {
-
+	func deleteItem(item: SecureVaultItem) throws {
+		
 		// Sanity check.
 		if !isOpen() {
 			throw VaultException.runtimeError("The vault is not open.")
 		}
-
-		// Location of vault items. Each file in this directory represents a single vault item.
-		let itemsDir = self.buildVaultItemsDirUrl(location: location)
-
+		
 		// Remove it from disk.
 		// The file name is just the UUID of the item.
-		let fileLocation = itemsDir!.appendingPathComponent(item.id.uuidString, isDirectory: false)
+		let fileLocation = self.vaultItemsDirUrl!.appendingPathComponent(item.id.uuidString, isDirectory: false)
 		try FileManager.default.removeItem(at: fileLocation)
+	}
+
+	/// Updates an existing item in the vault.
+	func updateItem(item: SecureVaultItem) throws {
+
+		// Delete the existing item.
+		try self.deleteItem(item: item)
+
+		// Write out the updated version.
+		try self.addItem(item: item)
 	}
 
 	/// Closes the vault by clearing any data we have that is associated with it.
 	func close() {
+		self.vaultItems = []
 		self.vaultDirUrl = URL(string: "")
+		self.vaultMasterFileUrl = URL(string: "")
+		self.vaultItemsDirUrl = URL(string: "")
 		self.masterKey = nil
 	}
 }

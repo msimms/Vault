@@ -26,14 +26,14 @@
 // SOFTWARE.
 
 import SwiftUI
-import Foundation
 
 class AppState : ObservableObject {
+
+	/// Singleton instance
 	static let shared = AppState()
 
-	private var vault: Vault = Vault()
+	var vault: Vault = Vault()
 	@ObservedObject var viewModel = VaultDisplayState.shared
-	@Published var vaultItems: Array<SecureVaultItem> = []
 
 	/// Constructor
 	init() {
@@ -72,8 +72,8 @@ class AppState : ObservableObject {
 		do {
 			let vaultLocation = Preferences.vaultLocation()
 			guard let unwrappedLocation = vaultLocation else { return false }
-			try vault.open(location: unwrappedLocation, key: password)
-			try self.vaultItems = vault.readItems(location: unwrappedLocation)
+			try vault.open(vaultLocation: unwrappedLocation, key: password)
+			try vault.readItems()
 			self.updateState()
 			return true
 		} catch let error as NSError {
@@ -87,10 +87,8 @@ class AppState : ObservableObject {
 	/// Adds a new item to the vault.
 	func addItemToVault(item: SecureVaultItem) -> Bool {
 		do {
-			let vaultLocation = Preferences.vaultLocation()
-			guard let unwrappedLocation = vaultLocation else { return false }
-			try vault.addItem(location: unwrappedLocation, item: item)
-			try self.vaultItems = vault.readItems(location: unwrappedLocation)
+			try vault.addItem(item: item)
+			try vault.readItems()
 			return true
 		} catch let error as NSError {
 			print("Error: Failed to add an item to the vault: \n\(error)")
@@ -103,10 +101,8 @@ class AppState : ObservableObject {
 	/// Adds a new item to the vault.
 	func updateVaultItem(item: SecureVaultItem) -> Bool {
 		do {
-			let vaultLocation = Preferences.vaultLocation()
-			guard let unwrappedLocation = vaultLocation else { return false }
-			try vault.updateItem(location: unwrappedLocation, item: item)
-			try self.vaultItems = vault.readItems(location: unwrappedLocation)
+			try vault.updateItem(item: item)
+			try vault.readItems()
 			return true
 		} catch let error as NSError {
 			print("Error: Failed to update the vault: \n\(error)")
@@ -119,10 +115,8 @@ class AppState : ObservableObject {
 	/// Removes an item from the vault.
 	func deleteItemFromVault(item: SecureVaultItem) -> Bool {
 		do {
-			let vaultLocation = Preferences.vaultLocation()
-			guard let unwrappedLocation = vaultLocation else { return false }
-			try vault.deleteItem(location: unwrappedLocation, item: item)
-			try self.vaultItems = vault.readItems(location: unwrappedLocation)
+			try vault.deleteItem(item: item)
+			try vault.readItems()
 			return true
 		} catch let error as NSError {
 			print("Error: Failed to delete a vault item: \n\(error)")
@@ -135,16 +129,13 @@ class AppState : ObservableObject {
 	/// Securely closes the vault.
 	func closeVault() {
 		self.vault.close()
-		self.vaultItems = []
 		self.updateState()
 	}
 
 	/// Removes the entire vault.
 	func deleteVault() -> Bool {
 		do {
-			let vaultLocation = Preferences.vaultLocation()
-			guard let unwrappedLocation = vaultLocation else { return false }
-			try vault.delete(location: unwrappedLocation)
+			try vault.delete()
 			return true
 		} catch let error as NSError {
 			print("Error: Failed to delete the vault: \n\(error)")
@@ -154,11 +145,6 @@ class AppState : ObservableObject {
 		return false
 	}
 
-	/// Returns true if we should open the vault, based on the supplied credentials; false otherwise.
-	func validLogin(password: String) -> Bool {
-		return false
-	}
-	
 	func updateState() {
 		do {
 			if try self.vaultExists() {

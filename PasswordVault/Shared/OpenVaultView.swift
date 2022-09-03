@@ -67,6 +67,7 @@ func subtitle(item: SecureVaultItem) -> String {
 /// Displays all the items within the open vault.
 struct OpenVaultView: View {
 	@ObservedObject var appModel = AppState.shared
+	@ObservedObject var vault = AppState.shared.vault
 	@Binding var isPushed : Bool
 	@State var showNewItem : Bool = false
 	@State var newItemType : VaultItemType = VaultItemType.login
@@ -78,8 +79,7 @@ struct OpenVaultView: View {
 		NavigationView {
 
 			// List of all of the items in the vault.
-			let items = self.appModel.vaultItems
-			List(items) { item in
+			List(self.vault.vaultItems) { item in
 				Image(systemName: icon(item: item))
 				VStack(alignment: .leading) {
 
