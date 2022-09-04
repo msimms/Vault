@@ -76,25 +76,29 @@ class Vault : ObservableObject {
 		self.insertVaultItem(item: item)
 	}
 
-	private func downloadVaultMasterFile(fileToDownload: URL) throws {
-
-		var downloadedFileName = fileToDownload.deletingPathExtension().lastPathComponent
-		downloadedFileName.removeFirst()
+	private func downloadVaultMasterFile() throws {
 		
 		var query: NSMetadataQuery
 		query = NSMetadataQuery.init()
 		query.operationQueue = .main
-		query.predicate = NSPredicate(format: "%K LIKE %@", NSMetadataItemFSNameKey, downloadedFileName)
+		query.predicate = NSPredicate(format: "%K LIKE %@", NSMetadataItemFSNameKey, "vault.json")
 		query.searchScopes = [ NSMetadataQueryUbiquitousDocumentsScope ]
 		
+		var downloaded = false
 		NotificationCenter.default.addObserver(forName: NSNotification.Name.NSMetadataQueryDidUpdate, object: query, queue: query.operationQueue) { (notification) in
+			downloaded = true
+			query.stop()
+			NotificationCenter.default.removeObserver(self, name: NSNotification.Name.NSMetadataQueryDidUpdate, object: query)
 		}
 		
 		// Start monitoring.
 		query.start()
 		
 		// Start downloading.
-		try FileManager.default.startDownloadingUbiquitousItem(at: fileToDownload)
+		try FileManager.default.startDownloadingUbiquitousItem(at: self.vaultMasterFileUrl!)
+
+		// Filty hack, but there really isn't anything we can do until we download the master file.
+		sleep(5);
 	}
 
 	private func downloadVaultFile(fileToDownload: URL) throws {
@@ -167,11 +171,19 @@ class Vault : ObservableObject {
 		// Build the URL for the vault's master file.
 		self.vaultMasterFileUrl = self.vaultDirUrl?.appendingPathComponent("vault.json", isDirectory: false)
 	}
+	
+	private func buildICloudVaultMasterFileUrl() -> URL {
+		return self.vaultDirUrl!.appendingPathComponent(".vault.json.icloud", isDirectory: false)
+	}
 
 	/// Returns true if a vault exists (spexcifically the vault index file) at the location stored in the user preferences.
 	func exists(location: String) throws -> Bool {
 		try self.buildVaultUrls(location: location)
-		return FileManager.default.fileExists(atPath: self.vaultMasterFileUrl!.path)
+
+		if !FileManager.default.fileExists(atPath: self.vaultMasterFileUrl!.path) {
+			return FileManager.default.fileExists(atPath: self.buildICloudVaultMasterFileUrl().path)
+		}
+		return true
 	}
 
 	/// Returns true if a vault is open, i.e. unlocked.
@@ -253,8 +265,9 @@ class Vault : ObservableObject {
 		try self.buildVaultUrls(location: vaultLocation)
 
 		// Does the file need to be downloaded from iCloud?
-		if self.vaultMasterFileUrl!.lastPathComponent.contains(".icloud") {
-			try self.downloadVaultMasterFile(fileToDownload: self.vaultMasterFileUrl!)
+		let iCloudVaultMasterFileUrl = self.buildICloudVaultMasterFileUrl()
+		if FileManager.default.fileExists(atPath: iCloudVaultMasterFileUrl.path) {
+			try self.downloadVaultMasterFile()
 		}
 
 		// Does anything exist at the vault master file's path?
