@@ -95,6 +95,10 @@ struct AppView: View {
 				.frame(width: 160)
 			}
 		}
+#if !os(macOS)
+		.navigationBarTitle("", displayMode: .inline)
+		.navigationBarHidden(true)
+#endif
 	}
 }
 

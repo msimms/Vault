@@ -76,26 +76,119 @@ struct OpenVaultView: View {
 
 	var body: some View {
 
-		NavigationView {
+		Group() {
 
-			// List of all of the items in the vault.
-			List(self.vault.vaultItems) { item in
-				Image(systemName: icon(item: item))
-				VStack(alignment: .leading) {
+			NavigationView {
 
-					let itemView = createVaultItemView(isPushed: self.$isPushed, item: item, isNewItem: false)
-					NavigationLink(destination: itemView) {
-						VStack(alignment: .leading) {
-							Text(title(item: item))
-								.font(.headline)
-							Text(subtitle(item: item))
-								.font(.subheadline)
+				// List of all of the items in the vault.
+				List(self.vault.vaultItems) { item in
+					Image(systemName: icon(item: item))
+					VStack(alignment: .leading) {
+
+						let itemView = createVaultItemView(isPushed: self.$isPushed, item: item, isNewItem: false)
+						NavigationLink(destination: itemView) {
+							VStack(alignment: .leading) {
+								Text(title(item: item))
+									.font(.headline)
+								Text(subtitle(item: item))
+									.font(.subheadline)
+							}
+						}
+					}
+				}
+				.padding(10)
+#if os(macOS)
+				.background(
+
+					// Show a blank view for the user to enter new information.
+					NavigationLink(destination: NewItemView(isPushed: self.$isPushed, newItemType: self.$newItemType), isActive: $showNewItem) {}
+				)
+#endif
+			}
+#if !os(macOS)
+			.navigationBarTitle("Password Vault", displayMode: .inline)
+			.navigationBarHidden(true)
+#endif
+			.toolbar {
+
+				// Toolbar item for creating new entries.
+				ToolbarItem() {
+					HStack {
+						Menu {
+							
+							// New Login
+							Button(action: {
+								self.newItemType = VaultItemType.login
+								showNewItem = true
+							}) {
+								Label("Login", systemImage: "lock")
+									.labelStyle(.titleAndIcon)
+							}
+
+							// New Note
+							Button(action: {
+								self.newItemType = VaultItemType.note
+								showNewItem = true
+							}) {
+								Label("Note", systemImage: "doc")
+									.labelStyle(.titleAndIcon)
+							}
+
+							// New Card
+							Button(action: {
+								self.newItemType = VaultItemType.card
+								showNewItem = true
+							}) {
+								Label("Card", systemImage: "creditcard.and.123")
+									.labelStyle(.titleAndIcon)
+							}
+						}
+						label: {
+							Label("Add", systemImage: "plus")
+						}
+
+						Menu {
+							// Close the Vault
+							Button(action: {
+								self.appModel.closeVault()
+								self.isPushed = false // Pop to the root view controller
+							}) {
+								Label("Close Vault", systemImage: "xmark.circle")
+									.labelStyle(.titleAndIcon)
+							}
+							
+							// Delete the Vault
+							Button(action: {
+								self.showingDeleteVaultAlert = true
+							}) {
+								Label("Delete Vault", systemImage: "trash")
+									.labelStyle(.titleAndIcon)
+							}
+						}
+						label: {
+							Label("File", systemImage: "folder")
+						}
+						.alert("Are you sure you want to do this? It cannot be undone.", isPresented: $showingDeleteVaultAlert) {
+							Button("No", role: .cancel) { }
+								.keyboardShortcut(.defaultAction)
+							Button("Yes") {
+								if self.appModel.deleteVault() {
+									self.appModel.closeVault()
+									self.isPushed = false // Pop to the root view controller
+								}
+								else {
+									self.showingFailedToDeleteAlert = true
+								}
+							}
+								.keyboardShortcut(.cancelAction)
+						}
+						.alert("Failed to delete the vault!", isPresented: $showingFailedToDeleteAlert) {
+							Button("OK", role: .cancel) { }
 						}
 					}
 				}
 			}
-			.padding(10)
-#if os(macOS)
+#if !os(macOS)
 			.background(
 
 				// Show a blank view for the user to enter new information.
@@ -103,91 +196,5 @@ struct OpenVaultView: View {
 			)
 #endif
 		}
-		.toolbar {
-
-			// Toolbar item for creating new entries.
-			ToolbarItem() {
-				HStack {
-					Menu {
-						
-						// New Login
-						Button(action: {
-							self.newItemType = VaultItemType.login
-							showNewItem = true
-						}) {
-							Label("Login", systemImage: "lock")
-								.labelStyle(.titleAndIcon)
-						}
-
-						// New Note
-						Button(action: {
-							self.newItemType = VaultItemType.note
-							showNewItem = true
-						}) {
-							Label("Note", systemImage: "doc")
-								.labelStyle(.titleAndIcon)
-						}
-
-						// New Card
-						Button(action: {
-							self.newItemType = VaultItemType.card
-							showNewItem = true
-						}) {
-							Label("Card", systemImage: "creditcard.and.123")
-								.labelStyle(.titleAndIcon)
-						}
-					}
-					label: {
-						Label("Add", systemImage: "plus")
-					}
-
-					Menu {
-						// Close the Vault
-						Button(action: {
-							self.appModel.closeVault()
-							self.isPushed = false // Pop to the root view controller
-						}) {
-							Label("Close Vault", systemImage: "xmark.circle")
-								.labelStyle(.titleAndIcon)
-						}
-						
-						// Delete the Vault
-						Button(action: {
-							self.showingDeleteVaultAlert = true
-						}) {
-							Label("Delete Vault", systemImage: "trash")
-								.labelStyle(.titleAndIcon)
-						}
-					}
-					label: {
-						Label("File", systemImage: "folder")
-					}
-					.alert("Are you sure you want to do this? It cannot be undone.", isPresented: $showingDeleteVaultAlert) {
-						Button("No", role: .cancel) { }
-							.keyboardShortcut(.defaultAction)
-						Button("Yes") {
-							if self.appModel.deleteVault() {
-								self.appModel.closeVault()
-								self.isPushed = false // Pop to the root view controller
-							}
-							else {
-								self.showingFailedToDeleteAlert = true
-							}
-						}
-							.keyboardShortcut(.cancelAction)
-					}
-					.alert("Failed to delete the vault!", isPresented: $showingFailedToDeleteAlert) {
-						Button("OK", role: .cancel) { }
-					}
-				}
-			}
-		}
-#if !os(macOS)
-		.background(
-
-			// Show a blank view for the user to enter new information.
-			NavigationLink(destination: NewItemView(isPushed: self.$isPushed, newItemType: self.$newItemType), isActive: $showNewItem) {}
-		)
-#endif
 	}
 }
