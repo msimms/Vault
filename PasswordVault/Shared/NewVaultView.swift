@@ -170,6 +170,9 @@ struct NewVaultView: View {
 			.foregroundColor(.white)
 			.cornerRadius(40)
 			.padding()
+#if !os(macOS)
+			.navigationBarBackButtonHidden(true)
+#endif
 		}
 	}
 }

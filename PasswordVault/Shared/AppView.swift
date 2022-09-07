@@ -75,17 +75,17 @@ struct AppView: View {
 			// If one exists and is open/unlocked then display it.
 
 			VStack {
-				let itemView = viewModel.createView(isPushed: self.$pushed)
-				let buttonText = viewModel.createButtonText()
-
 				NavigationLink(
-					destination: itemView,
+					destination: viewModel.createView(isPushed: self.$pushed),
 					isActive: self.$pushed
 				) {
 					EmptyView()
 				}
+#if !os(macOS)
+				.isDetailLink(false)
+#endif
 				.hidden()
-				Button(buttonText) {
+				Button(viewModel.createButtonText()) {
 					self.pushed = true
 				}
 				.padding()
@@ -96,7 +96,7 @@ struct AppView: View {
 			}
 		}
 #if !os(macOS)
-		.navigationBarTitle("", displayMode: .inline)
+		.navigationBarTitle("")
 		.navigationBarHidden(true)
 #endif
 	}

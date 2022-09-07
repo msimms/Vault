@@ -76,7 +76,7 @@ struct OpenVaultView: View {
 
 	var body: some View {
 
-		Group() {
+		VStack(alignment: .leading) {
 
 			NavigationView {
 
