@@ -72,10 +72,7 @@ struct PasswordGeneratorView: View {
 					}
 
 					HStack() {
-						Text("Alphanumerics Only")
-						Button(action: { self.alphaNumOnly.toggle() }) {
-							Label("", systemImage: "checkmark")
-						}
+						Toggle("Alphanumerics Only", isOn: $alphaNumOnly)
 					}
 				}
 			}
