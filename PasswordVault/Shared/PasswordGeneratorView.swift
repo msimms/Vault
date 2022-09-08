@@ -38,79 +38,89 @@ struct PasswordGeneratorView: View {
 
 	var body: some View {
 	
-		VStack(alignment: .center) {
-			Text("Password Generator")
-				.fontWeight(.heavy)
-			Divider()
-			TextField("Suggested Password", text: self.$suggestedPassword)
-			Group() {
-				VStack() {
+		Group() {
+			VStack(alignment: .center) {
+				Group() {
+					Text("Password Generator")
+						.fontWeight(.heavy)
+				}
+				.padding(10)
+				Divider()
+				Group() {
+					TextField("Suggested Password", text: self.$suggestedPassword)
 					VStack() {
-						Text("Number of Characters")
-						Slider(value: Binding(
-							get: {
-								self.numChars
-							},
-							set: {(newValue) in
-								self.numChars = newValue
-								self.suggestedPassword = self.gen.generateUsingCharacters(numChars: UInt8(self.numChars), alphaNumOnly: self.alphaNumOnly)
-							}
-						), in: 0...32, step: 1)
-					}
+						VStack() {
+							Text("Number of Characters")
+							Slider(value: Binding(
+								get: {
+									self.numChars
+								},
+								set: {(newValue) in
+									self.numChars = newValue
+									self.suggestedPassword = self.gen.generateUsingCharacters(numChars: UInt8(self.numChars), alphaNumOnly: self.alphaNumOnly)
+								}
+							), in: 0...32, step: 1)
+						}
 
+						VStack() {
+							Text("Number of Words")
+							Slider(value: Binding(
+								get: {
+									self.numWords
+								},
+								set: {(newValue) in
+									self.numWords = newValue
+									self.suggestedPassword = self.gen.generateUsingWords(numWords: 1)
+								}
+							), in: 0...8, step: 1)
+						}
+
+						HStack() {
+							Toggle("Alphanumerics Only", isOn: $alphaNumOnly)
+						}
+					}
+				}
+				.padding(10)
+				Divider()
+				Group() {
 					VStack() {
-						Text("Number of Words")
-						Slider(value: Binding(
-							get: {
-								self.numWords
-							},
-							set: {(newValue) in
-								self.numWords = newValue
-								self.suggestedPassword = self.gen.generateUsingWords(numWords: 1)
-							}
-						), in: 0...8, step: 1)
+						Button(action: {
+							self.suggestedPassword = self.gen.generateUsingWords(numWords: 1)
+						}) {
+							Text("Generate With Words")
+								.frame(width: 256)
+						}
+						.padding(10)
+						Button(action: {
+							self.suggestedPassword = self.gen.generateUsingCharacters(numChars: UInt8(self.numChars), alphaNumOnly: self.alphaNumOnly)
+						}) {
+							Text("Generate With Characters")
+								.frame(width: 256)
+						}
 					}
-
+				}
+				.padding(10)
+				Divider()
+				Group() {
 					HStack() {
-						Toggle("Alphanumerics Only", isOn: $alphaNumOnly)
-					}
-				}
-			}
-			Divider()
-			Group() {
-				HStack() {
-					Button(action: {
-						self.suggestedPassword = self.gen.generateUsingWords(numWords: 1)
-					}) {
-						Text("Generate With Words")
-							.frame(width: 256)
-					}
-					Button(action: {
-						self.suggestedPassword = self.gen.generateUsingCharacters(numChars: UInt8(self.numChars), alphaNumOnly: self.alphaNumOnly)
-					}) {
-						Text("Generate With Characters")
-							.frame(width: 256)
+#if os(macOS)
+						Button(action: {
+							self.isPushed = false
+						}) {
+							Text("Cancel")
+						}
+#endif
+						Button(action: {
+							self.existingPassword = self.suggestedPassword
+							self.isPushed = false
+						}) {
+							Label("Save", systemImage: "square.and.arrow.down")
+						}
 					}
 				}
 				.padding(10)
 			}
-			Divider()
-			Group() {
-				HStack() {
-					Button(action: {
-						self.isPushed = false
-					}) {
-						Text("Cancel")
-					}
-					Button(action: {
-						self.existingPassword = self.suggestedPassword
-						self.isPushed = false
-					}) {
-						Label("Save", systemImage: "square.and.arrow.down")
-					}
-				}
-				.padding(10)
-			}
+			.padding(10)
 		}
 		.padding(10)
 

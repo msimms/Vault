@@ -31,6 +31,7 @@ struct TagsView: View {
 	@ObservedObject var appModel = AppState.shared
 	@Binding var isPushed : Bool
 	@State var isShowingNewTagView : Bool = false
+	@State var newTag : String = ""
 	@State var tags : Array<String>
 
 	var body: some View {
@@ -50,7 +51,7 @@ struct TagsView: View {
 
 					// Link for moving to the New Tag view.
 					ZStack() {
-						NavigationLink(destination: NewTagView(isPushed: self.$isShowingNewTagView), isActive: self.$isShowingNewTagView) {
+						NavigationLink(destination: NewTagView(isPushed: self.$isShowingNewTagView, newTag: self.$newTag), isActive: self.$isShowingNewTagView) {
 						}
 						Button(action: {
 							self.isShowingNewTagView = true

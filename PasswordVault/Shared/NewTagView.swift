@@ -29,17 +29,38 @@ import SwiftUI
 
 struct NewTagView: View {
 	@Binding var isPushed : Bool
-	@State private var newTag = ""
+	@Binding var newTag : String
 
 	var body: some View {
-		VStack(alignment: .leading) {
-			Text("Tags")
-				.fontWeight(.heavy)
-			Button(action: {
-				self.isPushed = false
-			}) {
-				Text("Save")
+		VStack(alignment: .center) {
+			Group() {
+				Text("New Tag")
+					.fontWeight(.heavy)
 			}
+			.padding(10)
+			Divider()
+			Group() {
+				TextField("New Tag", text: self.$newTag)
+			}
+			.padding(10)
+			Divider()
+			Group() {
+				HStack() {
+#if os(macOS)
+					Button(action: {
+						self.isPushed = false
+					}) {
+						Text("Cancel")
+					}
+#endif
+					Button(action: {
+						self.isPushed = false
+					}) {
+						Label("Save", systemImage: "square.and.arrow.down")
+					}
+				}
+			}
+			.padding(10)
 		}
 	}
 }
