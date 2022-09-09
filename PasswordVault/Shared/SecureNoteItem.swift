@@ -63,7 +63,7 @@ class SecureNoteItem: SecureVaultItem {
 	override func write(locationOfVaultItems: URL, masterKey: Data) throws {
 
 		// Encode everything as JSON.
-		let vaultData = NoteItemEncoding(vaultVersion: self.vaultVersion, heading: self.heading, note: self.note, lastModifiedTime: self.lastModifiedTime)
+		let vaultData = NoteItemEncoding(vaultVersion: self.vaultVersion, heading: self.heading, note: self.note, tags: self.tags, lastModifiedTime: self.lastModifiedTime)
 		let encoder = JSONEncoder()
 		let jsonData = try encoder.encode(vaultData)
 		let jsonStr = String(data: jsonData, encoding: .utf8)!

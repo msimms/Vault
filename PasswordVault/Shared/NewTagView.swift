@@ -29,7 +29,8 @@ import SwiftUI
 
 struct NewTagView: View {
 	@Binding var isPushed : Bool
-	@Binding var newTag : String
+	@Binding var tags : Array<String>
+	@State var newTag : String = ""
 
 	var body: some View {
 		VStack(alignment: .center) {
@@ -54,6 +55,7 @@ struct NewTagView: View {
 					}
 #endif
 					Button(action: {
+						self.tags.append(newTag)
 						self.isPushed = false
 					}) {
 						Label("Save", systemImage: "square.and.arrow.down")

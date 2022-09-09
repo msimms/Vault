@@ -30,9 +30,9 @@ import SwiftUI
 struct TagsView: View {
 	@ObservedObject var appModel = AppState.shared
 	@Binding var isPushed : Bool
+	@Binding var tags : Array<String>
 	@State var isShowingNewTagView : Bool = false
 	@State var newTag : String = ""
-	@State var tags : Array<String>
 
 	var body: some View {
 
@@ -51,7 +51,7 @@ struct TagsView: View {
 
 					// Link for moving to the New Tag view.
 					ZStack() {
-						NavigationLink(destination: NewTagView(isPushed: self.$isShowingNewTagView, newTag: self.$newTag), isActive: self.$isShowingNewTagView) {
+						NavigationLink(destination: NewTagView(isPushed: self.$isShowingNewTagView, tags: self.$tags), isActive: self.$isShowingNewTagView) {
 						}
 						Button(action: {
 							self.isShowingNewTagView = true

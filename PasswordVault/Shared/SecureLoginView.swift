@@ -100,8 +100,8 @@ struct SecureLoginView: View {
 						TextEditor(text: $item.note)
 							.disabled(isReadOnly)
 					}
-					TagsView(isPushed: self.$isPushed, tags: item.tags)
-					LastModifiedView(isNewItem: isNewItem, timestamp: item.lastModifiedTime)
+					TagsView(isPushed: self.$isPushed, tags: self.$item.tags)
+					LastModifiedView(isNewItem: isNewItem, timestamp: self.item.lastModifiedTime)
 				}
 			}
 
