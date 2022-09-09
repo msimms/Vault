@@ -148,6 +148,32 @@ struct OpenVaultView: View {
 						}
 
 						Menu {
+							// Import Data
+							Button(action: {
+								let panel = NSOpenPanel()
+								panel.allowsMultipleSelection = false
+								panel.canChooseDirectories = false
+
+								if panel.runModal() == .OK {
+								}
+							}) {
+								Label("Import...", systemImage: "square.and.arrow.down")
+									.labelStyle(.titleAndIcon)
+							}
+							
+							// Export Data
+							Button(action: {
+								let panel = NSSavePanel()
+
+								if panel.runModal() == .OK {
+								}
+							}) {
+								Label("Export..", systemImage: "square.and.arrow.up")
+									.labelStyle(.titleAndIcon)
+							}
+
+							Divider()
+
 							// Close the Vault
 							Button(action: {
 								self.appModel.closeVault()
@@ -180,7 +206,7 @@ struct OpenVaultView: View {
 									self.showingFailedToDeleteAlert = true
 								}
 							}
-								.keyboardShortcut(.cancelAction)
+							.keyboardShortcut(.cancelAction)
 						}
 						.alert("Failed to delete the vault!", isPresented: $showingFailedToDeleteAlert) {
 							Button("OK", role: .cancel) { }
