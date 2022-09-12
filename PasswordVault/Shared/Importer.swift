@@ -27,11 +27,54 @@
 
 import Foundation
 
+struct PifLabeledUrls: Codable {
+	var label: String
+	var url: String
+}
+
+struct PifUrlsList: Codable {
+	var URLs: Array<PifLabeledUrls>
+	var password: String
+}
+
+struct PifSecureContents: Codable {
+	var urls: PifUrlsList?
+	var notesPlan: String?
+}
+
+struct PifEncoding: Codable {
+	var uuid: String
+	var updatedAt: UInt64
+	var locationKey: String?
+	var securityLevel: String
+	var contentsHash: String
+	var title: String
+	var location: String?
+	var secureContents: PifSecureContents
+	var txTimestamp: UInt64
+	var createdAt: UInt64
+	var typeName: String
+}
+
 class Importer {
 
-	func import_from(location: URL) throws {
+	func import_from_1pif(location: URL) throws {
+		let fileName = location.path
+		let data = try String(contentsOfFile: fileName, encoding: .utf8)
+		let entries = data.components(separatedBy: .newlines)
+		for entry in entries {
+			
+			// 1Password puts a comment line between each entry.
+			if entry.starts(with: "***") == false {
+				print(entry)
+				let pifContents = try JSONDecoder().decode(PifEncoding.self, from: entry.data(using: .utf8)!)
+			}
+		}
+	}
 
-		// Read the file.
-		let data = try Data(contentsOf: location)
+	func import_from(location: URL) throws {
+		if location.pathExtension == "1pif" {
+			try self.import_from_1pif(location: location)
+		}
 	}
 }
