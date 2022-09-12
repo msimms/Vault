@@ -28,8 +28,20 @@
 import Foundation
 
 class PasswordGenerator {
+	func generateRandomWord() -> String {
+		return "foo" // not currently very random :)
+	}
+
 	func generateUsingWords(numWords: UInt8) -> String {
-		return "foo"
+		var result = ""
+
+		for i in 1...numWords {
+			if i != 1 {
+				result = result + "-"
+			}
+			result = result + generateRandomWord()
+		}
+		return result
 	}
 
 	func generateUsingCharacters(numChars: UInt8, alphaNumOnly: Bool) -> String {
