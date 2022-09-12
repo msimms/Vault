@@ -1,7 +1,5 @@
 //
 //  Tests_macOSLaunchTests.swift
-//  Tests macOS
-//
 //  Created by Michael Simms on 12/12/21.
 //
 

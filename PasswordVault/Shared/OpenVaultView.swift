@@ -148,6 +148,7 @@ struct OpenVaultView: View {
 						}
 
 						Menu {
+#if os(macOS)
 							// Import Data
 							Button(action: {
 								let panel = NSOpenPanel()
@@ -168,11 +169,12 @@ struct OpenVaultView: View {
 								if panel.runModal() == .OK {
 								}
 							}) {
-								Label("Export..", systemImage: "square.and.arrow.up")
+								Label("Export...", systemImage: "square.and.arrow.up")
 									.labelStyle(.titleAndIcon)
 							}
 
 							Divider()
+#endif
 
 							// Close the Vault
 							Button(action: {

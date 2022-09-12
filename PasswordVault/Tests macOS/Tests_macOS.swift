@@ -1,7 +1,5 @@
 //
 //  Tests_macOS.swift
-//  Tests macOS
-//
 //  Created by Michael Simms on 12/12/21.
 //
 
@@ -30,6 +28,19 @@ class Tests_macOS: XCTestCase {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
+	
+	func testImport() throws {
+		let importer = Importer()
+		let testFilesLocation = URL(fileURLWithPath: #file.replacingOccurrences(of: "PasswordVault/Tests macOS/Tests_macOS.swift", with: "Test"))
+
+		let dirListing = try FileManager.default.contentsOfDirectory(at: testFilesLocation, includingPropertiesForKeys: nil)
+		for testFileLocation in dirListing {
+			do {
+				try importer.import_from(location: testFileLocation)
+			} catch {
+			}
+		}
+	}
 
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {

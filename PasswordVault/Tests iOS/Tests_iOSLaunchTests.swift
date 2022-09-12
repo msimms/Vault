@@ -1,7 +1,5 @@
 //
 //  Tests_iOSLaunchTests.swift
-//  Tests iOS
-//
 //  Created by Michael Simms on 12/12/21.
 //
 
