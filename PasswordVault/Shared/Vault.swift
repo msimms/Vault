@@ -32,6 +32,8 @@ import CryptoKit
 struct VaultIndex: Codable {
 	// File version information
 	var vaultVersion: UInt8
+	// Human readable name of the vault
+	var vaultName: String
 	// Master secret that is used encrypt the vault items, protected using the key provided by the user
 	var encryptedMasterKey: String
 	// HMAC signature of the encrypted master key
@@ -150,7 +152,7 @@ class Vault : ObservableObject {
 	}
 
 	/// Utility function for building the URL to the vault's master file.
-	private func buildVaultUrls(location: String) throws {
+	private func buildVaultUrls(location: String, name: String) throws {
 
 		// Build the URL for the vault's directory. If a location was provided then
 		// use it, otherwise assume the user's iCloud directory.
@@ -165,6 +167,9 @@ class Vault : ObservableObject {
 			self.vaultDirUrl = URL(string: location)
 		}
 
+		// Base URL for the vault.
+		self.vaultDirUrl = self.vaultDirUrl?.appendingPathComponent(name)
+
 		// URL for the vault items.
 		self.vaultItemsDirUrl = self.vaultDirUrl?.appendingPathComponent("items")
 
@@ -177,8 +182,8 @@ class Vault : ObservableObject {
 	}
 
 	/// Returns true if a vault exists (spexcifically the vault index file) at the location stored in the user preferences.
-	func exists(location: String) throws -> Bool {
-		try self.buildVaultUrls(location: location)
+	func exists(location: String, name: String) throws -> Bool {
+		try self.buildVaultUrls(location: location, name: name)
 
 		if !FileManager.default.fileExists(atPath: self.vaultMasterFileUrl!.path) {
 			return FileManager.default.fileExists(atPath: self.buildICloudVaultMasterFileUrl().path)
@@ -193,7 +198,7 @@ class Vault : ObservableObject {
 	}
 
 	/// Creates the vault. If the location is not provided then the vault is created on the user's iCloud drive.
-	func create(location: String, key: String) throws {
+	func create(location: String, name: String, key: String) throws {
 
 		// Sanity check the parameters.
 		if key.count == 0 {
@@ -205,7 +210,7 @@ class Vault : ObservableObject {
 
 		// Build the URL for the vault's directory. If a location was provided then
 		// use it, otherwise assume the user's iCloud directory.
-		try self.buildVaultUrls(location: location)
+		try self.buildVaultUrls(location: location, name: name)
 
 		// Does anything exist at the vault master file's path?
 		if !FileManager.default.fileExists(atPath: self.vaultMasterFileUrl!.path) {
@@ -236,7 +241,7 @@ class Vault : ObservableObject {
 			let base64MasterKey = encryptedMasterKey?.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
 
 			// Encode everything as JSON.
-			let vaultData = VaultIndex(vaultVersion: Vault.kCurrentVaultVersion, encryptedMasterKey: base64MasterKey!, signature: base64Signature)
+			let vaultData = VaultIndex(vaultVersion: Vault.kCurrentVaultVersion, vaultName: name, encryptedMasterKey: base64MasterKey!, signature: base64Signature)
 			let encoder = JSONEncoder()
 			let jsonData = try encoder.encode(vaultData)
 			let jsonStr = String(data: jsonData, encoding: .utf8)!
@@ -250,7 +255,7 @@ class Vault : ObservableObject {
 	}
 
 	/// Opens the vault by opening the master vault file and decoding it.
-	func open(vaultLocation: String, key: String) throws {
+	func open(vaultLocation: String, name: String, key: String) throws {
 
 		// Sanity check the parameters.
 		if key.count == 0 {
@@ -262,7 +267,7 @@ class Vault : ObservableObject {
 
 		// Build the URL for the vault's directory. If a location was provided then
 		// use it, otherwise assume the user's iCloud directory.
-		try self.buildVaultUrls(location: vaultLocation)
+		try self.buildVaultUrls(location: vaultLocation, name: name)
 
 		// Does the file need to be downloaded from iCloud?
 		let iCloudVaultMasterFileUrl = self.buildICloudVaultMasterFileUrl()
@@ -353,24 +358,28 @@ class Vault : ObservableObject {
 		// Clear any existing contents from the list.
 		self.vaultItems = []
 
-		// List all the items in the vault items directory.
-		let dirListing = try FileManager.default.contentsOfDirectory(at: self.vaultItemsDirUrl!, includingPropertiesForKeys: nil)
-		for listing in dirListing {
+		// Does the items directory exist? It might not if the vault was just created.
+		if FileManager.default.fileExists(atPath: self.vaultItemsDirUrl!.path) {
 
-			do {
-				// Does the file need to be downloaded from iCloud?
-				if listing.lastPathComponent.contains(".icloud") {
-					try self.downloadVaultFile(fileToDownload: listing)
+			// List all the items in the vault items directory.
+			let dirListing = try FileManager.default.contentsOfDirectory(at: self.vaultItemsDirUrl!, includingPropertiesForKeys: nil)
+			for listing in dirListing {
+				
+				do {
+					// Does the file need to be downloaded from iCloud?
+					if listing.lastPathComponent.contains(".icloud") {
+						try self.downloadVaultFile(fileToDownload: listing)
+					}
+					
+					// If the file name is not a UUID then skip it as all valid files in this directory will have UUIDs for file names.
+					else if UUID(uuidString: listing.lastPathComponent) != nil {
+						try self.processVaultFile(fileURL: listing)
+					}
+				} catch let error as NSError {
+					print("Error: Failed to read: \n\(error)")
+				} catch {
+					print(error.localizedDescription)
 				}
-
-				// If the file name is not a UUID then skip it as all valid files in this directory will have UUIDs for file names.
-				else if UUID(uuidString: listing.lastPathComponent) != nil {
-					try self.processVaultFile(fileURL: listing)
-				}
-			} catch let error as NSError {
-				print("Error: Failed to read: \n\(error)")
-			} catch {
-				print(error.localizedDescription)
 			}
 		}
 	}

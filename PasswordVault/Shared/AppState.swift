@@ -43,8 +43,12 @@ class AppState : ObservableObject {
 	/// Returns true if a vault exists (specifically the vault index file) at the location stored in the user preferences.
 	func vaultExists() throws -> Bool {
 		let vaultLocation = Preferences.vaultLocation()
+		let defaultVaultName = Preferences.defaultVaultName()
+
 		guard let unwrappedLocation = vaultLocation else { return false }
-		return try vault.exists(location: unwrappedLocation);
+		guard let unwrappedDefaultVaultName = defaultVaultName else { return false }
+
+		return try vault.exists(location: unwrappedLocation, name: unwrappedDefaultVaultName);
 	}
 
 	/// Returns true if a vault is open, i.e. unlocked.
@@ -53,10 +57,11 @@ class AppState : ObservableObject {
 	}
 
 	/// Creates a vault at the specified location.
-	func createVault(vaultLocation: String, password: String) -> Bool {
+	func createVault(vaultLocation: String, name: String, password: String) -> Bool {
 		do {
-			try vault.create(location: vaultLocation, key: password)
+			try vault.create(location: vaultLocation, name: name, key: password)
 			Preferences.setVaultLocation(location: vaultLocation)
+			Preferences.setDefaultVaultName(name: name)
 			self.updateState()
 			return true
 		} catch let error as NSError {
@@ -71,8 +76,12 @@ class AppState : ObservableObject {
 	func openVault(password: String) -> Bool {
 		do {
 			let vaultLocation = Preferences.vaultLocation()
+			let defaultVaultName = Preferences.defaultVaultName()
+
 			guard let unwrappedLocation = vaultLocation else { return false }
-			try vault.open(vaultLocation: unwrappedLocation, key: password)
+			guard let unwrappedDefaultVaultName = defaultVaultName else { return false }
+
+			try vault.open(vaultLocation: unwrappedLocation, name: unwrappedDefaultVaultName, key: password)
 			try vault.readItems()
 			self.updateState()
 			return true

@@ -32,9 +32,19 @@ class Preferences {
 		let mydefaults: UserDefaults = UserDefaults.standard
 		return mydefaults.string(forKey: "Vault Location")
 	}
-
+	
 	static func setVaultLocation(location: String) {
 		let mydefaults: UserDefaults = UserDefaults.standard
 		mydefaults.set(location, forKey: "Vault Location")
+	}
+	
+	static func defaultVaultName() -> String? {
+		let mydefaults: UserDefaults = UserDefaults.standard
+		return mydefaults.string(forKey: "Default Vault Name")
+	}
+	
+	static func setDefaultVaultName(name: String) {
+		let mydefaults: UserDefaults = UserDefaults.standard
+		mydefaults.set(name, forKey: "Default Vault Name")
 	}
 }

@@ -54,17 +54,24 @@ struct NewVaultView: View {
 	@State private var password: String = ""
 	@State private var confirmPassword: String = ""
 	@State private var vaultLocation: String = ""
+	@State private var vaultName: String = "Main Vault"
 	@State private var showingPasswordsDoNotMatchAlert = false
 	@State private var showingVaultCreationFailedAlert = false
 	@State private var showPassword = false
 
 	func createVault() {
 
+		// Make sure the vault has a name.
+		if vaultName.count == 0 {
+			self.showingVaultCreationFailedAlert = true
+			return
+		}
+
 		// Make sure the passwords match.
 		if password == confirmPassword && password.count > 8 {
 			
 			// Create the vault.
-			if self.appModel.createVault(vaultLocation: self.vaultLocation, password: self.password) {
+			if self.appModel.createVault(vaultLocation: self.vaultLocation, name: self.vaultName, password: self.password) {
 				
 				// Show the vault by popping to the root view controller.
 				self.isPushed = false
@@ -81,6 +88,12 @@ struct NewVaultView: View {
 	var body: some View {
 
 		VStack(alignment: .center) {
+
+			// Name
+			Label("Vault Name", systemImage: "signpost.right")
+			TextField("", text: $vaultName)
+				.textFieldStyle(RoundedBorderTextFieldStyle())
+				.padding()
 
 			// Password
 			Label("Password", systemImage: "lock.circle")
