@@ -59,7 +59,7 @@ struct PasswordGeneratorView: View {
 									self.numChars = newValue
 									self.suggestedPassword = self.gen.generateUsingCharacters(numChars: UInt8(self.numChars), alphaNumOnly: self.alphaNumOnly)
 								}
-							), in: 0...32, step: 1)
+							), in: 1...32, step: 1)
 						}
 
 						VStack() {
@@ -70,9 +70,9 @@ struct PasswordGeneratorView: View {
 								},
 								set: {(newValue) in
 									self.numWords = newValue
-									self.suggestedPassword = self.gen.generateUsingWords(numWords: 1)
+									self.suggestedPassword = self.gen.generateUsingWords(numWords: UInt8(self.numWords))
 								}
-							), in: 0...8, step: 1)
+							), in: 1...8, step: 1)
 						}
 
 						HStack() {
