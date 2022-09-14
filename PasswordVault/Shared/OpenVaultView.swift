@@ -107,7 +107,7 @@ struct OpenVaultView: View {
 			}
 #if !os(macOS)
 			.navigationBarTitle("Password Vault", displayMode: .inline)
-			.navigationBarHidden(true)
+			.navigationBarBackButtonHidden(true)
 #endif
 			.toolbar {
 

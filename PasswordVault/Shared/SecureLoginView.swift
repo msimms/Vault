@@ -82,6 +82,7 @@ struct SecureLoginView: View {
 										Image(systemName: "eye")
 											.foregroundColor(.secondary)
 									}
+									.padding(10)
 									ZStack() {
 										NavigationLink(destination: PasswordGeneratorView(isPushed: self.$isShowingPasswordGenerator, existingPassword: self.$item.password, suggestedPassword: self.item.password), isActive: self.$isShowingPasswordGenerator) {
 										}
@@ -109,6 +110,9 @@ struct SecureLoginView: View {
 			ItemButtonView(isPushed: self.$isPushed, isReadOnly: self.$isReadOnly, item: self.item, isNewItem: self.isNewItem)
 		}
 		.padding(10)
+#if !os(macOS)
+		.navigationBarHidden(true)
+#endif
     }
 
 	func title() -> String {
