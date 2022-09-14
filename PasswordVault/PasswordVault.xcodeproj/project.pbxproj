@@ -61,8 +61,6 @@
 		276A061027AEFCC700B030E1 /* iOS in Resources */ = {isa = PBXBuildFile; fileRef = 276A060E27AEFCC700B030E1 /* iOS */; };
 		276A061227AEFF3400B030E1 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276A061127AEFF3400B030E1 /* Preferences.swift */; };
 		276A061327AEFF3400B030E1 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276A061127AEFF3400B030E1 /* Preferences.swift */; };
-		277788F9279CDC9C000C19DF /* FileUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277788F8279CDC9C000C19DF /* FileUtils.swift */; };
-		277788FA279CDC9C000C19DF /* FileUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277788F8279CDC9C000C19DF /* FileUtils.swift */; };
 		27B03ACF2812F60F009131E8 /* Crypto in Frameworks */ = {isa = PBXBuildFile; productRef = 27B03ACE2812F60F009131E8 /* Crypto */; };
 		27B03AD12812F60F009131E8 /* _CryptoExtras in Frameworks */ = {isa = PBXBuildFile; productRef = 27B03AD02812F60F009131E8 /* _CryptoExtras */; };
 		27B03AD5281AFBA1009131E8 /* VaultItemFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B03AD4281AFBA1009131E8 /* VaultItemFactory.swift */; };
@@ -136,7 +134,6 @@
 		276A059127A8903500B030E1 /* SecureLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureLoginView.swift; sourceTree = "<group>"; };
 		276A060E27AEFCC700B030E1 /* iOS */ = {isa = PBXFileReference; lastKnownFileType = folder; path = iOS; sourceTree = "<group>"; };
 		276A061127AEFF3400B030E1 /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
-		277788F8279CDC9C000C19DF /* FileUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUtils.swift; sourceTree = "<group>"; };
 		27B03AD4281AFBA1009131E8 /* VaultItemFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultItemFactory.swift; sourceTree = "<group>"; };
 		27CAB0AA2766BE450064877A /* Vault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vault.swift; sourceTree = "<group>"; };
 		27CAB0AF2767D4650064877A /* SecureLoginItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureLoginItem.swift; sourceTree = "<group>"; };
@@ -201,7 +198,6 @@
 			children = (
 				2709C268276D80A9008812AD /* AppState.swift */,
 				2709C26E276EB376008812AD /* AppView.swift */,
-				277788F8279CDC9C000C19DF /* FileUtils.swift */,
 				27013B7328CBBA81000244D1 /* Importer.swift */,
 				27E6894428919F1600755424 /* ItemButtonView.swift */,
 				27E689472891BF6900755424 /* LastModifiedView.swift */,
@@ -445,7 +441,6 @@
 				276A059227A8903500B030E1 /* SecureLoginView.swift in Sources */,
 				27B03AD5281AFBA1009131E8 /* VaultItemFactory.swift in Sources */,
 				271CBCCD2812EB7000265841 /* SecureNoteItem.swift in Sources */,
-				277788F9279CDC9C000C19DF /* FileUtils.swift in Sources */,
 				2709C26C276EA9FD008812AD /* NewVaultView.swift in Sources */,
 				27196E2328B99634003F47D8 /* PasswordGeneratorView.swift in Sources */,
 				27013B7428CBBA81000244D1 /* Importer.swift in Sources */,
@@ -478,7 +473,6 @@
 				276A059327A8903500B030E1 /* SecureLoginView.swift in Sources */,
 				27B03AD6281AFBA1009131E8 /* VaultItemFactory.swift in Sources */,
 				271CBCCE2812EB7000265841 /* SecureNoteItem.swift in Sources */,
-				277788FA279CDC9C000C19DF /* FileUtils.swift in Sources */,
 				2709C26D276EA9FD008812AD /* NewVaultView.swift in Sources */,
 				27196E2428B99634003F47D8 /* PasswordGeneratorView.swift in Sources */,
 				27013B7528CBBA81000244D1 /* Importer.swift in Sources */,
