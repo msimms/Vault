@@ -44,6 +44,8 @@ struct ItemButtonView: View {
 		HStack() {
 			Spacer()
 			if self.isNewItem {
+
+				// Save button
 				Button {
 					if !self.appModel.addItemToVault(item: self.item) {
 						self.showingFailedToAddAlert = true
@@ -55,6 +57,7 @@ struct ItemButtonView: View {
 					Button("OK", role: .cancel) { }
 				}
 
+				// Cancel button
 				Button {
 					self.isPushed = false
 				} label: {
@@ -62,6 +65,15 @@ struct ItemButtonView: View {
 				}
 			}
 			else {
+				// Cancel button
+				Button {
+					self.isPushed = false
+				} label: {
+					Label("Cancel", systemImage: "trash")
+				}
+				.opacity(self.isReadOnly ? 0 : 1)
+
+				// Edit/Update button
 				Button {
 					if self.editUpdateButtonTitle == "Edit" {
 						self.editUpdateButtonTitle = "Update"
@@ -83,6 +95,7 @@ struct ItemButtonView: View {
 					Button("OK", role: .cancel) { }
 				}
 
+				// Delete button
 				Button {
 					self.showingDeleteVaultItemAlert = true
 				} label: {
