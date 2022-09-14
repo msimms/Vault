@@ -151,24 +151,34 @@ class Vault : ObservableObject {
 		return nil
 	}
 
+	func convertVaultLocationToUrl(location: String) throws -> URL {
+
+		var baseUrl = URL(string: "")
+
+		// Build the URL for the vault's directory. If a location was provided then
+		// use it, otherwise assume the user's iCloud directory.
+		if location.count == 0 {
+			baseUrl = FileManager.default.url(forUbiquityContainerIdentifier: nil)
+			if baseUrl == nil {
+				throw VaultException.runtimeError("iCloud storage is disabled.")
+			}
+			baseUrl = baseUrl?.appendingPathComponent("Documents")
+		}
+		else {
+			baseUrl = URL(string: location)
+		}
+		return baseUrl!
+	}
+
 	/// Utility function for building the URL to the vault's master file.
 	private func buildVaultUrls(location: String, name: String) throws {
 
 		// Build the URL for the vault's directory. If a location was provided then
 		// use it, otherwise assume the user's iCloud directory.
-		if location.count == 0 {
-			self.vaultDirUrl = FileManager.default.url(forUbiquityContainerIdentifier: nil)
-			if self.vaultDirUrl == nil {
-				throw VaultException.runtimeError("iCloud storage is disabled.")
-			}
-			self.vaultDirUrl = self.vaultDirUrl?.appendingPathComponent("Documents")
-		}
-		else {
-			self.vaultDirUrl = URL(string: location)
-		}
+		let baseUrl = try self.convertVaultLocationToUrl(location: location)
 
 		// Base URL for the vault.
-		self.vaultDirUrl = self.vaultDirUrl?.appendingPathComponent(name)
+		self.vaultDirUrl = baseUrl.appendingPathComponent(name)
 
 		// URL for the vault items.
 		self.vaultItemsDirUrl = self.vaultDirUrl?.appendingPathComponent("items")
@@ -364,13 +374,13 @@ class Vault : ObservableObject {
 			// List all the items in the vault items directory.
 			let dirListing = try FileManager.default.contentsOfDirectory(at: self.vaultItemsDirUrl!, includingPropertiesForKeys: nil)
 			for listing in dirListing {
-				
+
 				do {
 					// Does the file need to be downloaded from iCloud?
 					if listing.lastPathComponent.contains(".icloud") {
 						try self.downloadVaultFile(fileToDownload: listing)
 					}
-					
+
 					// If the file name is not a UUID then skip it as all valid files in this directory will have UUIDs for file names.
 					else if UUID(uuidString: listing.lastPathComponent) != nil {
 						try self.processVaultFile(fileURL: listing)

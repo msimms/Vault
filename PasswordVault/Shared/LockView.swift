@@ -33,8 +33,14 @@ struct LockView: View {
 	@Binding var isPushed : Bool
 	@State private var password: String = ""
 	@State private var showingVaultOpenFailedAlert = false
+	@State private var showingNoVaultSelectedAlert = false
 	@State private var showPassword = false
 	@State private var isBusy = false
+	@State private var selectedVault: String? = Preferences.defaultVaultName()
+
+	func vaultIsSelected() -> Bool {
+		return self.selectedVault != nil && self.selectedVault!.count > 0
+	}
 
 	func openVault() {
 		if self.appModel.openVault(password: password) {
@@ -48,6 +54,31 @@ struct LockView: View {
 
 	var body: some View {
 		VStack {
+			// Allow the user to toggle between multiple vaults
+			Label("Vault Selection", systemImage: "lock.circle")
+			ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
+				Menu {
+					let vaultNames = self.appModel.listVaults()
+					ForEach(vaultNames, id: \.self) { name in
+						Button(action: {
+							selectedVault = name
+							Preferences.setDefaultVaultName(name: name)
+						}) {
+							Label(name, systemImage: "lock")
+								.labelStyle(.titleAndIcon)
+						}
+					}
+				} label: {
+					if vaultIsSelected() {
+						Text("\(selectedVault!)")
+					}
+					else {
+						Text("Choose Vault")
+					}
+				}
+				.padding()
+			})
+
 			// Password
 			Label("Password", systemImage: "lock.circle")
 			ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
@@ -76,12 +107,20 @@ struct LockView: View {
 
 			// Opens the vault
 			Button {
-				self.isBusy = true
-				openVault()
-				self.isBusy = false
+				if vaultIsSelected() {
+					self.isBusy = true
+					openVault()
+					self.isBusy = false
+				}
+				else {
+					self.showingNoVaultSelectedAlert = true
+				}
 			} label: {
 				Label("Open", systemImage: "lock")
 					.padding()
+			}
+			.alert("A vault was not specified!", isPresented: $showingNoVaultSelectedAlert) {
+				Button("OK", role: .cancel) { }
 			}
 			.alert("Failed to open the vault!", isPresented: $showingVaultOpenFailedAlert) {
 				Button("OK", role: .cancel) { }
