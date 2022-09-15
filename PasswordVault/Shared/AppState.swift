@@ -36,7 +36,7 @@ class AppState : ObservableObject {
 	@ObservedObject var viewModel = VaultDisplayState.shared
 
 	/// Constructor
-	init() {
+	private init() {
 		self.updateState()
 	}
 
