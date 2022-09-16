@@ -55,7 +55,9 @@ struct NewTagView: View {
 					}
 #endif
 					Button(action: {
-						self.tags.append(newTag)
+						if !self.tags.contains(newTag) {
+							self.tags.append(newTag)
+						}
 						self.isPushed = false
 					}) {
 						Label("Save", systemImage: "square.and.arrow.down")
