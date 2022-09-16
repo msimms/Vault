@@ -67,7 +67,9 @@ struct ItemButtonView: View {
 			else {
 				// Cancel button
 				Button {
-					self.isPushed = false
+					self.isReadOnly = true
+					self.editUpdateButtonTitle = "Edit"
+					self.editUpdateButtonImage = "pencil"
 				} label: {
 					Label("Cancel", systemImage: "trash")
 				}
