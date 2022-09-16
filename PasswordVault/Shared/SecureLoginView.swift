@@ -36,6 +36,7 @@ struct SecureLoginView: View {
 	@State var isReadOnly = false
 	@State var isShowingPasswordGenerator = false
 	@State private var showPassword = false
+	@State private var cannotShowPasswordGenerator = false
 
 	var body: some View {
 
@@ -87,10 +88,18 @@ struct SecureLoginView: View {
 										NavigationLink(destination: PasswordGeneratorView(isPushed: self.$isShowingPasswordGenerator, existingPassword: self.$item.password, suggestedPassword: self.item.password), isActive: self.$isShowingPasswordGenerator) {
 										}
 										Button(action: {
-											self.isShowingPasswordGenerator = true
+											if self.isReadOnly {
+												self.cannotShowPasswordGenerator = true
+											}
+											else {
+												self.isShowingPasswordGenerator = true
+											}
 										}) {
 											Image(systemName: "arrow.clockwise")
 												.foregroundColor(.secondary)
+										}
+										.alert("Cannot generate a new password because the item is read only!", isPresented: self.$cannotShowPasswordGenerator) {
+											Button("OK", role: .cancel) { }
 										}
 									}
 								}
