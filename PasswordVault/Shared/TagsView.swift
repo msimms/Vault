@@ -30,6 +30,7 @@ import SwiftUI
 struct TagsView: View {
 	@ObservedObject var appModel = AppState.shared
 	@Binding var isPushed : Bool
+	@Binding var isReadOnly : Bool
 	@Binding var tags : Array<String>
 	@State var isShowingNewTagView : Bool = false
 	@State var newTag : String = ""
@@ -58,6 +59,7 @@ struct TagsView: View {
 						}) {
 							Label("New Tag...", systemImage: "tag")
 						}
+						.opacity(self.isReadOnly ? 0 : 1)
 					}
 				}
 			}
