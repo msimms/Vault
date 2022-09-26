@@ -32,14 +32,18 @@ struct PifLabeledUrls: Codable {
 	var url: String
 }
 
-struct PifUrlsList: Codable {
-	var URLs: Array<PifLabeledUrls>
-	var password: String
+struct PifFields: Codable {
+	var k: String
+	var n: String
+	var v: String
+	var t: String
 }
 
 struct PifSecureContents: Codable {
-	var urls: PifUrlsList?
-	var notesPlan: String?
+	var urls: Array<PifLabeledUrls>?
+	var notesPlain: String?
+	var password: String?
+	var sections: PifFields?
 }
 
 struct PifEncoding: Codable {
@@ -63,11 +67,12 @@ class Importer {
 		let data = try String(contentsOfFile: fileName, encoding: .utf8)
 		let entries = data.components(separatedBy: .newlines)
 		for entry in entries {
-			
+
 			// 1Password puts a comment line between each entry.
 			if entry.starts(with: "***") == false {
 				print(entry)
 				let pifContents = try JSONDecoder().decode(PifEncoding.self, from: entry.data(using: .utf8)!)
+				let vaultItem = try createVaultItemFrom1Pif(contents: pifContents)
 			}
 		}
 	}

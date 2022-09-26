@@ -64,7 +64,5 @@ struct TagsView: View {
 				}
 			}
 		}
-		.padding(10)
-
 	}
 }

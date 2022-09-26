@@ -28,17 +28,21 @@
 import Foundation
 
 struct CardItemEncoding: Codable {
-	var vaultVersion: UInt8
-	var heading: String
-	var number: String
-	var note: String
-	var tags: Array<String>?
-	var lastModifiedTime: Date?
+	var vaultVersion: UInt8     // Version of this encoding
+	var heading: String         // Name of this card
+	var number: String          // Card number
+	var securityCode: UInt16    // Card security code
+	var expiry: Date?           // Card expiry date
+	var note: String            // Notes
+	var tags: Array<String>?    // Tags
+	var lastModifiedTime: Date? // Timestamp of the last update
 }
 
 class SecureCardItem: SecureVaultItem {
 	var heading: String = ""
 	var number: String = ""
+	var securityCode: UInt16 = 0
+	var expiry: Date?
 	var note: String = ""
 	var tags: Array<String> = []
 	var lastModifiedTime: Date?
@@ -55,6 +59,8 @@ class SecureCardItem: SecureVaultItem {
 
 		self.heading = json.heading
 		self.number = json.number
+		self.securityCode = json.securityCode
+		self.expiry = json.expiry
 		self.note = json.note
 		if json.tags != nil {
 			self.tags = json.tags!
@@ -66,7 +72,7 @@ class SecureCardItem: SecureVaultItem {
 	override func write(locationOfVaultItems: URL, masterKey: Data) throws {
 
 		// Encode everything as JSON.
-		let vaultData = CardItemEncoding(vaultVersion: self.vaultVersion, heading: self.heading, number: self.number, note: self.note, tags: self.tags, lastModifiedTime: self.lastModifiedTime)
+		let vaultData = CardItemEncoding(vaultVersion: self.vaultVersion, heading: self.heading, number: self.number, securityCode: self.securityCode, expiry: self.expiry, note: self.note, tags: self.tags, lastModifiedTime: self.lastModifiedTime)
 		let encoder = JSONEncoder()
 		let jsonData = try encoder.encode(vaultData)
 		let jsonStr = String(data: jsonData, encoding: .utf8)!

@@ -80,3 +80,30 @@ func createVaultItemFromFile(location: URL, masterKey: Data) throws -> SecureVau
 		return newItem
 	}
 }
+
+func createVaultItemFrom1Pif(contents: PifEncoding) throws -> SecureVaultItem {
+	if contents.typeName == "passwords.Password" {
+		var username = ""
+		var email = ""
+		let password = contents.secureContents.password
+		let note = contents.secureContents.notesPlain
+
+		if contents.secureContents.urls != nil {
+			for url in contents.secureContents.urls! {
+				
+			}
+		}
+
+		let vaultData = LoginItemEncoding(vaultVersion: Vault.kCurrentVaultVersion, website: contents.location!, username: username, email: email, password: password, note: note, tags: [], lastModifiedTime: Date(timeIntervalSince1970: TimeInterval(contents.updatedAt)))
+		let newItem = SecureLoginItem(json: vaultData)
+
+		return newItem
+	}
+	else if contents.typeName == "securenotes.SecureNote" {
+		let vaultData = NoteItemEncoding(vaultVersion: Vault.kCurrentVaultVersion, heading: contents.title, note: contents.secureContents.notesPlain!, tags: [], lastModifiedTime: Date(timeIntervalSince1970: TimeInterval(contents.updatedAt)))
+		let newItem = SecureNoteItem(json: vaultData)
+
+		return newItem
+	}
+	throw VaultException.runtimeError("Unknown import type.")
+}

@@ -28,14 +28,15 @@
 import Foundation
 
 struct LoginItemEncoding: Codable {
-	var vaultVersion: UInt8
-	var website: String
-	var username: String?
-	var email: String?
-	var password: String?
-	var note: String?
-	var tags: Array<String>?
-	var lastModifiedTime: Date?
+	var vaultVersion: UInt8     // Version of this encoding
+	var website: String         // Website name or URL
+	var username: String?       // Login username (optional)
+	var email: String?          // Login email (optional)
+	var password: String?       // Login password (optional)
+	var note: String?           // Notes (optional)
+	var tags: Array<String>?    // Tags (optional)
+	var urls: Array<String>?    // Additional URLSs (optiona)
+	var lastModifiedTime: Date? // Timestamp of the last update
 }
 
 class SecureLoginItem: SecureVaultItem {
@@ -45,6 +46,7 @@ class SecureLoginItem: SecureVaultItem {
 	var password: String = ""
 	var note: String = ""
 	var tags: Array<String> = []
+	var urls: Array<String> = []
 	var lastModifiedTime: Date?
 
 	/// Constructors

@@ -12,6 +12,8 @@ struct SecureCardView: View {
 	@State var item : SecureCardItem
 	@State var isNewItem = true
 	@State var isReadOnly = false
+	@State private var tempSecurityCode : String = ""
+	@State private var tempExpiryDate : String = ""
 
 	var body: some View {
 
@@ -25,18 +27,32 @@ struct SecureCardView: View {
 				Divider()
 				VStack(alignment: .leading) {
 					Group() {
-						Text("Title")
-							.fontWeight(.heavy)
-						TextField("Title", text: $item.heading)
-							.disabled(isReadOnly)
-						Text("Number")
-							.fontWeight(.heavy)
-						TextField("Number", text: $item.number)
-							.disabled(isReadOnly)
-						Text("Notes")
-							.fontWeight(.heavy)
-						TextEditor(text: $item.note)
-							.disabled(isReadOnly)
+						Group() {
+							Text("Title")
+								.fontWeight(.heavy)
+							TextField("Title", text: $item.heading)
+								.disabled(isReadOnly)
+						}
+						Group() {
+							Text("Number")
+								.fontWeight(.heavy)
+							TextField("Number", text: $item.number)
+								.disabled(isReadOnly)
+							Text("Security Code")
+								.fontWeight(.heavy)
+							TextField("Security Code", text: $tempSecurityCode)
+								.disabled(isReadOnly)
+							Text("Expiry Date")
+								.fontWeight(.heavy)
+							TextField("Expiry Date", text: $tempExpiryDate)
+								.disabled(isReadOnly)
+						}
+						Group() {
+							Text("Notes")
+								.fontWeight(.heavy)
+							TextEditor(text: $item.note)
+								.disabled(isReadOnly)
+						}
 					}
 					TagsView(isPushed: self.$isPushed, isReadOnly: self.$isReadOnly, tags: self.$item.tags)
 					LastModifiedView(isNewItem: isNewItem, timestamp: self.item.lastModifiedTime)

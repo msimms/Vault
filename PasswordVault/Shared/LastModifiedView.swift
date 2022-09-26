@@ -39,10 +39,13 @@ struct LastModifiedView: View {
 	}
 
 	var body: some View {
-		if (timestamp != nil) {
-			Text("Last Modified")
-				.fontWeight(.heavy)
+		Text("Last Modified")
+			.fontWeight(.heavy)
+		if timestamp != nil {
 			Text(timestamp!, formatter: dateFormatter)
+		}
+		else {
+			Text("Not set")
 		}
 	}
 }

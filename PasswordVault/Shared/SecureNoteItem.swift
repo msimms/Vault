@@ -28,11 +28,11 @@
 import Foundation
 
 struct NoteItemEncoding: Codable {
-	var vaultVersion: UInt8
-	var heading: String
-	var note: String
-	var tags: Array<String>?
-	var lastModifiedTime: Date?
+	var vaultVersion: UInt8     // Version of this encoding
+	var heading: String         // Name of this note
+	var note: String            // The note
+	var tags: Array<String>?    // Tags
+	var lastModifiedTime: Date? // Timestamp of the last update
 }
 
 class SecureNoteItem: SecureVaultItem {
