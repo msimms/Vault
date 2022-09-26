@@ -44,7 +44,8 @@ struct SecureCardView: View {
 								.disabled(isReadOnly)
 							Text("Expiry Date")
 								.fontWeight(.heavy)
-							TextField("Expiry Date", text: $tempExpiryDate)
+							DatePicker("Select Date", selection: $item.expiry, displayedComponents: [.date])
+								.datePickerStyle(.graphical)
 								.disabled(isReadOnly)
 						}
 						Group() {

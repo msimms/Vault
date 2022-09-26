@@ -32,7 +32,7 @@ struct CardItemEncoding: Codable {
 	var heading: String         // Name of this card
 	var number: String          // Card number
 	var securityCode: UInt16    // Card security code
-	var expiry: Date?           // Card expiry date
+	var expiry: Date            // Card expiry date
 	var note: String            // Notes
 	var tags: Array<String>?    // Tags
 	var lastModifiedTime: Date? // Timestamp of the last update
@@ -42,7 +42,7 @@ class SecureCardItem: SecureVaultItem {
 	var heading: String = ""
 	var number: String = ""
 	var securityCode: UInt16 = 0
-	var expiry: Date?
+	var expiry: Date = Date()
 	var note: String = ""
 	var tags: Array<String> = []
 	var lastModifiedTime: Date?
