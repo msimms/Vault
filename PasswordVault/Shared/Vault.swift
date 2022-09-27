@@ -56,6 +56,7 @@ class Vault : ObservableObject {
 	/// Semaphore that controls writes the vault item array.
 	private let vaultItemsSemaphore = DispatchSemaphore(value: 1)
 
+	/// Inserts the new vault item into the sorted list of vault items.
 	private func insertVaultItem(item: SecureVaultItem) {
 
 		// Wait for the semaphore.
@@ -68,8 +69,9 @@ class Vault : ObservableObject {
 		// Release the semaphore.
 		self.vaultItemsSemaphore.signal()
 	}
-	
-	private func processVaultFile(fileURL: URL) throws {
+
+	/// Reads and parses a vault item file.
+	private func processVaultItemFile(fileURL: URL) throws {
 
 		// Parse the file.
 		let item = try createVaultItemFromFile(location: fileURL, masterKey: self.masterKey!)
@@ -103,7 +105,7 @@ class Vault : ObservableObject {
 		sleep(5);
 	}
 
-	private func downloadVaultFile(fileToDownload: URL) throws {
+	private func downloadVaultItemFile(fileToDownload: URL) throws {
 
 		var downloadedFileName = fileToDownload.deletingPathExtension().lastPathComponent
 		downloadedFileName.removeFirst()
@@ -121,7 +123,7 @@ class Vault : ObservableObject {
 				guard let fileURL = item.value(forAttribute: NSMetadataItemURLKey) as? URL else { continue }
 
 				do {
-					try self.processVaultFile(fileURL: fileURL)
+					try self.processVaultItemFile(fileURL: fileURL)
 
 					query.stop()
 					NotificationCenter.default.removeObserver(self, name: NSNotification.Name.NSMetadataQueryDidUpdate, object: query)
@@ -186,7 +188,8 @@ class Vault : ObservableObject {
 		// Build the URL for the vault's master file.
 		self.vaultMasterFileUrl = self.vaultDirUrl?.appendingPathComponent("vault.json", isDirectory: false)
 	}
-	
+
+	/// Utility function for building the URL that iCloud uses to indicate that the file has not been downloaded.
 	private func buildICloudVaultMasterFileUrl() -> URL {
 		return self.vaultDirUrl!.appendingPathComponent(".vault.json.icloud", isDirectory: false)
 	}
@@ -378,12 +381,12 @@ class Vault : ObservableObject {
 				do {
 					// Does the file need to be downloaded from iCloud?
 					if listing.lastPathComponent.contains(".icloud") {
-						try self.downloadVaultFile(fileToDownload: listing)
+						try self.downloadVaultItemFile(fileToDownload: listing)
 					}
 
 					// If the file name is not a UUID then skip it as all valid files in this directory will have UUIDs for file names.
 					else if UUID(uuidString: listing.lastPathComponent) != nil {
-						try self.processVaultFile(fileURL: listing)
+						try self.processVaultItemFile(fileURL: listing)
 					}
 				} catch let error as NSError {
 					print("Error: Failed to read: \n\(error)")
