@@ -123,6 +123,7 @@ class AppState : ObservableObject {
 	/// Adds a new item to the vault.
 	func addItemToVault(item: SecureVaultItem) -> Bool {
 		do {
+			item.updateLastModifiedTime()
 			try self.vault.addItem(item: item)
 			try self.vault.readItems()
 			return true
@@ -137,6 +138,7 @@ class AppState : ObservableObject {
 	/// Adds a new item to the vault.
 	func updateVaultItem(item: SecureVaultItem) -> Bool {
 		do {
+			item.updateLastModifiedTime()
 			try self.vault.updateItem(item: item)
 			try self.vault.readItems()
 			return true

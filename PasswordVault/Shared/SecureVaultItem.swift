@@ -108,6 +108,10 @@ class SecureVaultItem: Codable, Identifiable, Comparable {
 	func title() -> String {
 		return ""
 	}
+
+	/// If the child class tracks the last modified time then this will trigger an update.
+	func updateLastModifiedTime() {
+	}
 }
 
 func < (lhs: SecureVaultItem, rhs: SecureVaultItem) -> Bool {
