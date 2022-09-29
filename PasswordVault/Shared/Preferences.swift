@@ -27,24 +27,27 @@
 
 import Foundation
 
+let PREF_KEY_VAULT_LOCATION = "Vault Location"
+let PREF_KEY_DEFAULT_VAULT_NAME = "Default Vault Name"
+
 class Preferences {
 	static func baseVaultsLocation() -> String? {
 		let mydefaults: UserDefaults = UserDefaults.standard
-		return mydefaults.string(forKey: "Vault Location")
+		return mydefaults.string(forKey: PREF_KEY_VAULT_LOCATION)
 	}
 	
 	static func setBaseVaultsLocation(location: String) {
 		let mydefaults: UserDefaults = UserDefaults.standard
-		mydefaults.set(location, forKey: "Vault Location")
+		mydefaults.set(location, forKey: PREF_KEY_VAULT_LOCATION)
 	}
 	
 	static func defaultVaultName() -> String? {
 		let mydefaults: UserDefaults = UserDefaults.standard
-		return mydefaults.string(forKey: "Default Vault Name")
+		return mydefaults.string(forKey: PREF_KEY_DEFAULT_VAULT_NAME)
 	}
 	
 	static func setDefaultVaultName(name: String) {
 		let mydefaults: UserDefaults = UserDefaults.standard
-		mydefaults.set(name, forKey: "Default Vault Name")
+		mydefaults.set(name, forKey: PREF_KEY_DEFAULT_VAULT_NAME)
 	}
 }
