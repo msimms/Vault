@@ -24,10 +24,11 @@ class Tests_macOS: XCTestCase {
 		let importer = Importer()
 		let testFilesLocation = URL(fileURLWithPath: #file.replacingOccurrences(of: "PasswordVault/Tests macOS/Tests_macOS.swift", with: "Test"))
 		let dirListing = try FileManager.default.contentsOfDirectory(at: testFilesLocation, includingPropertiesForKeys: nil)
+		var testVault = Vault()
 
 		for testFileLocation in dirListing {
 			do {
-				try importer.import_from(location: testFileLocation)
+				try importer.importFrom(location: testFileLocation, vault: testVault)
 			} catch {
 				print(error.localizedDescription)
 			}

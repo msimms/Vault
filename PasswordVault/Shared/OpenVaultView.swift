@@ -73,6 +73,8 @@ struct OpenVaultView: View {
 	@State var newItemType : VaultItemType = VaultItemType.login
 	@State private var showingFailedToDeleteAlert = false
 	@State private var showingDeleteVaultAlert = false
+	@State private var showingFailedImportAlert = false
+	@State private var showingFailedExportAlert = false
 
 	var body: some View {
 
@@ -156,21 +158,29 @@ struct OpenVaultView: View {
 								panel.canChooseDirectories = false
 
 								if panel.runModal() == .OK {
+									self.showingFailedImportAlert = !self.appModel.importVaultFromUrl(from: panel.url!)
 								}
 							}) {
 								Label("Import...", systemImage: "square.and.arrow.down")
 									.labelStyle(.titleAndIcon)
 							}
-							
+							.alert("Failed to import the data!", isPresented: $showingFailedImportAlert) {
+								Button("OK", role: .cancel) { }
+							}
+
 							// Export Data
 							Button(action: {
 								let panel = NSSavePanel()
 
 								if panel.runModal() == .OK {
+									self.showingFailedExportAlert = !self.appModel.exportVaultFromUrl(to: panel.directoryURL!)
 								}
 							}) {
 								Label("Export...", systemImage: "square.and.arrow.up")
 									.labelStyle(.titleAndIcon)
+							}
+							.alert("Failed to export the data!", isPresented: $showingFailedExportAlert) {
+								Button("OK", role: .cancel) { }
 							}
 
 							Divider()

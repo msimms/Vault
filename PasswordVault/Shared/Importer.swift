@@ -62,7 +62,7 @@ struct PifEncoding: Codable {
 
 class Importer {
 
-	func import_from_1pif(location: URL) throws {
+	func importFrom1pif(location: URL, vault: Vault) throws {
 		let fileName = location.path
 		let data = try String(contentsOfFile: fileName, encoding: .utf8)
 		let entries = data.components(separatedBy: .newlines)
@@ -73,13 +73,15 @@ class Importer {
 				print(entry)
 				let pifContents = try JSONDecoder().decode(PifEncoding.self, from: entry.data(using: .utf8)!)
 				let vaultItem = try createVaultItemFrom1Pif(contents: pifContents)
+				
+				try vault.addItem(item: vaultItem)
 			}
 		}
 	}
 
-	func import_from(location: URL) throws {
+	func importFrom(location: URL, vault: Vault) throws {
 		if location.pathExtension == "1pif" {
-			try self.import_from_1pif(location: location)
+			try self.importFrom1pif(location: location, vault: vault)
 		}
 	}
 }

@@ -55,6 +55,8 @@
 		272A2C942766634F00E8DC9C /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272A2C922766634F00E8DC9C /* LockView.swift */; };
 		27384FB0277270C8002BD39D /* Crypto in Frameworks */ = {isa = PBXBuildFile; productRef = 27384FAF277270C8002BD39D /* Crypto */; };
 		27384FB2277270C8002BD39D /* _CryptoExtras in Frameworks */ = {isa = PBXBuildFile; productRef = 27384FB1277270C8002BD39D /* _CryptoExtras */; };
+		2740E08628E620F100293B71 /* Exporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2740E08528E620F100293B71 /* Exporter.swift */; };
+		2740E08728E6260100293B71 /* Exporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2740E08528E620F100293B71 /* Exporter.swift */; };
 		276A059227A8903500B030E1 /* SecureLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276A059127A8903500B030E1 /* SecureLoginView.swift */; };
 		276A059327A8903500B030E1 /* SecureLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276A059127A8903500B030E1 /* SecureLoginView.swift */; };
 		276A060F27AEFCC700B030E1 /* iOS in Resources */ = {isa = PBXBuildFile; fileRef = 276A060E27AEFCC700B030E1 /* iOS */; };
@@ -131,6 +133,7 @@
 		272A2C7A2766602F00E8DC9C /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		272A2C7C2766602F00E8DC9C /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
 		272A2C922766634F00E8DC9C /* LockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockView.swift; sourceTree = "<group>"; };
+		2740E08528E620F100293B71 /* Exporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exporter.swift; sourceTree = "<group>"; };
 		276A059127A8903500B030E1 /* SecureLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureLoginView.swift; sourceTree = "<group>"; };
 		276A060E27AEFCC700B030E1 /* iOS */ = {isa = PBXFileReference; lastKnownFileType = folder; path = iOS; sourceTree = "<group>"; };
 		276A061127AEFF3400B030E1 /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
@@ -198,6 +201,7 @@
 			children = (
 				2709C268276D80A9008812AD /* AppState.swift */,
 				2709C26E276EB376008812AD /* AppView.swift */,
+				2740E08528E620F100293B71 /* Exporter.swift */,
 				27013B7328CBBA81000244D1 /* Importer.swift */,
 				27E6894428919F1600755424 /* ItemButtonView.swift */,
 				27E689472891BF6900755424 /* LastModifiedView.swift */,
@@ -350,7 +354,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1310;
-				LastUpgradeCheck = 1320;
+				LastUpgradeCheck = 1400;
 				TargetAttributes = {
 					272A2C5C2766602F00E8DC9C = {
 						CreatedOnToolsVersion = 13.1;
@@ -447,6 +451,7 @@
 				27CAB0B02767D4650064877A /* SecureLoginItem.swift in Sources */,
 				27E6894B28997EA000755424 /* NewTagView.swift in Sources */,
 				276A061227AEFF3400B030E1 /* Preferences.swift in Sources */,
+				2740E08628E620F100293B71 /* Exporter.swift in Sources */,
 				27CAB0B52767D99C0064877A /* SecureVaultItem.swift in Sources */,
 				271CBCCA2812EAD500265841 /* SecureNoteView.swift in Sources */,
 				271B828F283075E2002F5D2C /* SecureCardItem.swift in Sources */,
@@ -479,6 +484,7 @@
 				27CAB0B12767D4650064877A /* SecureLoginItem.swift in Sources */,
 				27E6894C28997EA000755424 /* NewTagView.swift in Sources */,
 				276A061327AEFF3400B030E1 /* Preferences.swift in Sources */,
+				2740E08728E6260100293B71 /* Exporter.swift in Sources */,
 				27CAB0B62767D99C0064877A /* SecureVaultItem.swift in Sources */,
 				271CBCCB2812EAD500265841 /* SecureNoteView.swift in Sources */,
 				271B8290283075E2002F5D2C /* SecureCardItem.swift in Sources */,
@@ -577,6 +583,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -638,6 +645,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -741,6 +749,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 7;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = F42C985T48;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -772,6 +781,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 7;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = F42C985T48;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -851,6 +861,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = F42C985T48;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -876,6 +887,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = F42C985T48;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (

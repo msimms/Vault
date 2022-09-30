@@ -183,6 +183,25 @@ class AppState : ObservableObject {
 		return false
 	}
 
+	/// Given a URL, parses the file and attempts to import it, appending the data to the current vault.
+	func importVaultFromUrl(from: URL) -> Bool {
+		do {
+			let importer = Importer()
+			try importer.importFrom(location: from, vault: self.vault)
+			return true
+		} catch {
+			print(error.localizedDescription)
+		}
+		return false
+	}
+
+	/// Exports the current vault to an (unencrypted) file.
+	func exportVaultFromUrl(to: URL) -> Bool {
+		let exporter = Exporter()
+		exporter.exportToUrl(location: to, vault: self.vault)
+		return false
+	}
+
 	func updateState() {
 		do {
 			if try self.defaultVaultExists() || self.listVaults().count > 0 {
