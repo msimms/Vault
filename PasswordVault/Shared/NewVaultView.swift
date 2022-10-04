@@ -55,9 +55,9 @@ struct NewVaultView: View {
 	@State private var confirmPassword: String = ""
 	@State private var vaultLocation: String = ""
 	@State private var vaultName: String = "Main Vault"
-	@State private var showingPasswordsDoNotMatchAlert = false
-	@State private var showingVaultCreationFailedAlert = false
-	@State private var showPassword = false
+	@State private var showingPasswordsDoNotMatchAlert: Bool = false
+	@State private var showingVaultCreationFailedAlert: Bool = false
+	@State private var showPassword: Bool = false
 
 	func createVault() {
 

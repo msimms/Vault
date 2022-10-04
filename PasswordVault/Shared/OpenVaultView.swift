@@ -68,13 +68,13 @@ func subtitle(item: SecureVaultItem) -> String {
 struct OpenVaultView: View {
 	@ObservedObject var appModel = AppState.shared
 	@ObservedObject var vault = AppState.shared.vault
-	@Binding var isPushed : Bool
-	@State var showNewItem : Bool = false
-	@State var newItemType : VaultItemType = VaultItemType.login
-	@State private var showingFailedToDeleteAlert = false
-	@State private var showingDeleteVaultAlert = false
-	@State private var showingFailedImportAlert = false
-	@State private var showingFailedExportAlert = false
+	@Binding var isPushed: Bool
+	@State var showNewItem: Bool = false
+	@State var newItemType: VaultItemType = VaultItemType.login
+	@State private var showingFailedToDeleteAlert: Bool = false
+	@State private var showingDeleteVaultAlert: Bool = false
+	@State private var showingFailedImportAlert: Bool = false
+	@State private var showingFailedExportAlert: Bool = false
 
 	var body: some View {
 

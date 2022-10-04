@@ -30,12 +30,12 @@ import SwiftUI
 /// Prompts the user for the credentials to open the vault.
 struct LockView: View {
 	@ObservedObject var appModel = AppState.shared
-	@Binding var isPushed : Bool
+	@Binding var isPushed: Bool
 	@State private var password: String = ""
-	@State private var showingVaultOpenFailedAlert = false
-	@State private var showingNoVaultSelectedAlert = false
-	@State private var showPassword = false
-	@State private var isBusy = false
+	@State private var showingVaultOpenFailedAlert: Bool = false
+	@State private var showingNoVaultSelectedAlert: Bool = false
+	@State private var showPassword: Bool = false
+	@State private var isBusy: Bool = false
 	@State private var selectedVault: String? = Preferences.defaultVaultName()
 
 	func vaultIsSelected() -> Bool {

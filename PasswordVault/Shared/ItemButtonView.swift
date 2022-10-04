@@ -29,14 +29,14 @@ import SwiftUI
 
 struct ItemButtonView: View {
 	@ObservedObject var appModel = AppState.shared
-	@Binding var isPushed : Bool
-	@Binding var isReadOnly : Bool
-	@State var item : SecureVaultItem
-	@State var isNewItem = true
-	@State private var showingFailedToAddAlert = false
-	@State private var showingFailedToUpdateAlert = false
-	@State private var showingFailedToDeleteAlert = false
-	@State private var showingDeleteVaultItemAlert = false
+	@Binding var isPushed: Bool
+	@Binding var isReadOnly: Bool
+	@State var item: SecureVaultItem
+	@State var isNewItem: Bool = true
+	@State private var showingFailedToAddAlert: Bool = false
+	@State private var showingFailedToUpdateAlert: Bool = false
+	@State private var showingFailedToDeleteAlert: Bool = false
+	@State private var showingDeleteVaultItemAlert: Bool = false
 	@State private var editUpdateButtonTitle: String = "Edit"
 	@State private var editUpdateButtonImage: String = "pencil"
 	

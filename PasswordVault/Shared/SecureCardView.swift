@@ -8,12 +8,12 @@ import SwiftUI
 /// Displays a login item from the vault.
 struct SecureCardView: View {
 	@ObservedObject var appModel = AppState.shared
-	@Binding var isPushed : Bool
-	@State var item : SecureCardItem
-	@State var isNewItem = true
-	@State var isReadOnly = false
-	@State private var tempSecurityCode : String = ""
-	@State private var tempExpiryDate : String = ""
+	@Binding var isPushed: Bool
+	@State var item: SecureCardItem
+	@State var isNewItem: Bool = true
+	@State var isReadOnly: Bool = false
+	@State private var tempSecurityCode: String = ""
+	@State private var tempExpiryDate: String = ""
 
 	var body: some View {
 

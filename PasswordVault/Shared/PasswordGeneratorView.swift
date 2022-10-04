@@ -28,12 +28,12 @@
 import SwiftUI
 
 struct PasswordGeneratorView: View {
-	@Binding var isPushed : Bool
-	@Binding var existingPassword : String
-	@State var suggestedPassword : String = ""
-	@State private var numChars : Double = 8
-	@State private var numWords : Double = 3
-	@State private var alphaNumOnly = false
+	@Binding var isPushed: Bool
+	@Binding var existingPassword: String
+	@State var suggestedPassword: String = ""
+	@State private var numChars: Double = 8
+	@State private var numWords: Double = 3
+	@State private var alphaNumOnly: Bool = false
 	@State var gen = PasswordGenerator()
 
 	var body: some View {

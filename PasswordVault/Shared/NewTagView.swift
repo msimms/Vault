@@ -28,9 +28,9 @@
 import SwiftUI
 
 struct NewTagView: View {
-	@Binding var isPushed : Bool
-	@Binding var tags : Array<String>
-	@State var newTag : String = ""
+	@Binding var isPushed: Bool
+	@Binding var tags: Array<String>
+	@State var newTag: String = ""
 
 	var body: some View {
 		VStack(alignment: .center) {
