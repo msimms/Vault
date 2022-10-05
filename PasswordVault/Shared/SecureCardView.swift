@@ -12,8 +12,15 @@ struct SecureCardView: View {
 	@State var item: SecureCardItem
 	@State var isNewItem: Bool = true
 	@State var isReadOnly: Bool = false
+	@State var showsDatePicker: Bool = false
 	@State private var tempSecurityCode: String = ""
 	@State private var tempExpiryDate: String = ""
+
+	let dateFormatter: DateFormatter = {
+		let df = DateFormatter()
+		df.dateStyle = .medium
+		return df
+	}()
 
 	var body: some View {
 
@@ -42,11 +49,21 @@ struct SecureCardView: View {
 								.fontWeight(.heavy)
 							TextField("Security Code", text: $tempSecurityCode)
 								.disabled(isReadOnly)
-							Text("Expiry Date")
-								.fontWeight(.heavy)
-							DatePicker("Select Date", selection: $item.expiry, displayedComponents: [.date])
-								.datePickerStyle(.graphical)
-								.disabled(isReadOnly)
+//								.keyboardType(.decimalPad)
+							HStack {
+								Text("Expiry Date")
+								Spacer()
+								Text("\(self.dateFormatter.string(from: item.expiry))")
+									.onTapGesture {
+										self.showsDatePicker.toggle()
+									}
+									.padding(EdgeInsets(top: 2, leading: 10, bottom: 2, trailing: 10))
+									.disabled(isReadOnly)
+							}
+							if self.showsDatePicker {
+								DatePicker("", selection: $item.expiry, displayedComponents: .date)
+									.datePickerStyle(.graphical)
+							}
 						}
 						Group() {
 							Text("Notes")
