@@ -216,7 +216,7 @@ class AppState : ObservableObject {
 				}
 			}
 			else {
-				self.viewModel.update(vaultState: VaultState.VaultNotCreated)
+				self.viewModel.update(vaultState: VaultState.CreateNewVault)
 			}
 		} catch let error as NSError {
 			print("Error: Failed to update state: \n\(error)")

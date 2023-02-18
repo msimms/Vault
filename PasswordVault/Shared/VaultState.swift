@@ -29,7 +29,7 @@ import Foundation
 
 /// Used to indicate the state of the vault (open, closed, etc.) so the view can be rendered correctly..
 enum VaultState {
-	case VaultNotCreated
+	case CreateNewVault
 	case VaultClosed
 	case VaultOpen
 }
