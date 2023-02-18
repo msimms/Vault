@@ -68,6 +68,13 @@ struct LockView: View {
 								.labelStyle(.titleAndIcon)
 						}
 					}
+					Button(action: {
+						VaultDisplayState.shared.vaultState = VaultState.CreateNewVault
+						self.isPushed = false
+					}) {
+						Label("Create a New Vault", systemImage: "plus")
+							.labelStyle(.titleAndIcon)
+					}
 				} label: {
 					if vaultIsSelected() {
 						Text("\(selectedVault!)")
