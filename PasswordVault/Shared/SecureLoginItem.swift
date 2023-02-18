@@ -29,6 +29,7 @@ import Foundation
 
 struct LoginItemEncoding: Codable {
 	var vaultVersion: UInt8     // Version of this encoding
+	var title: String?          // Website name or URL
 	var website: String         // Website name or URL
 	var username: String?       // Login username (optional)
 	var email: String?          // Login email (optional)
@@ -40,6 +41,7 @@ struct LoginItemEncoding: Codable {
 }
 
 class SecureLoginItem: SecureVaultItem {
+	var title: String = ""
 	var website: String = ""
 	var username: String = ""
 	var email: String = ""
@@ -58,9 +60,9 @@ class SecureLoginItem: SecureVaultItem {
 	}
 	init(json: LoginItemEncoding) {
 		super.init(json: json)
-		
-		if json.note != nil {
-			self.note = json.note!
+
+		if json.title != nil {
+			self.title = json.title!
 		}
 		self.website = json.website
 		if json.username != nil {
@@ -72,8 +74,14 @@ class SecureLoginItem: SecureVaultItem {
 		if json.password != nil {
 			self.password = json.password!
 		}
+		if json.note != nil {
+			self.note = json.note!
+		}
 		if json.tags != nil {
 			self.tags = json.tags!
+		}
+		if json.urls != nil {
+			self.tags = json.urls!
 		}
 		self.lastModifiedTime = json.lastModifiedTime
 	}
@@ -90,12 +98,7 @@ class SecureLoginItem: SecureVaultItem {
 		// Encrypt and write the data.
 		try super.write(locationOfVaultItems: locationOfVaultItems, masterKey: masterKey, contents: jsonStr, itemType: VaultItemType.login)
 	}
-	
-	/// Returns the string to use as the title when viewing this item.
-	override func title() -> String {
-		return self.website
-	}
-	
+
 	/// Updates the last modified timestamp.
 	override func updateLastModifiedTime() {
 		self.lastModifiedTime = Date()

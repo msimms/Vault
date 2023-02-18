@@ -21,10 +21,23 @@ class Tests_macOS: XCTestCase {
     }
 
 	func testImport() throws {
+		let TEST_VAULT_NAME = "testVault"
+		let TEST_VAULT_PASS = "testVaultPassword1234"
+
 		let importer = Importer()
 		let testFilesLocation = URL(fileURLWithPath: #file.replacingOccurrences(of: "PasswordVault/Tests macOS/Tests_macOS.swift", with: "Test"))
 		let dirListing = try FileManager.default.contentsOfDirectory(at: testFilesLocation, includingPropertiesForKeys: nil)
-		var testVault = Vault()
+		let baseLocation = Preferences.baseVaultsLocation()
+		let testVault = Vault()
+		
+		// Create the vault.
+		if baseLocation == nil {
+			try testVault.create(location: "", name: TEST_VAULT_NAME, key: TEST_VAULT_PASS)
+		}
+		if baseLocation == nil {
+			throw VaultException.runtimeError("Test vault not created!")
+		}
+		try testVault.open(vaultLocation: baseLocation!, name: TEST_VAULT_NAME, key: TEST_VAULT_PASS)
 
 		for testFileLocation in dirListing {
 			do {

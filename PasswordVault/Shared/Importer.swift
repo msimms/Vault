@@ -62,15 +62,16 @@ struct PifEncoding: Codable {
 
 class Importer {
 
+	/// Entry point for importing a 1pif file.
 	func importFrom1pif(location: URL, vault: Vault) throws {
 		let fileName = location.path
 		let data = try String(contentsOfFile: fileName, encoding: .utf8)
 		let entries = data.components(separatedBy: .newlines)
+
 		for entry in entries {
 
 			// 1Password puts a comment line between each entry.
 			if entry.starts(with: "***") == false {
-				print(entry)
 				let pifContents = try JSONDecoder().decode(PifEncoding.self, from: entry.data(using: .utf8)!)
 				let vaultItem = try createVaultItemFrom1Pif(contents: pifContents)
 				
@@ -79,6 +80,8 @@ class Importer {
 		}
 	}
 
+	/// Entry point for importing a file.
+	/// The import function will be determined based on the file's extension.
 	func importFrom(location: URL, vault: Vault) throws {
 		if location.pathExtension == "1pif" {
 			try self.importFrom1pif(location: location, vault: vault)

@@ -56,6 +56,7 @@ class AppState : ObservableObject {
 
 		do {
 			let baseLocation = Preferences.baseVaultsLocation()
+
 			if baseLocation != nil {
 				let baseUrl = try self.vault.convertVaultLocationToUrl(location: baseLocation!)
 				let dirListing = try FileManager.default.contentsOfDirectory(at: baseUrl, includingPropertiesForKeys: nil)

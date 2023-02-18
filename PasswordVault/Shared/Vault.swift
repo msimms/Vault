@@ -153,6 +153,8 @@ class Vault : ObservableObject {
 		return nil
 	}
 
+	/// Returns a URL that corresponds to the base location for each of the vaults.
+	/// An empty string indicates that the vaults are stored on the user's iCloud drive.
 	func convertVaultLocationToUrl(location: String) throws -> URL {
 
 		var baseUrl = URL(string: "")

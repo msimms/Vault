@@ -1,6 +1,6 @@
 //
-//  AppView.swift
-//  Created by Michael Simms on 12/18/21.
+//  VaultDisplayState.swift
+//  Created by Michael Simms on 2/18/23.
 //
 
 // MIT License
@@ -27,51 +27,28 @@
 
 import SwiftUI
 
-/// This is the first view that is shown to the user.
-struct AppView: View {
-	@ObservedObject var appModel = AppState.shared
-	@ObservedObject var viewModel = VaultDisplayState.shared
-
-	@State var pushed : Bool = true
-
-	var body: some View {
-
-		NavigationView {
-
-			// If we can't find a vault then ask the user to create one.
-			// If one exists then prompt the user to open it.
-			// If one exists and is open/unlocked then display it.
-
-			VStack {
-				NavigationLink(
-					destination: viewModel.createView(isPushed: self.$pushed),
-					isActive: self.$pushed
-				) {
-					EmptyView()
-				}
-#if !os(macOS)
-				.isDetailLink(false)
-#endif
-				.hidden()
-				Button(viewModel.createButtonText()) {
-					self.pushed = true
-				}
-				.padding()
-				.background(Color.blue)
-				.foregroundColor(.white)
-				.cornerRadius(40)
-				.frame(width: 160)
-			}
-		}
-#if !os(macOS)
-		.navigationBarTitle("")
-		.navigationBarHidden(true)
-#endif
+final class VaultDisplayState: ObservableObject {
+	static let shared = VaultDisplayState()
+	@Published var vaultState: VaultState = VaultState.VaultNotCreated
+	
+	func update(vaultState: VaultState) {
+		self.vaultState = vaultState
 	}
-}
-
-struct AppView_Previews: PreviewProvider {
-    static var previews: some View {
-        AppView()
-    }
+	
+	func createButtonText() -> String {
+		switch (self.vaultState) {
+		case VaultState.VaultNotCreated: return "Create Vault"
+		case VaultState.VaultClosed: return "Open Vault"
+		case VaultState.VaultOpen: return "View Vault"
+		}
+	}
+	
+	@ViewBuilder
+	func createView(isPushed: Binding<Bool>) -> some View {
+		switch (self.vaultState) {
+		case VaultState.VaultNotCreated: NewVaultView(isPushed: isPushed)
+		case VaultState.VaultClosed: LockView(isPushed: isPushed)
+		case VaultState.VaultOpen: OpenVaultView(isPushed: isPushed)
+		}
+	}
 }

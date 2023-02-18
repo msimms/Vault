@@ -1,6 +1,6 @@
 //
-//  AppView.swift
-//  Created by Michael Simms on 12/18/21.
+//  VaultState.swift
+//  Created by Michael Simms on 2/18/23.
 //
 
 // MIT License
@@ -25,53 +25,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import SwiftUI
+import Foundation
 
-/// This is the first view that is shown to the user.
-struct AppView: View {
-	@ObservedObject var appModel = AppState.shared
-	@ObservedObject var viewModel = VaultDisplayState.shared
-
-	@State var pushed : Bool = true
-
-	var body: some View {
-
-		NavigationView {
-
-			// If we can't find a vault then ask the user to create one.
-			// If one exists then prompt the user to open it.
-			// If one exists and is open/unlocked then display it.
-
-			VStack {
-				NavigationLink(
-					destination: viewModel.createView(isPushed: self.$pushed),
-					isActive: self.$pushed
-				) {
-					EmptyView()
-				}
-#if !os(macOS)
-				.isDetailLink(false)
-#endif
-				.hidden()
-				Button(viewModel.createButtonText()) {
-					self.pushed = true
-				}
-				.padding()
-				.background(Color.blue)
-				.foregroundColor(.white)
-				.cornerRadius(40)
-				.frame(width: 160)
-			}
-		}
-#if !os(macOS)
-		.navigationBarTitle("")
-		.navigationBarHidden(true)
-#endif
-	}
-}
-
-struct AppView_Previews: PreviewProvider {
-    static var previews: some View {
-        AppView()
-    }
+/// Used to indicate the state of the vault (open, closed, etc.) so the view can be rendered correctly..
+enum VaultState {
+	case VaultNotCreated
+	case VaultClosed
+	case VaultOpen
 }
