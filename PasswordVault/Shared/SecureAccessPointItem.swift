@@ -1,11 +1,11 @@
 //
-//  SecureLoginItem.swift
-//  Created by Michael Simms on 12/13/21.
+//  SecureAccessPointItem.swift
+//  Created by Michael Simms on 2/19/23.
 //
 
 // MIT License
 //
-// Copyright (c) 2022 Mike Simms
+// Copyright (c) 2023 Mike Simms
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,28 +27,20 @@
 
 import Foundation
 
-struct SecureLoginItemEncoding: Codable {
+struct SecureAccessPointEncoding: Codable {
 	var vaultVersion: UInt8     // Version of this encoding
-	var title: String?          // Website title
-	var website: String         // Website name or URL
-	var username: String?       // Login username (optional)
-	var email: String?          // Login email (optional)
-	var password: String?       // Login password (optional)
+	var name: String            // Access point name
+	var password: String        // Login password
 	var note: String?           // Notes (optional)
 	var tags: Array<String>?    // Tags (optional)
-	var urls: Array<String>?    // Additional URLSs (optiona)
 	var lastModifiedTime: Date? // Timestamp of the last update
 }
 
-class SecureLoginItem: SecureVaultItem {
-	var title: String = ""
-	var website: String = ""
-	var username: String = ""
-	var email: String = ""
+class SecureAccessPointItem: SecureVaultItem {
+	var name: String = ""
 	var password: String = ""
 	var note: String = ""
 	var tags: Array<String> = []
-	var urls: Array<String> = []
 	var lastModifiedTime: Date?
 	
 	/// Constructors
@@ -58,30 +50,16 @@ class SecureLoginItem: SecureVaultItem {
 	override init() {
 		super.init()
 	}
-	init(json: SecureLoginItemEncoding) {
+	init(json: SecureAccessPointEncoding) {
 		super.init(json: json)
 
-		if json.title != nil {
-			self.title = json.title!
-		}
-		self.website = json.website
-		if json.username != nil {
-			self.username = json.username!
-		}
-		if json.email != nil {
-			self.email = json.email!
-		}
-		if json.password != nil {
-			self.password = json.password!
-		}
+		self.name = json.name
+		self.password = json.password
 		if json.note != nil {
 			self.note = json.note!
 		}
 		if json.tags != nil {
 			self.tags = json.tags!
-		}
-		if json.urls != nil {
-			self.tags = json.urls!
 		}
 		self.lastModifiedTime = json.lastModifiedTime
 	}
@@ -90,7 +68,7 @@ class SecureLoginItem: SecureVaultItem {
 	override func write(locationOfVaultItems: URL, masterKey: Data) throws {
 		
 		// Encode everything as JSON.
-		let vaultData = SecureLoginItemEncoding(vaultVersion: self.vaultVersion, website: self.website, username: self.username, email: self.email, password: self.password, note: self.note, tags: self.tags, lastModifiedTime: self.lastModifiedTime)
+		let vaultData = SecureAccessPointEncoding(vaultVersion: self.vaultVersion, name: self.name, password: self.password, note: self.note, tags: self.tags, lastModifiedTime: self.lastModifiedTime)
 		let encoder = JSONEncoder()
 		let jsonData = try encoder.encode(vaultData)
 		let jsonStr = String(data: jsonData, encoding: .utf8)!
@@ -99,19 +77,6 @@ class SecureLoginItem: SecureVaultItem {
 		try super.write(locationOfVaultItems: locationOfVaultItems, masterKey: masterKey, contents: jsonStr, itemType: VaultItemType.login)
 	}
 
-	/// Returns the string to use as the title when viewing this item.
-	override func displayTitle() -> String {
-		if self.title.count == 0 {
-			return self.website
-		}
-		return self.title
-	}
-	
-	/// Returns the string to use as the subtitle when viewing this item.
-	override func displaySubtitle() -> String {
-		return self.email
-	}
-	
 	/// Updates the last modified timestamp.
 	override func updateLastModifiedTime() {
 		self.lastModifiedTime = Date()

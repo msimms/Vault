@@ -101,6 +101,14 @@
 		2752B09529A170BC0067F858 /* ItemButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6894428919F1600755424 /* ItemButtonView.swift */; };
 		2752B09629A170C40067F858 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2709C26E276EB376008812AD /* AppView.swift */; };
 		2752B09729A170C50067F858 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2709C26E276EB376008812AD /* AppView.swift */; };
+		2752B09A29A2E79F0067F858 /* SecureAccessPointItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2752B09829A2E79F0067F858 /* SecureAccessPointItem.swift */; };
+		2752B09B29A2E79F0067F858 /* SecureAccessPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2752B09929A2E79F0067F858 /* SecureAccessPointView.swift */; };
+		2752B09C29A2F2FA0067F858 /* SecureAccessPointItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2752B09829A2E79F0067F858 /* SecureAccessPointItem.swift */; };
+		2752B09D29A2F2FB0067F858 /* SecureAccessPointItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2752B09829A2E79F0067F858 /* SecureAccessPointItem.swift */; };
+		2752B09E29A2F2FB0067F858 /* SecureAccessPointItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2752B09829A2E79F0067F858 /* SecureAccessPointItem.swift */; };
+		2752B09F29A2F2FE0067F858 /* SecureAccessPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2752B09929A2E79F0067F858 /* SecureAccessPointView.swift */; };
+		2752B0A029A2F2FF0067F858 /* SecureAccessPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2752B09929A2E79F0067F858 /* SecureAccessPointView.swift */; };
+		2752B0A129A2F3000067F858 /* SecureAccessPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2752B09929A2E79F0067F858 /* SecureAccessPointView.swift */; };
 		276A059227A8903500B030E1 /* SecureLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276A059127A8903500B030E1 /* SecureLoginView.swift */; };
 		276A059327A8903500B030E1 /* SecureLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276A059127A8903500B030E1 /* SecureLoginView.swift */; };
 		276A060F27AEFCC700B030E1 /* iOS in Resources */ = {isa = PBXBuildFile; fileRef = 276A060E27AEFCC700B030E1 /* iOS */; };
@@ -180,6 +188,8 @@
 		2740E08528E620F100293B71 /* Exporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exporter.swift; sourceTree = "<group>"; };
 		2752B06E29A16EE40067F858 /* VaultState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultState.swift; sourceTree = "<group>"; };
 		2752B07329A16F9F0067F858 /* VaultDisplayState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultDisplayState.swift; sourceTree = "<group>"; };
+		2752B09829A2E79F0067F858 /* SecureAccessPointItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureAccessPointItem.swift; sourceTree = "<group>"; };
+		2752B09929A2E79F0067F858 /* SecureAccessPointView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureAccessPointView.swift; sourceTree = "<group>"; };
 		276A059127A8903500B030E1 /* SecureLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureLoginView.swift; sourceTree = "<group>"; };
 		276A060E27AEFCC700B030E1 /* iOS */ = {isa = PBXFileReference; lastKnownFileType = folder; path = iOS; sourceTree = "<group>"; };
 		276A061127AEFF3400B030E1 /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
@@ -260,6 +270,8 @@
 				27196E2228B99634003F47D8 /* PasswordGeneratorView.swift */,
 				272A2C562766602F00E8DC9C /* PasswordVaultApp.swift */,
 				276A061127AEFF3400B030E1 /* Preferences.swift */,
+				2752B09829A2E79F0067F858 /* SecureAccessPointItem.swift */,
+				2752B09929A2E79F0067F858 /* SecureAccessPointView.swift */,
 				271B828E283075E2002F5D2C /* SecureCardItem.swift */,
 				271B82912830783F002F5D2C /* SecureCardView.swift */,
 				27CAB0AF2767D4650064877A /* SecureLoginItem.swift */,
@@ -494,10 +506,12 @@
 				27B03AD5281AFBA1009131E8 /* VaultItemFactory.swift in Sources */,
 				271CBCCD2812EB7000265841 /* SecureNoteItem.swift in Sources */,
 				2709C26C276EA9FD008812AD /* NewVaultView.swift in Sources */,
+				2752B09A29A2E79F0067F858 /* SecureAccessPointItem.swift in Sources */,
 				27196E2328B99634003F47D8 /* PasswordGeneratorView.swift in Sources */,
 				27013B7428CBBA81000244D1 /* Importer.swift in Sources */,
 				27CAB0B02767D4650064877A /* SecureLoginItem.swift in Sources */,
 				27E6894B28997EA000755424 /* NewTagView.swift in Sources */,
+				2752B09B29A2E79F0067F858 /* SecureAccessPointView.swift in Sources */,
 				2752B07429A16F9F0067F858 /* VaultDisplayState.swift in Sources */,
 				276A061227AEFF3400B030E1 /* Preferences.swift in Sources */,
 				2740E08628E620F100293B71 /* Exporter.swift in Sources */,
@@ -529,10 +543,12 @@
 				27B03AD6281AFBA1009131E8 /* VaultItemFactory.swift in Sources */,
 				271CBCCE2812EB7000265841 /* SecureNoteItem.swift in Sources */,
 				2709C26D276EA9FD008812AD /* NewVaultView.swift in Sources */,
+				2752B09C29A2F2FA0067F858 /* SecureAccessPointItem.swift in Sources */,
 				27196E2428B99634003F47D8 /* PasswordGeneratorView.swift in Sources */,
 				27013B7528CBBA81000244D1 /* Importer.swift in Sources */,
 				27CAB0B12767D4650064877A /* SecureLoginItem.swift in Sources */,
 				27E6894C28997EA000755424 /* NewTagView.swift in Sources */,
+				2752B09F29A2F2FE0067F858 /* SecureAccessPointView.swift in Sources */,
 				2752B07529A16FAC0067F858 /* VaultDisplayState.swift in Sources */,
 				276A061327AEFF3400B030E1 /* Preferences.swift in Sources */,
 				2740E08728E6260100293B71 /* Exporter.swift in Sources */,
@@ -575,8 +591,10 @@
 				2752B08229A170840067F858 /* SecureLoginView.swift in Sources */,
 				2752B07E29A170460067F858 /* Exporter.swift in Sources */,
 				2752B09329A170B70067F858 /* LastModifiedView.swift in Sources */,
+				2752B0A029A2F2FF0067F858 /* SecureAccessPointView.swift in Sources */,
 				272A2C6F2766602F00E8DC9C /* Tests_iOS.swift in Sources */,
 				2752B09029A170B00067F858 /* NewTagView.swift in Sources */,
+				2752B09D29A2F2FB0067F858 /* SecureAccessPointItem.swift in Sources */,
 				2752B08A29A1709F0067F858 /* PasswordVaultApp.swift in Sources */,
 				27CAB0AD2766BE450064877A /* Vault.swift in Sources */,
 				2752B08E29A170AA0067F858 /* PasswordGenerator.swift in Sources */,
@@ -612,8 +630,10 @@
 				2752B08329A170850067F858 /* SecureLoginView.swift in Sources */,
 				2752B07F29A170470067F858 /* Exporter.swift in Sources */,
 				2752B09229A170B60067F858 /* LastModifiedView.swift in Sources */,
+				2752B0A129A2F3000067F858 /* SecureAccessPointView.swift in Sources */,
 				27CAB0AE2766BE450064877A /* Vault.swift in Sources */,
 				2752B09129A170B10067F858 /* NewTagView.swift in Sources */,
+				2752B09E29A2F2FB0067F858 /* SecureAccessPointItem.swift in Sources */,
 				2752B08B29A170A00067F858 /* PasswordVaultApp.swift in Sources */,
 				27CAB0B82767D99C0064877A /* SecureVaultItem.swift in Sources */,
 				2752B08F29A170AB0067F858 /* PasswordGenerator.swift in Sources */,

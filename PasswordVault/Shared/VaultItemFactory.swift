@@ -64,18 +64,23 @@ func createVaultItemFromFile(location: URL, masterKey: Data) throws -> SecureVau
 	// Now we know the type of the underlying data so we can create an object of the correct type.
 	switch outerVaultItem.itemType {
 	case VaultItemType.login:
-		let json = try JSONDecoder().decode(LoginItemEncoding.self, from: decryptedDecodedContents)
+		let json = try JSONDecoder().decode(SecureLoginItemEncoding.self, from: decryptedDecodedContents)
 		let newItem = SecureLoginItem(json: json)
 		newItem.id = outerVaultItem.id
 		return newItem
 	case VaultItemType.note:
-		let json = try JSONDecoder().decode(NoteItemEncoding.self, from: decryptedDecodedContents)
+		let json = try JSONDecoder().decode(SecureNoteItemEncoding.self, from: decryptedDecodedContents)
 		let newItem = SecureNoteItem(json: json)
 		newItem.id = outerVaultItem.id
 		return newItem
 	case VaultItemType.card:
-		let json = try JSONDecoder().decode(CardItemEncoding.self, from: decryptedDecodedContents)
+		let json = try JSONDecoder().decode(SecureCardItemEncoding.self, from: decryptedDecodedContents)
 		let newItem = SecureCardItem(json: json)
+		newItem.id = outerVaultItem.id
+		return newItem
+	case VaultItemType.accessPoint:
+		let json = try JSONDecoder().decode(SecureAccessPointEncoding.self, from: decryptedDecodedContents)
+		let newItem = SecureAccessPointItem(json: json)
 		newItem.id = outerVaultItem.id
 		return newItem
 	}
@@ -99,13 +104,13 @@ func createVaultItemFrom1Pif(contents: PifEncoding) throws -> SecureVaultItem {
 		if sections != nil {
 		}
 
-		let vaultData = LoginItemEncoding(vaultVersion: Vault.kCurrentVaultVersion, title: title, website: contents.location!, username: username, email: email, password: password, note: note, tags: [], urls: urls, lastModifiedTime: Date(timeIntervalSince1970: TimeInterval(contents.updatedAt)))
+		let vaultData = SecureLoginItemEncoding(vaultVersion: Vault.kCurrentVaultVersion, title: title, website: contents.location!, username: username, email: email, password: password, note: note, tags: [], urls: urls, lastModifiedTime: Date(timeIntervalSince1970: TimeInterval(contents.updatedAt)))
 		let newItem = SecureLoginItem(json: vaultData)
 
 		return newItem
 	}
 	else if contents.typeName == "securenotes.SecureNote" {
-		let vaultData = NoteItemEncoding(vaultVersion: Vault.kCurrentVaultVersion, heading: contents.title, note: contents.secureContents.notesPlain!, tags: [], lastModifiedTime: Date(timeIntervalSince1970: TimeInterval(contents.updatedAt)))
+		let vaultData = SecureNoteItemEncoding(vaultVersion: Vault.kCurrentVaultVersion, heading: contents.title, note: contents.secureContents.notesPlain!, tags: [], lastModifiedTime: Date(timeIntervalSince1970: TimeInterval(contents.updatedAt)))
 		let newItem = SecureNoteItem(json: vaultData)
 
 		return newItem

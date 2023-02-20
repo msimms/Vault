@@ -1,11 +1,11 @@
 //
 //  SecureLoginView.swift
-//  Created by Michael Simms on 1/31/22.
+//  Created by Michael Simms on 2/19/23.
 //
 
 // MIT License
 //
-// Copyright (c) 2022 Mike Simms
+// Copyright (c) 2023 Mike Simms
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -28,10 +28,10 @@
 import SwiftUI
 
 /// Displays a login item from the vault.
-struct SecureLoginView: View {
+struct SecureAccessPointView: View {
 	@ObservedObject var appModel = AppState.shared
 	@Binding var isPushed: Bool
-	@State var item: SecureLoginItem
+	@State var item: SecureAccessPointItem
 	@State var isNewItem: Bool = true
 	@State var isReadOnly: Bool = false
 	@State var isShowingPasswordGenerator: Bool = false
@@ -43,24 +43,16 @@ struct SecureLoginView: View {
 		VStack(alignment: .leading) {
 
 			Group() {
-				Text("Login")
+				Text("Access Point")
 					.fontWeight(.heavy)
 					.font(.system(size: 32))
 					.multilineTextAlignment(.center)
 				Divider()
 				VStack(alignment: .leading) {
 					Group() {
-						Text("Website")
+						Text("Name")
 							.fontWeight(.heavy)
-						TextField("Website", text: $item.website)
-							.disabled(isReadOnly)
-						Text("Username")
-							.fontWeight(.heavy)
-						TextField("Username", text: $item.username)
-							.disabled(isReadOnly)
-						Text("Email")
-							.fontWeight(.heavy)
-						TextField("Email", text: $item.email)
+						TextField("Name", text: $item.name)
 							.disabled(isReadOnly)
 						Text("Password")
 							.fontWeight(.heavy)

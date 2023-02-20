@@ -34,43 +34,40 @@ struct SecureCardView: View {
 				Divider()
 				VStack(alignment: .leading) {
 					Group() {
-						Group() {
-							Text("Title")
-								.fontWeight(.heavy)
-							TextField("Title", text: $item.heading)
+						Text("Title")
+							.fontWeight(.heavy)
+						TextField("Title", text: $item.name)
+							.disabled(isReadOnly)
+					}
+					Group() {
+						Text("Number")
+							.fontWeight(.heavy)
+						TextField("Number", text: $item.number)
+							.disabled(isReadOnly)
+						Text("Security Code")
+							.fontWeight(.heavy)
+						TextField("Security Code", text: $tempSecurityCode)
+							.disabled(isReadOnly)
+						HStack {
+							Text("Expiry Date")
+							Spacer()
+							Text("\(self.dateFormatter.string(from: item.expiry))")
+								.onTapGesture {
+									self.showsDatePicker.toggle()
+								}
+								.padding(EdgeInsets(top: 2, leading: 10, bottom: 2, trailing: 10))
 								.disabled(isReadOnly)
 						}
-						Group() {
-							Text("Number")
-								.fontWeight(.heavy)
-							TextField("Number", text: $item.number)
-								.disabled(isReadOnly)
-							Text("Security Code")
-								.fontWeight(.heavy)
-							TextField("Security Code", text: $tempSecurityCode)
-								.disabled(isReadOnly)
-//								.keyboardType(.decimalPad)
-							HStack {
-								Text("Expiry Date")
-								Spacer()
-								Text("\(self.dateFormatter.string(from: item.expiry))")
-									.onTapGesture {
-										self.showsDatePicker.toggle()
-									}
-									.padding(EdgeInsets(top: 2, leading: 10, bottom: 2, trailing: 10))
-									.disabled(isReadOnly)
-							}
-							if self.showsDatePicker {
-								DatePicker("", selection: $item.expiry, displayedComponents: .date)
-									.datePickerStyle(.graphical)
-							}
+						if self.showsDatePicker {
+							DatePicker("", selection: $item.expiry, displayedComponents: .date)
+								.datePickerStyle(.graphical)
 						}
-						Group() {
-							Text("Notes")
-								.fontWeight(.heavy)
-							TextEditor(text: $item.note)
-								.disabled(isReadOnly)
-						}
+					}
+					Group() {
+						Text("Notes")
+							.fontWeight(.heavy)
+						TextEditor(text: $item.note)
+							.disabled(isReadOnly)
 					}
 					TagsView(isPushed: self.$isPushed, isReadOnly: self.$isReadOnly, tags: self.$item.tags)
 					LastModifiedView(isNewItem: isNewItem, timestamp: self.item.lastModifiedTime)
@@ -84,12 +81,5 @@ struct SecureCardView: View {
 #if !os(macOS)
 		.navigationBarHidden(true)
 #endif
-	}
-
-	func title() -> String {
-		return item.title()
-	}
-	func subtitle() -> String {
-		return ""
 	}
 }

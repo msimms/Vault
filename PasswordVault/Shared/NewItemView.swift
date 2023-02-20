@@ -33,6 +33,7 @@ func createNewVaultItemView(isPushed: Binding<Bool>, itemType: VaultItemType) ->
 	case .login: SecureLoginView(isPushed: isPushed, item: SecureLoginItem(), isNewItem: true, isReadOnly: false)
 	case .note: SecureNoteView(isPushed: isPushed, item: SecureNoteItem(), isNewItem: true, isReadOnly: false)
 	case .card: SecureCardView(isPushed: isPushed, item: SecureCardItem(), isNewItem: true, isReadOnly: false)
+	case .accessPoint: SecureAccessPointView(isPushed: isPushed, item: SecureAccessPointItem(), isNewItem: true, isReadOnly: false)
 	}
 }
 

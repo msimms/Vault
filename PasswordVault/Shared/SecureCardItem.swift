@@ -27,26 +27,26 @@
 
 import Foundation
 
-struct CardItemEncoding: Codable {
+struct SecureCardItemEncoding: Codable {
 	var vaultVersion: UInt8     // Version of this encoding
-	var heading: String         // Name of this card
+	var name: String            // Name of this card
 	var number: String          // Card number
 	var securityCode: UInt16    // Card security code
 	var expiry: Date            // Card expiry date
-	var note: String            // Notes
+	var note: String?           // Notes
 	var tags: Array<String>?    // Tags
 	var lastModifiedTime: Date? // Timestamp of the last update
 }
 
 class SecureCardItem: SecureVaultItem {
-	var heading: String = ""
+	var name: String = ""
 	var number: String = ""
 	var securityCode: UInt16 = 0
 	var expiry: Date = Date()
 	var note: String = ""
 	var tags: Array<String> = []
 	var lastModifiedTime: Date?
-	
+
 	/// Constructors
 	required init(from decoder: Decoder) throws {
 		fatalError("init(from:) has not been implemented")
@@ -54,25 +54,27 @@ class SecureCardItem: SecureVaultItem {
 	override init() {
 		super.init()
 	}
-	init(json: CardItemEncoding) {
+	init(json: SecureCardItemEncoding) {
 		super.init(json: json)
 		
-		self.heading = json.heading
+		self.name = json.name
 		self.number = json.number
 		self.securityCode = json.securityCode
 		self.expiry = json.expiry
-		self.note = json.note
+		if json.tags != nil {
+			self.tags = json.tags!
+		}
 		if json.tags != nil {
 			self.tags = json.tags!
 		}
 		self.lastModifiedTime = json.lastModifiedTime
 	}
-	
+
 	/// Creates the file for the vault item.
 	override func write(locationOfVaultItems: URL, masterKey: Data) throws {
 		
 		// Encode everything as JSON.
-		let vaultData = CardItemEncoding(vaultVersion: self.vaultVersion, heading: self.heading, number: self.number, securityCode: self.securityCode, expiry: self.expiry, note: self.note, tags: self.tags, lastModifiedTime: self.lastModifiedTime)
+		let vaultData = SecureCardItemEncoding(vaultVersion: self.vaultVersion, name: self.name, number: self.number, securityCode: self.securityCode, expiry: self.expiry, note: self.note, tags: self.tags, lastModifiedTime: self.lastModifiedTime)
 		let encoder = JSONEncoder()
 		let jsonData = try encoder.encode(vaultData)
 		let jsonStr = String(data: jsonData, encoding: .utf8)!
@@ -80,12 +82,12 @@ class SecureCardItem: SecureVaultItem {
 		// Encrypt and write the data.
 		try super.write(locationOfVaultItems: locationOfVaultItems, masterKey: masterKey, contents: jsonStr, itemType: VaultItemType.card)
 	}
-	
+
 	/// Returns the string to use as the title when viewing this item.
-	override func title() -> String {
-		return self.heading
+	override func displayTitle() -> String {
+		return self.name
 	}
-	
+
 	/// Updates the last modified timestamp.
 	override func updateLastModifiedTime() {
 		self.lastModifiedTime = Date()

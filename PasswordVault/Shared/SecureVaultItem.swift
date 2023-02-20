@@ -33,6 +33,7 @@ enum VaultItemType: UInt8, Codable {
 	case login
 	case note
 	case card
+	case accessPoint
 }
 
 /// Encapsulates the data stored in an encrypted vault item file.
@@ -105,7 +106,12 @@ class SecureVaultItem: Codable, Identifiable, Comparable {
 	}
 
 	/// Returns the string to use as the title when viewing this item.
-	func title() -> String {
+	func displayTitle() -> String {
+		return ""
+	}
+
+	/// Returns the string to use as the subtitle when viewing this item.
+	func displaySubtitle() -> String {
 		return ""
 	}
 
@@ -115,9 +121,9 @@ class SecureVaultItem: Codable, Identifiable, Comparable {
 }
 
 func < (lhs: SecureVaultItem, rhs: SecureVaultItem) -> Bool {
-	return lhs.title() < rhs.title()
+	return lhs.displayTitle() < rhs.displayTitle()
 }
 
 func == (lhs: SecureVaultItem, rhs: SecureVaultItem) -> Bool {
-	return lhs.title() == rhs.title()
+	return lhs.displayTitle() == rhs.displayTitle()
 }

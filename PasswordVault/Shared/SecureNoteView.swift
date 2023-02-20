@@ -65,11 +65,4 @@ struct SecureNoteView: View {
 		.navigationBarHidden(true)
 #endif
 	}
-
-	func title() -> String {
-		return item.title()
-	}
-	func subtitle() -> String {
-		return ""
-	}
 }

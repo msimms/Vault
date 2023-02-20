@@ -42,24 +42,27 @@ func icon(item: SecureVaultItem) -> String {
 	case is SecureCardItem: return "creditcard.and.123";
 	case is SecureLoginItem: return "lock";
 	case is SecureNoteItem: return "note";
+	case is SecureAccessPointItem: return "wifi";
 	default: return ""
 	}
 }
 
 func title(item: SecureVaultItem) -> String {
 	switch item {
-	case is SecureCardItem: let item2 = item as! SecureCardItem; return item2.title();
-	case is SecureLoginItem: let item2 = item as! SecureLoginItem; return item2.title();
-	case is SecureNoteItem: let item2 = item as! SecureNoteItem; return item2.title();
+	case is SecureCardItem: let item2 = item as! SecureCardItem; return item2.displayTitle();
+	case is SecureLoginItem: let item2 = item as! SecureLoginItem; return item2.displayTitle();
+	case is SecureNoteItem: let item2 = item as! SecureNoteItem; return item2.displayTitle();
+	case is SecureAccessPointItem: let item2 = item as! SecureAccessPointItem; return item2.displayTitle();
 	default: return ""
 	}
 }
 
 func subtitle(item: SecureVaultItem) -> String {
 	switch item {
-	case is SecureCardItem: let item2 = item as! SecureCardItem; return item2.heading;
-	case is SecureLoginItem: let item2 = item as! SecureLoginItem; return item2.email;
-	case is SecureNoteItem: return "";
+	case is SecureCardItem: let item2 = item as! SecureCardItem; return item2.displaySubtitle();
+	case is SecureLoginItem: let item2 = item as! SecureLoginItem; return item2.displaySubtitle();
+	case is SecureNoteItem: let item2 = item as! SecureNoteItem; return item2.displaySubtitle();
+	case is SecureAccessPointItem: let item2 = item as! SecureAccessPointItem; return item2.displaySubtitle();
 	default: return ""
 	}
 }
@@ -142,6 +145,15 @@ struct OpenVaultView: View {
 								showNewItem = true
 							}) {
 								Label("Card", systemImage: "creditcard.and.123")
+									.labelStyle(.titleAndIcon)
+							}
+
+							// New Access Point
+							Button(action: {
+								self.newItemType = VaultItemType.accessPoint
+								showNewItem = true
+							}) {
+								Label("Access Point", systemImage: "wifi")
 									.labelStyle(.titleAndIcon)
 							}
 						}
