@@ -39,11 +39,17 @@ struct PifFields: Codable {
 	var t: String
 }
 
+struct PifSection: Codable {
+	var fields: Array<PifFields>?
+	var title: String?
+	var name: String?
+}
+
 struct PifSecureContents: Codable {
 	var urls: Array<PifLabeledUrls>?
 	var notesPlain: String?
 	var password: String?
-	var sections: PifFields?
+	var sections: Array<PifSection>?
 }
 
 struct PifEncoding: Codable {

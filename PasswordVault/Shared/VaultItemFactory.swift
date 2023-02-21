@@ -87,13 +87,12 @@ func createVaultItemFromFile(location: URL, masterKey: Data) throws -> SecureVau
 }
 
 func createVaultItemFrom1Pif(contents: PifEncoding) throws -> SecureVaultItem {
-	if contents.typeName == "passwords.Password" {
+	if contents.typeName == "passwords.Password" || contents.typeName == "webforms.WebForm" {
 		var username = ""
 		var email = ""
 		let title = contents.title
 		let password = contents.secureContents.password
 		let note = contents.secureContents.notesPlain
-		let sections = contents.secureContents.sections
 		var urls: Array<String> = []
 
 		if contents.secureContents.urls != nil {
@@ -101,19 +100,23 @@ func createVaultItemFrom1Pif(contents: PifEncoding) throws -> SecureVaultItem {
 				urls.append(url.url)
 			}
 		}
-		if sections != nil {
+		if contents.secureContents.sections != nil {
+			for section in contents.secureContents.sections! {
+				if section.fields != nil {
+					for field in section.fields! {
+						if field.v.contains("@") {
+						}
+					}
+				}
+			}
 		}
 
 		let vaultData = SecureLoginItemEncoding(vaultVersion: Vault.kCurrentVaultVersion, title: title, website: contents.location!, username: username, email: email, password: password, note: note, tags: [], urls: urls, lastModifiedTime: Date(timeIntervalSince1970: TimeInterval(contents.updatedAt)))
-		let newItem = SecureLoginItem(json: vaultData)
-
-		return newItem
+		return SecureLoginItem(json: vaultData)
 	}
 	else if contents.typeName == "securenotes.SecureNote" {
 		let vaultData = SecureNoteItemEncoding(vaultVersion: Vault.kCurrentVaultVersion, heading: contents.title, note: contents.secureContents.notesPlain!, tags: [], lastModifiedTime: Date(timeIntervalSince1970: TimeInterval(contents.updatedAt)))
-		let newItem = SecureNoteItem(json: vaultData)
-
-		return newItem
+		return SecureNoteItem(json: vaultData)
 	}
 	throw VaultException.runtimeError("Unknown import type.")
 }
