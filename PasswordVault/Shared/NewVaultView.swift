@@ -48,7 +48,6 @@ func openFolderSelection() -> URL? {
 
 /// Prompts the user for everything needed to create a new vault.
 struct NewVaultView: View {
-	@ObservedObject var appModel = AppState.shared
 	@Binding var isPushed : Bool
 
 	@State private var password: String = ""
@@ -71,7 +70,7 @@ struct NewVaultView: View {
 		if password == confirmPassword && password.count > 8 {
 			
 			// Create the vault.
-			if self.appModel.createVault(vaultLocation: self.vaultLocation, name: self.vaultName, password: self.password) {
+			if AppState.shared.createVault(vaultLocation: self.vaultLocation, name: self.vaultName, password: self.password) {
 				
 				// Show the vault by popping to the root view controller.
 				self.isPushed = false

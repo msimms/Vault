@@ -29,7 +29,6 @@ import SwiftUI
 
 /// Prompts the user for the credentials to open the vault.
 struct LockView: View {
-	@ObservedObject var appModel = AppState.shared
 	@Binding var isPushed: Bool
 	@State private var password: String = ""
 	@State private var showingVaultOpenFailedAlert: Bool = false
@@ -43,7 +42,7 @@ struct LockView: View {
 	}
 
 	func openVault() {
-		if self.appModel.openVault(password: password) {
+		if AppState.shared.openVault(password: password) {
 			self.isPushed = true
 			self.showingVaultOpenFailedAlert = false
 		}
@@ -58,7 +57,7 @@ struct LockView: View {
 			Label("Vault Selection", systemImage: "lock.circle")
 			ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
 				Menu {
-					let vaultNames = self.appModel.listVaults()
+					let vaultNames = AppState.shared.listVaults()
 					ForEach(vaultNames, id: \.self) { name in
 						Button(action: {
 							selectedVault = name
