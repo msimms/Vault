@@ -61,7 +61,7 @@ class Vault : ObservableObject {
 
 		// Wait for the semaphore.
 		self.vaultItemsSemaphore.wait()
-		
+
 		// Insert sorted.
 		let index = self.vaultItems.reduce(0) { $1 < item ? $0 + 1 : $0 }
 		self.vaultItems.insert(item, at: index)
@@ -371,7 +371,9 @@ class Vault : ObservableObject {
 		}
 
 		// Clear any existing contents from the list.
+		self.vaultItemsSemaphore.wait()
 		self.vaultItems = []
+		self.vaultItemsSemaphore.signal()
 
 		// Does the items directory exist? It might not if the vault was just created.
 		if FileManager.default.fileExists(atPath: self.vaultItemsDirUrl!.path) {
