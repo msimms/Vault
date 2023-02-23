@@ -28,7 +28,6 @@
 import SwiftUI
 
 struct ItemButtonView: View {
-	@ObservedObject var appModel = AppState.shared
 	@Binding var isPushed: Bool
 	@Binding var isReadOnly: Bool
 	@State var item: SecureVaultItem
@@ -47,7 +46,7 @@ struct ItemButtonView: View {
 
 				// Save button
 				Button {
-					if !self.appModel.addItemToVault(item: self.item) {
+					if !AppState.shared.addItemToVault(item: self.item) {
 						self.showingFailedToAddAlert = true
 					}
 				} label: {
@@ -82,7 +81,7 @@ struct ItemButtonView: View {
 						self.editUpdateButtonImage = "square.and.arrow.down"
 						self.isReadOnly = false
 					}
-					else if self.appModel.updateVaultItem(item: self.item) {
+					else if AppState.shared.updateVaultItem(item: self.item) {
 						self.editUpdateButtonTitle = "Edit"
 						self.editUpdateButtonImage = "pencil"
 						self.isReadOnly = true
@@ -107,10 +106,7 @@ struct ItemButtonView: View {
 					Button("No", role: .cancel) { }
 						.keyboardShortcut(.defaultAction)
 					Button("Yes") {
-						if self.appModel.deleteItemFromVault(item: self.item) {
-							self.isPushed = false
-						}
-						else {
+						if !AppState.shared.deleteItemFromVault(item: self.item) {
 							self.showingFailedToDeleteAlert = true
 						}
 					}

@@ -27,13 +27,13 @@
 
 import SwiftUI
 
-class AppState : ObservableObject {
+class AppState {
 
 	/// Singleton instance
 	static let shared = AppState()
 
-	var vault: Vault = Vault()
-	@ObservedObject var viewModel = VaultDisplayState.shared
+	@ObservedObject var vault: Vault = Vault()
+	var viewModel = VaultDisplayState.shared
 
 	/// Constructor
 	private init() {
@@ -191,7 +191,16 @@ class AppState : ObservableObject {
 		do {
 			let importer = Importer()
 			try importer.importFrom(location: from, vault: self.vault)
+			try self.vault.readItems()
 			return true
+		} catch {
+			print(error.localizedDescription)
+		}
+		
+		// If we throw, we should still re-read the vault items - because we
+		// may have been able to read some itms
+		do {
+			try self.vault.readItems()
 		} catch {
 			print(error.localizedDescription)
 		}

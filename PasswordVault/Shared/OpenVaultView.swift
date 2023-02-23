@@ -69,7 +69,6 @@ func subtitle(item: SecureVaultItem) -> String {
 
 /// Displays all the items within the open vault.
 struct OpenVaultView: View {
-	@ObservedObject var appModel = AppState.shared
 	@ObservedObject var vault = AppState.shared.vault
 	@Binding var isPushed: Bool
 	@State var showNewItem: Bool = false
@@ -170,7 +169,7 @@ struct OpenVaultView: View {
 								panel.canChooseDirectories = false
 
 								if panel.runModal() == .OK {
-									self.showingFailedImportAlert = !self.appModel.importVaultFromUrl(from: panel.url!)
+									self.showingFailedImportAlert = !AppState.shared.importVaultFromUrl(from: panel.url!)
 								}
 							}) {
 								Label("Import...", systemImage: "square.and.arrow.down")
@@ -185,7 +184,7 @@ struct OpenVaultView: View {
 								let panel = NSSavePanel()
 
 								if panel.runModal() == .OK {
-									self.showingFailedExportAlert = !self.appModel.exportVaultFromUrl(to: panel.directoryURL!)
+									self.showingFailedExportAlert = !AppState.shared.exportVaultFromUrl(to: panel.directoryURL!)
 								}
 							}) {
 								Label("Export...", systemImage: "square.and.arrow.up")
@@ -200,7 +199,7 @@ struct OpenVaultView: View {
 
 							// Close the Vault
 							Button(action: {
-								self.appModel.closeVault()
+								AppState.shared.closeVault()
 								self.isPushed = false // Pop to the root view controller
 							}) {
 								Label("Close Vault", systemImage: "xmark.circle")
@@ -222,8 +221,8 @@ struct OpenVaultView: View {
 							Button("No", role: .cancel) { }
 								.keyboardShortcut(.defaultAction)
 							Button("Yes") {
-								if self.appModel.deleteVault() {
-									self.appModel.closeVault()
+								if AppState.shared.deleteVault() {
+									AppState.shared.closeVault()
 									self.isPushed = false // Pop to the root view controller
 								}
 								else {
