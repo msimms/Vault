@@ -28,7 +28,6 @@
 import SwiftUI
 
 struct TagsView: View {
-	@ObservedObject var appModel = AppState.shared
 	@Binding var isPushed: Bool
 	@Binding var isReadOnly: Bool
 	@Binding var tags: Array<String>

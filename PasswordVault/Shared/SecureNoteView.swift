@@ -29,7 +29,6 @@ import SwiftUI
 
 /// Displays a login item from the vault.
 struct SecureNoteView: View {
-	@ObservedObject var appModel = AppState.shared
 	@Binding var isPushed: Bool
 	@State var item: SecureNoteItem
 	@State var isNewItem: Bool = true
