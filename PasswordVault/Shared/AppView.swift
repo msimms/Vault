@@ -42,7 +42,7 @@ struct AppView: View {
 
 			VStack {
 				NavigationLink(
-					destination: viewModel.createView(isPushed: self.$pushed),
+					destination: self.viewModel.createView(isPushed: self.$pushed),
 					isActive: self.$pushed
 				) {
 					EmptyView()
@@ -51,7 +51,7 @@ struct AppView: View {
 				.isDetailLink(false)
 #endif
 				.hidden()
-				Button(viewModel.createButtonText()) {
+				Button(self.viewModel.createButtonText()) {
 					self.pushed = true
 				}
 				.padding()
