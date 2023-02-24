@@ -1,5 +1,5 @@
 //
-//  SecureLoginView.swift
+//  SecureAccessPointView.swift
 //  Created by Michael Simms on 2/19/23.
 //
 

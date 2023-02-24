@@ -67,7 +67,7 @@ struct SecureLoginView: View {
 					Group() {
 						ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
 							Group() {
-								if showPassword {
+								if self.showPassword {
 									TextField("Password", text: self.$item.password)
 										.disabled(self.isReadOnly)
 								}
