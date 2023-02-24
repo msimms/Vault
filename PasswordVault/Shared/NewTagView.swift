@@ -66,5 +66,8 @@ struct NewTagView: View {
 			}
 			.padding(10)
 		}
+#if !os(macOS)
+		.navigationBarBackButtonHidden(true)
+#endif
 	}
 }
