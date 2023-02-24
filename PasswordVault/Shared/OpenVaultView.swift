@@ -245,5 +245,8 @@ struct OpenVaultView: View {
 			)
 #endif
 		}
+		.onDisappear() {
+			self.isPushed = true
+		}
 	}
 }
