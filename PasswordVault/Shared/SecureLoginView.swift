@@ -51,16 +51,16 @@ struct SecureLoginView: View {
 					Group() {
 						Text("Website")
 							.fontWeight(.heavy)
-						TextField("Website", text: $item.website)
-							.disabled(isReadOnly)
+						TextField("Website", text: self.$item.website)
+							.disabled(self.isReadOnly)
 						Text("Username")
 							.fontWeight(.heavy)
-						TextField("Username", text: $item.username)
-							.disabled(isReadOnly)
+						TextField("Username", text: self.$item.username)
+							.disabled(self.isReadOnly)
 						Text("Email")
 							.fontWeight(.heavy)
-						TextField("Email", text: $item.email)
-							.disabled(isReadOnly)
+						TextField("Email", text: self.$item.email)
+							.disabled(self.isReadOnly)
 						Text("Password")
 							.fontWeight(.heavy)
 					}
@@ -68,12 +68,12 @@ struct SecureLoginView: View {
 						ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
 							Group() {
 								if showPassword {
-									TextField("Password", text: $item.password)
-										.disabled(isReadOnly)
+									TextField("Password", text: self.$item.password)
+										.disabled(self.isReadOnly)
 								}
 								else {
-									SecureField("Password", text: $item.password)
-										.disabled(isReadOnly)
+									SecureField("Password", text: self.$item.password)
+										.disabled(self.isReadOnly)
 								}
 								HStack() {
 									Button(action: {
@@ -106,11 +106,11 @@ struct SecureLoginView: View {
 						})
 						Text("Notes")
 							.fontWeight(.heavy)
-						TextEditor(text: $item.note)
-							.disabled(isReadOnly)
+						TextEditor(text: self.$item.note)
+							.disabled(self.isReadOnly)
 					}
 					TagsView(isPushed: self.$isPushed, isReadOnly: self.$isReadOnly, tags: self.$item.tags)
-					LastModifiedView(isNewItem: isNewItem, timestamp: self.item.lastModifiedTime)
+					LastModifiedView(isNewItem: self.isNewItem, timestamp: self.item.lastModifiedTime)
 				}
 			}
 

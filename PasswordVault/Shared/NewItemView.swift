@@ -39,8 +39,8 @@ func createNewVaultItemView(isPushed: Binding<Bool>, itemType: VaultItemType) ->
 
 /// Displays all the items within the open vault.
 struct NewItemView: View {
-	@Binding var isPushed : Bool
-	@Binding var newItemType : VaultItemType
+	@Binding var isPushed: Bool
+	@Binding var newItemType: VaultItemType
 
 	var body: some View {
 		createNewVaultItemView(isPushed: $isPushed, itemType: self.newItemType)

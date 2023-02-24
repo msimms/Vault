@@ -30,7 +30,7 @@ import SwiftUI
 /// This is the first view that is shown to the user.
 struct AppView: View {
 	@ObservedObject var viewModel = VaultDisplayState.shared
-	@State var pushed : Bool = true
+	@State var pushed: Bool = true
 
 	var body: some View {
 
