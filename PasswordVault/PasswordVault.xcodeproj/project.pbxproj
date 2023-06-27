@@ -139,6 +139,7 @@
 		27E689492891BF6900755424 /* LastModifiedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E689472891BF6900755424 /* LastModifiedView.swift */; };
 		27E6894B28997EA000755424 /* NewTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6894A28997EA000755424 /* NewTagView.swift */; };
 		27E6894C28997EA000755424 /* NewTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6894A28997EA000755424 /* NewTagView.swift */; };
+		27E89B482A4B73D4004398DE /* HealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E89B472A4B73D4004398DE /* HealthManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -201,6 +202,7 @@
 		27E6894428919F1600755424 /* ItemButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemButtonView.swift; sourceTree = "<group>"; };
 		27E689472891BF6900755424 /* LastModifiedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastModifiedView.swift; sourceTree = "<group>"; };
 		27E6894A28997EA000755424 /* NewTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTagView.swift; sourceTree = "<group>"; };
+		27E89B472A4B73D4004398DE /* HealthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,6 +260,7 @@
 				2709C268276D80A9008812AD /* AppState.swift */,
 				2709C26E276EB376008812AD /* AppView.swift */,
 				2740E08528E620F100293B71 /* Exporter.swift */,
+				27E89B472A4B73D4004398DE /* HealthManager.swift */,
 				27013B7328CBBA81000244D1 /* Importer.swift */,
 				27E6894428919F1600755424 /* ItemButtonView.swift */,
 				27E689472891BF6900755424 /* LastModifiedView.swift */,
@@ -503,6 +506,7 @@
 				27E6894228919CD700755424 /* TagsView.swift in Sources */,
 				272A2C7E2766602F00E8DC9C /* PasswordVaultApp.swift in Sources */,
 				276A059227A8903500B030E1 /* SecureLoginView.swift in Sources */,
+				27E89B482A4B73D4004398DE /* HealthManager.swift in Sources */,
 				27B03AD5281AFBA1009131E8 /* VaultItemFactory.swift in Sources */,
 				271CBCCD2812EB7000265841 /* SecureNoteItem.swift in Sources */,
 				2709C26C276EA9FD008812AD /* NewVaultView.swift in Sources */,
