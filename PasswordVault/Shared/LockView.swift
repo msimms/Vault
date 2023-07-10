@@ -60,7 +60,7 @@ struct LockView: View {
 					let vaultNames = AppState.shared.listVaults()
 					ForEach(vaultNames, id: \.self) { name in
 						Button(action: {
-							selectedVault = name
+							self.selectedVault = name
 							Preferences.setDefaultVaultName(name: name)
 						}) {
 							Label(name, systemImage: "lock")
@@ -76,7 +76,7 @@ struct LockView: View {
 					}
 				} label: {
 					if vaultIsSelected() {
-						Text("\(selectedVault!)")
+						Text("\(self.selectedVault!)")
 					}
 					else {
 						Text("Choose Vault")
@@ -115,7 +115,7 @@ struct LockView: View {
 			Button {
 				if vaultIsSelected() {
 					self.isBusy = true
-					openVault()
+					self.openVault()
 					self.isBusy = false
 				}
 				else {
@@ -131,7 +131,6 @@ struct LockView: View {
 			.alert("Failed to open the vault!", isPresented: $showingVaultOpenFailedAlert) {
 				Button("OK", role: .cancel) { }
 			}
-			.padding()
 			.foregroundColor(.white)
 			.background(Color.blue)
 			.cornerRadius(40)
@@ -139,6 +138,7 @@ struct LockView: View {
 #if !os(macOS)
 			.navigationBarBackButtonHidden(true)
 #endif
+			.buttonStyle(PlainButtonStyle())
 			.sheet(isPresented: $isBusy) {
 				ProgressView("Loading...")
 			}

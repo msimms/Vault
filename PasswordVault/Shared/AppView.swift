@@ -59,6 +59,7 @@ struct AppView: View {
 				.foregroundColor(.white)
 				.cornerRadius(40)
 				.frame(width: 160)
+				.buttonStyle(PlainButtonStyle())
 			}
 		}
 #if !os(macOS)
