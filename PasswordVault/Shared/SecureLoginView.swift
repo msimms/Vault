@@ -99,6 +99,7 @@ struct SecureLoginView: View {
 										}
 										.alert("Cannot generate a new password because the item is read only!", isPresented: self.$cannotShowPasswordGenerator) {
 											Button("OK", role: .cancel) { }
+												.buttonStyle(PlainButtonStyle())
 										}
 									}
 								}

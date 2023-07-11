@@ -51,21 +51,21 @@ struct SecureAccessPointView: View {
 					Group() {
 						Text("Name")
 							.fontWeight(.heavy)
-						TextField("Name", text: $item.name)
-							.disabled(isReadOnly)
+						TextField("Name", text: self.$item.name)
+							.disabled(self.isReadOnly)
 						Text("Password")
 							.fontWeight(.heavy)
 					}
 					Group() {
 						ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
 							Group() {
-								if showPassword {
-									TextField("Password", text: $item.password)
-										.disabled(isReadOnly)
+								if self.showPassword {
+									TextField("Password", text: self.$item.password)
+										.disabled(self.isReadOnly)
 								}
 								else {
-									SecureField("Password", text: $item.password)
-										.disabled(isReadOnly)
+									SecureField("Password", text: self.$item.password)
+										.disabled(self.isReadOnly)
 								}
 								HStack() {
 									Button(action: {
@@ -91,6 +91,7 @@ struct SecureAccessPointView: View {
 										}
 										.alert("Cannot generate a new password because the item is read only!", isPresented: self.$cannotShowPasswordGenerator) {
 											Button("OK", role: .cancel) { }
+												.buttonStyle(PlainButtonStyle())
 										}
 									}
 								}
@@ -98,8 +99,8 @@ struct SecureAccessPointView: View {
 						})
 						Text("Notes")
 							.fontWeight(.heavy)
-						TextEditor(text: $item.note)
-							.disabled(isReadOnly)
+						TextEditor(text: self.$item.note)
+							.disabled(self.isReadOnly)
 					}
 					TagsView(isPushed: self.$isPushed, isReadOnly: self.$isReadOnly, tags: self.$item.tags)
 					LastModifiedView(isNewItem: isNewItem, timestamp: self.item.lastModifiedTime)
