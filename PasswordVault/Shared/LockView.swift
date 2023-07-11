@@ -75,7 +75,7 @@ struct LockView: View {
 							.labelStyle(.titleAndIcon)
 					}
 				} label: {
-					if vaultIsSelected() {
+					if self.vaultIsSelected() {
 						Text("\(self.selectedVault!)")
 					}
 					else {
@@ -88,8 +88,8 @@ struct LockView: View {
 			// Password
 			Label("Password", systemImage: "lock.circle")
 			ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
-				if showPassword {
-					TextField("Password", text: $password)
+				if self.showPassword {
+					TextField("Password", text: self.$password)
 						.textFieldStyle(RoundedBorderTextFieldStyle())
 						.padding()
 						.onSubmit {
@@ -97,7 +97,7 @@ struct LockView: View {
 						}
 				}
 				else {
-					SecureField("Password", text: $password)
+					SecureField("Password", text: self.$password)
 						.textFieldStyle(RoundedBorderTextFieldStyle())
 						.padding()
 						.onSubmit {
@@ -113,7 +113,7 @@ struct LockView: View {
 
 			// Opens the vault
 			Button {
-				if vaultIsSelected() {
+				if self.vaultIsSelected() {
 					self.isBusy = true
 					self.openVault()
 					self.isBusy = false
@@ -125,11 +125,13 @@ struct LockView: View {
 				Label("Open", systemImage: "lock")
 					.padding()
 			}
-			.alert("A vault was not specified!", isPresented: $showingNoVaultSelectedAlert) {
+			.alert("A vault was not specified!", isPresented: self.$showingNoVaultSelectedAlert) {
 				Button("OK", role: .cancel) { }
+					.keyboardShortcut(KeyboardShortcut.defaultAction)
 			}
-			.alert("Failed to open the vault!", isPresented: $showingVaultOpenFailedAlert) {
+			.alert("Failed to open the vault!", isPresented: self.$showingVaultOpenFailedAlert) {
 				Button("OK", role: .cancel) { }
+					.keyboardShortcut(KeyboardShortcut.defaultAction)
 			}
 			.foregroundColor(.white)
 			.background(Color.blue)
@@ -139,7 +141,7 @@ struct LockView: View {
 			.navigationBarBackButtonHidden(true)
 #endif
 			.buttonStyle(PlainButtonStyle())
-			.sheet(isPresented: $isBusy) {
+			.sheet(isPresented: self.$isBusy) {
 				ProgressView("Loading...")
 			}
 		}

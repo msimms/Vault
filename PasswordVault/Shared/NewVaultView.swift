@@ -61,13 +61,13 @@ struct NewVaultView: View {
 	func createVault() {
 
 		// Make sure the vault has a name.
-		if vaultName.count == 0 {
+		if self.vaultName.count == 0 {
 			self.showingVaultCreationFailedAlert = true
 			return
 		}
 
 		// Make sure the passwords match.
-		if password == confirmPassword && password.count > 8 {
+		if self.password == self.confirmPassword && self.password.count > 8 {
 			
 			// Create the vault.
 			if AppState.shared.createVault(vaultLocation: self.vaultLocation, name: self.vaultName, password: self.password) {
@@ -90,27 +90,27 @@ struct NewVaultView: View {
 
 			// Name
 			Label("Vault Name", systemImage: "signpost.right")
-			TextField("", text: $vaultName)
+			TextField("", text: self.$vaultName)
 				.textFieldStyle(RoundedBorderTextFieldStyle())
 				.padding()
 
 			// Password
 			Label("Password", systemImage: "lock.circle")
 			ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
-				if showPassword {
-					TextField("Password", text: $password)
+				if self.showPassword {
+					TextField("Password", text: self.$password)
 						.textFieldStyle(RoundedBorderTextFieldStyle())
 						.padding()
 						.onSubmit {
-							createVault()
+							self.createVault()
 						}
 				}
 				else {
-					SecureField("Password", text: $password)
+					SecureField("Password", text: self.$password)
 						.textFieldStyle(RoundedBorderTextFieldStyle())
 						.padding()
 						.onSubmit {
-							createVault()
+							self.createVault()
 						}
 				}
 				Button(action: { self.showPassword.toggle() }) {
@@ -123,20 +123,20 @@ struct NewVaultView: View {
 			// Password Confirmation
 			Label("Confirm Password", systemImage: "lock.circle")
 			ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
-				if showPassword {
-					TextField("Confirm Password", text: $confirmPassword)
+				if self.showPassword {
+					TextField("Confirm Password", text: self.$confirmPassword)
 						.textFieldStyle(RoundedBorderTextFieldStyle())
 						.padding()
 						.onSubmit {
-							createVault()
+							self.createVault()
 						}
 				}
 				else {
-					SecureField("Confirm Password", text: $confirmPassword)
+					SecureField("Confirm Password", text: self.$confirmPassword)
 						.textFieldStyle(RoundedBorderTextFieldStyle())
 						.padding()
 						.onSubmit {
-							createVault()
+							self.createVault()
 						}
 				}
 				Button(action: { self.showPassword.toggle() }) {
@@ -171,17 +171,17 @@ struct NewVaultView: View {
 				Label("Create", systemImage: "lock")
 					.padding()
 			}
-			.alert("The passwords do not match or are not long enough", isPresented: $showingPasswordsDoNotMatchAlert) {
+			.alert("The passwords do not match or are not long enough", isPresented: self.$showingPasswordsDoNotMatchAlert) {
 				Button("OK", role: .cancel) { }
 			}
-			.alert("Failed to create the vault", isPresented: $showingVaultCreationFailedAlert) {
+			.alert("Failed to create the vault", isPresented: self.$showingVaultCreationFailedAlert) {
 				Button("OK", role: .cancel) { }
 			}
-			.padding()
 			.background(Color.blue)
 			.foregroundColor(.white)
 			.cornerRadius(40)
 			.padding()
+			.buttonStyle(PlainButtonStyle())
 #if !os(macOS)
 			.navigationBarBackButtonHidden(true)
 #endif
