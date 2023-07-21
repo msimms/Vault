@@ -40,7 +40,7 @@ struct AppView: View {
 			// If one exists then prompt the user to open it.
 			// If one exists and is open/unlocked then display it.
 
-			VStack {
+			VStack(alignment: .center) {
 				NavigationLink(
 					destination: self.viewModel.createView(isPushed: self.$pushed),
 					isActive: self.$pushed
