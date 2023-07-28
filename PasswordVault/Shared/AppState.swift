@@ -26,6 +26,7 @@
 // SOFTWARE.
 
 import SwiftUI
+import LocalAuthentication
 
 class AppState {
 
@@ -34,12 +35,109 @@ class AppState {
 
 	@ObservedObject var vault: Vault = Vault()
 	var viewModel = VaultDisplayState.shared
+	var setupBiometricAuth: Bool = false
+	let laContext = LAContext()
 
 	/// Constructor
 	private init() {
 		self.updateState()
 	}
 
+	/// Returns True if biometric authentication is available on this device.
+	func isBiometricIdAvailable() -> Bool {
+		var error: NSError?
+
+		guard self.laContext.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) else {
+			return false
+		}
+		return true
+	}
+
+	/// Returns True if biometric authentication is a enabled for a particular vault.
+	func isBiometricIdEnabledForVault(vaultName: String) -> Bool {
+		let keyName = self.keychainKeyForVaultName(vaultName: vaultName)
+		let keychain = Keychain()
+		let password = keychain.load(keyName: keyName)
+
+		guard password != nil else {
+			return false
+		}
+		return password!.count > 0
+	}
+
+	/// Returns the type of biometric authentication that is used on this device (touch, face, etc.)
+	func biometricAuthType() -> LABiometryType {
+		return self.laContext.biometryType
+	}
+
+	/// This method marks the vault for biometric setup.
+	func flagVaultForBiometricAuthSetup(vaultName: String) {
+		self.setupBiometricAuth = true
+	}
+	
+	/// This method checks to see if the vault is marked for biometric auth setup.
+	/// If it is, the password will be saved to the keychain when the vault is opened.
+	func isVaultFlaggedForBiometricAuthSetup(vaultName: String) -> Bool {
+		return self.setupBiometricAuth
+	}
+	
+	func keychainKeyForVaultName(vaultName: String) -> String {
+		return "Vault_" + vaultName
+	}
+	
+	func configureBiometricAuthForVault(vaultName: String, password: String) throws {
+		// Is biometric auth already setup?
+		if self.isBiometricIdEnabledForVault(vaultName: vaultName) {
+			return
+		}
+		
+		// Encode the password as a data object so we can store it in the keychain.
+		let keychain = Keychain()
+		let passwordData = password.data(using: .utf8)
+		guard passwordData != nil else {
+			throw VaultException.runtimeError("Password must be UTF8. Unable to setup biometric authentication.")
+		}
+
+		// Store the password in the keychain.
+		let keyName = self.keychainKeyForVaultName(vaultName: vaultName)
+		if keychain.save(keyName: keyName, data: passwordData!) == false {
+			throw VaultException.runtimeError("Keychain error. Unable to setup biometric authentication.")
+		}
+	}
+
+	func performBiometricAuthForVault(baseLocation: String, vaultName: String) -> Bool {
+		var error: NSError?
+
+		// Make sure biometric auth is available.
+		guard self.laContext.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) else {
+			return false
+		}
+		
+		Task {
+			do {
+				// This does whatever the biometric authentication is (fingerprint scan, face scan, etc.).
+				// Throws upon failure.
+				try await self.laContext.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: "Open the Vault")
+
+				// Get the password from the keychain.
+				let keyName = self.keychainKeyForVaultName(vaultName: vaultName)
+				let keychain = Keychain()
+				let passwordData = keychain.load(keyName: keyName)
+				guard passwordData != nil else {
+					return false
+				}
+
+				// Open the vault.
+				let password = String(decoding: passwordData!, as: UTF8.self)
+				try self.openVaultInner(baseLocation: baseLocation, vaultName: vaultName, password: password)
+			} catch let error {
+				print(error.localizedDescription)
+			}
+			return true
+		}
+		return true
+	}
+	
 	/// Returns true if a vault exists (specifically the vault index file) at the location stored in the user preferences.
 	func defaultVaultExists() throws -> Bool {
 		let baseLocation = Preferences.baseVaultsLocation()
@@ -101,6 +199,18 @@ class AppState {
 		return false
 	}
 
+	func openVaultInner(baseLocation: String, vaultName: String, password: String) throws {
+		// Open and read the vault.
+		try self.vault.open(vaultLocation: baseLocation, name: vaultName, key: password)
+		try self.vault.readItems()
+		
+		// Vault is open, we can now save the password to the keychain if the user wants to setup biometric authentication.
+		if self.isVaultFlaggedForBiometricAuthSetup(vaultName: vaultName) {
+			try self.configureBiometricAuthForVault(vaultName: vaultName, password: password)
+		}
+		self.updateState()
+	}
+
 	/// Opens the vault by opening the master vault file and decoding it.
 	func openVault(password: String) -> Bool {
 		do {
@@ -110,10 +220,13 @@ class AppState {
 			guard let unwrappedLocation = baseLocation else { return false }
 			guard let unwrappedDefaultVaultName = defaultVaultName else { return false }
 
-			try self.vault.open(vaultLocation: unwrappedLocation, name: unwrappedDefaultVaultName, key: password)
-			try self.vault.readItems()
-
-			self.updateState()
+			// If this vault is configured for biometric authentication then do that.
+			if self.isBiometricIdEnabledForVault(vaultName: unwrappedDefaultVaultName) {
+				self.performBiometricAuthForVault(baseLocation: unwrappedLocation, vaultName: unwrappedDefaultVaultName)
+			}
+			else {
+				try self.openVaultInner(baseLocation: unwrappedLocation, vaultName: unwrappedDefaultVaultName, password: password)
+			}
 			return true
 		} catch let error as NSError {
 			print("Error: Failed to open the vault: \n\(error)")

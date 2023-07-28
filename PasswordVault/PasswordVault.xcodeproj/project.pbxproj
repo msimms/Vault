@@ -19,6 +19,10 @@
 		27013B7D28CF7C93000244D1 /* VaultItemFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B03AD4281AFBA1009131E8 /* VaultItemFactory.swift */; };
 		27013B7E28CF7C9A000244D1 /* VaultException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CBCC6280CC83700265841 /* VaultException.swift */; };
 		27013B7F28CF7CAD000244D1 /* Importer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27013B7328CBBA81000244D1 /* Importer.swift */; };
+		27091AD22A73010D0013AD48 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27091AD12A73010D0013AD48 /* Keychain.swift */; };
+		27091AD32A7446250013AD48 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27091AD12A73010D0013AD48 /* Keychain.swift */; };
+		27091AD42A7446260013AD48 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27091AD12A73010D0013AD48 /* Keychain.swift */; };
+		27091AD52A7446270013AD48 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27091AD12A73010D0013AD48 /* Keychain.swift */; };
 		2709C269276D80A9008812AD /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2709C268276D80A9008812AD /* AppState.swift */; };
 		2709C26A276D80A9008812AD /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2709C268276D80A9008812AD /* AppState.swift */; };
 		2709C26C276EA9FD008812AD /* NewVaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2709C26B276EA9FD008812AD /* NewVaultView.swift */; };
@@ -131,6 +135,8 @@
 		27CAB0B62767D99C0064877A /* SecureVaultItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0B42767D99C0064877A /* SecureVaultItem.swift */; };
 		27CAB0B72767D99C0064877A /* SecureVaultItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0B42767D99C0064877A /* SecureVaultItem.swift */; };
 		27CAB0B82767D99C0064877A /* SecureVaultItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAB0B42767D99C0064877A /* SecureVaultItem.swift */; };
+		27E1DCAD2A5DA70E0035E608 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E1DCAC2A5DA70E0035E608 /* LocalAuthentication.framework */; };
+		27E1DCAE2A5DA7190035E608 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E1DCAC2A5DA70E0035E608 /* LocalAuthentication.framework */; };
 		27E6894228919CD700755424 /* TagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6894128919CD700755424 /* TagsView.swift */; };
 		27E6894328919CD700755424 /* TagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6894128919CD700755424 /* TagsView.swift */; };
 		27E6894528919F1600755424 /* ItemButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6894428919F1600755424 /* ItemButtonView.swift */; };
@@ -161,6 +167,7 @@
 
 /* Begin PBXFileReference section */
 		27013B7328CBBA81000244D1 /* Importer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Importer.swift; sourceTree = "<group>"; };
+		27091AD12A73010D0013AD48 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		2709C268276D80A9008812AD /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		2709C26B276EA9FD008812AD /* NewVaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVaultView.swift; sourceTree = "<group>"; };
 		2709C26E276EB376008812AD /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
@@ -198,6 +205,7 @@
 		27CAB0AA2766BE450064877A /* Vault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vault.swift; sourceTree = "<group>"; };
 		27CAB0AF2767D4650064877A /* SecureLoginItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureLoginItem.swift; sourceTree = "<group>"; };
 		27CAB0B42767D99C0064877A /* SecureVaultItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureVaultItem.swift; sourceTree = "<group>"; };
+		27E1DCAC2A5DA70E0035E608 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		27E6894128919CD700755424 /* TagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsView.swift; sourceTree = "<group>"; };
 		27E6894428919F1600755424 /* ItemButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemButtonView.swift; sourceTree = "<group>"; };
 		27E689472891BF6900755424 /* LastModifiedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastModifiedView.swift; sourceTree = "<group>"; };
@@ -210,6 +218,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27E1DCAE2A5DA7190035E608 /* LocalAuthentication.framework in Frameworks */,
 				27B03AD12812F60F009131E8 /* _CryptoExtras in Frameworks */,
 				27B03ACF2812F60F009131E8 /* Crypto in Frameworks */,
 				27384FB2277270C8002BD39D /* _CryptoExtras in Frameworks */,
@@ -221,6 +230,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27E1DCAD2A5DA70E0035E608 /* LocalAuthentication.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,6 +261,7 @@
 				272A2C6D2766602F00E8DC9C /* Tests iOS */,
 				272A2C792766602F00E8DC9C /* Tests macOS */,
 				272A2C5E2766602F00E8DC9C /* Products */,
+				27E1DCAB2A5DA70E0035E608 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -263,6 +274,7 @@
 				27E89B472A4B73D4004398DE /* HealthManager.swift */,
 				27013B7328CBBA81000244D1 /* Importer.swift */,
 				27E6894428919F1600755424 /* ItemButtonView.swift */,
+				27091AD12A73010D0013AD48 /* Keychain.swift */,
 				27E689472891BF6900755424 /* LastModifiedView.swift */,
 				272A2C922766634F00E8DC9C /* LockView.swift */,
 				271B8283282FE751002F5D2C /* NewItemView.swift */,
@@ -328,6 +340,14 @@
 				272A2C7C2766602F00E8DC9C /* Tests_macOSLaunchTests.swift */,
 			);
 			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		27E1DCAB2A5DA70E0035E608 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				27E1DCAC2A5DA70E0035E608 /* LocalAuthentication.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -521,6 +541,7 @@
 				2740E08628E620F100293B71 /* Exporter.swift in Sources */,
 				27CAB0B52767D99C0064877A /* SecureVaultItem.swift in Sources */,
 				271CBCCA2812EAD500265841 /* SecureNoteView.swift in Sources */,
+				27091AD22A73010D0013AD48 /* Keychain.swift in Sources */,
 				2752B06F29A16EE40067F858 /* VaultState.swift in Sources */,
 				271B828F283075E2002F5D2C /* SecureCardItem.swift in Sources */,
 				271CBCC7280CC83700265841 /* VaultException.swift in Sources */,
@@ -549,6 +570,7 @@
 				2709C26D276EA9FD008812AD /* NewVaultView.swift in Sources */,
 				2752B09C29A2F2FA0067F858 /* SecureAccessPointItem.swift in Sources */,
 				27196E2428B99634003F47D8 /* PasswordGeneratorView.swift in Sources */,
+				27091AD32A7446250013AD48 /* Keychain.swift in Sources */,
 				27013B7528CBBA81000244D1 /* Importer.swift in Sources */,
 				27CAB0B12767D4650064877A /* SecureLoginItem.swift in Sources */,
 				27E6894C28997EA000755424 /* NewTagView.swift in Sources */,
@@ -580,6 +602,7 @@
 				2752B08429A1708E0067F858 /* TagsView.swift in Sources */,
 				272A2C712766602F00E8DC9C /* Tests_iOSLaunchTests.swift in Sources */,
 				2752B06C29A15B390067F858 /* AppState.swift in Sources */,
+				27091AD42A7446260013AD48 /* Keychain.swift in Sources */,
 				27013B7928CF7C85000244D1 /* SecureCardItem.swift in Sources */,
 				27CAB0B22767D4650064877A /* SecureLoginItem.swift in Sources */,
 				2752B09429A170BB0067F858 /* ItemButtonView.swift in Sources */,
@@ -619,6 +642,7 @@
 				2752B08529A1708E0067F858 /* TagsView.swift in Sources */,
 				27013B7728CF7901000244D1 /* VaultException.swift in Sources */,
 				2752B06D29A15B3A0067F858 /* AppState.swift in Sources */,
+				27091AD52A7446270013AD48 /* Keychain.swift in Sources */,
 				272A2C7B2766602F00E8DC9C /* Tests_macOS.swift in Sources */,
 				27013B7A28CF7C87000244D1 /* SecureCardItem.swift in Sources */,
 				2752B09529A170BC0067F858 /* ItemButtonView.swift in Sources */,

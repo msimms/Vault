@@ -34,6 +34,7 @@ struct LockView: View {
 	@State private var showingVaultOpenFailedAlert: Bool = false
 	@State private var showingNoVaultSelectedAlert: Bool = false
 	@State private var showPassword: Bool = false
+	@State private var showingBiometricSetupAlert: Bool = false
 	@State private var isBusy: Bool = false
 	@State private var selectedVault: String? = Preferences.defaultVaultName()
 
@@ -143,6 +144,40 @@ struct LockView: View {
 			.buttonStyle(PlainButtonStyle())
 			.sheet(isPresented: self.$isBusy) {
 				ProgressView("Loading...")
+			}
+
+			// Biometric ID
+			if AppState.shared.isBiometricIdAvailable() && self.vaultIsSelected() {
+				let biometricAuthType = AppState.shared.biometricAuthType()
+
+				Button {
+					self.showingBiometricSetupAlert = true
+				} label: {
+					if biometricAuthType == .touchID {
+						Image(systemName: "touchid")
+							.resizable()
+					}
+					else if biometricAuthType == .faceID {
+						Image(systemName: "faceid")
+							.resizable()
+					}
+				}
+				.alert("Do you want to setup biometric authentication for this vault?", isPresented: self.$showingBiometricSetupAlert) {
+					Button("No", role: .cancel) { }
+						.keyboardShortcut(.defaultAction)
+					Button("Yes") {
+						AppState.shared.flagVaultForBiometricAuthSetup(vaultName: self.selectedVault!)
+					}
+				}
+				.frame(width: 32.0, height: 32.0)
+				.buttonStyle(PlainButtonStyle())
+			}
+		}
+		.onAppear() {
+			if self.vaultIsSelected() {
+				if AppState.shared.isBiometricIdEnabledForVault(vaultName: self.selectedVault!) {
+					self.openVault()
+				}
 			}
 		}
 	}
