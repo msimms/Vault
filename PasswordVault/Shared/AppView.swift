@@ -33,26 +33,18 @@ struct AppView: View {
 	@State var pushed: Bool = true
 
 	var body: some View {
-
-		NavigationView {
-
+		
+		NavigationStack {
+			
 			// If we can't find a vault then ask the user to create one.
 			// If one exists then prompt the user to open it.
 			// If one exists and is open/unlocked then display it.
-
+			
 			VStack(alignment: .center) {
-				NavigationLink(
-					destination: self.viewModel.createView(isPushed: self.$pushed),
-					isActive: self.$pushed
-				) {
-					EmptyView()
-				}
-#if !os(macOS)
-				.isDetailLink(false)
-#endif
-				.hidden()
-				Button(self.viewModel.createButtonText()) {
+				Button {
 					self.pushed = true
+				} label: {
+					Text(self.viewModel.createButtonText())
 				}
 				.padding()
 				.background(Color.blue)
@@ -61,11 +53,11 @@ struct AppView: View {
 				.frame(width: 160)
 				.buttonStyle(PlainButtonStyle())
 			}
+			.navigationTitle("Navigation")
+			.navigationDestination(isPresented: self.$pushed) {
+				self.viewModel.createView(isPushed: self.$pushed)
+			}
 		}
-#if !os(macOS)
-		.navigationBarTitle("")
-		.navigationBarHidden(true)
-#endif
 	}
 }
 

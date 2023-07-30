@@ -119,8 +119,5 @@ struct SecureLoginView: View {
 			ItemButtonView(isPushed: self.$isPushed, isReadOnly: self.$isReadOnly, item: self.item, isNewItem: self.isNewItem)
 		}
 		.padding(10)
-#if !os(macOS)
-		.navigationBarHidden(true)
-#endif
     }
 }

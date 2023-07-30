@@ -82,7 +82,7 @@ struct OpenVaultView: View {
 
 		VStack(alignment: .leading) {
 
-			NavigationView {
+			NavigationStack {
 
 				// List of all of the items in the vault.
 				List(self.vault.vaultItems) { item in
