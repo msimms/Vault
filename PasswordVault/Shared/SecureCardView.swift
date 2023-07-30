@@ -35,38 +35,40 @@ struct SecureCardView: View {
 					Group() {
 						Text("Title")
 							.fontWeight(.heavy)
-						TextField("Title", text: $item.name)
-							.disabled(isReadOnly)
+						TextField("Title", text: self.$item.name)
+							.disabled(self.isReadOnly)
 					}
 					Group() {
 						Text("Number")
 							.fontWeight(.heavy)
-						TextField("Number", text: $item.number)
-							.disabled(isReadOnly)
+						TextField("Number", text: self.$item.number)
+							.disabled(self.isReadOnly)
 						Text("Security Code")
 							.fontWeight(.heavy)
-						TextField("Security Code", text: $tempSecurityCode)
-							.disabled(isReadOnly)
+						TextField("Security Code", text: self.$tempSecurityCode)
+							.disabled(self.isReadOnly)
 						HStack {
 							Text("Expiry Date")
 							Spacer()
-							Text("\(self.dateFormatter.string(from: item.expiry))")
+							Text("\(self.dateFormatter.string(from: self.item.expiry))")
 								.onTapGesture {
 									self.showsDatePicker.toggle()
 								}
 								.padding(EdgeInsets(top: 2, leading: 10, bottom: 2, trailing: 10))
-								.disabled(isReadOnly)
+								.disabled(self.isReadOnly)
 						}
 						if self.showsDatePicker {
-							DatePicker("", selection: $item.expiry, displayedComponents: .date)
+							DatePicker("", selection: self.$item.expiry, displayedComponents: .date)
 								.datePickerStyle(.graphical)
 						}
 					}
 					Group() {
 						Text("Notes")
 							.fontWeight(.heavy)
-						TextEditor(text: $item.note)
-							.disabled(isReadOnly)
+						TextEditor(text: self.$item.note)
+							.disabled(self.isReadOnly)
+							.scrollContentBackground(.hidden)
+							.background(.gray)
 					}
 					TagsView(isPushed: self.$isPushed, isReadOnly: self.$isReadOnly, tags: self.$item.tags)
 					LastModifiedView(isNewItem: isNewItem, timestamp: self.item.lastModifiedTime)

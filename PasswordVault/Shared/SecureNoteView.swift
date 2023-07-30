@@ -47,10 +47,12 @@ struct SecureNoteView: View {
 				VStack(alignment: .leading) {
 					Text("Title")
 						.fontWeight(.heavy)
-					TextField("Title", text: $item.heading)
-						.disabled(isReadOnly)
-					TextEditor(text: $item.note)
-						.disabled(isReadOnly)
+					TextField("Title", text: self.$item.heading)
+						.disabled(self.isReadOnly)
+					TextEditor(text: self.$item.note)
+						.disabled(self.isReadOnly)
+						.scrollContentBackground(.hidden)
+						.background(.gray)
 				}
 				TagsView(isPushed: self.$isPushed, isReadOnly: self.$isReadOnly, tags: self.$item.tags)
 				LastModifiedView(isNewItem: isNewItem, timestamp: self.item.lastModifiedTime)
