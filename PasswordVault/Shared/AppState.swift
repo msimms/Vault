@@ -35,6 +35,7 @@ class AppState {
 
 	@ObservedObject var vault: Vault = Vault()
 	var viewModel = VaultDisplayState.shared
+	var hasOpenedAVault: Bool = false // This breaks the potentially infinite loop of automatically re-opening a vault right after it was closed
 	var setupBiometricAuth: Bool = false
 	let laContext = LAContext()
 
@@ -201,6 +202,7 @@ class AppState {
 		// Open and read the vault.
 		try self.vault.open(vaultLocation: baseLocation, name: vaultName, key: password)
 		try self.vault.readItems()
+		self.hasOpenedAVault = true
 		
 		// Vault is open, we can now save the password to the keychain if the user wants to setup biometric authentication.
 		if self.isVaultFlaggedForBiometricAuthSetup(vaultName: vaultName) {

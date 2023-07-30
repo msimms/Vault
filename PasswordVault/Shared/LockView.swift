@@ -174,7 +174,7 @@ struct LockView: View {
 			}
 		}
 		.onAppear() {
-			if self.vaultIsSelected() {
+			if AppState.shared.hasOpenedAVault == false && self.vaultIsSelected() {
 				if AppState.shared.isBiometricIdEnabledForVault(vaultName: self.selectedVault!) {
 					self.openVault()
 				}
