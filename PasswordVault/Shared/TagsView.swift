@@ -39,28 +39,33 @@ struct TagsView: View {
 		Group() {
 			Text("Tags")
 				.fontWeight(.heavy)
-			HStack(spacing: 10) {
-				
-				List() {
-					// Existing tags
-					ForEach(self.$tags, id: \.self) { $tag in
-						Button(action: {}) {
-							Text(tag)
-						}
-					}
 
-					// Link for moving to the New Tag view.
-					ZStack() {
-						NavigationLink(destination: NewTagView(isPushed: self.$isShowingNewTagView, tags: self.$tags), isActive: self.$isShowingNewTagView) {
+			VStack(alignment: .leading) {
+				// Existing tags
+				if self.tags.count > 0 {
+					HStack() {
+						ForEach(self.$tags, id: \.self) { $tag in
+							Button(action: {}) {
+								Text(tag)
+							}
+							.padding()
+							.background(Color.blue)
+							.foregroundColor(.white)
+							.cornerRadius(10)
+							.buttonStyle(PlainButtonStyle())
 						}
-						Button(action: {
-							self.isShowingNewTagView = true
-						}) {
-							Label("New Tag...", systemImage: "tag")
-						}
-						.opacity(self.isReadOnly ? 0 : 1)
 					}
 				}
+				else {
+					Text("None")
+				}
+
+				// Link for moving to the New Tag view.
+				NavigationLink(destination: NewTagView(isPushed: self.$isShowingNewTagView, tags: self.$tags)) {
+					Label("New Tag...", systemImage: "tag")
+				}
+				.opacity(self.isReadOnly ? 0 : 1)
+				.padding()
 			}
 		}
 	}
