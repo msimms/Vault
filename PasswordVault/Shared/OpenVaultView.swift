@@ -82,34 +82,30 @@ struct OpenVaultView: View {
 
 		VStack(alignment: .leading) {
 
-			NavigationStack {
+			// List of all of the items in the vault.
+			List(self.vault.vaultItems) { item in
+				Image(systemName: icon(item: item))
+				VStack(alignment: .leading) {
 
-				// List of all of the items in the vault.
-				List(self.vault.vaultItems) { item in
-					Image(systemName: icon(item: item))
-					VStack(alignment: .leading) {
-
-						let itemView = createVaultItemView(isPushed: self.$isPushed, item: item, isNewItem: false)
-						NavigationLink(destination: itemView) {
-							VStack(alignment: .leading) {
-								Text(title(item: item))
-									.font(.headline)
-								Text(subtitle(item: item))
-									.font(.subheadline)
-							}
+					let itemView = createVaultItemView(isPushed: self.$isPushed, item: item, isNewItem: false)
+					NavigationLink(destination: itemView) {
+						VStack(alignment: .leading) {
+							Text(title(item: item))
+								.font(.headline)
+							Text(subtitle(item: item))
+								.font(.subheadline)
 						}
 					}
 				}
-				.padding(10)
-#if os(macOS)
-				.background(
-
-					// Show a blank view for the user to enter new information.
-					NavigationLink(destination: NewItemView(isPushed: self.$isPushed, newItemType: self.$newItemType), isActive: $showNewItem) {}
-				)
-#endif
 			}
-#if !os(macOS)
+			.padding(10)
+#if os(macOS)
+			.background(
+
+				// Show a blank view for the user to enter new information.
+				NavigationLink(destination: NewItemView(isPushed: self.$isPushed, newItemType: self.$newItemType), isActive: $showNewItem) {}
+			)
+#else
 			.navigationBarTitle("Password Vault", displayMode: .inline)
 #endif
 			.toolbar {
