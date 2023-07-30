@@ -98,6 +98,7 @@ struct OpenVaultView: View {
 					}
 				}
 			}
+			.listStyle(.plain)
 			.padding(10)
 #if os(macOS)
 			.background(
@@ -238,6 +239,7 @@ struct OpenVaultView: View {
 				// Show a blank view for the user to enter new information.
 				NavigationLink(destination: NewItemView(isPushed: self.$isPushed, newItemType: self.$newItemType), isActive: $showNewItem) {}
 			)
+			.navigationBarBackButtonHidden(true)
 #endif
 		}
 		.onDisappear() {
