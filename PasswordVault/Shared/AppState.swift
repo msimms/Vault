@@ -105,12 +105,12 @@ class AppState {
 		}
 	}
 
-	func performBiometricAuthForVault(baseLocation: String, vaultName: String) -> Bool {
+	func performBiometricAuthForVault(baseLocation: String, vaultName: String) {
 		var error: NSError?
 
 		// Make sure biometric auth is available.
 		guard self.laContext.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) else {
-			return false
+			return
 		}
 		
 		Task {
@@ -124,7 +124,7 @@ class AppState {
 				let keychain = Keychain()
 				let passwordData = keychain.load(keyName: keyName)
 				guard passwordData != nil else {
-					return false
+					return
 				}
 
 				// Open the vault.
@@ -133,9 +133,7 @@ class AppState {
 			} catch let error {
 				print(error.localizedDescription)
 			}
-			return true
 		}
-		return true
 	}
 	
 	/// Returns true if a vault exists (specifically the vault index file) at the location stored in the user preferences.
