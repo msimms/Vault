@@ -4,7 +4,7 @@ A serverless password manager for mac OS and iOS.
 
 ## Rationale
 Why develop a password manager when there are other options available, including open source options?
-* To have a password manager that works without a centralized server
+* To have a password manager that works without a centralized database
 * I believe password managers should be open source
 
 ## Major Features
@@ -12,7 +12,8 @@ Why develop a password manager when there are other options available, including
 * Uses iCloud Drive to sync across devices
 * Multiple vaults
 * Password Generator
-* Importing from 1pif files
+* Importing of existing data from 1pif files
+* Biometric authentication
 
 ## User Documentation
 
