@@ -51,7 +51,7 @@ struct VaultItemEncoding: Codable {
 	var signature: String
 }
 
-class SecureVaultItem: Codable, Identifiable, Comparable {
+class SecureVaultItem: Codable, Identifiable, Comparable, Hashable {
 	enum CodingKeys: CodingKey {
 		case id
 		case vaultVersion
@@ -66,6 +66,11 @@ class SecureVaultItem: Codable, Identifiable, Comparable {
 	init(json: Decodable) {
 	}
 
+	/// Hashable overrides
+	func hash(into hasher: inout Hasher) {
+		hasher.combine(self.id)
+	}
+	
 	/// Creates the file for the vault item. The 'content' will be encrypted with the master key, base 64 encoded, and stored as a JSON string.
 	func write(locationOfVaultItems: URL, masterKey: Data, contents: String, itemType: VaultItemType) throws {
 
