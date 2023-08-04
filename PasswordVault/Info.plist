@@ -14,5 +14,13 @@
 			<string>Any</string>
 		</dict>
 	</dict>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UILaunchScreen</key>
+		<dict>
+			<key>ImageName</key>
+			<string>LaunchImage</string>
+		</dict>
+	</dict>
 </dict>
 </plist>
