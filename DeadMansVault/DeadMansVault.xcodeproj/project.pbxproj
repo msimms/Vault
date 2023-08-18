@@ -1,0 +1,1245 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		274AA6402A8FD10200F77F96 /* DeadMansVaultApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA63F2A8FD10200F77F96 /* DeadMansVaultApp.swift */; };
+		274AA6422A8FD10200F77F96 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6412A8FD10200F77F96 /* ContentView.swift */; };
+		274AA6442A8FD10300F77F96 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 274AA6432A8FD10300F77F96 /* Assets.xcassets */; };
+		274AA6482A8FD10300F77F96 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 274AA6472A8FD10300F77F96 /* Preview Assets.xcassets */; };
+		274AA6522A8FD10300F77F96 /* DeadMansVaultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6512A8FD10300F77F96 /* DeadMansVaultTests.swift */; };
+		274AA65C2A8FD10300F77F96 /* DeadMansVaultUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA65B2A8FD10300F77F96 /* DeadMansVaultUITests.swift */; };
+		274AA65E2A8FD10300F77F96 /* DeadMansVaultUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA65D2A8FD10300F77F96 /* DeadMansVaultUITestsLaunchTests.swift */; };
+		274AA6712A8FD32300F77F96 /* DeadMansVaultWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6702A8FD32300F77F96 /* DeadMansVaultWatchApp.swift */; };
+		274AA6732A8FD32300F77F96 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6722A8FD32300F77F96 /* ContentView.swift */; };
+		274AA6752A8FD32400F77F96 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 274AA6742A8FD32400F77F96 /* Assets.xcassets */; };
+		274AA6782A8FD32400F77F96 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 274AA6772A8FD32400F77F96 /* Preview Assets.xcassets */; };
+		274AA6822A8FD32400F77F96 /* DeadMansVaultWatch_Watch_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6812A8FD32400F77F96 /* DeadMansVaultWatch_Watch_AppTests.swift */; };
+		274AA68C2A8FD32400F77F96 /* DeadMansVaultWatch_Watch_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA68B2A8FD32400F77F96 /* DeadMansVaultWatch_Watch_AppUITests.swift */; };
+		274AA68E2A8FD32400F77F96 /* DeadMansVaultWatch_Watch_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA68D2A8FD32400F77F96 /* DeadMansVaultWatch_Watch_AppUITestsLaunchTests.swift */; };
+		274AA6912A8FD32400F77F96 /* DeadMansVaultWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 274AA66E2A8FD32300F77F96 /* DeadMansVaultWatch Watch App.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		274AA6A32A8FD35500F77F96 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6A22A8FD35500F77F96 /* SafariWebExtensionHandler.swift */; };
+		274AA6A62A8FD35500F77F96 /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = 274AA6A52A8FD35500F77F96 /* _locales */; };
+		274AA6A82A8FD35500F77F96 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 274AA6A72A8FD35500F77F96 /* images */; };
+		274AA6AA2A8FD35500F77F96 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 274AA6A92A8FD35500F77F96 /* manifest.json */; };
+		274AA6AC2A8FD35500F77F96 /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = 274AA6AB2A8FD35500F77F96 /* background.js */; };
+		274AA6AE2A8FD35500F77F96 /* content.js in Resources */ = {isa = PBXBuildFile; fileRef = 274AA6AD2A8FD35500F77F96 /* content.js */; };
+		274AA6B02A8FD35500F77F96 /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = 274AA6AF2A8FD35500F77F96 /* popup.html */; };
+		274AA6B22A8FD35500F77F96 /* popup.css in Resources */ = {isa = PBXBuildFile; fileRef = 274AA6B12A8FD35500F77F96 /* popup.css */; };
+		274AA6B42A8FD35500F77F96 /* popup.js in Resources */ = {isa = PBXBuildFile; fileRef = 274AA6B32A8FD35500F77F96 /* popup.js */; };
+		274AA6B92A8FD35500F77F96 /* DeadMansVaultBrowser.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 274AA6A02A8FD35400F77F96 /* DeadMansVaultBrowser.appex */; platformFilters = (macos, ); settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		274AA64E2A8FD10300F77F96 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 274AA6342A8FD10200F77F96 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 274AA63B2A8FD10200F77F96;
+			remoteInfo = DeadMansVault;
+		};
+		274AA6582A8FD10300F77F96 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 274AA6342A8FD10200F77F96 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 274AA63B2A8FD10200F77F96;
+			remoteInfo = DeadMansVault;
+		};
+		274AA67E2A8FD32400F77F96 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 274AA6342A8FD10200F77F96 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 274AA66D2A8FD32300F77F96;
+			remoteInfo = "DeadMansVaultWatch Watch App";
+		};
+		274AA6882A8FD32400F77F96 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 274AA6342A8FD10200F77F96 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 274AA66D2A8FD32300F77F96;
+			remoteInfo = "DeadMansVaultWatch Watch App";
+		};
+		274AA68F2A8FD32400F77F96 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 274AA6342A8FD10200F77F96 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 274AA66D2A8FD32300F77F96;
+			remoteInfo = "DeadMansVaultWatch Watch App";
+		};
+		274AA6B72A8FD35500F77F96 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 274AA6342A8FD10200F77F96 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 274AA69F2A8FD35400F77F96;
+			remoteInfo = DeadMansVaultBrowser;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		274AA6952A8FD32400F77F96 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				274AA6912A8FD32400F77F96 /* DeadMansVaultWatch Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		274AA6BD2A8FD35500F77F96 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				274AA6B92A8FD35500F77F96 /* DeadMansVaultBrowser.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		274AA63C2A8FD10200F77F96 /* DeadMansVault.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeadMansVault.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		274AA63F2A8FD10200F77F96 /* DeadMansVaultApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadMansVaultApp.swift; sourceTree = "<group>"; };
+		274AA6412A8FD10200F77F96 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		274AA6432A8FD10300F77F96 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		274AA6452A8FD10300F77F96 /* DeadMansVault.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeadMansVault.entitlements; sourceTree = "<group>"; };
+		274AA6472A8FD10300F77F96 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		274AA64D2A8FD10300F77F96 /* DeadMansVaultTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeadMansVaultTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		274AA6512A8FD10300F77F96 /* DeadMansVaultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadMansVaultTests.swift; sourceTree = "<group>"; };
+		274AA6572A8FD10300F77F96 /* DeadMansVaultUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeadMansVaultUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		274AA65B2A8FD10300F77F96 /* DeadMansVaultUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadMansVaultUITests.swift; sourceTree = "<group>"; };
+		274AA65D2A8FD10300F77F96 /* DeadMansVaultUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadMansVaultUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		274AA66E2A8FD32300F77F96 /* DeadMansVaultWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DeadMansVaultWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		274AA6702A8FD32300F77F96 /* DeadMansVaultWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadMansVaultWatchApp.swift; sourceTree = "<group>"; };
+		274AA6722A8FD32300F77F96 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		274AA6742A8FD32400F77F96 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		274AA6772A8FD32400F77F96 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		274AA67D2A8FD32400F77F96 /* DeadMansVaultWatch Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DeadMansVaultWatch Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		274AA6812A8FD32400F77F96 /* DeadMansVaultWatch_Watch_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadMansVaultWatch_Watch_AppTests.swift; sourceTree = "<group>"; };
+		274AA6872A8FD32400F77F96 /* DeadMansVaultWatch Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DeadMansVaultWatch Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		274AA68B2A8FD32400F77F96 /* DeadMansVaultWatch_Watch_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadMansVaultWatch_Watch_AppUITests.swift; sourceTree = "<group>"; };
+		274AA68D2A8FD32400F77F96 /* DeadMansVaultWatch_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadMansVaultWatch_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		274AA6A02A8FD35400F77F96 /* DeadMansVaultBrowser.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DeadMansVaultBrowser.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		274AA6A22A8FD35500F77F96 /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
+		274AA6A52A8FD35500F77F96 /* _locales */ = {isa = PBXFileReference; lastKnownFileType = folder; path = _locales; sourceTree = "<group>"; };
+		274AA6A72A8FD35500F77F96 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
+		274AA6A92A8FD35500F77F96 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
+		274AA6AB2A8FD35500F77F96 /* background.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = background.js; sourceTree = "<group>"; };
+		274AA6AD2A8FD35500F77F96 /* content.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = content.js; sourceTree = "<group>"; };
+		274AA6AF2A8FD35500F77F96 /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = popup.html; sourceTree = "<group>"; };
+		274AA6B12A8FD35500F77F96 /* popup.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = popup.css; sourceTree = "<group>"; };
+		274AA6B32A8FD35500F77F96 /* popup.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = popup.js; sourceTree = "<group>"; };
+		274AA6B52A8FD35500F77F96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		274AA6B62A8FD35500F77F96 /* DeadMansVaultBrowser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeadMansVaultBrowser.entitlements; sourceTree = "<group>"; };
+		274AA6BE2A8FEBEF00F77F96 /* DeadMansVaultWatch Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "DeadMansVaultWatch Watch App.entitlements"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		274AA6392A8FD10200F77F96 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		274AA64A2A8FD10300F77F96 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		274AA6542A8FD10300F77F96 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		274AA66B2A8FD32300F77F96 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		274AA67A2A8FD32400F77F96 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		274AA6842A8FD32400F77F96 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		274AA69D2A8FD35400F77F96 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		274AA6332A8FD10200F77F96 = {
+			isa = PBXGroup;
+			children = (
+				274AA6BE2A8FEBEF00F77F96 /* DeadMansVaultWatch Watch App.entitlements */,
+				274AA63E2A8FD10200F77F96 /* DeadMansVault */,
+				274AA6502A8FD10300F77F96 /* Tests */,
+				274AA65A2A8FD10300F77F96 /* UITests */,
+				274AA66F2A8FD32300F77F96 /* Watch App */,
+				274AA6802A8FD32400F77F96 /* Watch AppTests */,
+				274AA68A2A8FD32400F77F96 /* Watch AppUITests */,
+				274AA6A12A8FD35500F77F96 /* Browser Extension */,
+				274AA63D2A8FD10200F77F96 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		274AA63D2A8FD10200F77F96 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				274AA63C2A8FD10200F77F96 /* DeadMansVault.app */,
+				274AA64D2A8FD10300F77F96 /* DeadMansVaultTests.xctest */,
+				274AA6572A8FD10300F77F96 /* DeadMansVaultUITests.xctest */,
+				274AA66E2A8FD32300F77F96 /* DeadMansVaultWatch Watch App.app */,
+				274AA67D2A8FD32400F77F96 /* DeadMansVaultWatch Watch AppTests.xctest */,
+				274AA6872A8FD32400F77F96 /* DeadMansVaultWatch Watch AppUITests.xctest */,
+				274AA6A02A8FD35400F77F96 /* DeadMansVaultBrowser.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		274AA63E2A8FD10200F77F96 /* DeadMansVault */ = {
+			isa = PBXGroup;
+			children = (
+				274AA63F2A8FD10200F77F96 /* DeadMansVaultApp.swift */,
+				274AA6412A8FD10200F77F96 /* ContentView.swift */,
+				274AA6432A8FD10300F77F96 /* Assets.xcassets */,
+				274AA6452A8FD10300F77F96 /* DeadMansVault.entitlements */,
+				274AA6462A8FD10300F77F96 /* Preview Content */,
+			);
+			path = DeadMansVault;
+			sourceTree = "<group>";
+		};
+		274AA6462A8FD10300F77F96 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				274AA6472A8FD10300F77F96 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		274AA6502A8FD10300F77F96 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				274AA6512A8FD10300F77F96 /* DeadMansVaultTests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		274AA65A2A8FD10300F77F96 /* UITests */ = {
+			isa = PBXGroup;
+			children = (
+				274AA65B2A8FD10300F77F96 /* DeadMansVaultUITests.swift */,
+				274AA65D2A8FD10300F77F96 /* DeadMansVaultUITestsLaunchTests.swift */,
+			);
+			path = UITests;
+			sourceTree = "<group>";
+		};
+		274AA66F2A8FD32300F77F96 /* Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				274AA6702A8FD32300F77F96 /* DeadMansVaultWatchApp.swift */,
+				274AA6722A8FD32300F77F96 /* ContentView.swift */,
+				274AA6742A8FD32400F77F96 /* Assets.xcassets */,
+				274AA6762A8FD32400F77F96 /* Preview Content */,
+			);
+			path = "Watch App";
+			sourceTree = "<group>";
+		};
+		274AA6762A8FD32400F77F96 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				274AA6772A8FD32400F77F96 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		274AA6802A8FD32400F77F96 /* Watch AppTests */ = {
+			isa = PBXGroup;
+			children = (
+				274AA6812A8FD32400F77F96 /* DeadMansVaultWatch_Watch_AppTests.swift */,
+			);
+			path = "Watch AppTests";
+			sourceTree = "<group>";
+		};
+		274AA68A2A8FD32400F77F96 /* Watch AppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				274AA68B2A8FD32400F77F96 /* DeadMansVaultWatch_Watch_AppUITests.swift */,
+				274AA68D2A8FD32400F77F96 /* DeadMansVaultWatch_Watch_AppUITestsLaunchTests.swift */,
+			);
+			path = "Watch AppUITests";
+			sourceTree = "<group>";
+		};
+		274AA6A12A8FD35500F77F96 /* Browser Extension */ = {
+			isa = PBXGroup;
+			children = (
+				274AA6A22A8FD35500F77F96 /* SafariWebExtensionHandler.swift */,
+				274AA6B52A8FD35500F77F96 /* Info.plist */,
+				274AA6B62A8FD35500F77F96 /* DeadMansVaultBrowser.entitlements */,
+				274AA6A42A8FD35500F77F96 /* Resources */,
+			);
+			path = "Browser Extension";
+			sourceTree = "<group>";
+		};
+		274AA6A42A8FD35500F77F96 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				274AA6A52A8FD35500F77F96 /* _locales */,
+				274AA6A72A8FD35500F77F96 /* images */,
+				274AA6A92A8FD35500F77F96 /* manifest.json */,
+				274AA6AB2A8FD35500F77F96 /* background.js */,
+				274AA6AD2A8FD35500F77F96 /* content.js */,
+				274AA6AF2A8FD35500F77F96 /* popup.html */,
+				274AA6B12A8FD35500F77F96 /* popup.css */,
+				274AA6B32A8FD35500F77F96 /* popup.js */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		274AA63B2A8FD10200F77F96 /* DeadMansVault */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 274AA6612A8FD10300F77F96 /* Build configuration list for PBXNativeTarget "DeadMansVault" */;
+			buildPhases = (
+				274AA6382A8FD10200F77F96 /* Sources */,
+				274AA6392A8FD10200F77F96 /* Frameworks */,
+				274AA63A2A8FD10200F77F96 /* Resources */,
+				274AA6952A8FD32400F77F96 /* Embed Watch Content */,
+				274AA6BD2A8FD35500F77F96 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				274AA6902A8FD32400F77F96 /* PBXTargetDependency */,
+				274AA6B82A8FD35500F77F96 /* PBXTargetDependency */,
+			);
+			name = DeadMansVault;
+			productName = DeadMansVault;
+			productReference = 274AA63C2A8FD10200F77F96 /* DeadMansVault.app */;
+			productType = "com.apple.product-type.application";
+		};
+		274AA64C2A8FD10300F77F96 /* DeadMansVaultTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 274AA6642A8FD10300F77F96 /* Build configuration list for PBXNativeTarget "DeadMansVaultTests" */;
+			buildPhases = (
+				274AA6492A8FD10300F77F96 /* Sources */,
+				274AA64A2A8FD10300F77F96 /* Frameworks */,
+				274AA64B2A8FD10300F77F96 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				274AA64F2A8FD10300F77F96 /* PBXTargetDependency */,
+			);
+			name = DeadMansVaultTests;
+			productName = DeadMansVaultTests;
+			productReference = 274AA64D2A8FD10300F77F96 /* DeadMansVaultTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		274AA6562A8FD10300F77F96 /* DeadMansVaultUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 274AA6672A8FD10300F77F96 /* Build configuration list for PBXNativeTarget "DeadMansVaultUITests" */;
+			buildPhases = (
+				274AA6532A8FD10300F77F96 /* Sources */,
+				274AA6542A8FD10300F77F96 /* Frameworks */,
+				274AA6552A8FD10300F77F96 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				274AA6592A8FD10300F77F96 /* PBXTargetDependency */,
+			);
+			name = DeadMansVaultUITests;
+			productName = DeadMansVaultUITests;
+			productReference = 274AA6572A8FD10300F77F96 /* DeadMansVaultUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		274AA66D2A8FD32300F77F96 /* DeadMansVaultWatch Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 274AA6922A8FD32400F77F96 /* Build configuration list for PBXNativeTarget "DeadMansVaultWatch Watch App" */;
+			buildPhases = (
+				274AA66A2A8FD32300F77F96 /* Sources */,
+				274AA66B2A8FD32300F77F96 /* Frameworks */,
+				274AA66C2A8FD32300F77F96 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "DeadMansVaultWatch Watch App";
+			productName = "DeadMansVaultWatch Watch App";
+			productReference = 274AA66E2A8FD32300F77F96 /* DeadMansVaultWatch Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
+		274AA67C2A8FD32400F77F96 /* DeadMansVaultWatch Watch AppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 274AA6962A8FD32400F77F96 /* Build configuration list for PBXNativeTarget "DeadMansVaultWatch Watch AppTests" */;
+			buildPhases = (
+				274AA6792A8FD32400F77F96 /* Sources */,
+				274AA67A2A8FD32400F77F96 /* Frameworks */,
+				274AA67B2A8FD32400F77F96 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				274AA67F2A8FD32400F77F96 /* PBXTargetDependency */,
+			);
+			name = "DeadMansVaultWatch Watch AppTests";
+			productName = "DeadMansVaultWatch Watch AppTests";
+			productReference = 274AA67D2A8FD32400F77F96 /* DeadMansVaultWatch Watch AppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		274AA6862A8FD32400F77F96 /* DeadMansVaultWatch Watch AppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 274AA6992A8FD32400F77F96 /* Build configuration list for PBXNativeTarget "DeadMansVaultWatch Watch AppUITests" */;
+			buildPhases = (
+				274AA6832A8FD32400F77F96 /* Sources */,
+				274AA6842A8FD32400F77F96 /* Frameworks */,
+				274AA6852A8FD32400F77F96 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				274AA6892A8FD32400F77F96 /* PBXTargetDependency */,
+			);
+			name = "DeadMansVaultWatch Watch AppUITests";
+			productName = "DeadMansVaultWatch Watch AppUITests";
+			productReference = 274AA6872A8FD32400F77F96 /* DeadMansVaultWatch Watch AppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		274AA69F2A8FD35400F77F96 /* DeadMansVaultBrowser */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 274AA6BA2A8FD35500F77F96 /* Build configuration list for PBXNativeTarget "DeadMansVaultBrowser" */;
+			buildPhases = (
+				274AA69C2A8FD35400F77F96 /* Sources */,
+				274AA69D2A8FD35400F77F96 /* Frameworks */,
+				274AA69E2A8FD35400F77F96 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DeadMansVaultBrowser;
+			productName = DeadMansVaultBrowser;
+			productReference = 274AA6A02A8FD35400F77F96 /* DeadMansVaultBrowser.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		274AA6342A8FD10200F77F96 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					274AA63B2A8FD10200F77F96 = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
+					274AA64C2A8FD10300F77F96 = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = 274AA63B2A8FD10200F77F96;
+					};
+					274AA6562A8FD10300F77F96 = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = 274AA63B2A8FD10200F77F96;
+					};
+					274AA66D2A8FD32300F77F96 = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
+					274AA67C2A8FD32400F77F96 = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = 274AA66D2A8FD32300F77F96;
+					};
+					274AA6862A8FD32400F77F96 = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = 274AA66D2A8FD32300F77F96;
+					};
+					274AA69F2A8FD35400F77F96 = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 274AA6372A8FD10200F77F96 /* Build configuration list for PBXProject "DeadMansVault" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 274AA6332A8FD10200F77F96;
+			productRefGroup = 274AA63D2A8FD10200F77F96 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				274AA63B2A8FD10200F77F96 /* DeadMansVault */,
+				274AA64C2A8FD10300F77F96 /* DeadMansVaultTests */,
+				274AA6562A8FD10300F77F96 /* DeadMansVaultUITests */,
+				274AA66D2A8FD32300F77F96 /* DeadMansVaultWatch Watch App */,
+				274AA67C2A8FD32400F77F96 /* DeadMansVaultWatch Watch AppTests */,
+				274AA6862A8FD32400F77F96 /* DeadMansVaultWatch Watch AppUITests */,
+				274AA69F2A8FD35400F77F96 /* DeadMansVaultBrowser */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		274AA63A2A8FD10200F77F96 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				274AA6482A8FD10300F77F96 /* Preview Assets.xcassets in Resources */,
+				274AA6442A8FD10300F77F96 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		274AA64B2A8FD10300F77F96 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		274AA6552A8FD10300F77F96 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		274AA66C2A8FD32300F77F96 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				274AA6782A8FD32400F77F96 /* Preview Assets.xcassets in Resources */,
+				274AA6752A8FD32400F77F96 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		274AA67B2A8FD32400F77F96 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		274AA6852A8FD32400F77F96 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		274AA69E2A8FD35400F77F96 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				274AA6AC2A8FD35500F77F96 /* background.js in Resources */,
+				274AA6B22A8FD35500F77F96 /* popup.css in Resources */,
+				274AA6B02A8FD35500F77F96 /* popup.html in Resources */,
+				274AA6A82A8FD35500F77F96 /* images in Resources */,
+				274AA6AA2A8FD35500F77F96 /* manifest.json in Resources */,
+				274AA6A62A8FD35500F77F96 /* _locales in Resources */,
+				274AA6AE2A8FD35500F77F96 /* content.js in Resources */,
+				274AA6B42A8FD35500F77F96 /* popup.js in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		274AA6382A8FD10200F77F96 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				274AA6422A8FD10200F77F96 /* ContentView.swift in Sources */,
+				274AA6402A8FD10200F77F96 /* DeadMansVaultApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		274AA6492A8FD10300F77F96 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				274AA6522A8FD10300F77F96 /* DeadMansVaultTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		274AA6532A8FD10300F77F96 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				274AA65E2A8FD10300F77F96 /* DeadMansVaultUITestsLaunchTests.swift in Sources */,
+				274AA65C2A8FD10300F77F96 /* DeadMansVaultUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		274AA66A2A8FD32300F77F96 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				274AA6732A8FD32300F77F96 /* ContentView.swift in Sources */,
+				274AA6712A8FD32300F77F96 /* DeadMansVaultWatchApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		274AA6792A8FD32400F77F96 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				274AA6822A8FD32400F77F96 /* DeadMansVaultWatch_Watch_AppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		274AA6832A8FD32400F77F96 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				274AA68E2A8FD32400F77F96 /* DeadMansVaultWatch_Watch_AppUITestsLaunchTests.swift in Sources */,
+				274AA68C2A8FD32400F77F96 /* DeadMansVaultWatch_Watch_AppUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		274AA69C2A8FD35400F77F96 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				274AA6A32A8FD35500F77F96 /* SafariWebExtensionHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		274AA64F2A8FD10300F77F96 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 274AA63B2A8FD10200F77F96 /* DeadMansVault */;
+			targetProxy = 274AA64E2A8FD10300F77F96 /* PBXContainerItemProxy */;
+		};
+		274AA6592A8FD10300F77F96 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 274AA63B2A8FD10200F77F96 /* DeadMansVault */;
+			targetProxy = 274AA6582A8FD10300F77F96 /* PBXContainerItemProxy */;
+		};
+		274AA67F2A8FD32400F77F96 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 274AA66D2A8FD32300F77F96 /* DeadMansVaultWatch Watch App */;
+			targetProxy = 274AA67E2A8FD32400F77F96 /* PBXContainerItemProxy */;
+		};
+		274AA6892A8FD32400F77F96 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 274AA66D2A8FD32300F77F96 /* DeadMansVaultWatch Watch App */;
+			targetProxy = 274AA6882A8FD32400F77F96 /* PBXContainerItemProxy */;
+		};
+		274AA6902A8FD32400F77F96 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 274AA66D2A8FD32300F77F96 /* DeadMansVaultWatch Watch App */;
+			targetProxy = 274AA68F2A8FD32400F77F96 /* PBXContainerItemProxy */;
+		};
+		274AA6B82A8FD35500F77F96 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilters = (
+				macos,
+			);
+			target = 274AA69F2A8FD35400F77F96 /* DeadMansVaultBrowser */;
+			targetProxy = 274AA6B72A8FD35500F77F96 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		274AA65F2A8FD10300F77F96 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		274AA6602A8FD10300F77F96 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		274AA6622A8FD10300F77F96 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DeadMansVault/DeadMansVault.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"DeadMansVault/Preview Content\"";
+				DEVELOPMENT_TEAM = F42C985T48;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.DeadMansVault";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		274AA6632A8FD10300F77F96 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DeadMansVault/DeadMansVault.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"DeadMansVault/Preview Content\"";
+				DEVELOPMENT_TEAM = F42C985T48;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.DeadMansVault";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		274AA6652A8FD10300F77F96 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F42C985T48;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.DeadMansVaultTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DeadMansVault.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DeadMansVault";
+			};
+			name = Debug;
+		};
+		274AA6662A8FD10300F77F96 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F42C985T48;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.DeadMansVaultTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DeadMansVault.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DeadMansVault";
+			};
+			name = Release;
+		};
+		274AA6682A8FD10300F77F96 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F42C985T48;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.DeadMansVaultUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DeadMansVault;
+			};
+			name = Debug;
+		};
+		274AA6692A8FD10300F77F96 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F42C985T48;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.DeadMansVaultUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DeadMansVault;
+			};
+			name = Release;
+		};
+		274AA6932A8FD32400F77F96 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "DeadMansVaultWatch Watch App.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = F42C985T48;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = DeadMansVaultWatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "com.mjs-software.DeadMansVault";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.DeadMansVault.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.4;
+			};
+			name = Debug;
+		};
+		274AA6942A8FD32400F77F96 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "DeadMansVaultWatch Watch App.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = F42C985T48;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = DeadMansVaultWatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "com.mjs-software.DeadMansVault";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.DeadMansVault.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 9.4;
+			};
+			name = Release;
+		};
+		274AA6972A8FD32400F77F96 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F42C985T48;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.DeadMansVaultWatch-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DeadMansVaultWatch Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DeadMansVaultWatch Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 9.4;
+			};
+			name = Debug;
+		};
+		274AA6982A8FD32400F77F96 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F42C985T48;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.DeadMansVaultWatch-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DeadMansVaultWatch Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DeadMansVaultWatch Watch App";
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 9.4;
+			};
+			name = Release;
+		};
+		274AA69A2A8FD32400F77F96 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F42C985T48;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.DeadMansVaultWatch-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "DeadMansVaultWatch Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 9.4;
+			};
+			name = Debug;
+		};
+		274AA69B2A8FD32400F77F96 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F42C985T48;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.DeadMansVaultWatch-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "DeadMansVaultWatch Watch App";
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 9.4;
+			};
+			name = Release;
+		};
+		274AA6BB2A8FD35500F77F96 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = DeadMansVaultBrowser/DeadMansVaultBrowser.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F42C985T48;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DeadMansVaultBrowser/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DeadMansVaultBrowser;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.DeadMansVault.DeadMansVaultBrowser";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		274AA6BC2A8FD35500F77F96 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = DeadMansVaultBrowser/DeadMansVaultBrowser.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F42C985T48;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DeadMansVaultBrowser/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DeadMansVaultBrowser;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.DeadMansVault.DeadMansVaultBrowser";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		274AA6372A8FD10200F77F96 /* Build configuration list for PBXProject "DeadMansVault" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				274AA65F2A8FD10300F77F96 /* Debug */,
+				274AA6602A8FD10300F77F96 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		274AA6612A8FD10300F77F96 /* Build configuration list for PBXNativeTarget "DeadMansVault" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				274AA6622A8FD10300F77F96 /* Debug */,
+				274AA6632A8FD10300F77F96 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		274AA6642A8FD10300F77F96 /* Build configuration list for PBXNativeTarget "DeadMansVaultTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				274AA6652A8FD10300F77F96 /* Debug */,
+				274AA6662A8FD10300F77F96 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		274AA6672A8FD10300F77F96 /* Build configuration list for PBXNativeTarget "DeadMansVaultUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				274AA6682A8FD10300F77F96 /* Debug */,
+				274AA6692A8FD10300F77F96 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		274AA6922A8FD32400F77F96 /* Build configuration list for PBXNativeTarget "DeadMansVaultWatch Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				274AA6932A8FD32400F77F96 /* Debug */,
+				274AA6942A8FD32400F77F96 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		274AA6962A8FD32400F77F96 /* Build configuration list for PBXNativeTarget "DeadMansVaultWatch Watch AppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				274AA6972A8FD32400F77F96 /* Debug */,
+				274AA6982A8FD32400F77F96 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		274AA6992A8FD32400F77F96 /* Build configuration list for PBXNativeTarget "DeadMansVaultWatch Watch AppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				274AA69A2A8FD32400F77F96 /* Debug */,
+				274AA69B2A8FD32400F77F96 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		274AA6BA2A8FD35500F77F96 /* Build configuration list for PBXNativeTarget "DeadMansVaultBrowser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				274AA6BB2A8FD35500F77F96 /* Debug */,
+				274AA6BC2A8FD35500F77F96 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 274AA6342A8FD10200F77F96 /* Project object */;
+}
