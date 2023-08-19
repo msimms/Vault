@@ -29,6 +29,37 @@ import Foundation
 
 class PasswordGenerator {
 	func generateRandomWord() -> String {
+		let chunkSize = 64
+
+		// We'll select a random word from /usr/share/dict/words
+		let fileUrl = URL(string: "/usr/share/dict/words")
+		guard let fileHandle = try? FileHandle(forReadingFrom: fileUrl!) else { return "" }
+			
+		// Get the size of the file.
+		let numBytes = fileHandle.availableData.count
+
+		// Jump to some random point in the file and read a chunk.
+		let randLoc = arc4random_uniform(UInt32(numBytes - chunkSize))
+		fileHandle.seek(toFileOffset: UInt64(randLoc))
+		let chunkData = fileHandle.readData(ofLength: chunkSize)
+		let chunkStr = String(data: chunkData, encoding: .utf8) ?? ""
+		
+		// Look through the chunk that was read for a word on it's own line.
+		var randWord = ""
+		var started = false
+		for i in 0...chunkStr.count - 1 {
+			let char = chunkStr[chunkStr.index(chunkStr.startIndex, offsetBy: i)]
+			if char == "\n" {
+				if randWord.count > 0 {
+					return randWord
+				}
+				started = true
+			}
+			else if started {
+				randWord.append(char)
+			}
+		}
+
 		return "foo" // not currently very random :)
 	}
 
