@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27212F8F2A9008B9000D54D2 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27212F8A2A9008AF000D54D2 /* SafariWebExtensionHandler.swift */; };
+		27212F902A9008C2000D54D2 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 27212F892A9008AF000D54D2 /* Info.plist */; };
+		27212F912A9008C5000D54D2 /* Resources in Resources */ = {isa = PBXBuildFile; fileRef = 27212F8B2A9008AF000D54D2 /* Resources */; };
 		274AA6402A8FD10200F77F96 /* DeadMansVaultApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA63F2A8FD10200F77F96 /* DeadMansVaultApp.swift */; };
-		274AA6422A8FD10200F77F96 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6412A8FD10200F77F96 /* ContentView.swift */; };
-		274AA6442A8FD10300F77F96 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 274AA6432A8FD10300F77F96 /* Assets.xcassets */; };
 		274AA6482A8FD10300F77F96 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 274AA6472A8FD10300F77F96 /* Preview Assets.xcassets */; };
 		274AA6522A8FD10300F77F96 /* DeadMansVaultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6512A8FD10300F77F96 /* DeadMansVaultTests.swift */; };
 		274AA65C2A8FD10300F77F96 /* DeadMansVaultUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA65B2A8FD10300F77F96 /* DeadMansVaultUITests.swift */; };
@@ -22,16 +23,42 @@
 		274AA68C2A8FD32400F77F96 /* DeadMansVaultWatch_Watch_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA68B2A8FD32400F77F96 /* DeadMansVaultWatch_Watch_AppUITests.swift */; };
 		274AA68E2A8FD32400F77F96 /* DeadMansVaultWatch_Watch_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA68D2A8FD32400F77F96 /* DeadMansVaultWatch_Watch_AppUITestsLaunchTests.swift */; };
 		274AA6912A8FD32400F77F96 /* DeadMansVaultWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 274AA66E2A8FD32300F77F96 /* DeadMansVaultWatch Watch App.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		274AA6A32A8FD35500F77F96 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6A22A8FD35500F77F96 /* SafariWebExtensionHandler.swift */; };
-		274AA6A62A8FD35500F77F96 /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = 274AA6A52A8FD35500F77F96 /* _locales */; };
-		274AA6A82A8FD35500F77F96 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 274AA6A72A8FD35500F77F96 /* images */; };
-		274AA6AA2A8FD35500F77F96 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 274AA6A92A8FD35500F77F96 /* manifest.json */; };
-		274AA6AC2A8FD35500F77F96 /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = 274AA6AB2A8FD35500F77F96 /* background.js */; };
-		274AA6AE2A8FD35500F77F96 /* content.js in Resources */ = {isa = PBXBuildFile; fileRef = 274AA6AD2A8FD35500F77F96 /* content.js */; };
-		274AA6B02A8FD35500F77F96 /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = 274AA6AF2A8FD35500F77F96 /* popup.html */; };
-		274AA6B22A8FD35500F77F96 /* popup.css in Resources */ = {isa = PBXBuildFile; fileRef = 274AA6B12A8FD35500F77F96 /* popup.css */; };
-		274AA6B42A8FD35500F77F96 /* popup.js in Resources */ = {isa = PBXBuildFile; fileRef = 274AA6B32A8FD35500F77F96 /* popup.js */; };
 		274AA6B92A8FD35500F77F96 /* DeadMansVaultBrowser.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 274AA6A02A8FD35400F77F96 /* DeadMansVaultBrowser.appex */; platformFilters = (macos, ); settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		274AA6E12A8FF1CC00F77F96 /* SecureCardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6BF2A8FF1C500F77F96 /* SecureCardItem.swift */; };
+		274AA6E32A8FF1CC00F77F96 /* NewTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6C12A8FF1C500F77F96 /* NewTagView.swift */; };
+		274AA6E42A8FF1CC00F77F96 /* PasswordGeneratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6C22A8FF1C600F77F96 /* PasswordGeneratorView.swift */; };
+		274AA6E52A8FF1CC00F77F96 /* SecureAccessPointItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6C32A8FF1C600F77F96 /* SecureAccessPointItem.swift */; };
+		274AA6E62A8FF1CC00F77F96 /* SecureLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6C42A8FF1C600F77F96 /* SecureLoginView.swift */; };
+		274AA6E72A8FF1CC00F77F96 /* OpenVaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6C52A8FF1C600F77F96 /* OpenVaultView.swift */; };
+		274AA6E82A8FF1CC00F77F96 /* VaultException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6C62A8FF1C600F77F96 /* VaultException.swift */; };
+		274AA6E92A8FF1CC00F77F96 /* PasswordGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6C72A8FF1C700F77F96 /* PasswordGenerator.swift */; };
+		274AA6EA2A8FF1CC00F77F96 /* SecureNoteItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6C82A8FF1C700F77F96 /* SecureNoteItem.swift */; };
+		274AA6EB2A8FF1CC00F77F96 /* SecureCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6C92A8FF1C700F77F96 /* SecureCardView.swift */; };
+		274AA6EC2A8FF1CC00F77F96 /* ItemButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6CA2A8FF1C700F77F96 /* ItemButtonView.swift */; };
+		274AA6ED2A8FF1CC00F77F96 /* VaultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6CB2A8FF1C700F77F96 /* VaultViewModel.swift */; };
+		274AA6EE2A8FF1CC00F77F96 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6CC2A8FF1C800F77F96 /* Preferences.swift */; };
+		274AA6EF2A8FF1CC00F77F96 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6CD2A8FF1C800F77F96 /* Keychain.swift */; };
+		274AA6F02A8FF1CC00F77F96 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6CE2A8FF1C800F77F96 /* AppState.swift */; };
+		274AA6F12A8FF1CC00F77F96 /* SecureLoginItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6CF2A8FF1C800F77F96 /* SecureLoginItem.swift */; };
+		274AA6F22A8FF1CC00F77F96 /* VaultState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6D02A8FF1C800F77F96 /* VaultState.swift */; };
+		274AA6F32A8FF1CC00F77F96 /* Importer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6D12A8FF1C900F77F96 /* Importer.swift */; };
+		274AA6F42A8FF1CC00F77F96 /* TagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6D22A8FF1C900F77F96 /* TagsView.swift */; };
+		274AA6F52A8FF1CC00F77F96 /* VaultDisplayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6D32A8FF1C900F77F96 /* VaultDisplayState.swift */; };
+		274AA6F62A8FF1CC00F77F96 /* SecureAccessPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6D42A8FF1C900F77F96 /* SecureAccessPointView.swift */; };
+		274AA6F72A8FF1CC00F77F96 /* Vault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6D52A8FF1C900F77F96 /* Vault.swift */; };
+		274AA6F82A8FF1CC00F77F96 /* NewVaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6D62A8FF1C900F77F96 /* NewVaultView.swift */; };
+		274AA6F92A8FF1CC00F77F96 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6D72A8FF1CA00F77F96 /* AppView.swift */; };
+		274AA6FA2A8FF1CC00F77F96 /* PasswordVaultDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6D82A8FF1CA00F77F96 /* PasswordVaultDocument.swift */; };
+		274AA6FB2A8FF1CC00F77F96 /* Exporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6D92A8FF1CA00F77F96 /* Exporter.swift */; };
+		274AA6FC2A8FF1CC00F77F96 /* SecureVaultItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6DA2A8FF1CA00F77F96 /* SecureVaultItem.swift */; };
+		274AA6FD2A8FF1CC00F77F96 /* HealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6DB2A8FF1CA00F77F96 /* HealthManager.swift */; };
+		274AA6FE2A8FF1CC00F77F96 /* LastModifiedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6DC2A8FF1CB00F77F96 /* LastModifiedView.swift */; };
+		274AA6FF2A8FF1CC00F77F96 /* NewItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6DD2A8FF1CB00F77F96 /* NewItemView.swift */; };
+		274AA7002A8FF1CC00F77F96 /* SecureNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6DE2A8FF1CB00F77F96 /* SecureNoteView.swift */; };
+		274AA7012A8FF1CC00F77F96 /* VaultItemFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6DF2A8FF1CB00F77F96 /* VaultItemFactory.swift */; };
+		274AA7022A8FF1CC00F77F96 /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6E02A8FF1CB00F77F96 /* LockView.swift */; };
+		27774DA32A90130000D288ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27774DA22A900C5B00D288ED /* Assets.xcassets */; };
+		27774DA52A90132900D288ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27774DA22A900C5B00D288ED /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,10 +132,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		27212F892A9008AF000D54D2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		27212F8A2A9008AF000D54D2 /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
+		27212F8B2A9008AF000D54D2 /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resources; sourceTree = "<group>"; };
 		274AA63C2A8FD10200F77F96 /* DeadMansVault.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeadMansVault.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		274AA63F2A8FD10200F77F96 /* DeadMansVaultApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadMansVaultApp.swift; sourceTree = "<group>"; };
-		274AA6412A8FD10200F77F96 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		274AA6432A8FD10300F77F96 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		274AA6452A8FD10300F77F96 /* DeadMansVault.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeadMansVault.entitlements; sourceTree = "<group>"; };
 		274AA6472A8FD10300F77F96 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		274AA64D2A8FD10300F77F96 /* DeadMansVaultTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeadMansVaultTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,18 +155,43 @@
 		274AA68B2A8FD32400F77F96 /* DeadMansVaultWatch_Watch_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadMansVaultWatch_Watch_AppUITests.swift; sourceTree = "<group>"; };
 		274AA68D2A8FD32400F77F96 /* DeadMansVaultWatch_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadMansVaultWatch_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		274AA6A02A8FD35400F77F96 /* DeadMansVaultBrowser.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DeadMansVaultBrowser.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		274AA6A22A8FD35500F77F96 /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
-		274AA6A52A8FD35500F77F96 /* _locales */ = {isa = PBXFileReference; lastKnownFileType = folder; path = _locales; sourceTree = "<group>"; };
-		274AA6A72A8FD35500F77F96 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
-		274AA6A92A8FD35500F77F96 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
-		274AA6AB2A8FD35500F77F96 /* background.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = background.js; sourceTree = "<group>"; };
-		274AA6AD2A8FD35500F77F96 /* content.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = content.js; sourceTree = "<group>"; };
-		274AA6AF2A8FD35500F77F96 /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = popup.html; sourceTree = "<group>"; };
-		274AA6B12A8FD35500F77F96 /* popup.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = popup.css; sourceTree = "<group>"; };
-		274AA6B32A8FD35500F77F96 /* popup.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = popup.js; sourceTree = "<group>"; };
-		274AA6B52A8FD35500F77F96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		274AA6B62A8FD35500F77F96 /* DeadMansVaultBrowser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeadMansVaultBrowser.entitlements; sourceTree = "<group>"; };
 		274AA6BE2A8FEBEF00F77F96 /* DeadMansVaultWatch Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "DeadMansVaultWatch Watch App.entitlements"; sourceTree = "<group>"; };
+		274AA6BF2A8FF1C500F77F96 /* SecureCardItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecureCardItem.swift; path = Shared/SecureCardItem.swift; sourceTree = SOURCE_ROOT; };
+		274AA6C12A8FF1C500F77F96 /* NewTagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewTagView.swift; path = Shared/NewTagView.swift; sourceTree = SOURCE_ROOT; };
+		274AA6C22A8FF1C600F77F96 /* PasswordGeneratorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PasswordGeneratorView.swift; path = Shared/PasswordGeneratorView.swift; sourceTree = SOURCE_ROOT; };
+		274AA6C32A8FF1C600F77F96 /* SecureAccessPointItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecureAccessPointItem.swift; path = Shared/SecureAccessPointItem.swift; sourceTree = SOURCE_ROOT; };
+		274AA6C42A8FF1C600F77F96 /* SecureLoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecureLoginView.swift; path = Shared/SecureLoginView.swift; sourceTree = SOURCE_ROOT; };
+		274AA6C52A8FF1C600F77F96 /* OpenVaultView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OpenVaultView.swift; path = Shared/OpenVaultView.swift; sourceTree = SOURCE_ROOT; };
+		274AA6C62A8FF1C600F77F96 /* VaultException.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VaultException.swift; path = Shared/VaultException.swift; sourceTree = SOURCE_ROOT; };
+		274AA6C72A8FF1C700F77F96 /* PasswordGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PasswordGenerator.swift; path = Shared/PasswordGenerator.swift; sourceTree = SOURCE_ROOT; };
+		274AA6C82A8FF1C700F77F96 /* SecureNoteItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecureNoteItem.swift; path = Shared/SecureNoteItem.swift; sourceTree = SOURCE_ROOT; };
+		274AA6C92A8FF1C700F77F96 /* SecureCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecureCardView.swift; path = Shared/SecureCardView.swift; sourceTree = SOURCE_ROOT; };
+		274AA6CA2A8FF1C700F77F96 /* ItemButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemButtonView.swift; path = Shared/ItemButtonView.swift; sourceTree = SOURCE_ROOT; };
+		274AA6CB2A8FF1C700F77F96 /* VaultViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VaultViewModel.swift; path = Shared/VaultViewModel.swift; sourceTree = SOURCE_ROOT; };
+		274AA6CC2A8FF1C800F77F96 /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Preferences.swift; path = Shared/Preferences.swift; sourceTree = SOURCE_ROOT; };
+		274AA6CD2A8FF1C800F77F96 /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Keychain.swift; path = Shared/Keychain.swift; sourceTree = SOURCE_ROOT; };
+		274AA6CE2A8FF1C800F77F96 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppState.swift; path = Shared/AppState.swift; sourceTree = SOURCE_ROOT; };
+		274AA6CF2A8FF1C800F77F96 /* SecureLoginItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecureLoginItem.swift; path = Shared/SecureLoginItem.swift; sourceTree = SOURCE_ROOT; };
+		274AA6D02A8FF1C800F77F96 /* VaultState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VaultState.swift; path = Shared/VaultState.swift; sourceTree = SOURCE_ROOT; };
+		274AA6D12A8FF1C900F77F96 /* Importer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Importer.swift; path = Shared/Importer.swift; sourceTree = SOURCE_ROOT; };
+		274AA6D22A8FF1C900F77F96 /* TagsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TagsView.swift; path = Shared/TagsView.swift; sourceTree = SOURCE_ROOT; };
+		274AA6D32A8FF1C900F77F96 /* VaultDisplayState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VaultDisplayState.swift; path = Shared/VaultDisplayState.swift; sourceTree = SOURCE_ROOT; };
+		274AA6D42A8FF1C900F77F96 /* SecureAccessPointView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecureAccessPointView.swift; path = Shared/SecureAccessPointView.swift; sourceTree = SOURCE_ROOT; };
+		274AA6D52A8FF1C900F77F96 /* Vault.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Vault.swift; path = Shared/Vault.swift; sourceTree = SOURCE_ROOT; };
+		274AA6D62A8FF1C900F77F96 /* NewVaultView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewVaultView.swift; path = Shared/NewVaultView.swift; sourceTree = SOURCE_ROOT; };
+		274AA6D72A8FF1CA00F77F96 /* AppView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppView.swift; path = Shared/AppView.swift; sourceTree = SOURCE_ROOT; };
+		274AA6D82A8FF1CA00F77F96 /* PasswordVaultDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PasswordVaultDocument.swift; path = Shared/PasswordVaultDocument.swift; sourceTree = SOURCE_ROOT; };
+		274AA6D92A8FF1CA00F77F96 /* Exporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Exporter.swift; path = Shared/Exporter.swift; sourceTree = SOURCE_ROOT; };
+		274AA6DA2A8FF1CA00F77F96 /* SecureVaultItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecureVaultItem.swift; path = Shared/SecureVaultItem.swift; sourceTree = SOURCE_ROOT; };
+		274AA6DB2A8FF1CA00F77F96 /* HealthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HealthManager.swift; path = Shared/HealthManager.swift; sourceTree = SOURCE_ROOT; };
+		274AA6DC2A8FF1CB00F77F96 /* LastModifiedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LastModifiedView.swift; path = Shared/LastModifiedView.swift; sourceTree = SOURCE_ROOT; };
+		274AA6DD2A8FF1CB00F77F96 /* NewItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewItemView.swift; path = Shared/NewItemView.swift; sourceTree = SOURCE_ROOT; };
+		274AA6DE2A8FF1CB00F77F96 /* SecureNoteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecureNoteView.swift; path = Shared/SecureNoteView.swift; sourceTree = SOURCE_ROOT; };
+		274AA6DF2A8FF1CB00F77F96 /* VaultItemFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VaultItemFactory.swift; path = Shared/VaultItemFactory.swift; sourceTree = SOURCE_ROOT; };
+		274AA6E02A8FF1CB00F77F96 /* LockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LockView.swift; path = Shared/LockView.swift; sourceTree = SOURCE_ROOT; };
+		27774DA12A900B1200D288ED /* DeadMansVaultBrowser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeadMansVaultBrowser.entitlements; sourceTree = "<group>"; };
+		27774DA22A900C5B00D288ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Shared/Assets.xcassets; sourceTree = "<group>"; };
+		27E30B5B2A90346200236EAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,7 +250,10 @@
 		274AA6332A8FD10200F77F96 = {
 			isa = PBXGroup;
 			children = (
+				27774DA22A900C5B00D288ED /* Assets.xcassets */,
+				27774DA12A900B1200D288ED /* DeadMansVaultBrowser.entitlements */,
 				274AA6BE2A8FEBEF00F77F96 /* DeadMansVaultWatch Watch App.entitlements */,
+				274AA6452A8FD10300F77F96 /* DeadMansVault.entitlements */,
 				274AA63E2A8FD10200F77F96 /* DeadMansVault */,
 				274AA6502A8FD10300F77F96 /* Tests */,
 				274AA65A2A8FD10300F77F96 /* UITests */,
@@ -226,10 +282,41 @@
 		274AA63E2A8FD10200F77F96 /* DeadMansVault */ = {
 			isa = PBXGroup;
 			children = (
+				27E30B5B2A90346200236EAB /* Info.plist */,
+				274AA6CE2A8FF1C800F77F96 /* AppState.swift */,
+				274AA6D72A8FF1CA00F77F96 /* AppView.swift */,
 				274AA63F2A8FD10200F77F96 /* DeadMansVaultApp.swift */,
-				274AA6412A8FD10200F77F96 /* ContentView.swift */,
-				274AA6432A8FD10300F77F96 /* Assets.xcassets */,
-				274AA6452A8FD10300F77F96 /* DeadMansVault.entitlements */,
+				274AA6D92A8FF1CA00F77F96 /* Exporter.swift */,
+				274AA6DB2A8FF1CA00F77F96 /* HealthManager.swift */,
+				274AA6D12A8FF1C900F77F96 /* Importer.swift */,
+				274AA6CA2A8FF1C700F77F96 /* ItemButtonView.swift */,
+				274AA6CD2A8FF1C800F77F96 /* Keychain.swift */,
+				274AA6DC2A8FF1CB00F77F96 /* LastModifiedView.swift */,
+				274AA6E02A8FF1CB00F77F96 /* LockView.swift */,
+				274AA6DD2A8FF1CB00F77F96 /* NewItemView.swift */,
+				274AA6C12A8FF1C500F77F96 /* NewTagView.swift */,
+				274AA6D62A8FF1C900F77F96 /* NewVaultView.swift */,
+				274AA6C52A8FF1C600F77F96 /* OpenVaultView.swift */,
+				274AA6C72A8FF1C700F77F96 /* PasswordGenerator.swift */,
+				274AA6C22A8FF1C600F77F96 /* PasswordGeneratorView.swift */,
+				274AA6D82A8FF1CA00F77F96 /* PasswordVaultDocument.swift */,
+				274AA6CC2A8FF1C800F77F96 /* Preferences.swift */,
+				274AA6C32A8FF1C600F77F96 /* SecureAccessPointItem.swift */,
+				274AA6D42A8FF1C900F77F96 /* SecureAccessPointView.swift */,
+				274AA6BF2A8FF1C500F77F96 /* SecureCardItem.swift */,
+				274AA6C92A8FF1C700F77F96 /* SecureCardView.swift */,
+				274AA6CF2A8FF1C800F77F96 /* SecureLoginItem.swift */,
+				274AA6C42A8FF1C600F77F96 /* SecureLoginView.swift */,
+				274AA6C82A8FF1C700F77F96 /* SecureNoteItem.swift */,
+				274AA6DE2A8FF1CB00F77F96 /* SecureNoteView.swift */,
+				274AA6DA2A8FF1CA00F77F96 /* SecureVaultItem.swift */,
+				274AA6D22A8FF1C900F77F96 /* TagsView.swift */,
+				274AA6D52A8FF1C900F77F96 /* Vault.swift */,
+				274AA6D32A8FF1C900F77F96 /* VaultDisplayState.swift */,
+				274AA6C62A8FF1C600F77F96 /* VaultException.swift */,
+				274AA6DF2A8FF1CB00F77F96 /* VaultItemFactory.swift */,
+				274AA6D02A8FF1C800F77F96 /* VaultState.swift */,
+				274AA6CB2A8FF1C700F77F96 /* VaultViewModel.swift */,
 				274AA6462A8FD10300F77F96 /* Preview Content */,
 			);
 			path = DeadMansVault;
@@ -299,27 +386,11 @@
 		274AA6A12A8FD35500F77F96 /* Browser Extension */ = {
 			isa = PBXGroup;
 			children = (
-				274AA6A22A8FD35500F77F96 /* SafariWebExtensionHandler.swift */,
-				274AA6B52A8FD35500F77F96 /* Info.plist */,
-				274AA6B62A8FD35500F77F96 /* DeadMansVaultBrowser.entitlements */,
-				274AA6A42A8FD35500F77F96 /* Resources */,
+				27212F892A9008AF000D54D2 /* Info.plist */,
+				27212F8B2A9008AF000D54D2 /* Resources */,
+				27212F8A2A9008AF000D54D2 /* SafariWebExtensionHandler.swift */,
 			);
 			path = "Browser Extension";
-			sourceTree = "<group>";
-		};
-		274AA6A42A8FD35500F77F96 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				274AA6A52A8FD35500F77F96 /* _locales */,
-				274AA6A72A8FD35500F77F96 /* images */,
-				274AA6A92A8FD35500F77F96 /* manifest.json */,
-				274AA6AB2A8FD35500F77F96 /* background.js */,
-				274AA6AD2A8FD35500F77F96 /* content.js */,
-				274AA6AF2A8FD35500F77F96 /* popup.html */,
-				274AA6B12A8FD35500F77F96 /* popup.css */,
-				274AA6B32A8FD35500F77F96 /* popup.js */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -518,8 +589,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27774DA32A90130000D288ED /* Assets.xcassets in Resources */,
 				274AA6482A8FD10300F77F96 /* Preview Assets.xcassets in Resources */,
-				274AA6442A8FD10300F77F96 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -564,14 +635,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				274AA6AC2A8FD35500F77F96 /* background.js in Resources */,
-				274AA6B22A8FD35500F77F96 /* popup.css in Resources */,
-				274AA6B02A8FD35500F77F96 /* popup.html in Resources */,
-				274AA6A82A8FD35500F77F96 /* images in Resources */,
-				274AA6AA2A8FD35500F77F96 /* manifest.json in Resources */,
-				274AA6A62A8FD35500F77F96 /* _locales in Resources */,
-				274AA6AE2A8FD35500F77F96 /* content.js in Resources */,
-				274AA6B42A8FD35500F77F96 /* popup.js in Resources */,
+				27212F912A9008C5000D54D2 /* Resources in Resources */,
+				27774DA52A90132900D288ED /* Assets.xcassets in Resources */,
+				27212F902A9008C2000D54D2 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -582,8 +648,40 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				274AA6422A8FD10200F77F96 /* ContentView.swift in Sources */,
+				274AA6EF2A8FF1CC00F77F96 /* Keychain.swift in Sources */,
+				274AA6FE2A8FF1CC00F77F96 /* LastModifiedView.swift in Sources */,
+				274AA6E82A8FF1CC00F77F96 /* VaultException.swift in Sources */,
+				274AA6F82A8FF1CC00F77F96 /* NewVaultView.swift in Sources */,
+				274AA6E52A8FF1CC00F77F96 /* SecureAccessPointItem.swift in Sources */,
+				274AA7022A8FF1CC00F77F96 /* LockView.swift in Sources */,
+				274AA6FC2A8FF1CC00F77F96 /* SecureVaultItem.swift in Sources */,
+				274AA6F02A8FF1CC00F77F96 /* AppState.swift in Sources */,
+				274AA6FD2A8FF1CC00F77F96 /* HealthManager.swift in Sources */,
+				274AA6F52A8FF1CC00F77F96 /* VaultDisplayState.swift in Sources */,
+				274AA6E62A8FF1CC00F77F96 /* SecureLoginView.swift in Sources */,
+				274AA6E12A8FF1CC00F77F96 /* SecureCardItem.swift in Sources */,
+				274AA6E92A8FF1CC00F77F96 /* PasswordGenerator.swift in Sources */,
+				274AA6F42A8FF1CC00F77F96 /* TagsView.swift in Sources */,
+				274AA6F12A8FF1CC00F77F96 /* SecureLoginItem.swift in Sources */,
 				274AA6402A8FD10200F77F96 /* DeadMansVaultApp.swift in Sources */,
+				274AA6F32A8FF1CC00F77F96 /* Importer.swift in Sources */,
+				274AA6F72A8FF1CC00F77F96 /* Vault.swift in Sources */,
+				274AA6E72A8FF1CC00F77F96 /* OpenVaultView.swift in Sources */,
+				274AA7012A8FF1CC00F77F96 /* VaultItemFactory.swift in Sources */,
+				274AA6FB2A8FF1CC00F77F96 /* Exporter.swift in Sources */,
+				274AA6EC2A8FF1CC00F77F96 /* ItemButtonView.swift in Sources */,
+				274AA6ED2A8FF1CC00F77F96 /* VaultViewModel.swift in Sources */,
+				274AA6E32A8FF1CC00F77F96 /* NewTagView.swift in Sources */,
+				274AA6FA2A8FF1CC00F77F96 /* PasswordVaultDocument.swift in Sources */,
+				274AA6F92A8FF1CC00F77F96 /* AppView.swift in Sources */,
+				274AA6E42A8FF1CC00F77F96 /* PasswordGeneratorView.swift in Sources */,
+				274AA6F22A8FF1CC00F77F96 /* VaultState.swift in Sources */,
+				274AA6F62A8FF1CC00F77F96 /* SecureAccessPointView.swift in Sources */,
+				274AA6EA2A8FF1CC00F77F96 /* SecureNoteItem.swift in Sources */,
+				274AA6FF2A8FF1CC00F77F96 /* NewItemView.swift in Sources */,
+				274AA6EE2A8FF1CC00F77F96 /* Preferences.swift in Sources */,
+				274AA6EB2A8FF1CC00F77F96 /* SecureCardView.swift in Sources */,
+				274AA7002A8FF1CC00F77F96 /* SecureNoteView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -634,7 +732,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				274AA6A32A8FD35500F77F96 /* SafariWebExtensionHandler.swift in Sources */,
+				27212F8F2A9008B9000D54D2 /* SafariWebExtensionHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -795,18 +893,22 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DeadMansVault/DeadMansVault.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"DeadMansVault/Preview Content\"";
 				DEVELOPMENT_TEAM = F42C985T48;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DeadMansVault/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Face ID can be used to unlock vaults";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -833,18 +935,22 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DeadMansVault/DeadMansVault.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"DeadMansVault/Preview Content\"";
 				DEVELOPMENT_TEAM = F42C985T48;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DeadMansVault/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Face ID can be used to unlock vaults";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -960,7 +1066,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "DeadMansVaultWatch Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = F42C985T48;
 				ENABLE_PREVIEWS = YES;
@@ -991,7 +1097,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "DeadMansVaultWatch Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = F42C985T48;
 				ENABLE_PREVIEWS = YES;
@@ -1103,13 +1209,14 @@
 		274AA6BB2A8FD35500F77F96 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = DeadMansVaultBrowser/DeadMansVaultBrowser.entitlements;
+				CODE_SIGN_ENTITLEMENTS = DeadMansVaultBrowser.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_ASSET_PATHS = DeadMansVaultBrowser.entitlements;
 				DEVELOPMENT_TEAM = F42C985T48;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = DeadMansVaultBrowser/Info.plist;
+				INFOPLIST_FILE = "Browser Extension/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = DeadMansVaultBrowser;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1135,13 +1242,14 @@
 		274AA6BC2A8FD35500F77F96 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = DeadMansVaultBrowser/DeadMansVaultBrowser.entitlements;
+				CODE_SIGN_ENTITLEMENTS = DeadMansVaultBrowser.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_ASSET_PATHS = DeadMansVaultBrowser.entitlements;
 				DEVELOPMENT_TEAM = F42C985T48;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = DeadMansVaultBrowser/Info.plist;
+				INFOPLIST_FILE = "Browser Extension/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = DeadMansVaultBrowser;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (

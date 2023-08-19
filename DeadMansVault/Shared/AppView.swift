@@ -58,6 +58,9 @@ struct AppView: View {
 				self.viewModel.createView(isPushed: self.$pushed)
 			}
 		}
+		.onAppear() {
+			AppState.shared.updateState()
+		}
 	}
 }
 
