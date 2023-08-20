@@ -39,10 +39,13 @@ struct SecureNoteView: View {
 		VStack(alignment: .leading) {
 
 			Group() {
-				Text("Note")
-					.fontWeight(.heavy)
-					.font(.system(size: 32))
-					.multilineTextAlignment(.center)
+				HStack() {
+					Image(systemName: icon(item: self.item))
+					Text("Note")
+						.fontWeight(.heavy)
+						.font(.system(size: 32))
+						.multilineTextAlignment(.center)
+				}
 				Divider()
 				VStack(alignment: .leading) {
 					Text("Title")

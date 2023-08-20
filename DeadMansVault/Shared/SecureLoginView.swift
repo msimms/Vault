@@ -42,10 +42,13 @@ struct SecureLoginView: View {
 		VStack(alignment: .leading) {
 
 			Group() {
-				Text("Login")
-					.fontWeight(.heavy)
-					.font(.system(size: 32))
-					.multilineTextAlignment(.center)
+				HStack() {
+					Image(systemName: icon(item: self.item))
+					Text("Login")
+						.fontWeight(.heavy)
+						.font(.system(size: 32))
+						.multilineTextAlignment(.center)
+				}
 				Divider()
 				VStack(alignment: .leading) {
 					Group() {
