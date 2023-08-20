@@ -80,29 +80,31 @@ class Vault : ObservableObject {
 		self.insertVaultItem(item: item)
 	}
 
-	private func downloadVaultMasterFile() throws {
-		
+	private func downloadVaultMasterFile(key: String) throws {
+
 		var query: NSMetadataQuery
 		query = NSMetadataQuery.init()
 		query.operationQueue = .main
 		query.predicate = NSPredicate(format: "%K LIKE %@", NSMetadataItemFSNameKey, "vault.json")
 		query.searchScopes = [ NSMetadataQueryUbiquitousDocumentsScope ]
-		
-		var downloaded = false
+
 		NotificationCenter.default.addObserver(forName: NSNotification.Name.NSMetadataQueryDidUpdate, object: query, queue: query.operationQueue) { (notification) in
-			downloaded = true
 			query.stop()
+
+			do {
+				try self.openInner(key: key)
+			}
+			catch {
+			}
+
 			NotificationCenter.default.removeObserver(self, name: NSNotification.Name.NSMetadataQueryDidUpdate, object: query)
 		}
-		
+
 		// Start monitoring.
 		query.start()
-		
+
 		// Start downloading.
 		try FileManager.default.startDownloadingUbiquitousItem(at: self.vaultMasterFileUrl!)
-
-		// Filty hack, but there really isn't anything we can do until we download the master file.
-		sleep(5);
 	}
 
 	private func downloadVaultItemFile(fileToDownload: URL) throws {
@@ -115,7 +117,7 @@ class Vault : ObservableObject {
 		query.operationQueue = .main
 		query.predicate = NSPredicate(format: "%K LIKE %@", NSMetadataItemFSNameKey, downloadedFileName)
 		query.searchScopes = [ NSMetadataQueryUbiquitousDocumentsScope ]
-		
+
 		NotificationCenter.default.addObserver(forName: NSNotification.Name.NSMetadataQueryDidUpdate, object: query, queue: query.operationQueue) { (notification) in
 
 			for item in query.results {
@@ -132,7 +134,7 @@ class Vault : ObservableObject {
 				}
 			}
 		}
-		
+
 		// Start monitoring.
 		query.start()
 
@@ -269,6 +271,57 @@ class Vault : ObservableObject {
 		}
 	}
 
+	private func openInner(key: String) throws {
+
+		// Is a master file specified?
+		guard self.vaultMasterFileUrl != nil else {
+			throw VaultException.runtimeError("Vault file not specified.")
+		}
+
+		// Does anything exist at the vault master file's path?
+		if !FileManager.default.fileExists(atPath: self.vaultMasterFileUrl!.path) {
+			throw VaultException.runtimeError("Cannot find the vault.")
+		}
+
+		// Read the master file.
+		let data = try? Data(contentsOf: self.vaultMasterFileUrl!)
+		
+		// Parse the JSON string.
+		let jsonString = try? JSONDecoder().decode(VaultIndex.self, from: data!)
+		guard let unwrappedJsonString = jsonString else {
+			throw VaultException.runtimeError("Error reading the vault file.")
+		}
+		
+		// Base64 decode the encrypted master key as read from the file.
+		let decodedMasterKey = Data(base64Encoded: unwrappedJsonString.encryptedMasterKey)
+		guard let unwrappedDecodedMasterKey = decodedMasterKey else {
+			throw VaultException.runtimeError("Error reading the vault file.")
+		}
+		
+		// Compute the salt from the key provided by the user.
+		let salt = Data(SHA256.hash(data: Data(key.utf8)))
+		
+		// Base64 decode the signature from the file. This signature is used to validate the master key.
+		let decodedSignature = Data(base64Encoded: unwrappedJsonString.signature)
+		guard let unwrappedDecodedSignature = decodedSignature else {
+			throw VaultException.runtimeError("Error reading the vault file.")
+		}
+		
+		// Compute the AES key from the key provided by the user.
+		let userProvidedKey = SymmetricKey(data: Data(key.utf8))
+		let derivedUserKey = HKDF<SHA256>.deriveKey(inputKeyMaterial: userProvidedKey, salt: salt, outputByteCount: 32)
+		
+		// Compute the HMAC of the encrypted master key.
+		let signature = HMAC<SHA256>.authenticationCode(for: unwrappedDecodedMasterKey, using: userProvidedKey)
+		let computedSigBytes = Data(signature)
+		if computedSigBytes != unwrappedDecodedSignature {
+			throw VaultException.runtimeError("Error reading the vault file.")
+		}
+		
+		// Decrypt the master key.
+		self.masterKey = try! AES.GCM.open(AES.GCM.SealedBox(combined: unwrappedDecodedMasterKey), using: derivedUserKey)
+	}
+
 	/// Opens the vault by opening the master vault file and decoding it.
 	func open(vaultLocation: String, name: String, key: String) throws {
 
@@ -287,53 +340,10 @@ class Vault : ObservableObject {
 		// Does the file need to be downloaded from iCloud?
 		let iCloudVaultMasterFileUrl = self.buildICloudVaultMasterFileUrl()
 		if FileManager.default.fileExists(atPath: iCloudVaultMasterFileUrl.path) {
-			try self.downloadVaultMasterFile()
+			try self.downloadVaultMasterFile(key: key)
 		}
 
-		// Does anything exist at the vault master file's path?
-		if FileManager.default.fileExists(atPath: self.vaultMasterFileUrl!.path) {
-
-			// Read the master file.
-			let data = try? Data(contentsOf: self.vaultMasterFileUrl!)
-
-			// Parse the JSON string.
-			let jsonString = try? JSONDecoder().decode(VaultIndex.self, from: data!)
-			guard let unwrappedJsonString = jsonString else {
-				throw VaultException.runtimeError("Error reading the vault file.")
-			}
-
-			// Base64 decode the encrypted master key as read from the file.
-			let decodedMasterKey = Data(base64Encoded: unwrappedJsonString.encryptedMasterKey)
-			guard let unwrappedDecodedMasterKey = decodedMasterKey else {
-				throw VaultException.runtimeError("Error reading the vault file.")
-			}
-
-			// Compute the salt from the key provided by the user.
-			let salt = Data(SHA256.hash(data: Data(key.utf8)))
-
-			// Base64 decode the signature from the file. This signature is used to validate the master key.
-			let decodedSignature = Data(base64Encoded: unwrappedJsonString.signature)
-			guard let unwrappedDecodedSignature = decodedSignature else {
-				throw VaultException.runtimeError("Error reading the vault file.")
-			}
-
-			// Compute the AES key from the key provided by the user.
-			let userProvidedKey = SymmetricKey(data: Data(key.utf8))
-			let derivedUserKey = HKDF<SHA256>.deriveKey(inputKeyMaterial: userProvidedKey, salt: salt, outputByteCount: 32)
-
-			// Compute the HMAC of the encrypted master key.
-			let signature = HMAC<SHA256>.authenticationCode(for: unwrappedDecodedMasterKey, using: userProvidedKey)
-			let computedSigBytes = Data(signature)
-			if computedSigBytes != unwrappedDecodedSignature {
-				throw VaultException.runtimeError("Error reading the vault file.")
-			}
-
-			// Decrypt the master key.
-			self.masterKey = try! AES.GCM.open(AES.GCM.SealedBox(combined: unwrappedDecodedMasterKey), using: derivedUserKey)
-		}
-		else {
-			throw VaultException.runtimeError("Cannot find the vault.")
-		}
+		try self.openInner(key: key)
 	}
 
 	/// Completely deletes the vault and all it's items.
