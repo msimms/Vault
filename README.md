@@ -1,11 +1,12 @@
-# PasswordVault
+# Dead Man's Vault
 
-A serverless password manager for mac OS and iOS.
+A server-less password manager for mac OS and iOS.
 
 ## Rationale
 Why develop a password manager when there are other options available, including open source options?
 * To have a password manager that works without a centralized database
 * I believe password managers should be open source
+* Some password managers leave metadata unencrypted (ex: the website name or URL), this application encrypts everything that is possible to encrypt
 
 ## Major Features
 
@@ -14,6 +15,10 @@ Why develop a password manager when there are other options available, including
 * Password Generator
 * Importing of existing data from 1pif files
 * Biometric authentication
+
+## Planned Features
+* Ability to encrypt a vault with multiple passwords, for sharing a vault.
+* Integration with HealthKit to so that a second user's password will only function when HealthKit hasn't shown any activity from the primary user for an extended period of time (hence the name of the app).
 
 ## User Documentation
 
