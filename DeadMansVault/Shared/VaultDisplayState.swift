@@ -43,6 +43,7 @@ final class VaultDisplayState: ObservableObject {
 		}
 	}
 	
+#if !os(watchOS)
 	@ViewBuilder
 	func createView(isPushed: Binding<Bool>) -> some View {
 		switch (self.vaultState) {
@@ -51,4 +52,5 @@ final class VaultDisplayState: ObservableObject {
 		case VaultState.VaultOpen: OpenVaultView(isPushed: isPushed)
 		}
 	}
+#endif
 }

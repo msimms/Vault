@@ -56,6 +56,9 @@ class AppState {
 
 	/// Returns True if biometric authentication is a enabled for a particular vault.
 	func isBiometricIdEnabledForVault(vaultName: String) -> Bool {
+#if os(watchOS)
+		return false
+#else
 		let keyName = self.keychainKeyForVaultName(vaultName: vaultName)
 		let keychain = Keychain()
 		let password = keychain.load(keyName: keyName)
@@ -64,12 +67,15 @@ class AppState {
 			return false
 		}
 		return password!.count > 0
+#endif
 	}
 
+#if !os(watchOS)
 	/// Returns the type of biometric authentication that is used on this device (touch, face, etc.)
 	func biometricAuthType() -> LABiometryType {
 		return self.laContext.biometryType
 	}
+#endif
 
 	/// This method marks the vault for biometric setup.
 	func flagVaultForBiometricAuthSetup(vaultName: String) {
@@ -87,6 +93,9 @@ class AppState {
 	}
 	
 	func configureBiometricAuthForVault(vaultName: String, password: String) throws {
+#if os(watchOS)
+		throw VaultException.runtimeError("Not implemented.")
+#else
 		// Is biometric auth already setup?
 		if self.isBiometricIdEnabledForVault(vaultName: vaultName) {
 			return
@@ -104,9 +113,11 @@ class AppState {
 		if keychain.save(keyName: keyName, data: passwordData!) == false {
 			throw VaultException.runtimeError("Keychain error. Unable to setup biometric authentication.")
 		}
+#endif
 	}
 
 	func performBiometricAuthForVault(baseLocation: String, vaultName: String) {
+#if !os(watchOS)
 		var error: NSError?
 
 		// Make sure biometric auth is available.
@@ -135,6 +146,7 @@ class AppState {
 				print(error.localizedDescription)
 			}
 		}
+#endif
 	}
 	
 	/// Returns true if a vault exists (specifically the vault index file) at the location stored in the user preferences.

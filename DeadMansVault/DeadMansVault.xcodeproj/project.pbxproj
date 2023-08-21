@@ -59,6 +59,20 @@
 		274AA7022A8FF1CC00F77F96 /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6E02A8FF1CB00F77F96 /* LockView.swift */; };
 		27774DA32A90130000D288ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27774DA22A900C5B00D288ED /* Assets.xcassets */; };
 		27774DA52A90132900D288ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27774DA22A900C5B00D288ED /* Assets.xcassets */; };
+		27E30B5C2A92CF5700236EAB /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6CC2A8FF1C800F77F96 /* Preferences.swift */; };
+		27E30B5D2A92CF6300236EAB /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6CE2A8FF1C800F77F96 /* AppState.swift */; };
+		27E30B5E2A92CFAD00236EAB /* VaultDisplayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6D32A8FF1C900F77F96 /* VaultDisplayState.swift */; };
+		27E30B5F2A92D0E400236EAB /* VaultState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6D02A8FF1C800F77F96 /* VaultState.swift */; };
+		27E30B602A92D49900236EAB /* SecureVaultItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6DA2A8FF1CA00F77F96 /* SecureVaultItem.swift */; };
+		27E30B612A92D4A300236EAB /* Vault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6D52A8FF1C900F77F96 /* Vault.swift */; };
+		27E30B622A92E14A00236EAB /* VaultException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6C62A8FF1C600F77F96 /* VaultException.swift */; };
+		27E30B632A92EBFB00236EAB /* Importer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6D12A8FF1C900F77F96 /* Importer.swift */; };
+		27E30B642A92EC0700236EAB /* Exporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6D92A8FF1CA00F77F96 /* Exporter.swift */; };
+		27E30B652A92EC2A00236EAB /* VaultItemFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6DF2A8FF1CB00F77F96 /* VaultItemFactory.swift */; };
+		27E30B662A92EC4200236EAB /* SecureCardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6BF2A8FF1C500F77F96 /* SecureCardItem.swift */; };
+		27E30B672A92EC4900236EAB /* SecureLoginItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6CF2A8FF1C800F77F96 /* SecureLoginItem.swift */; };
+		27E30B682A92EC4C00236EAB /* SecureNoteItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6C82A8FF1C700F77F96 /* SecureNoteItem.swift */; };
+		27E30B692A92ECD300236EAB /* SecureAccessPointItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6C32A8FF1C600F77F96 /* SecureAccessPointItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -706,8 +720,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27E30B642A92EC0700236EAB /* Exporter.swift in Sources */,
 				274AA6732A8FD32300F77F96 /* ContentView.swift in Sources */,
+				27E30B622A92E14A00236EAB /* VaultException.swift in Sources */,
 				274AA6712A8FD32300F77F96 /* DeadMansVaultWatchApp.swift in Sources */,
+				27E30B652A92EC2A00236EAB /* VaultItemFactory.swift in Sources */,
+				27E30B682A92EC4C00236EAB /* SecureNoteItem.swift in Sources */,
+				27E30B612A92D4A300236EAB /* Vault.swift in Sources */,
+				27E30B5F2A92D0E400236EAB /* VaultState.swift in Sources */,
+				27E30B692A92ECD300236EAB /* SecureAccessPointItem.swift in Sources */,
+				27E30B632A92EBFB00236EAB /* Importer.swift in Sources */,
+				27E30B602A92D49900236EAB /* SecureVaultItem.swift in Sources */,
+				27E30B5C2A92CF5700236EAB /* Preferences.swift in Sources */,
+				27E30B5D2A92CF6300236EAB /* AppState.swift in Sources */,
+				27E30B672A92EC4900236EAB /* SecureLoginItem.swift in Sources */,
+				27E30B662A92EC4200236EAB /* SecureCardItem.swift in Sources */,
+				27E30B5E2A92CFAD00236EAB /* VaultDisplayState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "new_safe_1024.png",
       "idiom" : "universal",
       "platform" : "watchos",
       "size" : "1024x1024"

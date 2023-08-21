@@ -43,7 +43,7 @@ struct LockView: View {
 	}
 
 	func openVault() {
-		if AppState.shared.openVault(password: password) {
+		if AppState.shared.openVault(password: self.password) {
 			self.isPushed = true
 			self.showingVaultOpenFailedAlert = false
 		}
