@@ -28,6 +28,7 @@ struct SecureCardView: View {
 			Group() {
 				HStack() {
 					Image(systemName: icon(item: self.item))
+						.imageScale(.large)
 					Text("Card")
 						.fontWeight(.heavy)
 						.font(.system(size: 32))

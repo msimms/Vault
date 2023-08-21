@@ -41,6 +41,7 @@ struct SecureNoteView: View {
 			Group() {
 				HStack() {
 					Image(systemName: icon(item: self.item))
+						.imageScale(.large)
 					Text("Note")
 						.fontWeight(.heavy)
 						.font(.system(size: 32))

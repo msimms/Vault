@@ -44,6 +44,7 @@ struct SecureLoginView: View {
 			Group() {
 				HStack() {
 					Image(systemName: icon(item: self.item))
+						.imageScale(.large)
 					Text("Login")
 						.fontWeight(.heavy)
 						.font(.system(size: 32))

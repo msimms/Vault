@@ -162,7 +162,7 @@ struct LockView: View {
 							.resizable()
 					}
 				}
-				.alert("Do you want to setup biometric authentication for this vault?", isPresented: self.$showingBiometricSetupAlert) {
+				.alert("Do you want to configure biometric authentication for this vault?", isPresented: self.$showingBiometricSetupAlert) {
 					Button("No", role: .cancel) { }
 						.keyboardShortcut(.defaultAction)
 					Button("Yes") {
