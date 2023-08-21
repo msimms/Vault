@@ -29,11 +29,18 @@ import Foundation
 
 let PREF_KEY_VAULT_LOCATION = "Vault Location"
 let PREF_KEY_DEFAULT_VAULT_NAME = "Default Vault Name"
+let PREF_VALUE_ICLOUD_DRIVE = ""
 
 class Preferences {
 	static func baseVaultsLocation() -> String? {
 		let mydefaults: UserDefaults = UserDefaults.standard
-		return mydefaults.string(forKey: PREF_KEY_VAULT_LOCATION)
+		let defaultLocation = mydefaults.string(forKey: PREF_KEY_VAULT_LOCATION)
+
+		// If we don't have a default location then assume the iCloud drive
+		if defaultLocation == nil {
+			return PREF_VALUE_ICLOUD_DRIVE
+		}
+		return defaultLocation
 	}
 	
 	static func setBaseVaultsLocation(location: String) {

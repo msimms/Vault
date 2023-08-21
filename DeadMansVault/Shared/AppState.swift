@@ -165,20 +165,19 @@ class AppState {
 
 		do {
 			let baseLocation = Preferences.baseVaultsLocation()
+			guard let unwrappedLocation = baseLocation else { return [] }
 
-			if baseLocation != nil {
-				let baseUrl = try self.vault.convertVaultLocationToUrl(location: baseLocation!)
-				let dirListing = try FileManager.default.contentsOfDirectory(at: baseUrl, includingPropertiesForKeys: nil)
-				var vaults: Array<String> = []
-				
-				for listing in dirListing {
-					let vaultName = listing.lastPathComponent
-					if !vaultName.starts(with: ".") {
-						vaults.append(vaultName)
-					}
+			let baseUrl = try self.vault.convertVaultLocationToUrl(location: unwrappedLocation)
+			let dirListing = try FileManager.default.contentsOfDirectory(at: baseUrl, includingPropertiesForKeys: nil)
+			var vaults: Array<String> = []
+			
+			for listing in dirListing {
+				let vaultName = listing.lastPathComponent
+				if !vaultName.starts(with: ".") {
+					vaults.append(vaultName)
 				}
-				return vaults
 			}
+			return vaults
 		} catch let error as NSError {
 			print("Error: Failed to create the vault: \n\(error)")
 		} catch {
