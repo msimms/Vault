@@ -74,7 +74,12 @@ class SecureAccessPointItem: SecureVaultItem {
 		let jsonStr = String(data: jsonData, encoding: .utf8)!
 		
 		// Encrypt and write the data.
-		try super.write(locationOfVaultItems: locationOfVaultItems, masterKey: masterKey, contents: jsonStr, itemType: VaultItemType.login)
+		try super.write(locationOfVaultItems: locationOfVaultItems, masterKey: masterKey, contents: jsonStr, itemType: VaultItemType.accessPoint)
+	}
+
+	/// Returns the string to use as the title when viewing this item.
+	override func displayTitle() -> String {
+		return self.name
 	}
 
 	/// Updates the last modified timestamp.
