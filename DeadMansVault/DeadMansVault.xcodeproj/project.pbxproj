@@ -930,6 +930,8 @@
 				INFOPLIST_FILE = DeadMansVault/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Face ID can be used to unlock vaults";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "HealthKit is used to determine if the vault owner is active or not";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "HealthKit is used to determine if the vault owner is active or not";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -972,6 +974,8 @@
 				INFOPLIST_FILE = DeadMansVault/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Face ID can be used to unlock vaults";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "HealthKit is used to determine if the vault owner is active or not";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "HealthKit is used to determine if the vault owner is active or not";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -1100,6 +1104,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = DeadMansVaultWatch;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "HealthKit is used to determine if the vault owner is active or not";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "HealthKit is used to determine if the vault owner is active or not";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "com.mjs-software.DeadMansVault";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1131,6 +1137,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = DeadMansVaultWatch;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "HealthKit is used to determine if the vault owner is active or not";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "HealthKit is used to determine if the vault owner is active or not";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "com.mjs-software.DeadMansVault";
 				LD_RUNPATH_SEARCH_PATHS = (
