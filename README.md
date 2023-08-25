@@ -32,6 +32,7 @@ The vaults are stored on the user's iCloud drive. Each subdirectory of the main 
 
 Vaults have an main file and a subdirectory of items, where each item in the vault corresponds to one file in the directory.
 
+![Architecture Diagram](https://github.com/msimms/PasswordVault/blob/master/Docs/Architecture.png?raw=true)
 
 ## Building
 This app is built using Apple XCode. Every attempt is made to stay up-to-date with the latest version of XCode and the latest version of iOS. In theory, if you have cloned the source code repository and initialized the submodules, then you should be able to open the project in XCode, build, and deploy.
