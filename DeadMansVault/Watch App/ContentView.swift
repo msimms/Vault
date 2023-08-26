@@ -8,6 +8,7 @@ import SwiftUI
 struct ContentView: View {
 	@State private var password: String = ""
 	@State private var showingVaultOpenFailedAlert: Bool = false
+	@State private var showPassword: Bool = false
 	@State private var selectedVault: String? = Preferences.defaultVaultName()
 	
 	func vaultIsSelected() -> Bool {
@@ -24,12 +25,73 @@ struct ContentView: View {
 	}
 
 	var body: some View {
-		VStack {
-			// Allow the user to toggle between multiple vaults
-			Label("Vault Selection", systemImage: "lock.circle")
-        }
-        .padding()
-    }
+		NavigationStack() {
+			VStack {
+				let vaultNames = AppState.shared.listVaults()
+				if vaultNames.count > 0 {
+					
+					// Allow the user to toggle between multiple vaults
+					Label("Vault Selection", systemImage: "lock.circle")
+					ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
+						ForEach(vaultNames, id: \.self) { name in
+							Button(action: {
+								self.selectedVault = name
+								Preferences.setDefaultVaultName(name: name)
+							}) {
+								Label(name, systemImage: "lock")
+									.labelStyle(.titleAndIcon)
+							}
+						}
+					})
+					
+					// Password
+					Label("Password", systemImage: "lock.circle")
+					ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
+						if self.showPassword {
+							TextField("Password", text: self.$password)
+								.padding()
+								.onSubmit {
+									self.openVault()
+								}
+						}
+						else {
+							SecureField("Password", text: self.$password)
+								.padding()
+								.onSubmit {
+									self.openVault()
+								}
+						}
+						Button(action: { self.showPassword.toggle() }) {
+							Image(systemName: "eye")
+								.foregroundColor(.secondary)
+						}
+						.padding()
+					})
+					
+					// Opens the vault
+					Button {
+						if self.vaultIsSelected() {
+							self.openVault()
+						}
+					} label: {
+						Label("Open", systemImage: "lock")
+							.padding()
+					}
+					.alert("Failed to open the vault!", isPresented: self.$showingVaultOpenFailedAlert) {
+						Button("OK", role: .cancel) { }
+					}
+					.foregroundColor(.white)
+					.background(Color.blue)
+					.cornerRadius(40)
+					.padding()
+				}
+				else {
+					Text("No vaults found.")
+				}
+			}
+			.padding()
+		}
+	}
 }
 
 struct ContentView_Previews: PreviewProvider {
