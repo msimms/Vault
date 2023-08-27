@@ -33,7 +33,7 @@ struct SecureAccessPointView: View {
 	@State var item: SecureAccessPointItem
 	@State var isNewItem: Bool = true
 	@State var isReadOnly: Bool = false
-	@State var isShowingPasswordGenerator: Bool = false
+	@State private var isShowingPasswordGenerator: Bool = false
 	@State private var showPassword: Bool = false
 	@State private var cannotShowPasswordGenerator: Bool = false
 

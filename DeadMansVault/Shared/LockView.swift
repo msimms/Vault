@@ -53,7 +53,7 @@ struct LockView: View {
 	}
 
 	var body: some View {
-		VStack {
+		VStack(alignment: .center) {
 			// Allow the user to toggle between multiple vaults
 			Label("Vault Selection", systemImage: "lock.circle")
 			ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
