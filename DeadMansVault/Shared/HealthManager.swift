@@ -49,8 +49,15 @@ class HealthManager : ObservableObject {
 		
 		// Request authorization for things to read and write.
 		let heartRateType = HKObjectType.quantityType(forIdentifier: .heartRate)!
-		let readTypes = Set([heartRateType])
+		let workoutType = HKObjectType.workoutType()
+		let readTypes = Set([heartRateType, workoutType])
 		healthStore.requestAuthorization(toShare: nil, read: readTypes) { result, error in
+			let hrType = HKObjectType.quantityType(forIdentifier: .heartRate)!
+			
+			self.mostRecentQuantitySampleOfType(quantityType: hrType) { sample, error in
+				if sample != nil {
+				}
+			}
 		}
 	}
 
@@ -124,53 +131,5 @@ class HealthManager : ObservableObject {
 		
 		// Execute asynchronously.
 		self.healthStore.execute(query)
-	}
-
-	func subscribeToQuantitySamplesOfType(quantityType: HKQuantityType, callback: @escaping (HKQuantity?, Date?, Error?) -> ()) -> HKQuery {
-
-		let datePredicate = HKQuery.predicateForSamples(withStart: Date(), end: nil, options:HKQueryOptions.strictStartDate)
-		let query = HKAnchoredObjectQuery.init(type: quantityType, predicate: datePredicate, anchor: nil, limit: HKObjectQueryNoLimit, resultsHandler: { query, addedObjects, deletedObjects, newAnchor, error in
-			
-			if addedObjects != nil {
-				for sample in addedObjects! {
-					if let quantitySample = sample as? HKQuantitySample {
-						callback(quantitySample.quantity, quantitySample.endDate, error)
-					}
-				}
-			}
-		})
-		
-		query.updateHandler = { query, addedObjects, deletedObjects, newAnchor, error in
-			for sample in addedObjects! {
-				if let quantitySample = sample as? HKQuantitySample {
-					callback(quantitySample.quantity, quantitySample.endDate, error)
-				}
-			}
-		}
-		
-		// Execute asynchronously.
-		self.healthStore.execute(query)
-
-		// Background delivery.
-		self.healthStore.enableBackgroundDelivery(for: quantityType, frequency: .immediate, withCompletion: {(succeeded: Bool, error: Error!) in
-		})
-
-		return query
-	}
-
-	/// @brief Estimates the user's maximum heart rate from the last six months of HealthKit data.
-	func getMaxHr() throws {
-		let hrType = HKObjectType.quantityType(forIdentifier: .heartRate)!
-		
-		self.recentQuantitySamplesOfType(quantityType: hrType) { sample, error in
-			if sample != nil {
-				let hrUnit: HKUnit = HKUnit.count().unitDivided(by: HKUnit.minute())
-				let hrValue = sample!.quantity.doubleValue(for: hrUnit)
-
-				if self.maxHr == nil || hrValue > self.maxHr! {
-					self.maxHr = hrValue
-				}
-			}
-		}
 	}
 }

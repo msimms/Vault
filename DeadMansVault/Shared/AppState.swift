@@ -34,14 +34,18 @@ class AppState {
 	static let shared = AppState()
 
 	@ObservedObject var vault: Vault = Vault()
-	var viewModel = VaultDisplayState.shared
 	var hasOpenedAVault: Bool = false // This breaks the potentially infinite loop of automatically re-opening a vault right after it was closed
-	var setupBiometricAuth: Bool = false
-	let laContext = LAContext()
+	private var viewModel = VaultDisplayState.shared
+	private var setupBiometricAuth: Bool = false
+	private var healthMgr = HealthManager.shared
+	private let laContext = LAContext()
 
 	/// Constructor
 	private init() {
 		self.updateState()
+
+		// Initialize HealthKit.
+		self.healthMgr.requestAuthorization()
 	}
 
 	/// Returns True if biometric authentication is available on this device.
@@ -84,15 +88,15 @@ class AppState {
 	
 	/// This method checks to see if the vault is marked for biometric auth setup.
 	/// If it is, the password will be saved to the keychain when the vault is opened.
-	func isVaultFlaggedForBiometricAuthSetup(vaultName: String) -> Bool {
+	private func isVaultFlaggedForBiometricAuthSetup(vaultName: String) -> Bool {
 		return self.setupBiometricAuth
 	}
 	
-	func keychainKeyForVaultName(vaultName: String) -> String {
+	private func keychainKeyForVaultName(vaultName: String) -> String {
 		return "Vault_" + vaultName
 	}
 	
-	func configureBiometricAuthForVault(vaultName: String, password: String) throws {
+	private func configureBiometricAuthForVault(vaultName: String, password: String) throws {
 #if os(watchOS)
 		throw VaultException.runtimeError("Not implemented.")
 #else
@@ -116,7 +120,7 @@ class AppState {
 #endif
 	}
 
-	func performBiometricAuthForVault(baseLocation: String, vaultName: String) {
+	private func performBiometricAuthForVault(baseLocation: String, vaultName: String) {
 #if !os(watchOS)
 		var error: NSError?
 
@@ -150,7 +154,7 @@ class AppState {
 	}
 	
 	/// Returns true if a vault exists (specifically the vault index file) at the location stored in the user preferences.
-	func defaultVaultExists() throws -> Bool {
+	private func defaultVaultExists() throws -> Bool {
 		let baseLocation = Preferences.baseVaultsLocation()
 		let defaultVaultName = Preferences.defaultVaultName()
 
@@ -209,7 +213,7 @@ class AppState {
 		return false
 	}
 
-	func openVaultInner(baseLocation: String, vaultName: String, password: String) throws {
+	private func openVaultInner(baseLocation: String, vaultName: String, password: String) throws {
 		// Open and read the vault.
 		try self.vault.open(vaultLocation: baseLocation, name: vaultName, key: password)
 		try self.vault.readItems()

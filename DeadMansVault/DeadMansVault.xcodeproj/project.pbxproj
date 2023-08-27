@@ -10,6 +10,7 @@
 		27212F8F2A9008B9000D54D2 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27212F8A2A9008AF000D54D2 /* SafariWebExtensionHandler.swift */; };
 		27212F902A9008C2000D54D2 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 27212F892A9008AF000D54D2 /* Info.plist */; };
 		27212F912A9008C5000D54D2 /* Resources in Resources */ = {isa = PBXBuildFile; fileRef = 27212F8B2A9008AF000D54D2 /* Resources */; };
+		27460FAC2A9A7C86002E368D /* HealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6DB2A8FF1CA00F77F96 /* HealthManager.swift */; };
 		274AA6402A8FD10200F77F96 /* DeadMansVaultApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA63F2A8FD10200F77F96 /* DeadMansVaultApp.swift */; };
 		274AA6482A8FD10300F77F96 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 274AA6472A8FD10300F77F96 /* Preview Assets.xcassets */; };
 		274AA6522A8FD10300F77F96 /* DeadMansVaultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6512A8FD10300F77F96 /* DeadMansVaultTests.swift */; };
@@ -734,6 +735,7 @@
 				27E30B5C2A92CF5700236EAB /* Preferences.swift in Sources */,
 				27E30B5D2A92CF6300236EAB /* AppState.swift in Sources */,
 				27E30B672A92EC4900236EAB /* SecureLoginItem.swift in Sources */,
+				27460FAC2A9A7C86002E368D /* HealthManager.swift in Sources */,
 				27E30B662A92EC4200236EAB /* SecureCardItem.swift in Sources */,
 				27E30B5E2A92CFAD00236EAB /* VaultDisplayState.swift in Sources */,
 			);
