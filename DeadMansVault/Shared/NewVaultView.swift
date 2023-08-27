@@ -49,13 +49,13 @@ func openFolderSelection() -> URL? {
 /// Prompts the user for everything needed to create a new vault.
 struct NewVaultView: View {
 	@Binding var isPushed : Bool
-
 	@State private var password: String = ""
 	@State private var confirmPassword: String = ""
 	@State private var vaultLocation: String = ""
 	@State private var vaultName: String = "Main Vault"
 	@State private var showingPasswordsDoNotMatchAlert: Bool = false
 	@State private var showingVaultCreationFailedAlert: Bool = false
+	@State private var isShowingPasswordGenerator: Bool = false
 	@State private var showPassword: Bool = false
 
 	func createVault() {
@@ -145,6 +145,22 @@ struct NewVaultView: View {
 				}
 				.padding()
 			})
+
+			// Password Generator
+			ZStack() {
+				NavigationLink(destination: PasswordGeneratorView(isPushed: self.$isShowingPasswordGenerator, existingPassword: self.$password, suggestedPassword: self.password), isActive: self.$isShowingPasswordGenerator) {
+				}
+				.hidden()
+				Button(action: {
+					self.isShowingPasswordGenerator = true
+				}) {
+					HStack() {
+						Text("Generate Password")
+						Image(systemName: "arrow.clockwise")
+							.foregroundColor(.secondary)
+					}
+				}
+			}
 
 			// Allows the user to select the vault location
 #if os(macOS)
