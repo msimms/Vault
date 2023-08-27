@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		27212F8F2A9008B9000D54D2 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27212F8A2A9008AF000D54D2 /* SafariWebExtensionHandler.swift */; };
-		27212F902A9008C2000D54D2 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 27212F892A9008AF000D54D2 /* Info.plist */; };
 		27212F912A9008C5000D54D2 /* Resources in Resources */ = {isa = PBXBuildFile; fileRef = 27212F8B2A9008AF000D54D2 /* Resources */; };
 		27460FAC2A9A7C86002E368D /* HealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6DB2A8FF1CA00F77F96 /* HealthManager.swift */; };
 		274AA6402A8FD10200F77F96 /* DeadMansVaultApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA63F2A8FD10200F77F96 /* DeadMansVaultApp.swift */; };
@@ -652,7 +651,6 @@
 			files = (
 				27212F912A9008C5000D54D2 /* Resources in Resources */,
 				27774DA52A90132900D288ED /* Assets.xcassets in Resources */,
-				27212F902A9008C2000D54D2 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
