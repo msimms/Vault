@@ -246,5 +246,6 @@ struct OpenVaultView: View {
 		.onDisappear() {
 			self.isPushed = true
 		}
+		.navigationTitle(self.vault.name())
 	}
 }

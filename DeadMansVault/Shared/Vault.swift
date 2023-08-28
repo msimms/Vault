@@ -56,6 +56,10 @@ class Vault : ObservableObject {
 	/// Semaphore that controls writes the vault item array.
 	private let vaultItemsSemaphore = DispatchSemaphore(value: 1)
 
+	func name() -> String {
+		return self.vaultDirUrl?.lastPathComponent ?? ""
+	}
+
 	/// Inserts the new vault item into the sorted list of vault items.
 	private func insertVaultItem(item: SecureVaultItem) {
 
