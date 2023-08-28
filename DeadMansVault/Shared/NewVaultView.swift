@@ -70,12 +70,7 @@ struct NewVaultView: View {
 		if self.password == self.confirmPassword && self.password.count > 8 {
 			
 			// Create the vault.
-			if AppState.shared.createVault(vaultLocation: self.vaultLocation, name: self.vaultName, password: self.password) {
-				
-				// Show the vault by popping to the root view controller.
-				self.isPushed = false
-			}
-			else {
+			if AppState.shared.createVault(vaultLocation: self.vaultLocation, name: self.vaultName, password: self.password) == false {
 				self.showingVaultCreationFailedAlert = true
 			}
 		}
