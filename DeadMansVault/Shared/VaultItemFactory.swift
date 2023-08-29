@@ -87,36 +87,72 @@ func createVaultItemFromFile(location: URL, masterKey: Data) throws -> SecureVau
 }
 
 func createVaultItemFrom1Pif(contents: PifEncoding) throws -> SecureVaultItem {
+	let secureContents = contents.secureContents
+	let note = secureContents.notesPlain
+	var tags: Array<String> = []
+
+	if contents.openContents != nil {
+		tags = contents.openContents?.tags ?? []
+	}
+
 	if contents.typeName == "passwords.Password" || contents.typeName == "webforms.WebForm" {
 		var username = ""
 		var email = ""
 		let title = contents.title
-		let password = contents.secureContents.password
-		let note = contents.secureContents.notesPlain
+		var password = secureContents.password
 		var urls: Array<String> = []
 
-		if contents.secureContents.urls != nil {
-			for url in contents.secureContents.urls! {
+		if secureContents.urls != nil {
+			for url in secureContents.urls! {
 				urls.append(url.url)
 			}
 		}
-		if contents.secureContents.sections != nil {
-			for section in contents.secureContents.sections! {
+		if secureContents.sections != nil {
+			for section in secureContents.sections! {
 				if section.fields != nil {
-					for field in section.fields! {
-						if field.v.contains("@") {
-						}
+					for _ in section.fields! {
+					}
+				}
+			}
+		}
+		if secureContents.fields != nil {
+			for field in secureContents.fields! {
+				let fieldType = field.type.lowercased()
+				let fieldDesignation = field.designation.lowercased()
+
+				if fieldType == "k" {
+				}
+				else if fieldType == "n" {
+				}
+				else if fieldType == "p" && fieldDesignation == "password" {
+					password = field.value
+				}
+				else if fieldType == "v" {
+				}
+				else if fieldType == "t" {
+					if fieldDesignation == "username" {
+						username = field.value
+					}
+					if field.value.contains("@") {
+						email = field.value
 					}
 				}
 			}
 		}
 
-		let vaultData = SecureLoginItemEncoding(vaultVersion: Vault.kCurrentVaultVersion, title: title, website: contents.location!, username: username, email: email, password: password, note: note, tags: [], urls: urls, lastModifiedTime: Date(timeIntervalSince1970: TimeInterval(contents.updatedAt)))
+		let vaultData = SecureLoginItemEncoding(vaultVersion: Vault.kCurrentVaultVersion, title: title, website: contents.location!, username: username, email: email, password: password, note: note, tags: tags, urls: urls, lastModifiedTime: Date(timeIntervalSince1970: TimeInterval(contents.updatedAt)))
 		return SecureLoginItem(json: vaultData)
 	}
 	else if contents.typeName == "securenotes.SecureNote" {
-		let vaultData = SecureNoteItemEncoding(vaultVersion: Vault.kCurrentVaultVersion, heading: contents.title, note: contents.secureContents.notesPlain!, tags: [], lastModifiedTime: Date(timeIntervalSince1970: TimeInterval(contents.updatedAt)))
+		let vaultData = SecureNoteItemEncoding(vaultVersion: Vault.kCurrentVaultVersion, heading: contents.title, note: secureContents.notesPlain!, tags: tags, lastModifiedTime: Date(timeIntervalSince1970: TimeInterval(contents.updatedAt)))
 		return SecureNoteItem(json: vaultData)
+	}
+	else if contents.typeName == "wallet.financial.CreditCard" {
+//		let vaultData = SecureCardItemEncoding(vaultVersion: Vault.kCurrentVaultVersion, name: contents.title, number: <#T##String#>, securityCode: <#T##UInt16#>, expiry: <#T##Date#>)
+	}
+	else if contents.typeName == "wallet.computer.Router" {
+		let vaultData = SecureAccessPointEncoding(vaultVersion: Vault.kCurrentVaultVersion, name: secureContents.name ?? "", password: secureContents.password ?? "", note: note, tags: tags)
+		return SecureAccessPointItem(json: vaultData)
 	}
 	throw VaultException.runtimeError("Unknown import type.")
 }

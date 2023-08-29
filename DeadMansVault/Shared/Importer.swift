@@ -32,24 +32,48 @@ struct PifLabeledUrls: Codable {
 	var url: String
 }
 
-struct PifFields: Codable {
+struct PifSectionFields: Codable {
 	var k: String
 	var n: String
-	var v: String
+	var v: String?
 	var t: String
+	var inputTraits: Dictionary<String, String>?
+}
+
+struct PifSecureContentsFields: Codable {
+	var value: String
+	var name: String
+	var type: String
+	var designation: String
+}
+
+struct PifPasswordHistory: Codable {
+	var value: String
+	var time: UInt64
 }
 
 struct PifSection: Codable {
-	var fields: Array<PifFields>?
+	var fields: Array<PifSectionFields>?
 	var title: String?
 	var name: String?
 }
 
 struct PifSecureContents: Codable {
 	var urls: Array<PifLabeledUrls>?
+	var fields: Array<PifSecureContentsFields>?
+	var passwordHistory: Array<PifPasswordHistory>?
+	var phoneLocal: String?
+	var expiry_mm: String?
+	var validFrom_yy: String?
+	var type: String?
 	var notesPlain: String?
+	var name: String?
 	var password: String?
 	var sections: Array<PifSection>?
+}
+
+struct PifOpenContents: Codable {
+	var tags: Array<String>?
 }
 
 struct PifEncoding: Codable {
@@ -57,6 +81,7 @@ struct PifEncoding: Codable {
 	var updatedAt: UInt64
 	var locationKey: String?
 	var securityLevel: String
+	var openContents: PifOpenContents?
 	var contentsHash: String
 	var title: String
 	var location: String?
@@ -78,10 +103,16 @@ class Importer {
 
 			// 1Password puts a comment line between each entry.
 			if entry.starts(with: "***") == false {
-				let pifContents = try JSONDecoder().decode(PifEncoding.self, from: entry.data(using: .utf8)!)
-				let vaultItem = try createVaultItemFrom1Pif(contents: pifContents)
-				
-				try vault.addItem(item: vaultItem)
+				do {
+					let pifContents = try JSONDecoder().decode(PifEncoding.self, from: entry.data(using: .utf8)!)
+					let vaultItem = try createVaultItemFrom1Pif(contents: pifContents)
+					
+					try vault.addItem(item: vaultItem)
+				}
+				catch {
+					print("Error importing " + entry + ".")
+					print(error)
+				}
 			}
 		}
 	}
