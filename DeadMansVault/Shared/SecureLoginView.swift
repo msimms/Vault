@@ -89,7 +89,7 @@ struct SecureLoginView: View {
 									.padding(10)
 									if self.isReadOnly == false {
 										ZStack() {
-											NavigationLink(destination: PasswordGeneratorView(isPushed: self.$isShowingPasswordGenerator, existingPassword: self.$item.password, suggestedPassword: self.item.password), isActive: self.$isShowingPasswordGenerator) {
+											NavigationLink(destination: PasswordGeneratorView(existingPassword: self.$item.password, suggestedPassword: self.item.password), isActive: self.$isShowingPasswordGenerator) {
 											}
 											Button(action: {
 												if self.isReadOnly {
@@ -124,7 +124,7 @@ struct SecureLoginView: View {
 			}
 
 			Spacer()
-			ItemButtonView(isPushed: self.$isPushed, isReadOnly: self.$isReadOnly, item: self.item, isNewItem: self.isNewItem)
+			ItemButtonView(isReadOnly: self.$isReadOnly, item: self.item, isNewItem: self.isNewItem)
 		}
 		.padding(10)
     }

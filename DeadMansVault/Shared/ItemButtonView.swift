@@ -28,7 +28,7 @@
 import SwiftUI
 
 struct ItemButtonView: View {
-	@Binding var isPushed: Bool
+	@Environment(\.dismiss) var dismiss
 	@Binding var isReadOnly: Bool
 	@State var item: SecureVaultItem
 	@State var isNewItem: Bool = true
@@ -46,7 +46,10 @@ struct ItemButtonView: View {
 
 				// Save button
 				Button {
-					if !AppState.shared.addItemToVault(item: self.item) {
+					if AppState.shared.addItemToVault(item: self.item) {
+						self.dismiss()
+					}
+					else {
 						self.showingFailedToAddAlert = true
 					}
 				} label: {
@@ -58,7 +61,7 @@ struct ItemButtonView: View {
 
 				// Cancel button
 				Button {
-					self.isPushed = false
+					self.dismiss()
 				} label: {
 					Label("Cancel", systemImage: "trash")
 				}
@@ -106,7 +109,10 @@ struct ItemButtonView: View {
 					Button("No", role: .cancel) { }
 						.keyboardShortcut(.defaultAction)
 					Button("Yes") {
-						if !AppState.shared.deleteItemFromVault(item: self.item) {
+						if AppState.shared.deleteItemFromVault(item: self.item) {
+							self.dismiss()
+						}
+						else {
 							self.showingFailedToDeleteAlert = true
 						}
 					}

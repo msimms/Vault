@@ -63,7 +63,7 @@ struct SecureNoteView: View {
 			}
 
 			Spacer()
-			ItemButtonView(isPushed: self.$isPushed, isReadOnly: self.$isReadOnly, item: self.item, isNewItem: self.isNewItem)
+			ItemButtonView(isReadOnly: self.$isReadOnly, item: self.item, isNewItem: self.isNewItem)
 		}
 		.padding(10)
 	}

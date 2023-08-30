@@ -28,7 +28,7 @@
 import SwiftUI
 
 struct PasswordGeneratorView: View {
-	@Binding var isPushed: Bool
+	@Environment(\.dismiss) var dismiss
 	@Binding var existingPassword: String
 	@State var suggestedPassword: String = ""
 	@State private var numChars: Double = 8
@@ -105,14 +105,14 @@ struct PasswordGeneratorView: View {
 					HStack() {
 #if os(macOS)
 						Button(action: {
-							self.isPushed = false
+							self.dismiss()
 						}) {
 							Text("Cancel")
 						}
 #endif
 						Button(action: {
 							self.existingPassword = self.suggestedPassword
-							self.isPushed = false
+							self.dismiss()
 						}) {
 							Label("Save", systemImage: "square.and.arrow.down")
 						}
