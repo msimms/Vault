@@ -102,7 +102,7 @@ struct SecureAccessPointView: View {
 						TextEditor(text: self.$item.note)
 							.disabled(self.isReadOnly)
 					}
-					TagsView(isPushed: self.$isPushed, isReadOnly: self.$isReadOnly, tags: self.$item.tags)
+					TagsView(isReadOnly: self.$isReadOnly, tags: self.$item.tags)
 					LastModifiedView(isNewItem: isNewItem, timestamp: self.item.lastModifiedTime)
 				}
 			}

@@ -28,10 +28,8 @@
 import SwiftUI
 
 struct TagsView: View {
-	@Binding var isPushed: Bool
 	@Binding var isReadOnly: Bool
 	@Binding var tags: Array<String>
-	@State var isShowingNewTagView: Bool = false
 	@State var newTag: String = ""
 
 	var body: some View {
@@ -61,7 +59,7 @@ struct TagsView: View {
 				}
 
 				// Link for moving to the New Tag view.
-				NavigationLink(destination: NewTagView(isPushed: self.$isShowingNewTagView, tags: self.$tags)) {
+				NavigationLink(destination: NewTagView(tags: self.$tags)) {
 					Label("New Tag...", systemImage: "tag")
 				}
 				.opacity(self.isReadOnly ? 0 : 1)

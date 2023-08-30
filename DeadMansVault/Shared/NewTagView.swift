@@ -28,7 +28,7 @@
 import SwiftUI
 
 struct NewTagView: View {
-	@Binding var isPushed: Bool
+	@Environment(\.dismiss) var dismiss
 	@Binding var tags: Array<String>
 	@State var newTag: String = ""
 
@@ -49,7 +49,7 @@ struct NewTagView: View {
 				HStack() {
 #if os(macOS)
 					Button(action: {
-						self.isPushed = false
+						self.dismiss()
 					}) {
 						Text("Cancel")
 					}
@@ -58,7 +58,7 @@ struct NewTagView: View {
 						if !self.tags.contains(newTag) {
 							self.tags.append(newTag)
 						}
-						self.isPushed = false
+						self.dismiss()
 					}) {
 						Label("Save", systemImage: "square.and.arrow.down")
 					}

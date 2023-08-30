@@ -118,7 +118,7 @@ struct SecureLoginView: View {
 							.scrollContentBackground(.hidden)
 							.background(.gray)
 					}
-					TagsView(isPushed: self.$isPushed, isReadOnly: self.$isReadOnly, tags: self.$item.tags)
+					TagsView(isReadOnly: self.$isReadOnly, tags: self.$item.tags)
 					LastModifiedView(isNewItem: self.isNewItem, timestamp: self.item.lastModifiedTime)
 				}
 			}
