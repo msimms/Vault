@@ -148,7 +148,31 @@ func createVaultItemFrom1Pif(contents: PifEncoding) throws -> SecureVaultItem {
 		return SecureNoteItem(json: vaultData)
 	}
 	else if contents.typeName == "wallet.financial.CreditCard" {
-//		let vaultData = SecureCardItemEncoding(vaultVersion: Vault.kCurrentVaultVersion, name: contents.title, number: <#T##String#>, securityCode: <#T##UInt16#>, expiry: <#T##Date#>)
+		var cardHolder = ""
+		var cardNum = ""
+		var securityCode: Int = 0
+		let expiry: Date = Date()
+
+		if secureContents.sections != nil {
+			for section in secureContents.sections! {
+				if section.fields != nil {
+					for field in section.fields! {
+						if field.n.lowercased() == "cardholder" {
+							cardHolder = try field.v!.decodeToString()
+						}
+						else if field.n.lowercased() == "ccnum" && field.v != nil {
+							cardNum = try field.v!.decodeToString()
+						}
+						else if field.n.lowercased() == "cvv" && field.v != nil {
+							securityCode = try field.v!.decodeToInt()
+						}
+					}
+				}
+			}
+		}
+
+		let vaultData = SecureCardItemEncoding(vaultVersion: Vault.kCurrentVaultVersion, name: contents.title, cardType: secureContents.type ?? "", cardHolder: cardHolder, number: cardNum, securityCode: securityCode, expiry: expiry)
+		return SecureCardItem(json: vaultData)
 	}
 	else if contents.typeName == "wallet.computer.Router" {
 		let vaultData = SecureAccessPointEncoding(vaultVersion: Vault.kCurrentVaultVersion, name: secureContents.name ?? "", password: secureContents.password ?? "", note: note, tags: tags)

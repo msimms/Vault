@@ -11,8 +11,7 @@ struct SecureCardView: View {
 	@State var item: SecureCardItem
 	@State var isNewItem: Bool = true
 	@State var isReadOnly: Bool = false
-	@State var showsDatePicker: Bool = false
-	@State private var tempSecurityCode: String = ""
+	@State private var showsDatePicker: Bool = false
 	@State private var tempExpiryDate: String = ""
 
 	let dateFormatter: DateFormatter = {
@@ -43,13 +42,17 @@ struct SecureCardView: View {
 							.disabled(self.isReadOnly)
 					}
 					Group() {
+						Text("Card Holder")
+							.fontWeight(.heavy)
+						TextField("Number", text: self.$item.cardHolder)
+							.disabled(self.isReadOnly)
 						Text("Number")
 							.fontWeight(.heavy)
 						TextField("Number", text: self.$item.number)
 							.disabled(self.isReadOnly)
 						Text("Security Code")
 							.fontWeight(.heavy)
-						TextField("Security Code", text: self.$tempSecurityCode)
+						TextField("Security Code", value: self.$item.securityCode, formatter: NumberFormatter())
 							.disabled(self.isReadOnly)
 						HStack {
 							Text("Expiry Date")

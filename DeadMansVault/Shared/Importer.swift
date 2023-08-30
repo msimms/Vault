@@ -27,6 +27,50 @@
 
 import Foundation
 
+enum StringOrIntType: Codable {
+	case string(String)
+	case int(Int)
+	
+	init(from decoder: Decoder) throws {
+		let container = try decoder.singleValueContainer()
+		do {
+			self = try .string(container.decode(String.self))
+		} catch DecodingError.typeMismatch {
+			self = try .int(container.decode(Int.self))
+		}
+	}
+	
+	func encode(to encoder: Encoder) throws {
+		var container = encoder.singleValueContainer()
+		switch self {
+		case .int(let int):
+			try container.encode(int)
+		case .string(let string):
+			try container.encode(string)
+		}
+	}
+	
+	func decodeToString() throws -> String {
+		if case .string(let int) = self {
+			return int
+		}
+		if case .int(let int) = self {
+			return String(int)
+		}
+		return ""
+	}
+	
+	func decodeToInt() throws -> Int {
+		if case .string(let int) = self {
+			return Int(int) ?? 0
+		}
+		if case .int(let int) = self {
+			return int
+		}
+		return 0
+	}
+}
+
 struct PifLabeledUrls: Codable {
 	var label: String
 	var url: String
@@ -35,7 +79,7 @@ struct PifLabeledUrls: Codable {
 struct PifSectionFields: Codable {
 	var k: String
 	var n: String
-	var v: String?
+	var v: StringOrIntType?
 	var t: String
 	var inputTraits: Dictionary<String, String>?
 }
