@@ -44,7 +44,11 @@ struct SecureCardView: View {
 					Group() {
 						Text("Card Holder")
 							.fontWeight(.heavy)
-						TextField("Number", text: self.$item.cardHolder)
+						TextField("Card Holder", text: self.$item.cardHolder)
+							.disabled(self.isReadOnly)
+						Text("Card Type")
+							.fontWeight(.heavy)
+						TextField("Card Type", text: self.$item.cardType)
 							.disabled(self.isReadOnly)
 						Text("Number")
 							.fontWeight(.heavy)
