@@ -110,6 +110,8 @@ struct PifSecureContents: Codable {
 	var expiry_mm: String?
 	var expiry_yy: String?
 	var validFrom_yy: String?
+	var validFrom_mm: String?
+	var bank: String?
 	var type: String?
 	var notesPlain: String?
 	var name: String?

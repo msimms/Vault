@@ -88,7 +88,7 @@ func createVaultItemFromFile(location: URL, masterKey: Data) throws -> SecureVau
 
 func createVaultItemFrom1Pif(contents: PifEncoding) throws -> SecureVaultItem {
 	let secureContents = contents.secureContents
-	let note = secureContents.notesPlain
+	let note = secureContents.notesPlain ?? ""
 	var tags: Array<String> = []
 
 	if contents.openContents != nil {
@@ -153,9 +153,15 @@ func createVaultItemFrom1Pif(contents: PifEncoding) throws -> SecureVaultItem {
 		var cardNum = ""
 		var securityCode: Int = 0
 		var expiryComponents = DateComponents()
+		var validFromComponents = DateComponents()
+
 		expiryComponents.month = Int(secureContents.expiry_mm ?? "1") ?? 0
 		expiryComponents.year = Int(secureContents.expiry_yy ?? "2000") ?? 0
 		let expiry = Calendar.current.date(from: expiryComponents) ?? Date()
+
+		validFromComponents.month = Int(secureContents.validFrom_mm ?? "1") ?? 0
+		validFromComponents.year = Int(secureContents.validFrom_yy ?? "2000") ?? 0
+		let validFrom = Calendar.current.date(from: validFromComponents) ?? Date()
 
 		if secureContents.sections != nil {
 			for section in secureContents.sections! {
@@ -176,7 +182,7 @@ func createVaultItemFrom1Pif(contents: PifEncoding) throws -> SecureVaultItem {
 			}
 		}
 
-		let vaultData = SecureCardItemEncoding(vaultVersion: Vault.kCurrentVaultVersion, name: contents.title, cardType: cardType, cardHolder: cardHolder, number: cardNum, securityCode: securityCode, expiry: expiry, note: note, tags: tags)
+		let vaultData = SecureCardItemEncoding(vaultVersion: Vault.kCurrentVaultVersion, name: contents.title, cardType: cardType, cardHolder: cardHolder, number: cardNum, securityCode: securityCode, expiry: expiry, validFrom: validFrom, note: note, tags: tags)
 		return SecureCardItem(json: vaultData)
 	}
 	else if contents.typeName == "wallet.computer.Router" {

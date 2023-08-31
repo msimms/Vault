@@ -31,10 +31,12 @@ struct SecureCardItemEncoding: Codable {
 	var vaultVersion: UInt8     // Version of this encoding
 	var name: String            // Name of this card
 	var cardType: String        // Type of the card, i.e. "Visa", "MC", etc.
+	var bank: String?           // Type of the card, i.e. "Visa", "MC", etc.
 	var cardHolder: String      // Name on the card
 	var number: String          // Card number
 	var securityCode: Int       // Card security code
 	var expiry: Date            // Card expiry date
+	var validFrom: Date?        // Card valid from date
 	var note: String?           // Notes
 	var tags: Array<String>?    // Tags
 	var lastModifiedTime: Date? // Timestamp of the last update
@@ -43,10 +45,12 @@ struct SecureCardItemEncoding: Codable {
 class SecureCardItem: SecureVaultItem {
 	var name: String = ""
 	var cardType: String = ""
+	var bank: String = ""
 	var cardHolder: String = ""
 	var number: String = ""
 	var securityCode: Int = 0
 	var expiry: Date = Date()
+	var validFrom: Date?
 	var note: String = ""
 	var tags: Array<String> = []
 	var lastModifiedTime: Date?
@@ -63,10 +67,12 @@ class SecureCardItem: SecureVaultItem {
 		
 		self.name = json.name
 		self.cardType = json.cardType
+		self.bank = json.bank ?? ""
 		self.cardHolder = json.cardHolder
 		self.number = json.number
 		self.securityCode = json.securityCode
 		self.expiry = json.expiry
+		self.validFrom = json.validFrom ?? Date()
 		self.note = json.note ?? ""
 		self.tags = json.tags ?? []
 		self.lastModifiedTime = json.lastModifiedTime
@@ -76,7 +82,7 @@ class SecureCardItem: SecureVaultItem {
 	override func write(locationOfVaultItems: URL, masterKey: Data) throws {
 		
 		// Encode everything as JSON.
-		let vaultData = SecureCardItemEncoding(vaultVersion: self.vaultVersion, name: self.name, cardType: self.cardType, cardHolder: self.cardHolder, number: self.number, securityCode: self.securityCode, expiry: self.expiry, note: self.note, tags: self.tags, lastModifiedTime: self.lastModifiedTime)
+		let vaultData = SecureCardItemEncoding(vaultVersion: self.vaultVersion, name: self.name, cardType: self.cardType, bank: self.bank, cardHolder: self.cardHolder, number: self.number, securityCode: self.securityCode, expiry: self.expiry, validFrom: self.validFrom, note: self.note, tags: self.tags, lastModifiedTime: self.lastModifiedTime)
 		let encoder = JSONEncoder()
 		let jsonData = try encoder.encode(vaultData)
 		let jsonStr = String(data: jsonData, encoding: .utf8)!
