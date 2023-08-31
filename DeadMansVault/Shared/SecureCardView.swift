@@ -16,7 +16,7 @@ struct SecureCardView: View {
 
 	let dateFormatter: DateFormatter = {
 		let df = DateFormatter()
-		df.dateStyle = .medium
+		df.dateFormat = "yyyy-MM"
 		return df
 	}()
 
@@ -56,6 +56,7 @@ struct SecureCardView: View {
 							.disabled(self.isReadOnly)
 						HStack {
 							Text("Expiry Date")
+								.fontWeight(.heavy)
 							Spacer()
 							Text("\(self.dateFormatter.string(from: self.item.expiry))")
 								.onTapGesture {

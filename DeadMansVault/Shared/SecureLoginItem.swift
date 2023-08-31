@@ -61,31 +61,17 @@ class SecureLoginItem: SecureVaultItem, ObservableObject {
 	init(json: SecureLoginItemEncoding) {
 		super.init(json: json)
 
-		if json.title != nil {
-			self.title = json.title!
-		}
+		self.title = json.title ?? ""
 		self.website = json.website
-		if json.username != nil {
-			self.username = json.username!
-		}
-		if json.email != nil {
-			self.email = json.email!
-		}
-		if json.password != nil {
-			self.password = json.password!
-		}
-		if json.note != nil {
-			self.note = json.note!
-		}
-		if json.tags != nil {
-			self.tags = json.tags!
-		}
-		if json.urls != nil {
-			self.tags = json.urls!
-		}
+		self.username = json.username ?? ""
+		self.email = json.email ?? ""
+		self.password = json.password ?? ""
+		self.note = json.note ?? ""
+		self.tags = json.tags ?? []
+		self.urls = json.urls ?? []
 		self.lastModifiedTime = json.lastModifiedTime
 	}
-	
+
 	/// Creates the file for the vault item.
 	override func write(locationOfVaultItems: URL, masterKey: Data) throws {
 		

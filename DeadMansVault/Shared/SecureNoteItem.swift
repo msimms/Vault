@@ -53,9 +53,7 @@ class SecureNoteItem: SecureVaultItem {
 		
 		self.heading = json.heading
 		self.note = json.note
-		if json.tags != nil {
-			self.tags = json.tags!
-		}
+		self.tags = json.tags ?? []
 		self.lastModifiedTime = json.lastModifiedTime
 	}
 	

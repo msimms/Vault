@@ -108,6 +108,7 @@ struct PifSecureContents: Codable {
 	var passwordHistory: Array<PifPasswordHistory>?
 	var phoneLocal: String?
 	var expiry_mm: String?
+	var expiry_yy: String?
 	var validFrom_yy: String?
 	var type: String?
 	var notesPlain: String?

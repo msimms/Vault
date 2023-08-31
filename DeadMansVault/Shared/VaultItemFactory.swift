@@ -148,22 +148,27 @@ func createVaultItemFrom1Pif(contents: PifEncoding) throws -> SecureVaultItem {
 		return SecureNoteItem(json: vaultData)
 	}
 	else if contents.typeName == "wallet.financial.CreditCard" {
+		let cardType = secureContents.type ?? ""
 		var cardHolder = ""
 		var cardNum = ""
 		var securityCode: Int = 0
-		let expiry: Date = Date()
+		var expiryComponents = DateComponents()
+		expiryComponents.month = Int(secureContents.expiry_mm ?? "1") ?? 0
+		expiryComponents.year = Int(secureContents.expiry_yy ?? "2000") ?? 0
+		let expiry = Calendar.current.date(from: expiryComponents) ?? Date()
 
 		if secureContents.sections != nil {
 			for section in secureContents.sections! {
 				if section.fields != nil {
 					for field in section.fields! {
-						if field.n.lowercased() == "cardholder" {
+						let fieldName = field.n.lowercased()
+						if fieldName == "cardholder" {
 							cardHolder = try field.v!.decodeToString()
 						}
-						else if field.n.lowercased() == "ccnum" && field.v != nil {
+						else if fieldName == "ccnum" && field.v != nil {
 							cardNum = try field.v!.decodeToString()
 						}
-						else if field.n.lowercased() == "cvv" && field.v != nil {
+						else if fieldName == "cvv" && field.v != nil {
 							securityCode = try field.v!.decodeToInt()
 						}
 					}
@@ -171,11 +176,14 @@ func createVaultItemFrom1Pif(contents: PifEncoding) throws -> SecureVaultItem {
 			}
 		}
 
-		let vaultData = SecureCardItemEncoding(vaultVersion: Vault.kCurrentVaultVersion, name: contents.title, cardType: secureContents.type ?? "", cardHolder: cardHolder, number: cardNum, securityCode: securityCode, expiry: expiry)
+		let vaultData = SecureCardItemEncoding(vaultVersion: Vault.kCurrentVaultVersion, name: contents.title, cardType: cardType, cardHolder: cardHolder, number: cardNum, securityCode: securityCode, expiry: expiry, note: note, tags: tags)
 		return SecureCardItem(json: vaultData)
 	}
 	else if contents.typeName == "wallet.computer.Router" {
-		let vaultData = SecureAccessPointEncoding(vaultVersion: Vault.kCurrentVaultVersion, name: secureContents.name ?? "", password: secureContents.password ?? "", note: note, tags: tags)
+		let networkName = secureContents.name ?? ""
+		let password = secureContents.password ?? ""
+
+		let vaultData = SecureAccessPointEncoding(vaultVersion: Vault.kCurrentVaultVersion, name: networkName, password: password, note: note, tags: tags)
 		return SecureAccessPointItem(json: vaultData)
 	}
 	throw VaultException.runtimeError("Unknown import type.")

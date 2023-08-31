@@ -67,12 +67,8 @@ class SecureCardItem: SecureVaultItem {
 		self.number = json.number
 		self.securityCode = json.securityCode
 		self.expiry = json.expiry
-		if json.note != nil {
-			self.note = json.note!
-		}
-		if json.tags != nil {
-			self.tags = json.tags!
-		}
+		self.note = json.note ?? ""
+		self.tags = json.tags ?? []
 		self.lastModifiedTime = json.lastModifiedTime
 	}
 
