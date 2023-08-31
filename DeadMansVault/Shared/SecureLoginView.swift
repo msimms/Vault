@@ -30,7 +30,7 @@ import SwiftUI
 /// Displays a login item from the vault.
 struct SecureLoginView: View {
 	@Binding var isPushed: Bool
-	@State var item: SecureLoginItem
+	@ObservedObject var item: SecureLoginItem
 	@State var isNewItem: Bool = true
 	@State var isReadOnly: Bool = false
 	@State private var isShowingPasswordGenerator: Bool = false

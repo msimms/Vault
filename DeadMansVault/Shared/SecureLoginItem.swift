@@ -40,12 +40,12 @@ struct SecureLoginItemEncoding: Codable {
 	var lastModifiedTime: Date? // Timestamp of the last update
 }
 
-class SecureLoginItem: SecureVaultItem {
+class SecureLoginItem: SecureVaultItem, ObservableObject {
 	var title: String = ""
 	var website: String = ""
 	var username: String = ""
 	var email: String = ""
-	var password: String = ""
+	@Published var password: String = "" // Published because it can be modified by the Password Generator
 	var note: String = ""
 	var tags: Array<String> = []
 	var urls: Array<String> = []
