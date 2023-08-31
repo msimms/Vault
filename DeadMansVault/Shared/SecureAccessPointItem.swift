@@ -55,12 +55,8 @@ class SecureAccessPointItem: SecureVaultItem {
 
 		self.name = json.name
 		self.password = json.password
-		if json.note != nil {
-			self.note = json.note!
-		}
-		if json.tags != nil {
-			self.tags = json.tags!
-		}
+		self.note = json.note ?? ""
+		self.tags = json.tags ?? []
 		self.lastModifiedTime = json.lastModifiedTime
 	}
 	
