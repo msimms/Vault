@@ -150,7 +150,12 @@ struct LockView: View {
 				let biometricAuthType = AppState.shared.biometricAuthType()
 
 				Button {
-					self.showingBiometricSetupAlert = true
+					if AppState.shared.isBiometricIdEnabledForVault(vaultName: self.selectedVault!) {
+						self.openVault()
+					}
+					else {
+						self.showingBiometricSetupAlert = true
+					}
 				} label: {
 					if biometricAuthType == .touchID {
 						Image(systemName: "touchid")
