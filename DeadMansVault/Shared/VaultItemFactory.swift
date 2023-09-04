@@ -140,7 +140,7 @@ func createVaultItemFrom1Pif(contents: PifEncoding) throws -> SecureVaultItem {
 			}
 		}
 
-		let vaultData = SecureLoginItemEncoding(vaultVersion: Vault.kCurrentVaultVersion, title: title, website: contents.location!, username: username, email: email, password: password, note: note, tags: tags, urls: urls, lastModifiedTime: Date(timeIntervalSince1970: TimeInterval(contents.updatedAt)))
+		let vaultData = SecureLoginItemEncoding(vaultVersion: Vault.kCurrentVaultVersion, title: title, website: contents.location ?? "", username: username, email: email, password: password, note: note, tags: tags, urls: urls, lastModifiedTime: Date(timeIntervalSince1970: TimeInterval(contents.updatedAt)))
 		return SecureLoginItem(json: vaultData)
 	}
 	else if contents.typeName == "securenotes.SecureNote" {
