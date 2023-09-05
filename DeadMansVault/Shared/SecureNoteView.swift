@@ -55,8 +55,20 @@ struct SecureNoteView: View {
 						.disabled(self.isReadOnly)
 					TextEditor(text: self.$item.note)
 						.disabled(self.isReadOnly)
-						.scrollContentBackground(.hidden)
-						.background(.gray)
+				}
+				Group() {
+					Text("Attached Files")
+						.fontWeight(.heavy)
+					Button(action: {
+						showOpenPanel()
+					}) {
+						HStack() {
+							Text("Attach files...")
+							Image(systemName: "doc")
+								.foregroundColor(.secondary)
+						}
+					}
+					.disabled(self.isReadOnly)
 				}
 				TagsView(isReadOnly: self.$isReadOnly, tags: self.$item.tags)
 				LastModifiedView(isNewItem: isNewItem, timestamp: self.item.lastModifiedTime)

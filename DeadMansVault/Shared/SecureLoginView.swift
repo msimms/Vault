@@ -27,6 +27,20 @@
 
 import SwiftUI
 
+func showOpenPanel() -> URL? {
+#if os(macOS)
+	let savePanel = NSOpenPanel()
+	savePanel.allowedContentTypes = []
+	savePanel.isExtensionHidden = false
+	savePanel.title = "Select the file"
+	savePanel.message = "Choose a file to add to the vault."
+	
+	let response = savePanel.runModal()
+	return response == .OK ? savePanel.url : nil
+#endif
+	return nil
+}
+
 /// Displays a login item from the vault.
 struct SecureLoginView: View {
 	@Binding var isPushed: Bool
@@ -36,7 +50,7 @@ struct SecureLoginView: View {
 	@State private var isShowingPasswordGenerator: Bool = false
 	@State private var showPassword: Bool = false
 	@State private var cannotShowPasswordGenerator: Bool = false
-
+		
 	var body: some View {
 
 		VStack(alignment: .leading) {
@@ -111,12 +125,26 @@ struct SecureLoginView: View {
 								}
 							}
 						})
-						Text("Notes")
-							.fontWeight(.heavy)
-						TextEditor(text: self.$item.note)
+						Group() {
+							Text("Attached Files")
+								.fontWeight(.heavy)
+							Button(action: {
+								showOpenPanel()
+							}) {
+								HStack() {
+									Text("Attach files...")
+									Image(systemName: "doc")
+										.foregroundColor(.secondary)
+								}
+							}
 							.disabled(self.isReadOnly)
-							.scrollContentBackground(.hidden)
-							.background(.gray)
+						}
+						Group() {
+							Text("Notes")
+								.fontWeight(.heavy)
+							TextEditor(text: self.$item.note)
+								.disabled(self.isReadOnly)
+						}
 					}
 					TagsView(isReadOnly: self.$isReadOnly, tags: self.$item.tags)
 					LastModifiedView(isNewItem: self.isNewItem, timestamp: self.item.lastModifiedTime)

@@ -45,9 +45,10 @@ struct TagsView: View {
 						ForEach(self.$tags, id: \.self) { $tag in
 							Button(action: {}) {
 								Text(tag)
+									.frame(height: 3)
 							}
 							.padding()
-							.background(Color.blue)
+							.background(Color.gray)
 							.foregroundColor(.white)
 							.cornerRadius(10)
 							.buttonStyle(PlainButtonStyle())
@@ -62,8 +63,7 @@ struct TagsView: View {
 				NavigationLink(destination: NewTagView(tags: self.$tags)) {
 					Label("New Tag...", systemImage: "tag")
 				}
-				.opacity(self.isReadOnly ? 0 : 1)
-				.padding()
+				.disabled(self.isReadOnly)
 			}
 		}
 	}
