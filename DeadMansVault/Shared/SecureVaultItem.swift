@@ -56,16 +56,17 @@ class SecureVaultItem: Codable, Identifiable, Comparable, Hashable {
 		case id
 		case vaultVersion
 	}
-
+	
 	var id = UUID()
 	var vaultVersion: UInt8 = Vault.kCurrentVaultVersion
-
+	var attachments: Array<Data> = []
+	
 	/// Constructor
 	init() {
 	}
 	init(json: Decodable) {
 	}
-
+	
 	/// Hashable overrides
 	func hash(into hasher: inout Hasher) {
 		hasher.combine(self.id)
@@ -73,55 +74,68 @@ class SecureVaultItem: Codable, Identifiable, Comparable, Hashable {
 	
 	/// Creates the file for the vault item. The 'content' will be encrypted with the master key, base 64 encoded, and stored as a JSON string.
 	func write(locationOfVaultItems: URL, masterKey: Data, contents: String, itemType: VaultItemType) throws {
-
+		
 		// Sanity check the parameters.
 		if masterKey.count == 0 {
 			throw VaultException.runtimeError("Error when saving a vault item.")
 		}
-
+		
 		// Encrypt the contents.
 		let masterKeyObj = SymmetricKey(data: masterKey)
 		let encryptedContents = try! AES.GCM.seal(Data(contents.utf8), using: masterKeyObj).combined
 		guard let unwrappedEncryptedContents = encryptedContents else {
 			throw VaultException.runtimeError("Error when saving a vault item.")
 		}
-
+		
 		// Compute the signature of the encrypted contents.
 		let signature = HMAC<SHA256>.authenticationCode(for: unwrappedEncryptedContents, using: masterKeyObj)
-
+		
 		// Base64 encode all the things.
 		let base64Contents = unwrappedEncryptedContents.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
 		let base64Signature = Data(signature).base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
-
+		
 		// Wrap the encoded contents into another JSON object, which will be written to the file.
 		let vaultData = VaultItemEncoding(vaultVersion: self.vaultVersion, id: self.id, itemType: itemType, encryptedContents: base64Contents, signature: base64Signature)
 		let encoder = JSONEncoder()
 		let jsonData = try encoder.encode(vaultData)
 		let jsonStr = String(data: jsonData, encoding: .utf8)!
-
+		
 		// The file name is just the UUID of the item.
 		let fileLocation = locationOfVaultItems.appendingPathComponent(id.uuidString)
-
+		
 		// Write it out.
 		try jsonStr.write(to: fileLocation, atomically: true, encoding: String.Encoding.utf8)
 	}
-
+	
 	/// Creates the file for the vault item.
 	func write(locationOfVaultItems: URL, masterKey: Data) throws {
 	}
-
+	
 	/// Returns the string to use as the title when viewing this item.
 	func displayTitle() -> String {
 		return ""
 	}
-
+	
 	/// Returns the string to use as the subtitle when viewing this item.
 	func displaySubtitle() -> String {
 		return ""
 	}
-
+	
 	/// If the child class tracks the last modified time then this will trigger an update.
 	func updateLastModifiedTime() {
+	}
+	
+	func attachFile(url: URL) {
+		do {
+			// Read the file
+			let data = try Data(contentsOf: url)
+			
+			// Compress the file.
+			let compressedData = try (data as NSData).compressed(using: .lzfse)
+			self.attachments.append(Data(compressedData))
+		}
+		catch {
+		}
 	}
 }
 

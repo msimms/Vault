@@ -57,6 +57,7 @@
 		274AA7002A8FF1CC00F77F96 /* SecureNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6DE2A8FF1CB00F77F96 /* SecureNoteView.swift */; };
 		274AA7012A8FF1CC00F77F96 /* VaultItemFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6DF2A8FF1CB00F77F96 /* VaultItemFactory.swift */; };
 		274AA7022A8FF1CC00F77F96 /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6E02A8FF1CB00F77F96 /* LockView.swift */; };
+		2771DBEF2AA7BF7D00D70021 /* SecureVaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2771DBEE2AA7BF7D00D70021 /* SecureVaultView.swift */; };
 		27774DA32A90130000D288ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27774DA22A900C5B00D288ED /* Assets.xcassets */; };
 		27774DA52A90132900D288ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27774DA22A900C5B00D288ED /* Assets.xcassets */; };
 		27E30B5C2A92CF5700236EAB /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6CC2A8FF1C800F77F96 /* Preferences.swift */; };
@@ -203,6 +204,7 @@
 		274AA6DE2A8FF1CB00F77F96 /* SecureNoteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecureNoteView.swift; path = Shared/SecureNoteView.swift; sourceTree = SOURCE_ROOT; };
 		274AA6DF2A8FF1CB00F77F96 /* VaultItemFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VaultItemFactory.swift; path = Shared/VaultItemFactory.swift; sourceTree = SOURCE_ROOT; };
 		274AA6E02A8FF1CB00F77F96 /* LockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LockView.swift; path = Shared/LockView.swift; sourceTree = SOURCE_ROOT; };
+		2771DBEE2AA7BF7D00D70021 /* SecureVaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SecureVaultView.swift; path = Shared/SecureVaultView.swift; sourceTree = SOURCE_ROOT; };
 		27774DA12A900B1200D288ED /* DeadMansVaultBrowser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeadMansVaultBrowser.entitlements; sourceTree = "<group>"; };
 		27774DA22A900C5B00D288ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Shared/Assets.xcassets; sourceTree = "<group>"; };
 		27E30B5B2A90346200236EAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 				274AA6C82A8FF1C700F77F96 /* SecureNoteItem.swift */,
 				274AA6DE2A8FF1CB00F77F96 /* SecureNoteView.swift */,
 				274AA6DA2A8FF1CA00F77F96 /* SecureVaultItem.swift */,
+				2771DBEE2AA7BF7D00D70021 /* SecureVaultView.swift */,
 				274AA6D22A8FF1C900F77F96 /* TagsView.swift */,
 				274AA6D52A8FF1C900F77F96 /* Vault.swift */,
 				274AA6D32A8FF1C900F77F96 /* VaultDisplayState.swift */,
@@ -668,6 +671,7 @@
 				274AA6E52A8FF1CC00F77F96 /* SecureAccessPointItem.swift in Sources */,
 				274AA7022A8FF1CC00F77F96 /* LockView.swift in Sources */,
 				274AA6FC2A8FF1CC00F77F96 /* SecureVaultItem.swift in Sources */,
+				2771DBEF2AA7BF7D00D70021 /* SecureVaultView.swift in Sources */,
 				274AA6F02A8FF1CC00F77F96 /* AppState.swift in Sources */,
 				274AA6FD2A8FF1CC00F77F96 /* HealthManager.swift in Sources */,
 				274AA6F52A8FF1CC00F77F96 /* VaultDisplayState.swift in Sources */,

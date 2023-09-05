@@ -60,12 +60,15 @@ struct SecureNoteView: View {
 					Text("Attached Files")
 						.fontWeight(.heavy)
 					Button(action: {
-						showOpenPanel()
+						let selectedUrl = showOpenPanel()
+						if selectedUrl != nil {
+							self.item.attachFile(url: selectedUrl!)
+						}
 					}) {
 						HStack() {
-							Text("Attach files...")
 							Image(systemName: "doc")
 								.foregroundColor(.secondary)
+							Text("Attach files...")
 						}
 					}
 					.disabled(self.isReadOnly)

@@ -27,20 +27,6 @@
 
 import SwiftUI
 
-func showOpenPanel() -> URL? {
-#if os(macOS)
-	let savePanel = NSOpenPanel()
-	savePanel.allowedContentTypes = []
-	savePanel.isExtensionHidden = false
-	savePanel.title = "Select the file"
-	savePanel.message = "Choose a file to add to the vault."
-	
-	let response = savePanel.runModal()
-	return response == .OK ? savePanel.url : nil
-#endif
-	return nil
-}
-
 /// Displays a login item from the vault.
 struct SecureLoginView: View {
 	@Binding var isPushed: Bool
@@ -129,12 +115,15 @@ struct SecureLoginView: View {
 							Text("Attached Files")
 								.fontWeight(.heavy)
 							Button(action: {
-								showOpenPanel()
+								let selectedUrl = showOpenPanel()
+								if selectedUrl != nil {
+									self.item.attachFile(url: selectedUrl!)
+								}
 							}) {
 								HStack() {
-									Text("Attach files...")
 									Image(systemName: "doc")
 										.foregroundColor(.secondary)
+									Text("Attach files...")
 								}
 							}
 							.disabled(self.isReadOnly)
