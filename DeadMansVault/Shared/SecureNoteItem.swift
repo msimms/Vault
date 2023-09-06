@@ -78,8 +78,7 @@ class SecureNoteItem: SecureVaultItem {
 		try container.encode(tags, forKey: .tags)
 		try container.encode(lastModifiedTime, forKey: .lastModifiedTime)
 
-		let superencoder = container.superEncoder()
-		try super.encode(to: superencoder)
+		try super.encode(to: encoder)
 	}
 
 	/// Creates the file for the vault item.

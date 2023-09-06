@@ -108,8 +108,7 @@ class SecureLoginItem: SecureVaultItem, ObservableObject {
 		try container.encode(urls, forKey: .urls)
 		try container.encode(lastModifiedTime, forKey: .lastModifiedTime)
 
-		let superencoder = container.superEncoder()
-		try super.encode(to: superencoder)
+		try super.encode(to: encoder)
 	}
 
 	/// Creates the file for the vault item.
