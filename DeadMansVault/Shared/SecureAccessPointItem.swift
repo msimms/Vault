@@ -75,6 +75,19 @@ class SecureAccessPointItem: SecureVaultItem {
 		self.lastModifiedTime = json.lastModifiedTime
 	}
 	
+	/// Encode overrides
+	override func encode(to encoder: Encoder) throws {
+		var container = encoder.container(keyedBy: CodingKeys.self)
+		try container.encode(name, forKey: .name)
+		try container.encode(password, forKey: .password)
+		try container.encode(note, forKey: .note)
+		try container.encode(tags, forKey: .tags)
+		try container.encode(lastModifiedTime, forKey: .lastModifiedTime)
+
+		let superencoder = container.superEncoder()
+		try super.encode(to: superencoder)
+	}
+
 	/// Creates the file for the vault item.
 	override func write(locationOfVaultItems: URL, masterKey: Data) throws {
 		

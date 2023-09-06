@@ -72,6 +72,13 @@ class SecureVaultItem: Codable, Identifiable, Comparable, Hashable {
 	init(json: Decodable) {
 	}
 
+	/// Encode overrides
+	func encode(to encoder: Encoder) throws {
+		var container = encoder.container(keyedBy: CodingKeys.self)
+		try container.encode(id, forKey: .id)
+		try container.encode(vaultVersion, forKey: .vaultVersion)
+	}
+
 	/// Hashable overrides
 	func hash(into hasher: inout Hasher) {
 		hasher.combine(self.id)
