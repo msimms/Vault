@@ -31,6 +31,7 @@ struct ItemButtonView: View {
 	@Environment(\.dismiss) var dismiss
 	@Binding var isReadOnly: Bool
 	@State var item: SecureVaultItem
+	@State var originalItem: Data?
 	@State var isNewItem: Bool = true
 	@State private var showingFailedToAddAlert: Bool = false
 	@State private var showingFailedToUpdateAlert: Bool = false
@@ -72,6 +73,17 @@ struct ItemButtonView: View {
 					self.isReadOnly = true
 					self.editUpdateButtonTitle = "Edit"
 					self.editUpdateButtonImage = "pencil"
+
+					do {
+						if self.originalItem != nil {
+							let unwrappedItem = self.originalItem!
+							let decodedItem = try JSONDecoder().decode(type(of: self.item), from: unwrappedItem)
+							self.item.copy(from: decodedItem)
+						}
+					}
+					catch {
+						print(error.localizedDescription)
+					}
 				} label: {
 					Label("Cancel", systemImage: "trash")
 				}
@@ -83,6 +95,14 @@ struct ItemButtonView: View {
 						self.editUpdateButtonTitle = "Update"
 						self.editUpdateButtonImage = "square.and.arrow.down"
 						self.isReadOnly = false
+
+						// Save the original, unedited item, in case the user cancels.
+						do {
+							let encodedItem = try JSONEncoder().encode(self.item)
+							self.originalItem = encodedItem
+						}
+						catch {
+						}
 					}
 					else if AppState.shared.updateVaultItem(item: self.item) {
 						self.editUpdateButtonTitle = "Edit"

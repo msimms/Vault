@@ -71,6 +71,11 @@ class SecureVaultItem: Codable, Identifiable, Comparable, Hashable {
 	}
 	init(json: Decodable) {
 	}
+	
+	func copy(from: SecureVaultItem) {
+		self.id = from.id
+		self.vaultVersion = from.vaultVersion
+	}
 
 	/// Encode overrides
 	func encode(to encoder: Encoder) throws {

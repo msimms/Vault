@@ -75,6 +75,17 @@ class SecureAccessPointItem: SecureVaultItem {
 		self.lastModifiedTime = json.lastModifiedTime
 	}
 	
+	override func copy(from: SecureVaultItem) {
+		let from2 = from as! SecureAccessPointItem
+		self.name = from2.name
+		self.password = from2.password
+		self.note = from2.note
+		self.tags = from2.tags
+		self.lastModifiedTime = from2.lastModifiedTime
+
+		super.copy(from: from)
+	}
+
 	/// Encode overrides
 	override func encode(to encoder: Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)

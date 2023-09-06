@@ -105,6 +105,22 @@ class SecureCardItem: SecureVaultItem {
 		self.lastModifiedTime = json.lastModifiedTime
 	}
 
+	func copy(from: SecureCardItem) {
+		self.name = from.name
+		self.cardType = from.cardType
+		self.bank = from.bank
+		self.cardHolder = from.cardHolder
+		self.number = from.number
+		self.securityCode = from.securityCode
+		self.expiry = from.expiry
+		self.validFrom = from.validFrom
+		self.note = from.note
+		self.tags = from.tags
+		self.lastModifiedTime = from.lastModifiedTime
+
+		super.copy(from: from)
+	}
+
 	/// Encode overrides
 	override func encode(to encoder: Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
