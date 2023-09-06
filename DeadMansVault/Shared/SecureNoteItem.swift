@@ -36,6 +36,13 @@ struct SecureNoteItemEncoding: Codable {
 }
 
 class SecureNoteItem: SecureVaultItem {
+	enum CodingKeys: CodingKey {
+		case heading
+		case note
+		case tags
+		case lastModifiedTime
+	}
+
 	var heading: String = ""
 	var note: String = ""
 	var tags: Array<String> = []
@@ -43,7 +50,13 @@ class SecureNoteItem: SecureVaultItem {
 	
 	/// Constructors
 	required init(from decoder: Decoder) throws {
-		fatalError("init(from:) has not been implemented")
+		try super.init(from: decoder)
+
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.heading = try container.decode(String.self, forKey: .heading)
+		self.note = try container.decode(String.self, forKey: .note)
+		self.tags = try container.decode(Array<String>.self, forKey: .tags)
+		self.lastModifiedTime = try container.decode(Date.self, forKey: .lastModifiedTime)
 	}
 	override init() {
 		super.init()

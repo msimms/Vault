@@ -41,6 +41,18 @@ struct SecureLoginItemEncoding: Codable {
 }
 
 class SecureLoginItem: SecureVaultItem, ObservableObject {
+	enum CodingKeys: CodingKey {
+		case title
+		case website
+		case username
+		case email
+		case password
+		case note
+		case tags
+		case urls
+		case lastModifiedTime
+	}
+
 	var title: String = ""
 	var website: String = ""
 	var username: String = ""
@@ -53,7 +65,18 @@ class SecureLoginItem: SecureVaultItem, ObservableObject {
 	
 	/// Constructors
 	required init(from decoder: Decoder) throws {
-		fatalError("init(from:) has not been implemented")
+		try super.init(from: decoder)
+		
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.title = try container.decode(String.self, forKey: .title)
+		self.website = try container.decode(String.self, forKey: .website)
+		self.username = try container.decode(String.self, forKey: .username)
+		self.email = try container.decode(String.self, forKey: .email)
+		self.password = try container.decode(String.self, forKey: .password)
+		self.note = try container.decode(String.self, forKey: .note)
+		self.tags = try container.decode(Array<String>.self, forKey: .tags)
+		self.urls = try container.decode(Array<String>.self, forKey: .urls)
+		self.lastModifiedTime = try container.decode(Date.self, forKey: .lastModifiedTime)
 	}
 	override init() {
 		super.init()

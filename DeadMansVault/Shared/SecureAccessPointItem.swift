@@ -37,6 +37,14 @@ struct SecureAccessPointEncoding: Codable {
 }
 
 class SecureAccessPointItem: SecureVaultItem {
+	enum CodingKeys: CodingKey {
+		case name
+		case password
+		case note
+		case tags
+		case lastModifiedTime
+	}
+
 	var name: String = ""
 	var password: String = ""
 	var note: String = ""
@@ -45,7 +53,14 @@ class SecureAccessPointItem: SecureVaultItem {
 	
 	/// Constructors
 	required init(from decoder: Decoder) throws {
-		fatalError("init(from:) has not been implemented")
+		try super.init(from: decoder)
+		
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.name = try container.decode(String.self, forKey: .name)
+		self.password = try container.decode(String.self, forKey: .password)
+		self.note = try container.decode(String.self, forKey: .note)
+		self.tags = try container.decode(Array<String>.self, forKey: .tags)
+		self.lastModifiedTime = try container.decode(Date.self, forKey: .lastModifiedTime)
 	}
 	override init() {
 		super.init()

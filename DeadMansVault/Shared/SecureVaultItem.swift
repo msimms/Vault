@@ -62,11 +62,16 @@ class SecureVaultItem: Codable, Identifiable, Comparable, Hashable {
 	var attachments: Array<Data> = []
 	
 	/// Constructor
+	required init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.id = try container.decode(UUID.self, forKey: .id)
+		self.vaultVersion = try container.decode(UInt8.self, forKey: .vaultVersion)
+	}
 	init() {
 	}
 	init(json: Decodable) {
 	}
-	
+
 	/// Hashable overrides
 	func hash(into hasher: inout Hasher) {
 		hasher.combine(self.id)

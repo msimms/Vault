@@ -43,6 +43,20 @@ struct SecureCardItemEncoding: Codable {
 }
 
 class SecureCardItem: SecureVaultItem {
+	enum CodingKeys: CodingKey {
+		case name
+		case cardType
+		case bank
+		case cardHolder
+		case number
+		case securityCode
+		case expiry
+		case validFrom
+		case note
+		case tags
+		case lastModifiedTime
+	}
+
 	var name: String = ""
 	var cardType: String = ""
 	var bank: String = ""
@@ -57,7 +71,20 @@ class SecureCardItem: SecureVaultItem {
 
 	/// Constructors
 	required init(from decoder: Decoder) throws {
-		fatalError("init(from:) has not been implemented")
+		try super.init(from: decoder)
+		
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.name = try container.decode(String.self, forKey: .name)
+		self.cardType = try container.decode(String.self, forKey: .cardType)
+		self.bank = try container.decode(String.self, forKey: .bank)
+		self.cardHolder = try container.decode(String.self, forKey: .cardHolder)
+		self.number = try container.decode(String.self, forKey: .number)
+		self.securityCode = try container.decode(Int.self, forKey: .securityCode)
+		self.expiry = try container.decode(Date.self, forKey: .expiry)
+		self.validFrom = try container.decode(Date.self, forKey: .validFrom)
+		self.note = try container.decode(String.self, forKey: .note)
+		self.tags = try container.decode(Array<String>.self, forKey: .tags)
+		self.lastModifiedTime = try container.decode(Date.self, forKey: .lastModifiedTime)
 	}
 	override init() {
 		super.init()
