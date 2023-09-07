@@ -27,6 +27,7 @@
 
 import Foundation
 import CryptoKit
+import SwiftUI
 
 /// Enumerates the possible vault item types. Each one will have a corresponding class that inherits from SecureVaultItem.
 enum VaultItemType: UInt8, Codable {
