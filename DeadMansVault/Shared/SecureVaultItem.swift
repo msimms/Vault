@@ -154,6 +154,14 @@ class SecureVaultItem: Codable, Identifiable, Comparable, Hashable {
 		catch {
 		}
 	}
+	
+#if os(iOS)
+	func attachPhoto(image: UIImage) {
+		let imageData = image.jpegData(compressionQuality: 0.5)
+		if imageData != nil {
+		}
+	}
+#endif
 }
 
 func < (lhs: SecureVaultItem, rhs: SecureVaultItem) -> Bool {

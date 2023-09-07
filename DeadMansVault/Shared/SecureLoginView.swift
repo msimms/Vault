@@ -112,21 +112,7 @@ struct SecureLoginView: View {
 							}
 						})
 						Group() {
-							Text("Attached Files")
-								.fontWeight(.heavy)
-							Button(action: {
-								let selectedUrl = showOpenPanel()
-								if selectedUrl != nil {
-									self.item.attachFile(url: selectedUrl!)
-								}
-							}) {
-								HStack() {
-									Image(systemName: "doc")
-										.foregroundColor(.secondary)
-									Text("Attach files...")
-								}
-							}
-							.disabled(self.isReadOnly)
+							AttachFilesView(isReadOnly: self.$isReadOnly, item: self.item)
 						}
 						Group() {
 							Text("Notes")

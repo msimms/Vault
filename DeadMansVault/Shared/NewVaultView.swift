@@ -188,8 +188,8 @@ struct NewVaultView: View {
 			.alert("Failed to create the vault", isPresented: self.$showingVaultCreationFailedAlert) {
 				Button("OK", role: .cancel) { }
 			}
-			.background(Color.blue)
 			.foregroundColor(.white)
+			.background(Color.gray)
 			.cornerRadius(40)
 			.padding()
 			.buttonStyle(PlainButtonStyle())
@@ -197,5 +197,11 @@ struct NewVaultView: View {
 			.navigationBarBackButtonHidden(true)
 #endif
 		}
+		.background(
+			Image("Background")
+				.resizable()
+				.edgesIgnoringSafeArea(.all)
+				.aspectRatio(contentMode: .fill)
+		)
 	}
 }

@@ -47,7 +47,7 @@ struct AppView: View {
 					Text(self.viewModel.createButtonText())
 				}
 				.padding()
-				.background(Color.blue)
+				.background(Color.gray)
 				.foregroundColor(.white)
 				.cornerRadius(40)
 				.frame(width: 160)

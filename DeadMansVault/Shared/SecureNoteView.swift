@@ -57,21 +57,7 @@ struct SecureNoteView: View {
 						.disabled(self.isReadOnly)
 				}
 				Group() {
-					Text("Attached Files")
-						.fontWeight(.heavy)
-					Button(action: {
-						let selectedUrl = showOpenPanel()
-						if selectedUrl != nil {
-							self.item.attachFile(url: selectedUrl!)
-						}
-					}) {
-						HStack() {
-							Image(systemName: "doc")
-								.foregroundColor(.secondary)
-							Text("Attach files...")
-						}
-					}
-					.disabled(self.isReadOnly)
+					AttachFilesView(isReadOnly: self.$isReadOnly, item: self.item)
 				}
 				TagsView(isReadOnly: self.$isReadOnly, tags: self.$item.tags)
 				LastModifiedView(isNewItem: isNewItem, timestamp: self.item.lastModifiedTime)

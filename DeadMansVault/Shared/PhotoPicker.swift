@@ -1,0 +1,59 @@
+//
+//  PhotoPicker.swift
+//  Created by Michael Simms on 8/7/23.
+//
+
+import SwiftUI
+import PhotosUI
+
+#if os(iOS)
+
+typealias PhotoResponse = (_: UIImage) -> ()
+
+struct PhotoPicker: UIViewControllerRepresentable {
+	var callback: PhotoResponse
+
+	func makeUIViewController(context: Context) -> PHPickerViewController {
+		var config = PHPickerConfiguration()
+		config.selectionLimit = 3
+		config.filter = .images
+
+		let picker = PHPickerViewController(configuration: config)
+		picker.delegate = context.coordinator
+
+		return picker
+	}
+
+	func updateUIViewController(_ uiViewController: PHPickerViewController, context: Context) {
+	}
+
+	func makeCoordinator() -> Coordinator {
+		Coordinator(self)
+	}
+
+	class Coordinator: NSObject, PHPickerViewControllerDelegate {
+		let parent: PhotoPicker
+		
+		init(_ parent: PhotoPicker) {
+			self.parent = parent
+		}
+		
+		func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+			picker.dismiss(animated: true)
+			
+			for result in results {
+				let provider = result.itemProvider
+
+				if provider.canLoadObject(ofClass: UIImage.self) {
+					provider.loadObject(ofClass: UIImage.self) { image, _ in
+						if let tempImage = image as? UIImage {
+							self.parent.callback(tempImage)
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+#endif

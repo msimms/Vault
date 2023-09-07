@@ -134,7 +134,7 @@ struct LockView: View {
 					.keyboardShortcut(KeyboardShortcut.defaultAction)
 			}
 			.foregroundColor(.white)
-			.background(Color.blue)
+			.background(Color.gray)
 			.cornerRadius(40)
 			.padding()
 #if !os(macOS)
@@ -184,5 +184,11 @@ struct LockView: View {
 				}
 			}
 		}
+		.background(
+			Image("Background")
+				.resizable()
+				.edgesIgnoringSafeArea(.all)
+				.aspectRatio(contentMode: .fill)
+		)
 	}
 }
