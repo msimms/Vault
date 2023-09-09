@@ -184,11 +184,5 @@ struct LockView: View {
 				}
 			}
 		}
-		.background(
-			Image("Background")
-				.resizable()
-				.edgesIgnoringSafeArea(.all)
-				.aspectRatio(contentMode: .fill)
-		)
 	}
 }
