@@ -28,11 +28,12 @@
 import Foundation
 
 struct SecureNoteItemEncoding: Codable {
-	var vaultVersion: UInt8     // Version of this encoding
-	var heading: String         // Name of this note
-	var note: String            // The note
-	var tags: Array<String>?    // Tags
-	var lastModifiedTime: Date? // Timestamp of the last update
+	var vaultVersion: UInt8                    // Version of this encoding
+	var heading: String                        // Name of this note
+	var note: String                           // The note
+	var tags: Array<String>?                   // Tags
+	var lastModifiedTime: Date?                // Timestamp of the last update
+	var attachments: Dictionary<String, Data>? // Data for all attachments
 }
 
 class SecureNoteItem: SecureVaultItem {
@@ -41,6 +42,7 @@ class SecureNoteItem: SecureVaultItem {
 		case note
 		case tags
 		case lastModifiedTime
+		case attachments
 	}
 
 	var heading: String = ""
@@ -57,6 +59,7 @@ class SecureNoteItem: SecureVaultItem {
 		self.note = try container.decode(String.self, forKey: .note)
 		self.tags = try container.decode(Array<String>.self, forKey: .tags)
 		self.lastModifiedTime = try container.decode(Date.self, forKey: .lastModifiedTime)
+		self.attachments = try container.decode(Dictionary<String, Data>.self, forKey: .attachments)
 	}
 	override init() {
 		super.init()
@@ -68,6 +71,7 @@ class SecureNoteItem: SecureVaultItem {
 		self.note = json.note
 		self.tags = json.tags ?? []
 		self.lastModifiedTime = json.lastModifiedTime
+		self.attachments = json.attachments ?? [:]
 	}
 
 	override func copy(from: SecureVaultItem) {
@@ -76,6 +80,7 @@ class SecureNoteItem: SecureVaultItem {
 		self.note = from2.note
 		self.tags = from2.tags
 		self.lastModifiedTime = from2.lastModifiedTime
+		self.attachments = from2.attachments
 		
 		super.copy(from: from)
 	}
@@ -87,6 +92,7 @@ class SecureNoteItem: SecureVaultItem {
 		try container.encode(note, forKey: .note)
 		try container.encode(tags, forKey: .tags)
 		try container.encode(lastModifiedTime, forKey: .lastModifiedTime)
+		try container.encode(attachments, forKey: .attachments)
 
 		try super.encode(to: encoder)
 	}
@@ -95,7 +101,7 @@ class SecureNoteItem: SecureVaultItem {
 	override func write(locationOfVaultItems: URL, masterKey: Data) throws {
 		
 		// Encode everything as JSON.
-		let vaultData = SecureNoteItemEncoding(vaultVersion: self.vaultVersion, heading: self.heading, note: self.note, tags: self.tags, lastModifiedTime: self.lastModifiedTime)
+		let vaultData = SecureNoteItemEncoding(vaultVersion: self.vaultVersion, heading: self.heading, note: self.note, tags: self.tags, lastModifiedTime: self.lastModifiedTime, attachments: self.attachments)
 		let encoder = JSONEncoder()
 		let jsonData = try encoder.encode(vaultData)
 		let jsonStr = String(data: jsonData, encoding: .utf8)!

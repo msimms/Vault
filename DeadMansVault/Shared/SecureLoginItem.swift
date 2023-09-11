@@ -28,19 +28,20 @@
 import Foundation
 
 struct SecureLoginItemEncoding: Codable {
-	var vaultVersion: UInt8     // Version of this encoding
-	var title: String?          // Website title
-	var website: String         // Website name or URL
-	var username: String?       // Login username (optional)
-	var email: String?          // Login email (optional)
-	var password: String?       // Login password (optional)
-	var note: String?           // Notes (optional)
-	var tags: Array<String>?    // Tags (optional)
-	var urls: Array<String>?    // Additional URLSs (optiona)
-	var lastModifiedTime: Date? // Timestamp of the last update
+	var vaultVersion: UInt8                    // Version of this encoding
+	var title: String?                         // Website title
+	var website: String                        // Website name or URL
+	var username: String?                      // Login username (optional)
+	var email: String?                         // Login email (optional)
+	var password: String?                      // Login password (optional)
+	var note: String?                          // Notes (optional)
+	var tags: Array<String>?                   // Tags (optional)
+	var urls: Array<String>?                   // Additional URLSs (optiona)
+	var lastModifiedTime: Date?                // Timestamp of the last update
+	var attachments: Dictionary<String, Data>? // Data for all attachments
 }
 
-class SecureLoginItem: SecureVaultItem, ObservableObject {
+class SecureLoginItem: SecureVaultItem {
 	enum CodingKeys: CodingKey {
 		case title
 		case website
@@ -51,6 +52,7 @@ class SecureLoginItem: SecureVaultItem, ObservableObject {
 		case tags
 		case urls
 		case lastModifiedTime
+		case attachments
 	}
 
 	var title: String = ""
@@ -77,6 +79,7 @@ class SecureLoginItem: SecureVaultItem, ObservableObject {
 		self.tags = try container.decode(Array<String>.self, forKey: .tags)
 		self.urls = try container.decode(Array<String>.self, forKey: .urls)
 		self.lastModifiedTime = try container.decode(Date.self, forKey: .lastModifiedTime)
+		self.attachments = try container.decode(Dictionary<String, Data>.self, forKey: .attachments)
 	}
 	override init() {
 		super.init()
@@ -93,6 +96,7 @@ class SecureLoginItem: SecureVaultItem, ObservableObject {
 		self.tags = json.tags ?? []
 		self.urls = json.urls ?? []
 		self.lastModifiedTime = json.lastModifiedTime
+		self.attachments = json.attachments ?? [:]
 	}
 
 	override func copy(from: SecureVaultItem) {
@@ -106,6 +110,7 @@ class SecureLoginItem: SecureVaultItem, ObservableObject {
 		self.tags = from2.tags
 		self.urls = from2.urls
 		self.lastModifiedTime = from2.lastModifiedTime
+		self.attachments = from2.attachments
 		
 		super.copy(from: from)
 	}
@@ -122,6 +127,7 @@ class SecureLoginItem: SecureVaultItem, ObservableObject {
 		try container.encode(tags, forKey: .tags)
 		try container.encode(urls, forKey: .urls)
 		try container.encode(lastModifiedTime, forKey: .lastModifiedTime)
+		try container.encode(attachments, forKey: .attachments)
 
 		try super.encode(to: encoder)
 	}
@@ -130,7 +136,7 @@ class SecureLoginItem: SecureVaultItem, ObservableObject {
 	override func write(locationOfVaultItems: URL, masterKey: Data) throws {
 		
 		// Encode everything as JSON.
-		let vaultData = SecureLoginItemEncoding(vaultVersion: self.vaultVersion, title: self.title, website: self.website, username: self.username, email: self.email, password: self.password, note: self.note, tags: self.tags, lastModifiedTime: self.lastModifiedTime)
+		let vaultData = SecureLoginItemEncoding(vaultVersion: self.vaultVersion, title: self.title, website: self.website, username: self.username, email: self.email, password: self.password, note: self.note, tags: self.tags, lastModifiedTime: self.lastModifiedTime, attachments: self.attachments)
 		let encoder = JSONEncoder()
 		let jsonData = try encoder.encode(vaultData)
 		let jsonStr = String(data: jsonData, encoding: .utf8)!

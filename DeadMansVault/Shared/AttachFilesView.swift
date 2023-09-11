@@ -9,7 +9,7 @@ struct AttachFilesView: View {
 	@Binding var isReadOnly: Bool
 	@State var item: SecureVaultItem
 	@State private var isShowingFileSourceSelection: Bool = false
-
+	
 	var body: some View {
 		Text("Attached Files")
 			.fontWeight(.heavy)
@@ -41,5 +41,18 @@ struct AttachFilesView: View {
 			}
 		}
 		.disabled(self.isReadOnly)
-    }
+		VStack() {
+			ForEach(allKeys, id: \.self) { attachmentName in
+				HStack() {
+					Image(systemName: "doc")
+						.foregroundColor(.secondary)
+					Text(attachmentName)
+				}
+			}
+		}
+	}
+	
+	private var allKeys: [String] {
+		return self.item.attachments.keys.sorted().map { String($0) }
+	}
 }

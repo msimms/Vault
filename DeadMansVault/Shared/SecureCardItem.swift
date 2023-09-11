@@ -28,18 +28,19 @@
 import Foundation
 
 struct SecureCardItemEncoding: Codable {
-	var vaultVersion: UInt8     // Version of this encoding
-	var name: String            // Name of this card
-	var cardType: String        // Type of the card, i.e. "Visa", "MC", etc.
-	var bank: String?           // Type of the card, i.e. "Visa", "MC", etc.
-	var cardHolder: String      // Name on the card
-	var number: String          // Card number
-	var securityCode: Int       // Card security code
-	var expiry: Date            // Card expiry date
-	var validFrom: Date?        // Card valid from date
-	var note: String?           // Notes
-	var tags: Array<String>?    // Tags
-	var lastModifiedTime: Date? // Timestamp of the last update
+	var vaultVersion: UInt8                    // Version of this encoding
+	var name: String                           // Name of this card
+	var cardType: String                       // Type of the card, i.e. "Visa", "MC", etc.
+	var bank: String?                          // Type of the card, i.e. "Visa", "MC", etc.
+	var cardHolder: String                     // Name on the card
+	var number: String                         // Card number
+	var securityCode: Int                      // Card security code
+	var expiry: Date                           // Card expiry date
+	var validFrom: Date?                       // Card valid from date
+	var note: String?                          // Notes
+	var tags: Array<String>?                   // Tags
+	var lastModifiedTime: Date?                // Timestamp of the last update
+	var attachments: Dictionary<String, Data>? // Data for all attachments
 }
 
 class SecureCardItem: SecureVaultItem {
@@ -55,6 +56,7 @@ class SecureCardItem: SecureVaultItem {
 		case note
 		case tags
 		case lastModifiedTime
+		case attachments
 	}
 
 	var name: String = ""
@@ -85,6 +87,7 @@ class SecureCardItem: SecureVaultItem {
 		self.note = try container.decode(String.self, forKey: .note)
 		self.tags = try container.decode(Array<String>.self, forKey: .tags)
 		self.lastModifiedTime = try container.decode(Date.self, forKey: .lastModifiedTime)
+		self.attachments = try container.decode(Dictionary<String, Data>.self, forKey: .attachments)
 	}
 	override init() {
 		super.init()
@@ -103,6 +106,7 @@ class SecureCardItem: SecureVaultItem {
 		self.note = json.note ?? ""
 		self.tags = json.tags ?? []
 		self.lastModifiedTime = json.lastModifiedTime
+		self.attachments = json.attachments ?? [:]
 	}
 
 	func copy(from: SecureCardItem) {
@@ -117,6 +121,7 @@ class SecureCardItem: SecureVaultItem {
 		self.note = from.note
 		self.tags = from.tags
 		self.lastModifiedTime = from.lastModifiedTime
+		self.attachments = from.attachments
 
 		super.copy(from: from)
 	}
@@ -135,6 +140,7 @@ class SecureCardItem: SecureVaultItem {
 		try container.encode(note, forKey: .note)
 		try container.encode(tags, forKey: .tags)
 		try container.encode(lastModifiedTime, forKey: .lastModifiedTime)
+		try container.encode(attachments, forKey: .attachments)
 
 		try super.encode(to: encoder)
 	}
@@ -143,7 +149,7 @@ class SecureCardItem: SecureVaultItem {
 	override func write(locationOfVaultItems: URL, masterKey: Data) throws {
 		
 		// Encode everything as JSON.
-		let vaultData = SecureCardItemEncoding(vaultVersion: self.vaultVersion, name: self.name, cardType: self.cardType, bank: self.bank, cardHolder: self.cardHolder, number: self.number, securityCode: self.securityCode, expiry: self.expiry, validFrom: self.validFrom, note: self.note, tags: self.tags, lastModifiedTime: self.lastModifiedTime)
+		let vaultData = SecureCardItemEncoding(vaultVersion: self.vaultVersion, name: self.name, cardType: self.cardType, bank: self.bank, cardHolder: self.cardHolder, number: self.number, securityCode: self.securityCode, expiry: self.expiry, validFrom: self.validFrom, note: self.note, tags: self.tags, lastModifiedTime: self.lastModifiedTime, attachments: self.attachments)
 		let encoder = JSONEncoder()
 		let jsonData = try encoder.encode(vaultData)
 		let jsonStr = String(data: jsonData, encoding: .utf8)!

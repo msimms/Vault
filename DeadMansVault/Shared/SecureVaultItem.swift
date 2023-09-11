@@ -52,21 +52,23 @@ struct VaultItemEncoding: Codable {
 	var signature: String
 }
 
-class SecureVaultItem: Codable, Identifiable, Comparable, Hashable {
+class SecureVaultItem: Codable, Identifiable, Comparable, Hashable, ObservableObject {
 	enum CodingKeys: CodingKey {
 		case id
 		case vaultVersion
+		case attachments
 	}
 	
 	var id = UUID()
 	var vaultVersion: UInt8 = Vault.kCurrentVaultVersion
-	var attachments: Array<Data> = []
+	var attachments: Dictionary<String, Data> = [:]
 	
 	/// Constructor
 	required init(from decoder: Decoder) throws {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
 		self.id = try container.decode(UUID.self, forKey: .id)
 		self.vaultVersion = try container.decode(UInt8.self, forKey: .vaultVersion)
+		self.attachments = try container.decode(Dictionary<String, Data>.self, forKey: .attachments)
 	}
 	init() {
 	}
@@ -76,6 +78,7 @@ class SecureVaultItem: Codable, Identifiable, Comparable, Hashable {
 	func copy(from: SecureVaultItem) {
 		self.id = from.id
 		self.vaultVersion = from.vaultVersion
+		self.attachments = from.attachments
 	}
 
 	/// Encode overrides
@@ -83,6 +86,7 @@ class SecureVaultItem: Codable, Identifiable, Comparable, Hashable {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encode(id, forKey: .id)
 		try container.encode(vaultVersion, forKey: .vaultVersion)
+		try container.encode(attachments, forKey: .attachments)
 	}
 
 	/// Hashable overrides
@@ -150,7 +154,8 @@ class SecureVaultItem: Codable, Identifiable, Comparable, Hashable {
 			
 			// Compress the file.
 			let compressedData = try (data as NSData).compressed(using: .lzfse)
-			self.attachments.append(Data(compressedData))
+			let fileName = url.lastPathComponent
+			self.attachments[fileName] = Data(compressedData)
 		}
 		catch {
 		}
