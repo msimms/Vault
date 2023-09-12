@@ -4,11 +4,34 @@
 //
 
 import SwiftUI
+import UniformTypeIdentifiers
+
+struct VaultAttachment: FileDocument {
+	static var readableContentTypes: [UTType] { [.data] }
+	
+	var data: Data
+	
+	init(data: Data) {
+		self.data = data
+	}
+	
+	init(configuration: ReadConfiguration) throws {
+		guard let data = configuration.file.regularFileContents else {
+			throw CocoaError(.fileReadCorruptFile)
+		}
+		self.data = data
+	}
+	
+	func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
+		return FileWrapper(regularFileWithContents: self.data)
+	}
+}
 
 struct AttachFilesView: View {
 	@Binding var isReadOnly: Bool
 	@State var item: SecureVaultItem
 	@State private var isShowingFileSourceSelection: Bool = false
+	@State private var isShowingSavePanel: Bool = false
 	
 	var body: some View {
 		Text("Attached Files")
@@ -43,16 +66,36 @@ struct AttachFilesView: View {
 		.disabled(self.isReadOnly)
 		VStack() {
 			ForEach(allKeys, id: \.self) { attachmentName in
-				HStack() {
-					Image(systemName: "doc")
-						.foregroundColor(.secondary)
-					Text(attachmentName)
+				Button(action: {
+					self.isShowingSavePanel = true
+				}, label: {
+					HStack() {
+						Image(systemName: "doc")
+							.foregroundColor(.secondary)
+						Text(attachmentName)
+					}
+				})
+				.fileExporter(isPresented: self.$isShowingSavePanel,
+							  document: VaultAttachment(data: getAttachment(attachmentName: attachmentName)),
+							  contentType: .data,
+							  defaultFilename: attachmentName) { result in
 				}
 			}
 		}
 	}
-	
+
 	private var allKeys: [String] {
 		return self.item.attachments.keys.sorted().map { String($0) }
+	}
+	
+	private func getAttachment(attachmentName: String) -> Data {
+		do {
+			let data = self.item.attachments[attachmentName]!
+			let expandedData = try (data as NSData).decompressed(using: .lzfse)
+			return Data(expandedData)
+		}
+		catch {
+		}
+		return Data()
 	}
 }
