@@ -79,118 +79,147 @@ func createVaultItemFromFile(location: URL, masterKey: Data) throws -> SecureVau
 		newItem.id = outerVaultItem.id
 		return newItem
 	case VaultItemType.accessPoint:
-		let json = try JSONDecoder().decode(SecureAccessPointEncoding.self, from: decryptedDecodedContents)
+		let json = try JSONDecoder().decode(SecureAccessPointItemEncoding.self, from: decryptedDecodedContents)
 		let newItem = SecureAccessPointItem(json: json)
 		newItem.id = outerVaultItem.id
 		return newItem
+	case VaultItemType.license:
+		let json = try JSONDecoder().decode(SecureLicenseItemEncoding.self, from: decryptedDecodedContents)
+		let newItem = SecureLicenseItem(json: json)
+		newItem.id = outerVaultItem.id
+		return newItem
 	}
+}
+
+func createLoginVaultItemFrom1Pif(contents: PifEncoding, note: String, tags: Array<String>, lastModifiedTime: Date) -> SecureLoginItem {
+	let secureContents = contents.secureContents
+	var username = ""
+	var email = ""
+	let title = contents.title
+	var password = secureContents.password
+	var urls: Array<String> = []
+	
+	if secureContents.urls != nil {
+		for url in secureContents.urls! {
+			urls.append(url.url)
+		}
+	}
+	if secureContents.sections != nil {
+		for section in secureContents.sections! {
+			if section.fields != nil {
+				for _ in section.fields! {
+				}
+			}
+		}
+	}
+	if secureContents.fields != nil {
+		for field in secureContents.fields! {
+			let fieldType = field.type.lowercased()
+			let fieldDesignation = field.designation.lowercased()
+			
+			if fieldType == "k" {
+			}
+			else if fieldType == "n" {
+			}
+			else if fieldType == "p" && fieldDesignation == "password" {
+				password = field.value
+			}
+			else if fieldType == "v" {
+			}
+			else if fieldType == "t" {
+				if fieldDesignation == "username" {
+					username = field.value
+				}
+				if field.value.contains("@") {
+					email = field.value
+				}
+			}
+		}
+	}
+	
+	let vaultData = SecureLoginItemEncoding(vaultVersion: Vault.kCurrentVaultVersion, title: title, website: contents.location ?? "", username: username, email: email, password: password, note: note, tags: tags, urls: urls, lastModifiedTime: lastModifiedTime)
+	return SecureLoginItem(json: vaultData)
+}
+
+func createCardVaultItemFrom1Pif(contents: PifEncoding, note: String, tags: Array<String>, lastModifiedTime: Date) throws -> SecureCardItem {
+	let secureContents = contents.secureContents
+	let cardType = secureContents.type ?? ""
+	var cardHolder = ""
+	var cardNum = ""
+	var securityCode: Int = 0
+	var expiryComponents = DateComponents()
+	var validFromComponents = DateComponents()
+	
+	expiryComponents.month = Int(secureContents.expiry_mm ?? "1") ?? 0
+	expiryComponents.year = Int(secureContents.expiry_yy ?? "2000") ?? 0
+	let expiry = Calendar.current.date(from: expiryComponents) ?? Date()
+	
+	validFromComponents.month = Int(secureContents.validFrom_mm ?? "1") ?? 0
+	validFromComponents.year = Int(secureContents.validFrom_yy ?? "2000") ?? 0
+	let validFrom = Calendar.current.date(from: validFromComponents) ?? Date()
+	
+	if secureContents.sections != nil {
+		for section in secureContents.sections! {
+			if section.fields != nil {
+				for field in section.fields! {
+					let fieldName = field.n.lowercased()
+					if fieldName == "cardholder" {
+						cardHolder = try field.v!.decodeToString()
+					}
+					else if fieldName == "ccnum" && field.v != nil {
+						cardNum = try field.v!.decodeToString()
+					}
+					else if fieldName == "cvv" && field.v != nil {
+						securityCode = try field.v!.decodeToInt()
+					}
+				}
+			}
+		}
+	}
+	
+	let vaultData = SecureCardItemEncoding(vaultVersion: Vault.kCurrentVaultVersion, name: contents.title, cardType: cardType, cardHolder: cardHolder, number: cardNum, securityCode: securityCode, expiry: expiry, validFrom: validFrom, note: note, tags: tags, lastModifiedTime: lastModifiedTime)
+	return SecureCardItem(json: vaultData)
+}
+
+func createLicenseVaultItemFrom1Pif(contents: PifEncoding, note: String, tags: Array<String>, lastModifiedTime: Date) throws -> SecureLicenseItem {
+	let secureContents = contents.secureContents
+	let licenseHolder = secureContents.reg_name ?? ""
+	let licenseKey = secureContents.reg_code ?? ""
+	let licenseEmail = secureContents.reg_email ?? ""
+
+	let vaultData = SecureLicenseItemEncoding(vaultVersion: Vault.kCurrentVaultVersion, title: contents.title, licenseHolder: licenseHolder, licenseKey: licenseKey, licenseEmail: licenseEmail, note: note, tags: tags, lastModifiedTime: lastModifiedTime)
+	return SecureLicenseItem(json: vaultData)
 }
 
 func createVaultItemFrom1Pif(contents: PifEncoding) throws -> SecureVaultItem {
 	let secureContents = contents.secureContents
 	let note = secureContents.notesPlain ?? ""
 	var tags: Array<String> = []
+	let lastModifiedTime = Date(timeIntervalSince1970: TimeInterval(contents.updatedAt))
 
 	if contents.openContents != nil {
 		tags = contents.openContents?.tags ?? []
 	}
 
 	if contents.typeName == "passwords.Password" || contents.typeName == "webforms.WebForm" {
-		var username = ""
-		var email = ""
-		let title = contents.title
-		var password = secureContents.password
-		var urls: Array<String> = []
-
-		if secureContents.urls != nil {
-			for url in secureContents.urls! {
-				urls.append(url.url)
-			}
-		}
-		if secureContents.sections != nil {
-			for section in secureContents.sections! {
-				if section.fields != nil {
-					for _ in section.fields! {
-					}
-				}
-			}
-		}
-		if secureContents.fields != nil {
-			for field in secureContents.fields! {
-				let fieldType = field.type.lowercased()
-				let fieldDesignation = field.designation.lowercased()
-
-				if fieldType == "k" {
-				}
-				else if fieldType == "n" {
-				}
-				else if fieldType == "p" && fieldDesignation == "password" {
-					password = field.value
-				}
-				else if fieldType == "v" {
-				}
-				else if fieldType == "t" {
-					if fieldDesignation == "username" {
-						username = field.value
-					}
-					if field.value.contains("@") {
-						email = field.value
-					}
-				}
-			}
-		}
-
-		let vaultData = SecureLoginItemEncoding(vaultVersion: Vault.kCurrentVaultVersion, title: title, website: contents.location ?? "", username: username, email: email, password: password, note: note, tags: tags, urls: urls, lastModifiedTime: Date(timeIntervalSince1970: TimeInterval(contents.updatedAt)))
-		return SecureLoginItem(json: vaultData)
+		return createLoginVaultItemFrom1Pif(contents: contents, note: note, tags: tags, lastModifiedTime: lastModifiedTime)
 	}
 	else if contents.typeName == "securenotes.SecureNote" {
-		let vaultData = SecureNoteItemEncoding(vaultVersion: Vault.kCurrentVaultVersion, heading: contents.title, note: secureContents.notesPlain!, tags: tags, lastModifiedTime: Date(timeIntervalSince1970: TimeInterval(contents.updatedAt)))
+		let vaultData = SecureNoteItemEncoding(vaultVersion: Vault.kCurrentVaultVersion, heading: contents.title, note: secureContents.notesPlain!, tags: tags, lastModifiedTime: lastModifiedTime)
 		return SecureNoteItem(json: vaultData)
 	}
 	else if contents.typeName == "wallet.financial.CreditCard" {
-		let cardType = secureContents.type ?? ""
-		var cardHolder = ""
-		var cardNum = ""
-		var securityCode: Int = 0
-		var expiryComponents = DateComponents()
-		var validFromComponents = DateComponents()
-
-		expiryComponents.month = Int(secureContents.expiry_mm ?? "1") ?? 0
-		expiryComponents.year = Int(secureContents.expiry_yy ?? "2000") ?? 0
-		let expiry = Calendar.current.date(from: expiryComponents) ?? Date()
-
-		validFromComponents.month = Int(secureContents.validFrom_mm ?? "1") ?? 0
-		validFromComponents.year = Int(secureContents.validFrom_yy ?? "2000") ?? 0
-		let validFrom = Calendar.current.date(from: validFromComponents) ?? Date()
-
-		if secureContents.sections != nil {
-			for section in secureContents.sections! {
-				if section.fields != nil {
-					for field in section.fields! {
-						let fieldName = field.n.lowercased()
-						if fieldName == "cardholder" {
-							cardHolder = try field.v!.decodeToString()
-						}
-						else if fieldName == "ccnum" && field.v != nil {
-							cardNum = try field.v!.decodeToString()
-						}
-						else if fieldName == "cvv" && field.v != nil {
-							securityCode = try field.v!.decodeToInt()
-						}
-					}
-				}
-			}
-		}
-
-		let vaultData = SecureCardItemEncoding(vaultVersion: Vault.kCurrentVaultVersion, name: contents.title, cardType: cardType, cardHolder: cardHolder, number: cardNum, securityCode: securityCode, expiry: expiry, validFrom: validFrom, note: note, tags: tags)
-		return SecureCardItem(json: vaultData)
+		return try createCardVaultItemFrom1Pif(contents: contents, note: note, tags: tags, lastModifiedTime: lastModifiedTime)
 	}
 	else if contents.typeName == "wallet.computer.Router" {
 		let networkName = secureContents.name ?? ""
 		let password = secureContents.password ?? ""
 
-		let vaultData = SecureAccessPointEncoding(vaultVersion: Vault.kCurrentVaultVersion, name: networkName, password: password, note: note, tags: tags)
+		let vaultData = SecureAccessPointItemEncoding(vaultVersion: Vault.kCurrentVaultVersion, name: networkName, password: password, note: note, tags: tags)
 		return SecureAccessPointItem(json: vaultData)
+	}
+	else if contents.typeName == "wallet.computer.License" {
+		return try createLicenseVaultItemFrom1Pif(contents: contents, note: note, tags: tags, lastModifiedTime: lastModifiedTime)
 	}
 	throw VaultException.runtimeError("Unknown import type.")
 }

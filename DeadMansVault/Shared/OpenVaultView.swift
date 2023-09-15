@@ -34,6 +34,7 @@ func createVaultItemView(isPushed: Binding<Bool>, item: SecureVaultItem, isNewIt
 	case is SecureLoginItem: SecureLoginView(isPushed: isPushed, item: item as! SecureLoginItem, isNewItem: isNewItem, isReadOnly: true)
 	case is SecureNoteItem: SecureNoteView(isPushed: isPushed, item: item as! SecureNoteItem, isNewItem: isNewItem, isReadOnly: true)
 	case is SecureAccessPointItem: SecureAccessPointView(isPushed: isPushed, item: item as! SecureAccessPointItem, isNewItem: isNewItem, isReadOnly: true)
+	case is SecureLicenseItem: SecureLicenseView(isPushed: isPushed, item: item as! SecureLicenseItem, isNewItem: isNewItem, isReadOnly: true)
 	default: EmptyView()
 	}
 }
@@ -44,6 +45,7 @@ func icon(item: SecureVaultItem) -> String {
 	case is SecureLoginItem: return "lock";
 	case is SecureNoteItem: return "note";
 	case is SecureAccessPointItem: return "wifi";
+	case is SecureLicenseItem: return "key";
 	default: return ""
 	}
 }
@@ -54,6 +56,7 @@ func title(item: SecureVaultItem) -> String {
 	case is SecureLoginItem: let item2 = item as! SecureLoginItem; return item2.displayTitle();
 	case is SecureNoteItem: let item2 = item as! SecureNoteItem; return item2.displayTitle();
 	case is SecureAccessPointItem: let item2 = item as! SecureAccessPointItem; return item2.displayTitle();
+	case is SecureLicenseItem: let item2 = item as! SecureLicenseItem; return item2.displayTitle();
 	default: return ""
 	}
 }
@@ -64,6 +67,7 @@ func subtitle(item: SecureVaultItem) -> String {
 	case is SecureLoginItem: let item2 = item as! SecureLoginItem; return item2.displaySubtitle();
 	case is SecureNoteItem: let item2 = item as! SecureNoteItem; return item2.displaySubtitle();
 	case is SecureAccessPointItem: let item2 = item as! SecureAccessPointItem; return item2.displaySubtitle();
+	case is SecureLicenseItem: let item2 = item as! SecureLicenseItem; return item2.displaySubtitle();
 	default: return ""
 	}
 }
@@ -150,6 +154,15 @@ struct OpenVaultView: View {
 								showNewItem = true
 							}) {
 								Label("Access Point", systemImage: "wifi")
+									.labelStyle(.titleAndIcon)
+							}
+
+							// New License Key
+							Button(action: {
+								self.newItemType = VaultItemType.license
+								showNewItem = true
+							}) {
+								Label("License Key", systemImage: "key")
 									.labelStyle(.titleAndIcon)
 							}
 						}

@@ -67,6 +67,7 @@ struct AppView: View {
 				.resizable()
 				.edgesIgnoringSafeArea(.all)
 				.aspectRatio(contentMode: .fill)
+				.opacity(0.9)
 		)
 #endif
 	}

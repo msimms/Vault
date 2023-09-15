@@ -106,6 +106,10 @@ struct PifSecureContents: Codable {
 	var urls: Array<PifLabeledUrls>?
 	var fields: Array<PifSecureContentsFields>?
 	var passwordHistory: Array<PifPasswordHistory>?
+	var reg_name: String?
+	var reg_code: String?
+	var reg_email: String?
+	var company: String?
 	var phoneLocal: String?
 	var expiry_mm: String?
 	var expiry_yy: String?
