@@ -33,6 +33,7 @@ struct SecureLoginView: View {
 	@ObservedObject var item: SecureLoginItem
 	@State var isNewItem: Bool = true
 	@State var isReadOnly: Bool = false
+	@State var additionalUrl: String = ""
 	@State private var isShowingPasswordGenerator: Bool = false
 	@State private var showPassword: Bool = false
 	@State private var cannotShowPasswordGenerator: Bool = false
@@ -57,6 +58,19 @@ struct SecureLoginView: View {
 							.fontWeight(.heavy)
 						TextField("Website", text: self.$item.website)
 							.disabled(self.isReadOnly)
+						Text("Additional URLs")
+							.fontWeight(.heavy)
+						VStack(alignment: .leading) {
+							ForEach(self.$item.urls, id: \.self) { url in
+								TextField("", text: url)
+									.disabled(self.isReadOnly)
+							}
+							TextField("", text: self.$additionalUrl, onCommit: {
+								self.item.urls.append(self.additionalUrl)
+								self.additionalUrl = ""
+							})
+							.disabled(self.isReadOnly)
+						}
 						Text("Username")
 							.fontWeight(.heavy)
 						TextField("Username", text: self.$item.username)

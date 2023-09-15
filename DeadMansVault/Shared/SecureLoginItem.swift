@@ -136,7 +136,7 @@ class SecureLoginItem: SecureVaultItem {
 	override func write(locationOfVaultItems: URL, masterKey: Data) throws {
 		
 		// Encode everything as JSON.
-		let vaultData = SecureLoginItemEncoding(vaultVersion: self.vaultVersion, title: self.title, website: self.website, username: self.username, email: self.email, password: self.password, note: self.note, tags: self.tags, lastModifiedTime: self.lastModifiedTime, attachments: self.attachments)
+		let vaultData = SecureLoginItemEncoding(vaultVersion: self.vaultVersion, title: self.title, website: self.website, username: self.username, email: self.email, password: self.password, note: self.note, tags: self.tags, urls: self.urls, lastModifiedTime: self.lastModifiedTime, attachments: self.attachments)
 		let encoder = JSONEncoder()
 		let jsonData = try encoder.encode(vaultData)
 		let jsonStr = String(data: jsonData, encoding: .utf8)!
