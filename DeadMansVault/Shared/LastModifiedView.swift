@@ -39,13 +39,16 @@ struct LastModifiedView: View {
 	}
 
 	var body: some View {
-		Text("Last Modified")
-			.fontWeight(.heavy)
-		if timestamp != nil {
-			Text(timestamp!, formatter: dateFormatter)
+		Group() {
+			Text("Last Modified")
+				.fontWeight(.heavy)
+			if timestamp != nil {
+				Text(timestamp!, formatter: dateFormatter)
+			}
+			else {
+				Text("Not set")
+			}
 		}
-		else {
-			Text("Not set")
-		}
+		.padding(EdgeInsets(top: 2.5, leading: 0, bottom: 0, trailing: 0))
 	}
 }

@@ -34,54 +34,57 @@ struct AttachFilesView: View {
 	@State private var isShowingSavePanel: Bool = false
 	
 	var body: some View {
-		Text("Attached Files")
-			.fontWeight(.heavy)
-		Button(action: {
+		Group() {
+			Text("Attached Files")
+				.fontWeight(.heavy)
+			Button(action: {
 #if os(macOS)
-			let selectedUrl = showOpenPanel()
-			if selectedUrl != nil {
-				self.item.attachFile(url: selectedUrl!)
-			}
+				let selectedUrl = showOpenPanel()
+				if selectedUrl != nil {
+					self.item.attachFile(url: selectedUrl!)
+				}
 #else
-			self.isShowingFileSourceSelection = true
+				self.isShowingFileSourceSelection = true
 #endif
-		}) {
-			HStack() {
-				Image(systemName: "doc")
-					.foregroundColor(.secondary)
-				Text("Attach files...")
+			}) {
+				HStack() {
+					Image(systemName: "doc")
+						.foregroundColor(.secondary)
+					Text("Attach files...")
+				}
 			}
-		}
-		.confirmationDialog("Select the source of the file", isPresented: self.$isShowingFileSourceSelection, titleVisibility: .visible) {
-			Button("Photos") {
+			.confirmationDialog("Select the source of the file", isPresented: self.$isShowingFileSourceSelection, titleVisibility: .visible) {
+				Button("Photos") {
 #if os(iOS)
-				PhotoPicker(callback: { image in
-					self.item.attachPhoto(image: image)
-				})
+					PhotoPicker(callback: { image in
+						self.item.attachPhoto(image: image)
+					})
 #endif
+				}
+				Button("Cancel") {
+				}
 			}
-			Button("Cancel") {
-			}
-		}
-		.disabled(self.isReadOnly)
-		VStack() {
-			ForEach(allKeys, id: \.self) { attachmentName in
-				Button(action: {
-					self.isShowingSavePanel = true
-				}, label: {
-					HStack() {
-						Image(systemName: "doc")
-							.foregroundColor(.secondary)
-						Text(attachmentName)
+			.disabled(self.isReadOnly)
+			VStack() {
+				ForEach(allKeys, id: \.self) { attachmentName in
+					Button(action: {
+						self.isShowingSavePanel = true
+					}, label: {
+						HStack() {
+							Image(systemName: "doc")
+								.foregroundColor(.secondary)
+							Text(attachmentName)
+						}
+					})
+					.fileExporter(isPresented: self.$isShowingSavePanel,
+								  document: VaultAttachment(data: getAttachment(attachmentName: attachmentName)),
+								  contentType: .data,
+								  defaultFilename: attachmentName) { result in
 					}
-				})
-				.fileExporter(isPresented: self.$isShowingSavePanel,
-							  document: VaultAttachment(data: getAttachment(attachmentName: attachmentName)),
-							  contentType: .data,
-							  defaultFilename: attachmentName) { result in
 				}
 			}
 		}
+		.padding(EdgeInsets(top: 2.5, leading: 0, bottom: 0, trailing: 0))
 	}
 
 	private var allKeys: [String] {
