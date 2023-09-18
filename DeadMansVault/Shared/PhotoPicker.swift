@@ -8,7 +8,7 @@ import PhotosUI
 
 #if os(iOS)
 
-typealias PhotoResponse = (_: UIImage) -> ()
+typealias PhotoResponse = (_: UIImage, _: String) -> ()
 
 struct PhotoPicker: UIViewControllerRepresentable {
 	var callback: PhotoResponse
@@ -47,7 +47,7 @@ struct PhotoPicker: UIViewControllerRepresentable {
 				if provider.canLoadObject(ofClass: UIImage.self) {
 					provider.loadObject(ofClass: UIImage.self) { image, _ in
 						if let tempImage = image as? UIImage {
-							self.parent.callback(tempImage)
+							self.parent.callback(tempImage, provider.suggestedName ?? "Image")
 						}
 					}
 				}

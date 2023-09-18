@@ -35,10 +35,9 @@ struct SecureLicenseView: View {
 	@State var isReadOnly: Bool = false
 
 	var body: some View {
-
+		
 		VStack(alignment: .leading) {
-
-			Group() {
+			ScrollView() {
 				HStack() {
 					Image(systemName: icon(item: self.item))
 						.imageScale(.large)
@@ -57,19 +56,19 @@ struct SecureLicenseView: View {
 						.disabled(self.isReadOnly)
 					TextField("License Key", text: self.$item.licenseKey)
 						.disabled(self.isReadOnly)
+					Text("Notes")
+						.fontWeight(.heavy)
 					TextEditor(text: self.$item.note)
 						.disabled(self.isReadOnly)
-				}
-				Group() {
+						.frame(height: 200)
 					AttachFilesView(isReadOnly: self.$isReadOnly, item: self.item)
-				}
-				TagsView(isReadOnly: self.$isReadOnly, tags: self.$item.tags)
-				LastModifiedView(isNewItem: isNewItem, timestamp: self.item.lastModifiedTime)
+					TagsView(isReadOnly: self.$isReadOnly, tags: self.$item.tags)
+					LastModifiedView(isNewItem: isNewItem, timestamp: self.item.lastModifiedTime)
+				}				
+				Spacer()
+				ItemButtonView(isReadOnly: self.$isReadOnly, item: self.item, isNewItem: self.isNewItem)
 			}
-
-			Spacer()
-			ItemButtonView(isReadOnly: self.$isReadOnly, item: self.item, isNewItem: self.isNewItem)
+			.padding(10)
 		}
-		.padding(10)
 	}
 }

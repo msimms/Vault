@@ -64,6 +64,7 @@ struct TagsView: View {
 					Label("New Tag...", systemImage: "tag")
 				}
 				.disabled(self.isReadOnly)
+				.padding(EdgeInsets(top: 2.5, leading: 0, bottom: 0, trailing: 0))
 			}
 		}
 		.padding(EdgeInsets(top: 2.5, leading: 0, bottom: 0, trailing: 0))

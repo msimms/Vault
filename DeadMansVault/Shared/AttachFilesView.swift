@@ -32,6 +32,7 @@ struct AttachFilesView: View {
 	@State var item: SecureVaultItem
 	@State private var isShowingFileSourceSelection: Bool = false
 	@State private var isShowingSavePanel: Bool = false
+	@State private var isShowingPhotoPicker: Bool = false
 	
 	var body: some View {
 		Group() {
@@ -54,17 +55,20 @@ struct AttachFilesView: View {
 				}
 			}
 			.confirmationDialog("Select the source of the file", isPresented: self.$isShowingFileSourceSelection, titleVisibility: .visible) {
-				Button("Photos") {
 #if os(iOS)
-					PhotoPicker(callback: { image in
-						self.item.attachPhoto(image: image)
-					})
+				Button("Photos") {
+					self.isShowingPhotoPicker = true
+				}
 #endif
-				}
-				Button("Cancel") {
-				}
 			}
 			.disabled(self.isReadOnly)
+#if os(iOS)
+			.sheet(isPresented: self.$isShowingPhotoPicker) {
+				PhotoPicker(callback: { image, name in
+					self.item.attachPhoto(image: image, name: name)
+				})
+			}
+#endif
 			VStack() {
 				ForEach(allKeys, id: \.self) { attachmentName in
 					Button(action: {

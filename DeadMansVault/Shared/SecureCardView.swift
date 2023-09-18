@@ -23,74 +23,71 @@ struct SecureCardView: View {
 	var body: some View {
 
 		VStack(alignment: .leading) {
-
-			Group() {
-				HStack() {
-					Image(systemName: icon(item: self.item))
-						.imageScale(.large)
-					Text("Card")
-						.fontWeight(.heavy)
-						.font(.system(size: 32))
-						.multilineTextAlignment(.center)
-				}
-				Divider()
-				VStack(alignment: .leading) {
-					Group() {
-						Text("Title")
+			ScrollView() {
+				Group() {
+					HStack() {
+						Image(systemName: icon(item: self.item))
+							.imageScale(.large)
+						Text("Card")
 							.fontWeight(.heavy)
-						TextField("Title", text: self.$item.name)
-							.disabled(self.isReadOnly)
+							.font(.system(size: 32))
+							.multilineTextAlignment(.center)
 					}
-					Group() {
-						Text("Card Holder")
-							.fontWeight(.heavy)
-						TextField("Card Holder", text: self.$item.cardHolder)
-							.disabled(self.isReadOnly)
-						Text("Card Type")
-							.fontWeight(.heavy)
-						TextField("Card Type", text: self.$item.cardType)
-							.disabled(self.isReadOnly)
-						Text("Number")
-							.fontWeight(.heavy)
-						TextField("Number", text: self.$item.number)
-							.disabled(self.isReadOnly)
-						Text("Security Code")
-							.fontWeight(.heavy)
-						TextField("Security Code", value: self.$item.securityCode, formatter: NumberFormatter())
-							.disabled(self.isReadOnly)
-						HStack {
-							Text("Expiry Date")
+					Divider()
+					VStack(alignment: .leading) {
+						Group() {
+							Text("Title")
 								.fontWeight(.heavy)
-							Spacer()
-							Text("\(self.dateFormatter.string(from: self.item.expiry))")
-								.onTapGesture {
-									self.showsDatePicker.toggle()
-								}
-								.padding(EdgeInsets(top: 2, leading: 10, bottom: 2, trailing: 10))
+							TextField("Title", text: self.$item.name)
 								.disabled(self.isReadOnly)
 						}
-						if self.showsDatePicker {
-							DatePicker("", selection: self.$item.expiry, displayedComponents: .date)
-								.datePickerStyle(.graphical)
+						Group() {
+							Text("Card Holder")
+								.fontWeight(.heavy)
+							TextField("Card Holder", text: self.$item.cardHolder)
+								.disabled(self.isReadOnly)
+							Text("Card Type")
+								.fontWeight(.heavy)
+							TextField("Card Type", text: self.$item.cardType)
+								.disabled(self.isReadOnly)
+							Text("Number")
+								.fontWeight(.heavy)
+							TextField("Number", text: self.$item.number)
+								.disabled(self.isReadOnly)
+							Text("Security Code")
+								.fontWeight(.heavy)
+							TextField("Security Code", value: self.$item.securityCode, formatter: NumberFormatter())
+								.disabled(self.isReadOnly)
+							HStack {
+								Text("Expiry Date")
+									.fontWeight(.heavy)
+								Spacer()
+								Text("\(self.dateFormatter.string(from: self.item.expiry))")
+									.onTapGesture {
+										self.showsDatePicker.toggle()
+									}
+									.padding(EdgeInsets(top: 2, leading: 10, bottom: 2, trailing: 10))
+									.disabled(self.isReadOnly)
+							}
+							if self.showsDatePicker {
+								DatePicker("", selection: self.$item.expiry, displayedComponents: .date)
+									.datePickerStyle(.graphical)
+							}
 						}
-					}
-					Group() {
-						AttachFilesView(isReadOnly: self.$isReadOnly, item: self.item)
-					}
-					Group() {
 						Text("Notes")
 							.fontWeight(.heavy)
 						TextEditor(text: self.$item.note)
 							.disabled(self.isReadOnly)
+							.frame(height: 200)
+						AttachFilesView(isReadOnly: self.$isReadOnly, item: self.item)
+						TagsView(isReadOnly: self.$isReadOnly, tags: self.$item.tags)
+						LastModifiedView(isNewItem: isNewItem, timestamp: self.item.lastModifiedTime)
 					}
-					TagsView(isReadOnly: self.$isReadOnly, tags: self.$item.tags)
-					LastModifiedView(isNewItem: isNewItem, timestamp: self.item.lastModifiedTime)
 				}
+				Spacer()
+				ItemButtonView(isReadOnly: self.$isReadOnly, item: self.item, isNewItem: self.isNewItem)
 			}
-
-			Spacer()
-			ItemButtonView(isReadOnly: self.$isReadOnly, item: self.item, isNewItem: self.isNewItem)
+			.padding(10)
 		}
-		.padding(10)
 	}
 }

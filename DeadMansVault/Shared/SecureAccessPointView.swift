@@ -38,78 +38,80 @@ struct SecureAccessPointView: View {
 	@State private var cannotShowPasswordGenerator: Bool = false
 
 	var body: some View {
-
+	
 		VStack(alignment: .leading) {
-
-			Group() {
-				Text("Access Point")
-					.fontWeight(.heavy)
-					.font(.system(size: 32))
-					.multilineTextAlignment(.center)
-				Divider()
-				VStack(alignment: .leading) {
-					Group() {
-						Text("Name")
-							.fontWeight(.heavy)
-						TextField("Name", text: self.$item.name)
-							.disabled(self.isReadOnly)
-						Text("Password")
-							.fontWeight(.heavy)
-					}
-					Group() {
-						ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
-							Group() {
-								if self.showPassword {
-									TextField("Password", text: self.$item.password)
-										.disabled(self.isReadOnly)
-								}
-								else {
-									SecureField("Password", text: self.$item.password)
-										.disabled(self.isReadOnly)
-								}
-								HStack() {
-									Button(action: {
-										self.showPassword.toggle()
-									}) {
-										Image(systemName: "eye")
-											.foregroundColor(.secondary)
+			ScrollView() {
+				Group() {
+					Text("Access Point")
+						.fontWeight(.heavy)
+						.font(.system(size: 32))
+						.multilineTextAlignment(.center)
+					Divider()
+					VStack(alignment: .leading) {
+						Group() {
+							Text("Name")
+								.fontWeight(.heavy)
+							TextField("Name", text: self.$item.name)
+								.disabled(self.isReadOnly)
+							Text("Password")
+								.fontWeight(.heavy)
+						}
+						Group() {
+							ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
+								Group() {
+									if self.showPassword {
+										TextField("Password", text: self.$item.password)
+											.disabled(self.isReadOnly)
 									}
-									.padding(10)
-									ZStack() {
-										NavigationLink(destination: PasswordGeneratorView(existingPassword: self.$item.password, suggestedPassword: self.item.password), isActive: self.$isShowingPasswordGenerator) {
-										}
+									else {
+										SecureField("Password", text: self.$item.password)
+											.disabled(self.isReadOnly)
+									}
+									HStack() {
 										Button(action: {
-											if self.isReadOnly {
-												self.cannotShowPasswordGenerator = true
-											}
-											else {
-												self.isShowingPasswordGenerator = true
-											}
+											self.showPassword.toggle()
 										}) {
-											Image(systemName: "arrow.clockwise")
+											Image(systemName: "eye")
 												.foregroundColor(.secondary)
 										}
-										.alert("Cannot generate a new password because the item is read only!", isPresented: self.$cannotShowPasswordGenerator) {
-											Button("OK", role: .cancel) { }
-												.buttonStyle(PlainButtonStyle())
+										.padding(10)
+										ZStack() {
+											NavigationLink(destination: PasswordGeneratorView(existingPassword: self.$item.password, suggestedPassword: self.item.password), isActive: self.$isShowingPasswordGenerator) {
+											}
+											Button(action: {
+												if self.isReadOnly {
+													self.cannotShowPasswordGenerator = true
+												}
+												else {
+													self.isShowingPasswordGenerator = true
+												}
+											}) {
+												Image(systemName: "arrow.clockwise")
+													.foregroundColor(.secondary)
+											}
+											.alert("Cannot generate a new password because the item is read only!", isPresented: self.$cannotShowPasswordGenerator) {
+												Button("OK", role: .cancel) { }
+													.buttonStyle(PlainButtonStyle())
+											}
 										}
 									}
 								}
-							}
-						})
-						Text("Notes")
-							.fontWeight(.heavy)
-						TextEditor(text: self.$item.note)
-							.disabled(self.isReadOnly)
+							})
+							Text("Notes")
+								.fontWeight(.heavy)
+							TextEditor(text: self.$item.note)
+								.disabled(self.isReadOnly)
+								.frame(height: 200)
+						}
+						AttachFilesView(isReadOnly: self.$isReadOnly, item: self.item)
+						TagsView(isReadOnly: self.$isReadOnly, tags: self.$item.tags)
+						LastModifiedView(isNewItem: isNewItem, timestamp: self.item.lastModifiedTime)
 					}
-					TagsView(isReadOnly: self.$isReadOnly, tags: self.$item.tags)
-					LastModifiedView(isNewItem: isNewItem, timestamp: self.item.lastModifiedTime)
 				}
+				Spacer()
+				ItemButtonView(isReadOnly: self.$isReadOnly, item: self.item, isNewItem: self.isNewItem)
 			}
-
-			Spacer()
-			ItemButtonView(isReadOnly: self.$isReadOnly, item: self.item, isNewItem: self.isNewItem)
+			.padding(10)
 		}
-		.padding(10)
-    }
+	}
 }

@@ -39,10 +39,9 @@ struct SecureLoginView: View {
 	@State private var cannotShowPasswordGenerator: Bool = false
 		
 	var body: some View {
-
+		
 		VStack(alignment: .leading) {
-
-			Group() {
+			ScrollView() {
 				HStack() {
 					Image(systemName: icon(item: self.item))
 						.imageScale(.large)
@@ -125,24 +124,20 @@ struct SecureLoginView: View {
 								}
 							}
 						})
-						Group() {
-							AttachFilesView(isReadOnly: self.$isReadOnly, item: self.item)
-						}
-						Group() {
-							Text("Notes")
-								.fontWeight(.heavy)
-							TextEditor(text: self.$item.note)
-								.disabled(self.isReadOnly)
-						}
+						Text("Notes")
+							.fontWeight(.heavy)
+						TextEditor(text: self.$item.note)
+							.disabled(self.isReadOnly)
+							.frame(height: 200)
 					}
+					AttachFilesView(isReadOnly: self.$isReadOnly, item: self.item)
 					TagsView(isReadOnly: self.$isReadOnly, tags: self.$item.tags)
 					LastModifiedView(isNewItem: self.isNewItem, timestamp: self.item.lastModifiedTime)
 				}
+				Spacer()
+				ItemButtonView(isReadOnly: self.$isReadOnly, item: self.item, isNewItem: self.isNewItem)
 			}
-
-			Spacer()
-			ItemButtonView(isReadOnly: self.$isReadOnly, item: self.item, isNewItem: self.isNewItem)
+			.padding(10)
 		}
-		.padding(10)
-    }
+	}
 }
