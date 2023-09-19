@@ -164,9 +164,14 @@ class SecureVaultItem: Codable, Identifiable, Comparable, Hashable, ObservableOb
 	
 #if os(iOS)
 	func attachPhoto(image: UIImage, name: String) {
-		let imageData = image.jpegData(compressionQuality: 0.5)
-		if imageData != nil {
-			self.attachments[name] = Data(imageData!)
+		do {
+			let imageData = image.jpegData(compressionQuality: 0.5)
+			if imageData != nil {
+				let compressedData = try (imageData! as NSData).compressed(using: .lzfse)
+				self.attachments[name] = Data(compressedData)
+			}
+		}
+		catch {
 		}
 	}
 #endif
