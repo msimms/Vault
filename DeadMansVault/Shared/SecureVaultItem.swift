@@ -175,6 +175,12 @@ class SecureVaultItem: Codable, Identifiable, Comparable, Hashable, ObservableOb
 		}
 	}
 #endif
+	
+	func removeAttachment(name: String) {
+		if self.attachments[name] != nil {
+			self.attachments.removeValue(forKey: name)
+		}
+	}
 }
 
 func < (lhs: SecureVaultItem, rhs: SecureVaultItem) -> Bool {

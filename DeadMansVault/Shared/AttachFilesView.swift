@@ -32,6 +32,7 @@ struct AttachFilesView: View {
 	@State var item: SecureVaultItem
 	@State private var isShowingFileSourceSelection: Bool = false
 	@State private var isShowingSavePanel: Bool = false
+	@State private var isShowingDeleteConfirmation: Bool = false
 	@State private var isShowingPhotoPicker: Bool = false
 	
 	var body: some View {
@@ -71,19 +72,41 @@ struct AttachFilesView: View {
 #endif
 			VStack() {
 				ForEach(allKeys, id: \.self) { attachmentName in
-					Button(action: {
-						self.isShowingSavePanel = true
-					}, label: {
-						HStack() {
-							Image(systemName: "doc")
-								.foregroundColor(.secondary)
-							Text(attachmentName)
+					HStack() {
+						// Item button
+						Button(action: {
+							self.isShowingSavePanel = true
+						}, label: {
+							HStack() {
+								Image(systemName: "doc")
+									.foregroundColor(.secondary)
+								Text(attachmentName)
+							}
+						})
+						.fileExporter(isPresented: self.$isShowingSavePanel,
+									  document: VaultAttachment(data: getAttachment(attachmentName: attachmentName)),
+									  contentType: .data,
+									  defaultFilename: attachmentName) { result in
 						}
-					})
-					.fileExporter(isPresented: self.$isShowingSavePanel,
-								  document: VaultAttachment(data: getAttachment(attachmentName: attachmentName)),
-								  contentType: .data,
-								  defaultFilename: attachmentName) { result in
+						
+						// Delete button
+						Button(action: {
+							self.isShowingDeleteConfirmation = true
+						}, label: {
+							HStack() {
+								Image(systemName: "trash")
+									.foregroundColor(.red)
+								Text("Delete")
+							}
+						})
+						.confirmationDialog("Are you sure you want to delete this? This cannot be undone.", isPresented: self.$isShowingDeleteConfirmation, titleVisibility: .visible) {
+							Button("Yes", role: .destructive) {
+								self.item.removeAttachment(name: attachmentName)
+							}
+							Button("No", role: .cancel) {
+							}
+						}
+						.disabled(self.isReadOnly)
 					}
 				}
 			}
