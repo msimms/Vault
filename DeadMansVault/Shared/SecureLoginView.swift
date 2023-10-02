@@ -26,6 +26,11 @@
 // SOFTWARE.
 
 import SwiftUI
+#if os(iOS)
+import UIKit
+#else
+import AppKit
+#endif
 
 /// Displays a login item from the vault.
 struct SecureLoginView: View {
@@ -93,6 +98,19 @@ struct SecureLoginView: View {
 										.disabled(self.isReadOnly)
 								}
 								HStack() {
+									Button(action: {
+#if os(iOS)
+										let pasteboard = UIPasteboard.general
+										pasteboard.string = self.item.password
+#else
+										let pasteboard = NSPasteboard.general
+										pasteboard.clearContents()
+										pasteboard.setString(self.item.password, forType: NSPasteboard.PasteboardType.string)
+#endif
+									}) {
+										Image(systemName: "doc.on.doc")
+											.foregroundColor(.secondary)
+									}
 									Button(action: {
 										self.showPassword.toggle()
 									}) {
