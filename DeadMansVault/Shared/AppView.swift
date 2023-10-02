@@ -61,15 +61,6 @@ struct AppView: View {
 		.onAppear() {
 			AppState.shared.updateState()
 		}
-#if os(macOS)
-		.background(
-			Image("Background")
-				.resizable()
-				.edgesIgnoringSafeArea(.all)
-				.aspectRatio(contentMode: .fill)
-				.opacity(0.9)
-		)
-#endif
 	}
 }
 
