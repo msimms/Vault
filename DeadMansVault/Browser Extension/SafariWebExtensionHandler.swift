@@ -1,7 +1,5 @@
 //
 //  SafariWebExtensionHandler.swift
-//  DeadMansVaultBrowser
-//
 //  Created by Michael Simms on 8/18/23.
 //
 
