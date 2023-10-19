@@ -37,7 +37,18 @@ func showOpenPanel() -> URL? {
 	
 	let response = savePanel.runModal()
 	return response == .OK ? savePanel.url : nil
-#else
+#elseif os(iOS)
+	let keyWindow = UIApplication.shared.connectedScenes
+		.filter({$0.activationState == .foregroundActive})
+		.compactMap({$0 as? UIWindowScene})
+		.first?.windows
+		.filter({$0.isKeyWindow}).first
+	let allowedExtensions = ["txt", "csv", "pdf"]
+	let documentPicker = UIDocumentPickerViewController(documentTypes: allowedExtensions, in: .import)
+	
+	documentPicker.allowsMultipleSelection = false
+	documentPicker.directoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+	keyWindow?.rootViewController?.present(documentPicker, animated: true)
 	return nil
 #endif
 }
