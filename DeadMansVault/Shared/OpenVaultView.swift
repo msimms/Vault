@@ -112,7 +112,7 @@ struct OpenVaultView: View {
 				NavigationLink(destination: NewItemView(isPushed: self.$isPushed, newItemType: self.$newItemType), isActive: $showNewItem) {}
 			)
 #else
-			.navigationBarTitle("Password Vault", displayMode: .inline)
+			.navigationBarTitle(self.vault.name(), displayMode: .inline)
 #endif
 			.toolbar {
 
