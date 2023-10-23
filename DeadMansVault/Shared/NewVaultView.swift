@@ -143,9 +143,6 @@ struct NewVaultView: View {
 
 			// Password Generator
 			ZStack() {
-				NavigationLink(destination: PasswordGeneratorView(existingPassword: self.$password, suggestedPassword: self.password), isActive: self.$isShowingPasswordGenerator) {
-				}
-				.hidden()
 				Button(action: {
 					self.isShowingPasswordGenerator = true
 				}) {
@@ -154,6 +151,9 @@ struct NewVaultView: View {
 						Image(systemName: "arrow.clockwise")
 							.foregroundColor(.secondary)
 					}
+				}
+				.navigationDestination(isPresented: self.$isShowingPasswordGenerator) {
+					PasswordGeneratorView(existingPassword: self.$password, suggestedPassword: self.password)
 				}
 			}
 
