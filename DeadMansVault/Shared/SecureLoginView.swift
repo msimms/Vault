@@ -66,6 +66,12 @@ struct SecureLoginView: View {
 						.font(.system(size: 32))
 						.multilineTextAlignment(.center)
 				}
+				if self.item.displayTitle().count > 0 {
+					Text(self.item.displayTitle())
+						.fontWeight(.heavy)
+						.font(.system(size: 24))
+						.multilineTextAlignment(.center)
+				}
 				Divider()
 				VStack(alignment: .leading) {
 					Group() {
