@@ -133,8 +133,6 @@ struct SecureLoginView: View {
 								}
 								if self.isReadOnly == false {
 									ZStack() {
-										NavigationLink(destination: PasswordGeneratorView(existingPassword: self.$item.password, suggestedPassword: self.item.password), isActive: self.$isShowingPasswordGenerator) {
-										}
 										Button(action: {
 											if self.isReadOnly {
 												self.cannotShowPasswordGenerator = true
@@ -149,6 +147,9 @@ struct SecureLoginView: View {
 										.alert("Cannot generate a new password because the item is read only!", isPresented: self.$cannotShowPasswordGenerator) {
 											Button("OK", role: .cancel) { }
 												.buttonStyle(PlainButtonStyle())
+										}
+										.navigationDestination(isPresented: self.$isShowingPasswordGenerator) {
+											PasswordGeneratorView(existingPassword: self.$item.password, suggestedPassword: self.item.password)
 										}
 									}
 								}

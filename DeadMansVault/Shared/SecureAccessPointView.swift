@@ -76,8 +76,6 @@ struct SecureAccessPointView: View {
 										}
 										.padding(10)
 										ZStack() {
-											NavigationLink(destination: PasswordGeneratorView(existingPassword: self.$item.password, suggestedPassword: self.item.password), isActive: self.$isShowingPasswordGenerator) {
-											}
 											Button(action: {
 												if self.isReadOnly {
 													self.cannotShowPasswordGenerator = true
@@ -88,6 +86,9 @@ struct SecureAccessPointView: View {
 											}) {
 												Image(systemName: "arrow.clockwise")
 													.foregroundColor(.secondary)
+											}
+											.navigationDestination(isPresented: self.$isShowingPasswordGenerator) {
+												PasswordGeneratorView(existingPassword: self.$item.password, suggestedPassword: self.item.password)
 											}
 											.alert("Cannot generate a new password because the item is read only!", isPresented: self.$cannotShowPasswordGenerator) {
 												Button("OK", role: .cancel) { }
