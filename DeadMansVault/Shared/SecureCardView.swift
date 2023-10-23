@@ -52,8 +52,16 @@ struct SecureCardView: View {
 								.disabled(self.isReadOnly)
 							Text("Number")
 								.fontWeight(.heavy)
-							TextField("Number", text: self.$item.number)
-								.disabled(self.isReadOnly)
+							ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
+								TextField("Number", text: self.$item.number)
+									.disabled(self.isReadOnly)
+								Button(action: {
+									copyToPasteboard(value: self.item.number)
+								}) {
+									Image(systemName: "doc.on.doc")
+										.foregroundColor(.secondary)
+								}
+							})
 							Text("Security Code")
 								.fontWeight(.heavy)
 							TextField("Security Code", value: self.$item.securityCode, formatter: NumberFormatter())

@@ -32,17 +32,6 @@ import UIKit
 import AppKit
 #endif
 
-func copyToPasteboard(value: String) {
-#if os(iOS)
-	let pasteboard = UIPasteboard.general
-	pasteboard.string = value
-#else
-	let pasteboard = NSPasteboard.general
-	pasteboard.clearContents()
-	pasteboard.setString(value, forType: NSPasteboard.PasteboardType.string)
-#endif
-}
-
 /// Displays a login item from the vault.
 struct SecureLoginView: View {
 	@Binding var isPushed: Bool

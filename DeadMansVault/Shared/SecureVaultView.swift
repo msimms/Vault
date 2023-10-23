@@ -27,6 +27,17 @@
 
 import SwiftUI
 
+func copyToPasteboard(value: String) {
+#if os(iOS)
+	let pasteboard = UIPasteboard.general
+	pasteboard.string = value
+#else
+	let pasteboard = NSPasteboard.general
+	pasteboard.clearContents()
+	pasteboard.setString(value, forType: NSPasteboard.PasteboardType.string)
+#endif
+}
+
 func showOpenPanel() -> URL? {
 #if os(macOS)
 	let savePanel = NSOpenPanel()
