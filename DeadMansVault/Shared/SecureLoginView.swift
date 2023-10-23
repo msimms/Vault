@@ -94,8 +94,16 @@ struct SecureLoginView: View {
 						}
 						Text("Username")
 							.fontWeight(.heavy)
-						TextField("Username", text: self.$item.username)
-							.disabled(self.isReadOnly)
+						ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
+							TextField("Username", text: self.$item.username)
+								.disabled(self.isReadOnly)
+							Button(action: {
+								copyToPasteboard(value: self.item.username)
+							}) {
+								Image(systemName: "doc.on.doc")
+									.foregroundColor(.secondary)
+							}
+						})
 						Text("Email")
 							.fontWeight(.heavy)
 						ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
