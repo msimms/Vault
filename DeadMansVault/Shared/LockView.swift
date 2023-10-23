@@ -29,7 +29,7 @@ import SwiftUI
 
 /// Prompts the user for the credentials to open the vault.
 struct LockView: View {
-	@Binding var isPushed: Bool
+	@Environment(\.dismiss) var dismiss
 	@State private var password: String = ""
 	@State private var showingVaultOpenFailedAlert: Bool = false
 	@State private var showingNoVaultSelectedAlert: Bool = false
@@ -44,8 +44,8 @@ struct LockView: View {
 
 	func openVault() {
 		if AppState.shared.openVault(password: self.password) {
-			self.isPushed = true
 			self.showingVaultOpenFailedAlert = false
+//			self.dismiss()
 		}
 		else {
 			self.showingVaultOpenFailedAlert = true

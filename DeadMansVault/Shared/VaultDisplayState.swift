@@ -45,11 +45,11 @@ final class VaultDisplayState: ObservableObject {
 	
 #if !os(watchOS)
 	@ViewBuilder
-	func createView(isPushed: Binding<Bool>) -> some View {
+	func createView() -> some View {
 		switch (self.vaultState) {
-		case VaultState.CreateNewVault: NewVaultView(isPushed: isPushed)
-		case VaultState.VaultClosed: LockView(isPushed: isPushed)
-		case VaultState.VaultOpen: OpenVaultView(isPushed: isPushed)
+		case VaultState.CreateNewVault: NewVaultView()
+		case VaultState.VaultClosed: LockView()
+		case VaultState.VaultOpen: OpenVaultView()
 		}
 	}
 #endif

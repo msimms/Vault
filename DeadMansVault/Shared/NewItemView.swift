@@ -28,22 +28,21 @@
 import SwiftUI
 
 @ViewBuilder
-func createNewVaultItemView(isPushed: Binding<Bool>, itemType: VaultItemType) -> some View {
+func createNewVaultItemView(itemType: VaultItemType) -> some View {
 	switch itemType {
-	case .login: SecureLoginView(isPushed: isPushed, item: SecureLoginItem(), isNewItem: true, isReadOnly: false)
-	case .note: SecureNoteView(isPushed: isPushed, item: SecureNoteItem(), isNewItem: true, isReadOnly: false)
-	case .card: SecureCardView(isPushed: isPushed, item: SecureCardItem(), isNewItem: true, isReadOnly: false)
-	case .accessPoint: SecureAccessPointView(isPushed: isPushed, item: SecureAccessPointItem(), isNewItem: true, isReadOnly: false)
-	case .license: SecureLicenseView(isPushed: isPushed, item: SecureLicenseItem(), isNewItem: true, isReadOnly: false)
+	case .login: SecureLoginView(item: SecureLoginItem(), isNewItem: true, isReadOnly: false)
+	case .note: SecureNoteView(item: SecureNoteItem(), isNewItem: true, isReadOnly: false)
+	case .card: SecureCardView(item: SecureCardItem(), isNewItem: true, isReadOnly: false)
+	case .accessPoint: SecureAccessPointView(item: SecureAccessPointItem(), isNewItem: true, isReadOnly: false)
+	case .license: SecureLicenseView(item: SecureLicenseItem(), isNewItem: true, isReadOnly: false)
 	}
 }
 
 /// Displays all the items within the open vault.
 struct NewItemView: View {
-	@Binding var isPushed: Bool
 	@Binding var newItemType: VaultItemType
 
 	var body: some View {
-		createNewVaultItemView(isPushed: $isPushed, itemType: self.newItemType)
+		createNewVaultItemView(itemType: self.newItemType)
 	}
 }

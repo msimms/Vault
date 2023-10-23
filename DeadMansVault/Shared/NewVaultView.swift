@@ -48,7 +48,6 @@ func openFolderSelection() -> URL? {
 
 /// Prompts the user for everything needed to create a new vault.
 struct NewVaultView: View {
-	@Binding var isPushed : Bool
 	@State private var password: String = ""
 	@State private var confirmPassword: String = ""
 	@State private var vaultLocation: String = ""

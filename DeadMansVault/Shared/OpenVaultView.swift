@@ -28,13 +28,13 @@
 import SwiftUI
 
 @ViewBuilder
-func createVaultItemView(isPushed: Binding<Bool>, item: SecureVaultItem, isNewItem: Bool) -> some View {
+func createVaultItemView(item: SecureVaultItem, isNewItem: Bool) -> some View {
 	switch item {
-	case is SecureCardItem: SecureCardView(isPushed: isPushed, item: item as! SecureCardItem, isNewItem: isNewItem, isReadOnly: true)
-	case is SecureLoginItem: SecureLoginView(isPushed: isPushed, item: item as! SecureLoginItem, isNewItem: isNewItem, isReadOnly: true)
-	case is SecureNoteItem: SecureNoteView(isPushed: isPushed, item: item as! SecureNoteItem, isNewItem: isNewItem, isReadOnly: true)
-	case is SecureAccessPointItem: SecureAccessPointView(isPushed: isPushed, item: item as! SecureAccessPointItem, isNewItem: isNewItem, isReadOnly: true)
-	case is SecureLicenseItem: SecureLicenseView(isPushed: isPushed, item: item as! SecureLicenseItem, isNewItem: isNewItem, isReadOnly: true)
+	case is SecureCardItem: SecureCardView(item: item as! SecureCardItem, isNewItem: isNewItem, isReadOnly: true)
+	case is SecureLoginItem: SecureLoginView(item: item as! SecureLoginItem, isNewItem: isNewItem, isReadOnly: true)
+	case is SecureNoteItem: SecureNoteView(item: item as! SecureNoteItem, isNewItem: isNewItem, isReadOnly: true)
+	case is SecureAccessPointItem: SecureAccessPointView(item: item as! SecureAccessPointItem, isNewItem: isNewItem, isReadOnly: true)
+	case is SecureLicenseItem: SecureLicenseView(item: item as! SecureLicenseItem, isNewItem: isNewItem, isReadOnly: true)
 	default: EmptyView()
 	}
 }
@@ -74,8 +74,8 @@ func subtitle(item: SecureVaultItem) -> String {
 
 /// Displays all the items within the open vault.
 struct OpenVaultView: View {
+	@Environment(\.dismiss) var dismiss
 	@ObservedObject var vault = AppState.shared.vault
-	@Binding var isPushed: Bool
 	@State var showNewItem: Bool = false
 	@State var newItemType: VaultItemType = VaultItemType.login
 	@State private var showingFailedToDeleteAlert: Bool = false
@@ -92,7 +92,7 @@ struct OpenVaultView: View {
 				Image(systemName: icon(item: item))
 				VStack(alignment: .leading) {
 
-					let itemView = createVaultItemView(isPushed: self.$isPushed, item: item, isNewItem: false)
+					let itemView = createVaultItemView(item: item, isNewItem: false)
 					NavigationLink(destination: itemView) {
 						VStack(alignment: .leading) {
 							Text(title(item: item))
@@ -109,7 +109,7 @@ struct OpenVaultView: View {
 			.background(
 
 				// Show a blank view for the user to enter new information.
-				NavigationLink(destination: NewItemView(isPushed: self.$isPushed, newItemType: self.$newItemType), isActive: $showNewItem) {}
+				NavigationLink(destination: NewItemView(newItemType: self.$newItemType), isActive: $showNewItem) {}
 			)
 #else
 			.navigationBarTitle(self.vault.name(), displayMode: .inline)
@@ -210,7 +210,7 @@ struct OpenVaultView: View {
 							// Close the Vault
 							Button(action: {
 								AppState.shared.closeVault()
-								self.isPushed = false // Pop to the root view controller
+								self.dismiss()
 							}) {
 								Label("Close Vault", systemImage: "xmark.circle")
 									.labelStyle(.titleAndIcon)
@@ -233,7 +233,7 @@ struct OpenVaultView: View {
 							Button("Yes") {
 								if AppState.shared.deleteVault() {
 									AppState.shared.closeVault()
-									self.isPushed = false // Pop to the root view controller
+									self.dismiss()
 								}
 								else {
 									self.showingFailedToDeleteAlert = true
@@ -251,13 +251,12 @@ struct OpenVaultView: View {
 			.background(
 
 				// Show a blank view for the user to enter new information.
-				NavigationLink(destination: NewItemView(isPushed: self.$isPushed, newItemType: self.$newItemType), isActive: $showNewItem) {}
+				NavigationLink(destination: NewItemView(newItemType: self.$newItemType), isActive: $showNewItem) {}
 			)
 			.navigationBarBackButtonHidden(true)
 #endif
 		}
 		.onDisappear() {
-			self.isPushed = true
 		}
 		.navigationTitle(self.vault.name())
 	}

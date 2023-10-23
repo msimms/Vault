@@ -55,7 +55,7 @@ struct AppView: View {
 			}
 			.navigationTitle("Navigation")
 			.navigationDestination(isPresented: self.$pushed) {
-				self.viewModel.createView(isPushed: self.$pushed)
+				self.viewModel.createView()
 			}
 		}
 		.onAppear() {

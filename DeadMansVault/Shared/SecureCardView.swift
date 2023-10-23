@@ -7,7 +7,6 @@ import SwiftUI
 
 /// Displays a login item from the vault.
 struct SecureCardView: View {
-	@Binding var isPushed: Bool
 	@State var item: SecureCardItem
 	@State var isNewItem: Bool = true
 	@State var isReadOnly: Bool = false

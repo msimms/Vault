@@ -29,7 +29,6 @@ import SwiftUI
 
 /// Displays a login item from the vault.
 struct SecureAccessPointView: View {
-	@Binding var isPushed: Bool
 	@State var item: SecureAccessPointItem
 	@State var isNewItem: Bool = true
 	@State var isReadOnly: Bool = false

@@ -34,7 +34,6 @@ import AppKit
 
 /// Displays a login item from the vault.
 struct SecureLoginView: View {
-	@Binding var isPushed: Bool
 	@ObservedObject var item: SecureLoginItem
 	@State var isNewItem: Bool = true
 	@State var isReadOnly: Bool = false
