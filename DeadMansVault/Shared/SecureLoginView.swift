@@ -32,6 +32,17 @@ import UIKit
 import AppKit
 #endif
 
+func copyToPasteboard(value: String) {
+#if os(iOS)
+	let pasteboard = UIPasteboard.general
+	pasteboard.string = value
+#else
+	let pasteboard = NSPasteboard.general
+	pasteboard.clearContents()
+	pasteboard.setString(value, forType: NSPasteboard.PasteboardType.string)
+#endif
+}
+
 /// Displays a login item from the vault.
 struct SecureLoginView: View {
 	@Binding var isPushed: Bool
@@ -81,62 +92,60 @@ struct SecureLoginView: View {
 							.disabled(self.isReadOnly)
 						Text("Email")
 							.fontWeight(.heavy)
-						TextField("Email", text: self.$item.email)
-							.disabled(self.isReadOnly)
+						ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
+							TextField("Email", text: self.$item.email)
+								.disabled(self.isReadOnly)
+							Button(action: {
+								copyToPasteboard(value: self.item.email)
+							}) {
+								Image(systemName: "doc.on.doc")
+									.foregroundColor(.secondary)
+							}
+						})
 						Text("Password")
 							.fontWeight(.heavy)
 					}
 					Group() {
 						ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
-							Group() {
-								if self.showPassword {
-									TextField("Password", text: self.$item.password)
-										.disabled(self.isReadOnly)
+							if self.showPassword {
+								TextField("Password", text: self.$item.password)
+									.disabled(self.isReadOnly)
+							}
+							else {
+								SecureField("Password", text: self.$item.password)
+									.disabled(self.isReadOnly)
+							}
+							HStack() {
+								Button(action: {
+									copyToPasteboard(value: self.item.password)
+								}) {
+									Image(systemName: "doc.on.doc")
+										.foregroundColor(.secondary)
 								}
-								else {
-									SecureField("Password", text: self.$item.password)
-										.disabled(self.isReadOnly)
+								Button(action: {
+									self.showPassword.toggle()
+								}) {
+									Image(systemName: "eye")
+										.foregroundColor(.secondary)
 								}
-								HStack() {
-									Button(action: {
-#if os(iOS)
-										let pasteboard = UIPasteboard.general
-										pasteboard.string = self.item.password
-#else
-										let pasteboard = NSPasteboard.general
-										pasteboard.clearContents()
-										pasteboard.setString(self.item.password, forType: NSPasteboard.PasteboardType.string)
-#endif
-									}) {
-										Image(systemName: "doc.on.doc")
-											.foregroundColor(.secondary)
-									}
-									Button(action: {
-										self.showPassword.toggle()
-									}) {
-										Image(systemName: "eye")
-											.foregroundColor(.secondary)
-									}
-									.padding(10)
-									if self.isReadOnly == false {
-										ZStack() {
-											NavigationLink(destination: PasswordGeneratorView(existingPassword: self.$item.password, suggestedPassword: self.item.password), isActive: self.$isShowingPasswordGenerator) {
+								if self.isReadOnly == false {
+									ZStack() {
+										NavigationLink(destination: PasswordGeneratorView(existingPassword: self.$item.password, suggestedPassword: self.item.password), isActive: self.$isShowingPasswordGenerator) {
+										}
+										Button(action: {
+											if self.isReadOnly {
+												self.cannotShowPasswordGenerator = true
 											}
-											Button(action: {
-												if self.isReadOnly {
-													self.cannotShowPasswordGenerator = true
-												}
-												else {
-													self.isShowingPasswordGenerator = true
-												}
-											}) {
-												Image(systemName: "arrow.clockwise")
-													.foregroundColor(.secondary)
+											else {
+												self.isShowingPasswordGenerator = true
 											}
-											.alert("Cannot generate a new password because the item is read only!", isPresented: self.$cannotShowPasswordGenerator) {
-												Button("OK", role: .cancel) { }
-													.buttonStyle(PlainButtonStyle())
-											}
+										}) {
+											Image(systemName: "arrow.clockwise")
+												.foregroundColor(.secondary)
+										}
+										.alert("Cannot generate a new password because the item is read only!", isPresented: self.$cannotShowPasswordGenerator) {
+											Button("OK", role: .cancel) { }
+												.buttonStyle(PlainButtonStyle())
 										}
 									}
 								}
