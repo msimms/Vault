@@ -34,6 +34,7 @@ struct AttachFilesView: View {
 	@State private var isShowingSavePanel: Bool = false
 	@State private var isShowingDeleteConfirmation: Bool = false
 	@State private var isShowingPhotoPicker: Bool = false
+	@State private var isShowingDocPicker: Bool = false
 	
 	var body: some View {
 		Group() {
@@ -60,6 +61,9 @@ struct AttachFilesView: View {
 				Button("Photos") {
 					self.isShowingPhotoPicker = true
 				}
+				Button("iCloud Drive") {
+					self.isShowingDocPicker = true
+				}
 #endif
 			}
 			.disabled(self.isReadOnly)
@@ -67,6 +71,10 @@ struct AttachFilesView: View {
 			.sheet(isPresented: self.$isShowingPhotoPicker) {
 				PhotoPicker(callback: { image, name in
 					self.item.attachPhoto(image: image, name: name)
+				})
+			}
+			.sheet(isPresented: self.$isShowingDocPicker) {
+				let _ = DocumentPicker(contentTypes: [UTType.pdf, UTType.text], callback: { url in
 				})
 			}
 #endif

@@ -65,6 +65,7 @@
 		2771DBF32AAA4C5300D70021 /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2771DBF22AAA4C5300D70021 /* PhotoPicker.swift */; };
 		27774DA32A90130000D288ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27774DA22A900C5B00D288ED /* Assets.xcassets */; };
 		27774DA52A90132900D288ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27774DA22A900C5B00D288ED /* Assets.xcassets */; };
+		27BF1A942AE8248F00BDA339 /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BF1A932AE8248F00BDA339 /* DocumentPicker.swift */; };
 		27E30B5C2A92CF5700236EAB /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6CC2A8FF1C800F77F96 /* Preferences.swift */; };
 		27E30B5D2A92CF6300236EAB /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6CE2A8FF1C800F77F96 /* AppState.swift */; };
 		27E30B5E2A92CFAD00236EAB /* VaultDisplayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6D32A8FF1C900F77F96 /* VaultDisplayState.swift */; };
@@ -217,6 +218,7 @@
 		27774DA12A900B1200D288ED /* DeadMansVaultBrowser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeadMansVaultBrowser.entitlements; sourceTree = "<group>"; };
 		27774DA22A900C5B00D288ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Shared/Assets.xcassets; sourceTree = "<group>"; };
 		277B18222AABC2240009BC08 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		27BF1A932AE8248F00BDA339 /* DocumentPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DocumentPicker.swift; path = Shared/DocumentPicker.swift; sourceTree = SOURCE_ROOT; };
 		27E30B5B2A90346200236EAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -314,6 +316,7 @@
 				274AA6D72A8FF1CA00F77F96 /* AppView.swift */,
 				2771DBF02AA9152400D70021 /* AttachFilesView.swift */,
 				274AA63F2A8FD10200F77F96 /* DeadMansVaultApp.swift */,
+				27BF1A932AE8248F00BDA339 /* DocumentPicker.swift */,
 				274AA6D92A8FF1CA00F77F96 /* Exporter.swift */,
 				274AA6DB2A8FF1CA00F77F96 /* HealthManager.swift */,
 				274AA6D12A8FF1C900F77F96 /* Importer.swift */,
@@ -707,6 +710,7 @@
 				274AA6E32A8FF1CC00F77F96 /* NewTagView.swift in Sources */,
 				274AA6FA2A8FF1CC00F77F96 /* PasswordVaultDocument.swift in Sources */,
 				274AA6F92A8FF1CC00F77F96 /* AppView.swift in Sources */,
+				27BF1A942AE8248F00BDA339 /* DocumentPicker.swift in Sources */,
 				274AA6E42A8FF1CC00F77F96 /* PasswordGeneratorView.swift in Sources */,
 				2738EFE52AB37D700066B3CB /* SecureLicenseView.swift in Sources */,
 				274AA6F22A8FF1CC00F77F96 /* VaultState.swift in Sources */,
