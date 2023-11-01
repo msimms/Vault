@@ -75,6 +75,7 @@ struct AttachFilesView: View {
 			}
 			.sheet(isPresented: self.$isShowingDocPicker) {
 				let _ = DocumentPicker(contentTypes: [UTType.pdf, UTType.text], callback: { url in
+					self.item.attachFile(url: url)
 				})
 			}
 #endif
