@@ -80,6 +80,7 @@
 		27E30B672A92EC4900236EAB /* SecureLoginItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6CF2A8FF1C800F77F96 /* SecureLoginItem.swift */; };
 		27E30B682A92EC4C00236EAB /* SecureNoteItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6C82A8FF1C700F77F96 /* SecureNoteItem.swift */; };
 		27E30B692A92ECD300236EAB /* SecureAccessPointItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6C32A8FF1C600F77F96 /* SecureAccessPointItem.swift */; };
+		27F4CC352B1964B400BE4B12 /* words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 27F4CC342B1964A700BE4B12 /* words.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -220,6 +221,7 @@
 		277B18222AABC2240009BC08 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		27BF1A932AE8248F00BDA339 /* DocumentPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DocumentPicker.swift; path = Shared/DocumentPicker.swift; sourceTree = SOURCE_ROOT; };
 		27E30B5B2A90346200236EAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		27F4CC342B1964A700BE4B12 /* words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = words.txt; path = DeadMansVault/words.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -283,6 +285,7 @@
 				274AA6BE2A8FEBEF00F77F96 /* DeadMansVaultWatch Watch App.entitlements */,
 				274AA6452A8FD10300F77F96 /* DeadMansVault.entitlements */,
 				277B18222AABC2240009BC08 /* Launch Screen.storyboard */,
+				27F4CC342B1964A700BE4B12 /* words.txt */,
 				274AA63E2A8FD10200F77F96 /* DeadMansVault */,
 				274AA6502A8FD10300F77F96 /* Tests */,
 				274AA65A2A8FD10300F77F96 /* UITests */,
@@ -624,6 +627,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27F4CC352B1964B400BE4B12 /* words.txt in Resources */,
 				27774DA32A90130000D288ED /* Assets.xcassets in Resources */,
 				274AA6482A8FD10300F77F96 /* Preview Assets.xcassets in Resources */,
 			);

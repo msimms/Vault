@@ -31,10 +31,15 @@ class PasswordGenerator {
 	func generateRandomWord() -> String {
 		let chunkSize = 64
 
+#if os(iOS)
+		let filePath = Bundle.main.path(forResource: "words", ofType: "txt")
+		let fileUrl = URL(string: filePath!)
+#else
 		// We'll select a random word from /usr/share/dict/words
 		let fileUrl = URL(string: "/usr/share/dict/words")
+#endif
 		guard let fileHandle = try? FileHandle(forReadingFrom: fileUrl!) else { return "" }
-			
+
 		// Get the size of the file.
 		let numBytes = fileHandle.availableData.count
 
