@@ -37,7 +37,7 @@ class AppState {
 	var hasOpenedAVault: Bool = false // This breaks the potentially infinite loop of automatically re-opening a vault right after it was closed
 	private var viewModel = VaultDisplayState.shared
 	private var setupBiometricAuth: Bool = false
-	private var healthMgr = HealthManager.shared
+	var healthMgr = HealthManager.shared
 	private let laContext = LAContext()
 
 	/// Constructor
@@ -341,7 +341,7 @@ class AppState {
 		exporter.exportToUrl(location: to, vault: self.vault)
 		return false
 	}
-
+	
 	func updateState() {
 		do {
 			if try self.defaultVaultExists() || self.listVaults().count > 0 {

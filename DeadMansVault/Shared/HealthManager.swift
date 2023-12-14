@@ -35,7 +35,7 @@ class HealthManager : ObservableObject {
 	private let healthStore = HKHealthStore()
 	private var queryGroup: DispatchGroup = DispatchGroup() // tracks queries until they are completed
 	private var hrQuery: HKQuery? = nil // the query that reads heart rate on the watch
-	@Published var maxHr: Double?
+	@Published var mostRecent: Date?
 
 	private init() {
 	}
@@ -56,11 +56,16 @@ class HealthManager : ObservableObject {
 			
 			self.mostRecentQuantitySampleOfType(quantityType: hrType) { sample, error in
 				if sample != nil {
+					self.mostRecent = sample?.endDate
 				}
 			}
 		}
 	}
 
+	func isHealthDataAvailable() -> Bool {
+		return HKHealthStore.isHealthDataAvailable()
+	}
+	
 	func mostRecentQuantitySampleOfType(quantityType: HKQuantityType, callback: @escaping (HKQuantitySample?, Error?) -> ()) {
 		
 		// Since we are interested in retrieving the user's latest sample, we sort the samples in descending
@@ -89,7 +94,6 @@ class HealthManager : ObservableObject {
 		let oneYear = (365.25 * 24.0 * 60.0 * 60.0)
 		let startDate = Date(timeIntervalSince1970: Date().timeIntervalSince1970 - oneYear)
 		let predicate = HKQuery.predicateForSamples(withStart: startDate, end: nil, options: [.strictStartDate])
-
 		let query = HKSampleQuery.init(sampleType: quantityType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil, resultsHandler: { query, results, error in
 			
 			// Error case: Call the callback handler, passing nil for the results.
