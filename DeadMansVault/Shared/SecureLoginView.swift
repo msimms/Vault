@@ -55,10 +55,12 @@ struct SecureLoginView: View {
 						.multilineTextAlignment(.center)
 				}
 				if self.item.displayTitle().count > 0 {
-					Text(self.item.displayTitle())
+					TextField("Title", text: self.$item.title)
 						.fontWeight(.heavy)
 						.font(.system(size: 24))
+						.foregroundColor(.white)
 						.multilineTextAlignment(.center)
+						.disabled(self.isReadOnly)
 				}
 				Divider()
 				VStack(alignment: .leading) {
