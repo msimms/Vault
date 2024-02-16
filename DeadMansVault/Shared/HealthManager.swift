@@ -35,7 +35,7 @@ class HealthManager : ObservableObject {
 	private let healthStore = HKHealthStore()
 	private var queryGroup: DispatchGroup = DispatchGroup() // tracks queries until they are completed
 	private var hrQuery: HKQuery? = nil // the query that reads heart rate on the watch
-	@Published var mostRecent: Date?
+	@Published var mostRecentHealthRecordDate: Date?
 
 	private init() {
 	}
@@ -56,7 +56,7 @@ class HealthManager : ObservableObject {
 			
 			self.mostRecentQuantitySampleOfType(quantityType: hrType) { sample, error in
 				if sample != nil {
-					self.mostRecent = sample?.endDate
+					self.mostRecentHealthRecordDate = sample?.endDate
 				}
 			}
 		}

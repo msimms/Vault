@@ -176,13 +176,14 @@ struct LockView: View {
 				}
 				.frame(width: 32.0, height: 32.0)
 				.buttonStyle(PlainButtonStyle())
+				.padding(10)
 			}
 			
 			Group() {
 				Button(action: {
 					self.showingHealthStatusView = true
 				}) {
-					Image(systemName: "staroflife.fill")
+					Image(systemName: "heart")
 						.resizable()
 				}
 				.navigationDestination(isPresented: self.$showingHealthStatusView) {
@@ -190,6 +191,7 @@ struct LockView: View {
 				}
 				.frame(width: 32.0, height: 32.0)
 				.buttonStyle(PlainButtonStyle())
+				.padding(10)
 			}
 		}
 		.onAppear() {
