@@ -50,6 +50,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
 		
 		if let button = self.statusItem.button {
 			button.image = NSImage(systemSymbolName: "lock", accessibilityDescription: "1")
+			self.clearStatusBar()
 		}
 	}
 	
@@ -85,6 +86,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
 		
 		if let menu = self.statusItem.menu {
 			menu.removeAllItems()
+
+			let menuItem = NSMenuItem(title: "The vault is locked", action: nil, keyEquivalent: "")
+			menu.items.append(menuItem)
 		}
 	}
 }
