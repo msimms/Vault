@@ -38,7 +38,7 @@ struct SecureLicenseView: View {
 		VStack(alignment: .leading) {
 			ScrollView() {
 				HStack() {
-					Image(systemName: icon(item: self.item))
+					Image(systemName: iconForVaultItem(item: self.item))
 						.imageScale(.large)
 					Text("License")
 						.fontWeight(.heavy)

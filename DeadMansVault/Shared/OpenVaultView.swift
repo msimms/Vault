@@ -39,7 +39,7 @@ func createVaultItemView(item: SecureVaultItem, isNewItem: Bool) -> some View {
 	}
 }
 
-func icon(item: SecureVaultItem) -> String {
+func iconForVaultItem(item: SecureVaultItem) -> String {
 	switch item {
 	case is SecureCardItem: return "creditcard.and.123";
 	case is SecureLoginItem: return "lock";
@@ -47,6 +47,16 @@ func icon(item: SecureVaultItem) -> String {
 	case is SecureAccessPointItem: return "wifi";
 	case is SecureLicenseItem: return "key";
 	default: return ""
+	}
+}
+
+func iconForVaultType(type: VaultItemType) -> String {
+	switch type {
+	case .card: return "creditcard.and.123";
+	case .login: return "lock";
+	case .note: return "note";
+	case .accessPoint: return "wifi";
+	case .license: return "key";
 	}
 }
 
@@ -75,6 +85,9 @@ func subtitle(item: SecureVaultItem) -> String {
 /// Displays all the items within the open vault.
 struct OpenVaultView: View {
 	@Environment(\.dismiss) var dismiss
+#if os(macOS)
+	@EnvironmentObject private var appDelegate: AppDelegate
+#endif
 	@ObservedObject var vault = AppState.shared.vault
 	@State var showNewItem: Bool = false
 	@State var newItemType: VaultItemType = VaultItemType.login
@@ -89,7 +102,7 @@ struct OpenVaultView: View {
 
 			// List of all of the items in the vault.
 			List(self.vault.vaultItems) { item in
-				Image(systemName: icon(item: item))
+				Image(systemName: iconForVaultItem(item: item))
 				VStack(alignment: .leading) {
 
 					let itemView = createVaultItemView(item: item, isNewItem: false)
@@ -109,7 +122,7 @@ struct OpenVaultView: View {
 			.background(
 
 				// Show a blank view for the user to enter new information.
-				NavigationLink(destination: NewItemView(newItemType: self.$newItemType), isActive: $showNewItem) {}
+				NavigationLink(destination: NewItemView(newItemType: self.$newItemType), isActive: self.$showNewItem) {}
 			)
 #else
 			.navigationBarTitle(self.vault.name(), displayMode: .inline)
@@ -126,7 +139,7 @@ struct OpenVaultView: View {
 								self.newItemType = VaultItemType.login
 								showNewItem = true
 							}) {
-								Label("Login", systemImage: "lock")
+								Label("Login", systemImage: iconForVaultType(type: .login))
 									.labelStyle(.titleAndIcon)
 							}
 
@@ -135,7 +148,7 @@ struct OpenVaultView: View {
 								self.newItemType = VaultItemType.note
 								showNewItem = true
 							}) {
-								Label("Note", systemImage: "doc")
+								Label("Note", systemImage: iconForVaultType(type: .note))
 									.labelStyle(.titleAndIcon)
 							}
 
@@ -144,7 +157,7 @@ struct OpenVaultView: View {
 								self.newItemType = VaultItemType.card
 								showNewItem = true
 							}) {
-								Label("Card", systemImage: "creditcard.and.123")
+								Label("Card", systemImage: iconForVaultType(type: .card))
 									.labelStyle(.titleAndIcon)
 							}
 
@@ -153,7 +166,7 @@ struct OpenVaultView: View {
 								self.newItemType = VaultItemType.accessPoint
 								showNewItem = true
 							}) {
-								Label("Access Point", systemImage: "wifi")
+								Label("Access Point", systemImage: iconForVaultType(type: .accessPoint))
 									.labelStyle(.titleAndIcon)
 							}
 
@@ -162,7 +175,7 @@ struct OpenVaultView: View {
 								self.newItemType = VaultItemType.license
 								showNewItem = true
 							}) {
-								Label("License Key", systemImage: "key")
+								Label("License Key", systemImage: iconForVaultType(type: .license))
 									.labelStyle(.titleAndIcon)
 							}
 						}
@@ -185,7 +198,7 @@ struct OpenVaultView: View {
 								Label("Import...", systemImage: "square.and.arrow.down")
 									.labelStyle(.titleAndIcon)
 							}
-							.alert("Failed to import the data!", isPresented: $showingFailedImportAlert) {
+							.alert("Failed to import the data!", isPresented: self.$showingFailedImportAlert) {
 								Button("OK", role: .cancel) { }
 							}
 
@@ -200,7 +213,7 @@ struct OpenVaultView: View {
 								Label("Export...", systemImage: "square.and.arrow.up")
 									.labelStyle(.titleAndIcon)
 							}
-							.alert("Failed to export the data!", isPresented: $showingFailedExportAlert) {
+							.alert("Failed to export the data!", isPresented: self.$showingFailedExportAlert) {
 								Button("OK", role: .cancel) { }
 							}
 
@@ -227,7 +240,7 @@ struct OpenVaultView: View {
 						label: {
 							Label("File", systemImage: "folder")
 						}
-						.alert("Are you sure you want to do this? It cannot be undone.", isPresented: $showingDeleteVaultAlert) {
+						.alert("Are you sure you want to do this? It cannot be undone.", isPresented: self.$showingDeleteVaultAlert) {
 							Button("No", role: .cancel) { }
 								.keyboardShortcut(.defaultAction)
 							Button("Yes") {
@@ -241,7 +254,7 @@ struct OpenVaultView: View {
 							}
 							.keyboardShortcut(.cancelAction)
 						}
-						.alert("Failed to delete the vault!", isPresented: $showingFailedToDeleteAlert) {
+						.alert("Failed to delete the vault!", isPresented: self.$showingFailedToDeleteAlert) {
 							Button("OK", role: .cancel) { }
 						}
 					}
@@ -251,12 +264,20 @@ struct OpenVaultView: View {
 			.background(
 
 				// Show a blank view for the user to enter new information.
-				NavigationLink(destination: NewItemView(newItemType: self.$newItemType), isActive: $showNewItem) {}
+				NavigationLink(destination: NewItemView(newItemType: self.$newItemType), isActive: self.$showNewItem) {}
 			)
 			.navigationBarBackButtonHidden(true)
 #endif
 		}
+		.onAppear() {
+#if os(macOS)
+			self.appDelegate.updateStatusBar()
+#endif
+		}
 		.onDisappear() {
+#if os(macOS)
+			self.appDelegate.clearStatusBar()
+#endif
 		}
 		.navigationTitle(self.vault.name())
 	}

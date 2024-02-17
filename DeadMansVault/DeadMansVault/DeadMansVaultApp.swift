@@ -29,9 +29,63 @@ import SwiftUI
 
 @main
 struct DeadMansVaultApp: App {
-    var body: some Scene {
+#if os(macOS)
+	@NSApplicationDelegateAdaptor(AppDelegate.self) var Delegate
+#endif
+
+	var body: some Scene {
         WindowGroup {
             AppView()
         }
     }
 }
+
+#if os(macOS)
+class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
+	private var statusItem: NSStatusItem!
+	
+	func applicationDidFinishLaunching(_ notification: Notification) {
+		self.statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+		self.statusItem.menu = NSMenu()
+		
+		if let button = self.statusItem.button {
+			button.image = NSImage(systemSymbolName: "lock", accessibilityDescription: "1")
+		}
+	}
+	
+	@objc func statusItemSelected(_ sender: Any) {
+		if let menuItem = sender as? NSMenuItem {
+			if let vaultItem = menuItem.representedObject as? SecureVaultItem {
+				copyToPasteboard(value: vaultItem.copy())
+			}
+		}
+	}
+	
+	func updateStatusBar() {
+		guard self.statusItem != nil else {
+			return
+		}
+		
+		if let menu = self.statusItem.menu {
+			menu.removeAllItems()
+
+			for vaultItem in AppState.shared.vault.vaultItems {
+				let menuItem = NSMenuItem(title: vaultItem.displayTitle(), action: #selector(self.statusItemSelected(_:)), keyEquivalent: "")
+				menuItem.image = NSImage(systemSymbolName: iconForVaultItem(item: vaultItem), accessibilityDescription: nil)
+				menuItem.representedObject = vaultItem
+				menu.items.append(menuItem)
+			}
+		}
+	}
+	
+	func clearStatusBar() {
+		guard self.statusItem != nil else {
+			return
+		}
+		
+		if let menu = self.statusItem.menu {
+			menu.removeAllItems()
+		}
+	}
+}
+#endif

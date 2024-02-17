@@ -144,6 +144,11 @@ class SecureVaultItem: Codable, Identifiable, Comparable, Hashable, ObservableOb
 		return ""
 	}
 	
+	/// Called in response to the copy shortcut.. Adds the thing the user would most want to the pasteboard.
+	func copy() -> String {
+		return ""
+	}
+	
 	/// If the child class tracks the last modified time then this will trigger an update.
 	func updateLastModifiedTime() {
 	}

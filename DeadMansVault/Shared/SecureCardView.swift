@@ -25,7 +25,7 @@ struct SecureCardView: View {
 			ScrollView() {
 				Group() {
 					HStack() {
-						Image(systemName: icon(item: self.item))
+						Image(systemName: iconForVaultItem(item: self.item))
 							.imageScale(.large)
 						Text("Card")
 							.fontWeight(.heavy)

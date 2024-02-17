@@ -163,6 +163,11 @@ class SecureCardItem: SecureVaultItem {
 		return self.name
 	}
 
+	/// Called in response to the copy shortcut.. Adds the thing the user would most want to the pasteboard.
+	override func copy() -> String {
+		return self.number
+	}
+
 	/// Updates the last modified timestamp.
 	override func updateLastModifiedTime() {
 		self.lastModifiedTime = Date()
