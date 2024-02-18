@@ -47,11 +47,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
 	func applicationDidFinishLaunching(_ notification: Notification) {
 		self.statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
 		self.statusItem.menu = NSMenu()
-		
-		if let button = self.statusItem.button {
-			button.image = NSImage(systemSymbolName: "lock", accessibilityDescription: "1")
-			self.clearStatusBar()
-		}
+		self.clearStatusBar()
 	}
 	
 	@objc func statusItemSelected(_ sender: Any) {
@@ -67,14 +63,18 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
 			return
 		}
 		
-		if let menu = self.statusItem.menu {
-			menu.removeAllItems()
+		if let button = self.statusItem.button {
+			button.image = NSImage(systemSymbolName: "lock.open", accessibilityDescription: "1")
 
-			for vaultItem in AppState.shared.vault.vaultItems {
-				let menuItem = NSMenuItem(title: vaultItem.displayTitle(), action: #selector(self.statusItemSelected(_:)), keyEquivalent: "")
-				menuItem.image = NSImage(systemSymbolName: iconForVaultItem(item: vaultItem), accessibilityDescription: nil)
-				menuItem.representedObject = vaultItem
-				menu.items.append(menuItem)
+			if let menu = self.statusItem.menu {
+				menu.removeAllItems()
+				
+				for vaultItem in AppState.shared.vault.vaultItems {
+					let menuItem = NSMenuItem(title: vaultItem.displayTitle(), action: #selector(self.statusItemSelected(_:)), keyEquivalent: "")
+					menuItem.image = NSImage(systemSymbolName: iconForVaultItem(item: vaultItem), accessibilityDescription: nil)
+					menuItem.representedObject = vaultItem
+					menu.items.append(menuItem)
+				}
 			}
 		}
 	}
@@ -84,11 +84,15 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
 			return
 		}
 		
-		if let menu = self.statusItem.menu {
-			menu.removeAllItems()
+		if let button = self.statusItem.button {
+			button.image = NSImage(systemSymbolName: "lock", accessibilityDescription: "1")
 
-			let menuItem = NSMenuItem(title: "The vault is locked", action: nil, keyEquivalent: "")
-			menu.items.append(menuItem)
+			if let menu = self.statusItem.menu {
+				menu.removeAllItems()
+				
+				let menuItem = NSMenuItem(title: "The vault is locked", action: nil, keyEquivalent: "")
+				menu.items.append(menuItem)
+			}
 		}
 	}
 }
