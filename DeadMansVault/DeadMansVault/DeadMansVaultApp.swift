@@ -1,5 +1,5 @@
 //
-//  DeadMansVaultApp.swift
+//  VaultApp.swift
 //  Created by Michael Simms on 8/18/23.
 //
 
@@ -28,14 +28,14 @@
 import SwiftUI
 
 @main
-struct DeadMansVaultApp: App {
+struct VaultApp: App {
 #if os(macOS)
 	@NSApplicationDelegateAdaptor(AppDelegate.self) var Delegate
 #endif
 
 	var body: some Scene {
         WindowGroup {
-            AppView()
+			ContentView()
         }
     }
 }

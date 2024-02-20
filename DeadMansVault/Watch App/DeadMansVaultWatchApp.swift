@@ -1,12 +1,12 @@
 //
-//  DeadMansVaultWatchApp.swift
+//  WatchApp.swift
 //  Created by Michael Simms on 8/18/23.
 //
 
 import SwiftUI
 
 @main
-struct DeadMansVaultWatch_Watch_App: App {
+struct WatchApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()

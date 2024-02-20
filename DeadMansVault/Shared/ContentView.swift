@@ -1,5 +1,5 @@
 //
-//  AppView.swift
+//  ContentView.swift
 //  Created by Michael Simms on 12/18/21.
 //
 
@@ -28,7 +28,7 @@
 import SwiftUI
 
 /// This is the first view that is shown to the user.
-struct AppView: View {
+struct ContentView: View {
 	@ObservedObject var viewModel = VaultDisplayState.shared
 	@State var pushed: Bool = true
 
@@ -64,8 +64,8 @@ struct AppView: View {
 	}
 }
 
-struct AppView_Previews: PreviewProvider {
+struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        AppView()
+		ContentView()
     }
 }
