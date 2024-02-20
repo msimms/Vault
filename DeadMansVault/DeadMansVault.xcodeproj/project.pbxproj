@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		270B435A2B853739001D1934 /* HealthStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278B82432B2A200300EB7B0A /* HealthStatusView.swift */; };
 		27212F8F2A9008B9000D54D2 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27212F8A2A9008AF000D54D2 /* SafariWebExtensionHandler.swift */; };
 		27212F912A9008C5000D54D2 /* Resources in Resources */ = {isa = PBXBuildFile; fileRef = 27212F8B2A9008AF000D54D2 /* Resources */; };
 		2738EFE52AB37D700066B3CB /* SecureLicenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2738EFE32AB37D700066B3CB /* SecureLicenseView.swift */; };
@@ -318,8 +319,8 @@
 			children = (
 				27E30B5B2A90346200236EAB /* Info.plist */,
 				274AA6CE2A8FF1C800F77F96 /* AppState.swift */,
-				274AA6D72A8FF1CA00F77F96 /* ContentView.swift */,
 				2771DBF02AA9152400D70021 /* AttachFilesView.swift */,
+				274AA6D72A8FF1CA00F77F96 /* ContentView.swift */,
 				274AA63F2A8FD10200F77F96 /* DeadMansVaultApp.swift */,
 				27BF1A932AE8248F00BDA339 /* DocumentPicker.swift */,
 				274AA6D92A8FF1CA00F77F96 /* Exporter.swift */,
@@ -759,6 +760,7 @@
 				27E30B622A92E14A00236EAB /* VaultException.swift in Sources */,
 				2738EFE72AB396530066B3CB /* SecureLicenseItem.swift in Sources */,
 				274AA6712A8FD32300F77F96 /* DeadMansVaultWatchApp.swift in Sources */,
+				270B435A2B853739001D1934 /* HealthStatusView.swift in Sources */,
 				27E30B652A92EC2A00236EAB /* VaultItemFactory.swift in Sources */,
 				27E30B682A92EC4C00236EAB /* SecureNoteItem.swift in Sources */,
 				27E30B612A92D4A300236EAB /* Vault.swift in Sources */,

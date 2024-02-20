@@ -178,7 +178,8 @@ struct LockView: View {
 				.buttonStyle(PlainButtonStyle())
 				.padding(10)
 			}
-			
+
+			// Vault owner's health metrics
 			Group() {
 				Button(action: {
 					self.showingHealthStatusView = true

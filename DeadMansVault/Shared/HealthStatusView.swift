@@ -11,17 +11,33 @@ struct HealthStatusView: View {
 			if AppState.shared.healthMgr.isHealthDataAvailable() {
 				VStack() {
 					Text("Most Recent Health Data")
+						.fixedSize(horizontal: false, vertical: true)
 						.bold()
-					Text("Data from HealthKit is used to determine if the vault owner is dead or alive.")
-					if AppState.shared.healthMgr.mostRecentHealthRecordDate != nil {
-						Text(AppState.shared.healthMgr.mostRecentHealthRecordDate!.ISO8601Format())
+					VStack() {
+						Image(systemName: "exclamationmark.circle")
+						Text("Data from HealthKit is used to know if the vault owner is alive.")
+							.fixedSize(horizontal: false, vertical: true)
 					}
+					.padding(5)
+					Group() {
+						if AppState.shared.healthMgr.mostRecentHealthRecordDate != nil {
+							Text(AppState.shared.healthMgr.mostRecentHealthRecordDate!.ISO8601Format())
+						}
+						else {
+							VStack() {
+								Image(systemName: "exclamationmark.circle")
+								Text("No health records found!")
+							}
+						}
+					}
+					.padding(5)
 				}
 			}
 			else {
 				HStack() {
 					Image(systemName: "exclamationmark.circle")
-					Text("Health data is not available on this device. Data from HealthKit is used to determine if the vault owner is dead or alive.")
+					Text("Health data is not available on this device. Data from HealthKit is used to determine if the vault owner is alive.")
+						.fixedSize(horizontal: false, vertical: true)
 				}
 			}
 		}
