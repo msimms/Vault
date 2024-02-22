@@ -43,6 +43,7 @@ struct PasswordGeneratorView: View {
 				Group() {
 					Text("Password Generator")
 						.fontWeight(.heavy)
+						.font(.system(size: 32))
 				}
 				.padding(10)
 				Divider()
