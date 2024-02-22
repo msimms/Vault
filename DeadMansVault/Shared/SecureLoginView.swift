@@ -120,18 +120,6 @@ struct SecureLoginView: View {
 									.disabled(self.isReadOnly)
 							}
 							HStack() {
-								Button(action: {
-									copyToPasteboard(value: self.item.password)
-								}) {
-									Image(systemName: "doc.on.doc")
-										.foregroundColor(.secondary)
-								}
-								Button(action: {
-									self.showPassword.toggle()
-								}) {
-									Image(systemName: "eye")
-										.foregroundColor(.secondary)
-								}
 								if self.isReadOnly == false {
 									ZStack() {
 										Button(action: {
@@ -153,6 +141,18 @@ struct SecureLoginView: View {
 											PasswordGeneratorView(existingPassword: self.$item.password, suggestedPassword: self.item.password)
 										}
 									}
+								}
+								Button(action: {
+									self.showPassword.toggle()
+								}) {
+									Image(systemName: "eye")
+										.foregroundColor(.secondary)
+								}
+								Button(action: {
+									copyToPasteboard(value: self.item.password)
+								}) {
+									Image(systemName: "doc.on.doc")
+										.foregroundColor(.secondary)
 								}
 							}
 						})
