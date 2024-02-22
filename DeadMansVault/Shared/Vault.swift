@@ -28,6 +28,8 @@
 import Foundation
 import CryptoKit
 
+let VAULT_VERSION_INITIAL: UInt8 = 0
+
 /// Encapsulates the data stored in the vault's master file
 struct VaultIndex: Codable {
 	// File version information
@@ -41,7 +43,7 @@ struct VaultIndex: Codable {
 }
 
 class Vault : ObservableObject {
-	public static let kCurrentVaultVersion: UInt8 = 0
+	public static let kCurrentVaultVersion: UInt8 = VAULT_VERSION_INITIAL
 
 	/// List of everything read from the vault.
 	@Published var vaultItems: Array<SecureVaultItem> = []
@@ -84,6 +86,7 @@ class Vault : ObservableObject {
 		self.insertVaultItem(item: item)
 	}
 
+	/// Called when the vault's master file can't be read because it hasn't been downloaded from the iCloud drive yet.
 	private func downloadVaultMasterFile(key: String) throws {
 
 		var query: NSMetadataQuery
@@ -111,6 +114,7 @@ class Vault : ObservableObject {
 		try FileManager.default.startDownloadingUbiquitousItem(at: self.vaultMasterFileUrl!)
 	}
 
+	/// Called when an file containing the info for a vault entry can't be read because it hasn't been downloaded from the iCloud drive yet.
 	private func downloadVaultItemFile(fileToDownload: URL) throws {
 
 		var downloadedFileName = fileToDownload.deletingPathExtension().lastPathComponent
@@ -275,6 +279,7 @@ class Vault : ObservableObject {
 		}
 	}
 
+	/// Called once the master file is readable (i.e. has been downloaded from the iCloud drive).
 	private func openInner(key: String) throws {
 
 		// Is a master file specified?
