@@ -31,10 +31,11 @@ struct PasswordGeneratorView: View {
 	@Environment(\.dismiss) var dismiss
 	@Binding var existingPassword: String
 	@State var suggestedPassword: String = ""
-	@State private var numChars: Double = 8
+	@State private var numChars: Double = 10
 	@State private var numWords: Double = 3
 	@State private var alphaNumOnly: Bool = false
-	@State var gen = PasswordGenerator()
+	@State private var prohibitedChars: String = ""
+	@State private var gen = PasswordGenerator()
 
 	var body: some View {
 	
@@ -58,7 +59,7 @@ struct PasswordGeneratorView: View {
 								},
 								set: {(newValue) in
 									self.numChars = newValue
-									self.suggestedPassword = self.gen.generateUsingCharacters(numChars: UInt8(self.numChars), alphaNumOnly: self.alphaNumOnly)
+									self.suggestedPassword = self.gen.generateUsingCharacters(numChars: UInt8(self.numChars), alphaNumOnly: self.alphaNumOnly, prohibitedChars: self.prohibitedChars)
 								}
 							), in: 1...32, step: 1)
 						}
@@ -76,8 +77,12 @@ struct PasswordGeneratorView: View {
 							), in: 1...8, step: 1)
 						}
 
-						HStack() {
-							Toggle("Alphanumerics Only", isOn: $alphaNumOnly)
+						VStack() {
+							Toggle("Alphanumerics Only", isOn: self.$alphaNumOnly)
+						}
+						
+						VStack() {
+							TextField("Prohibited Characters", text: self.$prohibitedChars)
 						}
 					}
 				}
@@ -93,7 +98,7 @@ struct PasswordGeneratorView: View {
 						}
 						.padding(10)
 						Button(action: {
-							self.suggestedPassword = self.gen.generateUsingCharacters(numChars: UInt8(self.numChars), alphaNumOnly: self.alphaNumOnly)
+							self.suggestedPassword = self.gen.generateUsingCharacters(numChars: UInt8(self.numChars), alphaNumOnly: self.alphaNumOnly, prohibitedChars: self.prohibitedChars)
 						}) {
 							Text("Generate With Characters")
 								.frame(width: 256)

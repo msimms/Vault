@@ -80,10 +80,14 @@ class PasswordGenerator {
 		return result
 	}
 
-	func generateUsingCharacters(numChars: UInt8, alphaNumOnly: Bool) -> String {
+	func generateUsingCharacters(numChars: UInt8, alphaNumOnly: Bool, prohibitedChars: String) -> String {
 		var letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 		if !alphaNumOnly {
 			letters += "!@#$%^&*()-=_+[]{};':,.<>?`~"
+		}
+		letters = letters.filter { prohibitedChars.range(of: String($0)) == nil }
+		if letters.isEmpty {
+			return ""
 		}
 		return String((0..<numChars).map{ _ in letters.randomElement()! })
 	}
