@@ -29,6 +29,8 @@ import Foundation
 import CryptoKit
 
 let VAULT_VERSION_INITIAL: UInt8 = 0
+let MIN_VAULT_VERSION: UInt8 = VAULT_VERSION_INITIAL
+let MAX_VAULT_VERSION: UInt8 = VAULT_VERSION_INITIAL
 
 /// Encapsulates the data stored in the vault's master file
 struct VaultIndex: Codable {
@@ -298,6 +300,11 @@ class Vault : ObservableObject {
 		// Parse the JSON string.
 		let jsonString = try? JSONDecoder().decode(VaultIndex.self, from: data!)
 		guard let unwrappedJsonString = jsonString else {
+			throw VaultException.runtimeError("Error reading the vault file.")
+		}
+		
+		// Check for a valid vault version.
+		if unwrappedJsonString.vaultVersion < MIN_VAULT_VERSION || unwrappedJsonString.vaultVersion > MAX_VAULT_VERSION {
 			throw VaultException.runtimeError("Error reading the vault file.")
 		}
 		
