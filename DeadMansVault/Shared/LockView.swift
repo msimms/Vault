@@ -180,19 +180,21 @@ struct LockView: View {
 			}
 
 			// Vault owner's health metrics
-			Group() {
-				Button(action: {
-					self.showingHealthStatusView = true
-				}) {
-					Image(systemName: "heart")
-						.resizable()
+			if AppState.shared.healthMgr.isHealthDataAvailable() {
+				Group() {
+					Button(action: {
+						self.showingHealthStatusView = true
+					}) {
+						Image(systemName: "heart")
+							.resizable()
+					}
+					.navigationDestination(isPresented: self.$showingHealthStatusView) {
+						HealthStatusView()
+					}
+					.frame(width: 32.0, height: 32.0)
+					.buttonStyle(PlainButtonStyle())
+					.padding(10)
 				}
-				.navigationDestination(isPresented: self.$showingHealthStatusView) {
-					HealthStatusView()
-				}
-				.frame(width: 32.0, height: 32.0)
-				.buttonStyle(PlainButtonStyle())
-				.padding(10)
 			}
 		}
 		.onAppear() {
