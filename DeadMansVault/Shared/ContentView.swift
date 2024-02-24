@@ -30,7 +30,6 @@ import SwiftUI
 /// This is the first view that is shown to the user.
 struct ContentView: View {
 	@ObservedObject var viewModel = VaultDisplayState.shared
-	@State var pushed: Bool = true
 
 	var body: some View {
 		
@@ -41,25 +40,11 @@ struct ContentView: View {
 			// If one exists and is open/unlocked then display it.
 			
 			VStack(alignment: .center) {
-				Button {
-					self.pushed = true
-				} label: {
-					Text(self.viewModel.createButtonText())
-				}
-				.padding()
-				.background(Color.gray)
-				.foregroundColor(.white)
-				.cornerRadius(40)
-				.frame(width: 160)
-				.buttonStyle(PlainButtonStyle())
-			}
-			.navigationTitle("Navigation")
-			.navigationDestination(isPresented: self.$pushed) {
 				self.viewModel.createView()
 			}
-		}
-		.onAppear() {
-			AppState.shared.updateState()
+			.onAppear() {
+				AppState.shared.updateState()
+			}
 		}
 	}
 }
