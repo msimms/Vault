@@ -95,6 +95,7 @@ struct OpenVaultView: View {
 	@State private var showingDeleteVaultAlert: Bool = false
 	@State private var showingFailedImportAlert: Bool = false
 	@State private var showingFailedExportAlert: Bool = false
+	let closeVaultTimer = Timer.publish(every: 600, on: .main, in: .common).autoconnect() // Timer to automatically close the vault
 
 	var body: some View {
 
@@ -268,6 +269,10 @@ struct OpenVaultView: View {
 			)
 			.navigationBarBackButtonHidden(true)
 #endif
+		}
+		.onReceive(self.closeVaultTimer) { _ in
+			AppState.shared.closeVault()
+			self.dismiss()
 		}
 		.onAppear() {
 #if os(macOS)
