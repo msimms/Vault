@@ -90,6 +90,7 @@ struct OpenVaultView: View {
 #endif
 	@ObservedObject var vault = AppState.shared.vault
 	@State var showNewItem: Bool = false
+	@State var showPrefs: Bool = false
 	@State var newItemType: VaultItemType = VaultItemType.login
 	@State private var showingFailedToDeleteAlert: Bool = false
 	@State private var showingDeleteVaultAlert: Bool = false
@@ -125,6 +126,11 @@ struct OpenVaultView: View {
 				// Show a blank view for the user to enter new information.
 				NavigationLink(destination: NewItemView(newItemType: self.$newItemType), isActive: self.$showNewItem) {}
 			)
+			.background(
+
+				// Show the preferences view.
+				NavigationLink(destination: VaultPrefsView(), isActive: self.$showPrefs) {}
+			)
 #else
 			.navigationBarTitle(self.vault.name(), displayMode: .inline)
 #endif
@@ -138,7 +144,7 @@ struct OpenVaultView: View {
 							// New Login
 							Button(action: {
 								self.newItemType = VaultItemType.login
-								showNewItem = true
+								self.showNewItem = true
 							}) {
 								Label("Login", systemImage: iconForVaultType(type: .login))
 									.labelStyle(.titleAndIcon)
@@ -147,7 +153,7 @@ struct OpenVaultView: View {
 							// New Note
 							Button(action: {
 								self.newItemType = VaultItemType.note
-								showNewItem = true
+								self.showNewItem = true
 							}) {
 								Label("Note", systemImage: iconForVaultType(type: .note))
 									.labelStyle(.titleAndIcon)
@@ -156,7 +162,7 @@ struct OpenVaultView: View {
 							// New Card
 							Button(action: {
 								self.newItemType = VaultItemType.card
-								showNewItem = true
+								self.showNewItem = true
 							}) {
 								Label("Card", systemImage: iconForVaultType(type: .card))
 									.labelStyle(.titleAndIcon)
@@ -165,7 +171,7 @@ struct OpenVaultView: View {
 							// New Access Point
 							Button(action: {
 								self.newItemType = VaultItemType.accessPoint
-								showNewItem = true
+								self.showNewItem = true
 							}) {
 								Label("Access Point", systemImage: iconForVaultType(type: .accessPoint))
 									.labelStyle(.titleAndIcon)
@@ -174,7 +180,7 @@ struct OpenVaultView: View {
 							// New License Key
 							Button(action: {
 								self.newItemType = VaultItemType.license
-								showNewItem = true
+								self.showNewItem = true
 							}) {
 								Label("License Key", systemImage: iconForVaultType(type: .license))
 									.labelStyle(.titleAndIcon)
@@ -221,6 +227,14 @@ struct OpenVaultView: View {
 							Divider()
 #endif
 
+							// Preferences
+							Button(action: {
+								self.showPrefs = true
+							}, label: {
+								Label("Preferences...", systemImage: "note.text")
+									.labelStyle(.titleAndIcon)
+							})
+
 							// Close the Vault
 							Button(action: {
 								AppState.shared.closeVault()
@@ -266,6 +280,11 @@ struct OpenVaultView: View {
 
 				// Show a blank view for the user to enter new information.
 				NavigationLink(destination: NewItemView(newItemType: self.$newItemType), isActive: self.$showNewItem) {}
+			)
+			.background(
+				
+				// Show the preferences view.
+				NavigationLink(destination: VaultPrefsView(), isActive: self.$showPrefs) {}
 			)
 			.navigationBarBackButtonHidden(true)
 #endif
