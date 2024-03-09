@@ -73,6 +73,11 @@ class AppState {
 		return password!.count > 0
 #endif
 	}
+	
+	func isBiometricIdEnabledForCurrentVault() -> Bool {
+		let currentVaultName = AppState.shared.vault.name()
+		return self.isBiometricIdEnabledForVault(vaultName: currentVaultName)
+	}
 
 #if !os(watchOS)
 	/// Returns the type of biometric authentication that is used on this device (touch, face, etc.)
@@ -212,7 +217,13 @@ class AppState {
 		}
 		return false
 	}
-
+	
+	func changeCurrentVaultPassword(newPassword: String) {
+	}
+	
+	func setRecoveryPasswordForTheCurrentVault(password: String) {
+	}
+	
 	private func openVaultInner(baseLocation: String, vaultName: String, password: String) throws {
 		// Open and read the vault.
 		try self.vault.open(vaultLocation: baseLocation, name: vaultName, key: password)

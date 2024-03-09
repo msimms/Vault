@@ -28,7 +28,7 @@
 import SwiftUI
 
 struct PasswordView: View {
-	@State var password: String = ""
+	@Binding var password: String
 	@State private var showPassword: Bool = false
 
 	var body: some View {

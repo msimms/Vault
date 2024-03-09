@@ -29,31 +29,76 @@ import SwiftUI
 
 struct VaultPrefsView: View {
 	@Environment(\.dismiss) var dismiss
+	@State private var biometricAuthEnabled: Bool = AppState.shared.isBiometricIdEnabledForCurrentVault()
+	@State private var changePassword1: String = ""
+	@State private var changePassword2: String = ""
+	@State private var recoveryPassword1: String = ""
+	@State private var recoveryPassword2: String = ""
+	@State private var isShowingPasswordsDoNotMatch: Bool = false
 
 	var body: some View {
 		VStack(alignment: .center) {
 
-			Text("Change the Vault Password")
-				.bold()
+			Group() {
+				Text("Change the Vault Password")
+					.font(.system(size: 24))
+					.bold()
+					.padding(10)
+				
+				// Password
+				Label("Password", systemImage: "lock.circle")
+				PasswordView(password: self.$changePassword1)
+				
+				// Password Confirmation
+				Label("Confirm Password", systemImage: "lock.circle")
+				PasswordView(password: self.$changePassword2)
 
-			// Password
-			Label("Password", systemImage: "lock.circle")
-			PasswordView()
-			
-			// Password Confirmation
-			Label("Confirm Password", systemImage: "lock.circle")
-			PasswordView()
+				Button("Change") {
+					if self.changePassword1 == self.changePassword2 {
+						AppState.shared.changeCurrentVaultPassword(newPassword: self.changePassword1)
+					}
+					else {
+						self.isShowingPasswordsDoNotMatch = true
+					}
+				}
+			}
 
-			Text("Set the Recovery Password")
-				.bold()
+			if AppState.shared.healthMgr.isHealthDataAvailable() {
+				Text("Set the Recovery Password")
+					.font(.system(size: 24))
+					.bold()
+					.padding(10)
 
-			// Password
-			Label("Password", systemImage: "lock.circle")
-			PasswordView()
-			
-			// Password Confirmation
-			Label("Confirm Password", systemImage: "lock.circle")
-			PasswordView()
+				// Password
+				Label("Password", systemImage: "lock.circle")
+				PasswordView(password: self.$recoveryPassword1)
+
+				// Password Confirmation
+				Label("Confirm Password", systemImage: "lock.circle")
+				PasswordView(password: self.$recoveryPassword2)
+
+				Button("Set") {
+					if self.recoveryPassword1 == self.recoveryPassword2 {
+						AppState.shared.setRecoveryPasswordForTheCurrentVault(password: self.recoveryPassword1)
+					}
+					else {
+						self.isShowingPasswordsDoNotMatch = true
+					}
+				}
+			}
+
+			if AppState.shared.isBiometricIdAvailable() {
+				HStack() {
+					Toggle(isOn: self.$biometricAuthEnabled) {
+						if self.biometricAuthEnabled {
+							//AppState.shared.isBiometricIdEnabledForCurrentVault()
+						}
+					}
+					Text("Enable Biometric Authorization")
+						.font(.system(size: 24))
+						.bold()
+				}
+			}
 		}
 	}
 }

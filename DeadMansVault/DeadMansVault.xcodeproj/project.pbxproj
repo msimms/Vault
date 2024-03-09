@@ -342,6 +342,7 @@
 				274AA6C72A8FF1C700F77F96 /* PasswordGenerator.swift */,
 				274AA6C22A8FF1C600F77F96 /* PasswordGeneratorView.swift */,
 				274AA6D82A8FF1CA00F77F96 /* PasswordVaultDocument.swift */,
+				2765F9922B8E52D000B3E75E /* PasswordView.swift */,
 				2771DBF22AAA4C5300D70021 /* PhotoPicker.swift */,
 				274AA6CC2A8FF1C800F77F96 /* Preferences.swift */,
 				274AA6C32A8FF1C600F77F96 /* SecureAccessPointItem.swift */,
@@ -365,7 +366,6 @@
 				274AA6D02A8FF1C800F77F96 /* VaultState.swift */,
 				274AA6CB2A8FF1C700F77F96 /* VaultViewModel.swift */,
 				274AA6462A8FD10300F77F96 /* Preview Content */,
-				2765F9922B8E52D000B3E75E /* PasswordView.swift */,
 			);
 			path = DeadMansVault;
 			sourceTree = "<group>";
