@@ -67,8 +67,16 @@ struct SecureLoginView: View {
 					Group() {
 						Text("Website")
 							.fontWeight(.heavy)
-						TextField("Website", text: self.$item.website)
-							.disabled(self.isReadOnly)
+						ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
+							TextField("Website", text: self.$item.website)
+								.disabled(self.isReadOnly)
+							Button(action: {
+								copyToPasteboard(value: self.item.website)
+							}) {
+								Image(systemName: "doc.on.doc")
+									.foregroundColor(.secondary)
+							}
+						})
 						Text("Additional URLs")
 							.fontWeight(.heavy)
 						VStack(alignment: .leading) {
