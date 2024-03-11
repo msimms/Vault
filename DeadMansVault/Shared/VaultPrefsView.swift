@@ -35,6 +35,7 @@ struct VaultPrefsView: View {
 	@State private var recoveryPassword1: String = ""
 	@State private var recoveryPassword2: String = ""
 	@State private var isShowingPasswordsDoNotMatch: Bool = false
+	@State private var isShowingBiometricToggleError: Bool = false
 
 	var body: some View {
 		VStack(alignment: .center) {
@@ -90,9 +91,12 @@ struct VaultPrefsView: View {
 			if AppState.shared.isBiometricIdAvailable() {
 				HStack() {
 					Toggle(isOn: self.$biometricAuthEnabled) {
+					}
+					.onChange(of: self.biometricAuthEnabled) {
 						if self.biometricAuthEnabled {
-							//AppState.shared.isBiometricIdEnabledForCurrentVault()
+							self.isShowingBiometricToggleError = AppState.shared.isBiometricIdEnabledForCurrentVault()
 						}
+						self.isShowingBiometricToggleError = AppState.shared.disableBiometricAuthenticationForCurrentVault()
 					}
 					Text("Enable Biometric Authorization")
 						.font(.system(size: 24))

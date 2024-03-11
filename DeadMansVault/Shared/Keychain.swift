@@ -58,4 +58,13 @@ class Keychain {
 			return nil
 		}
 	}
+	
+	func delete(keyName: String) -> Bool {
+		let query = [
+			kSecClass as String : kSecClassGenericPassword as String,
+			kSecAttrAccount as String : keyName  ] as [String : Any]
+		
+		// Remove any old versions.
+		return SecItemDelete(query as CFDictionary) == errSecSuccess
+	}
 }

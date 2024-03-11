@@ -90,6 +90,14 @@ class AppState {
 	func flagVaultForBiometricAuthSetup(vaultName: String) {
 		self.setupBiometricAuth = true
 	}
+
+	/// Removes the key from the keychain, thus disabling biometric authentication for the current vault.
+	func disableBiometricAuthenticationForCurrentVault() -> Bool {
+		let currentVaultName = AppState.shared.vault.name()
+		let keyName = self.keychainKeyForVaultName(vaultName: currentVaultName)
+		let keychain = Keychain()
+		return keychain.delete(keyName: keyName)
+	}
 	
 	/// This method checks to see if the vault is marked for biometric auth setup.
 	/// If it is, the password will be saved to the keychain when the vault is opened.
