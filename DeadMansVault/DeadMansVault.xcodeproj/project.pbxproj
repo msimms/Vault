@@ -70,6 +70,7 @@
 		27774DA52A90132900D288ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27774DA22A900C5B00D288ED /* Assets.xcassets */; };
 		278B82442B2A200300EB7B0A /* HealthStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278B82432B2A200300EB7B0A /* HealthStatusView.swift */; };
 		27BF1A942AE8248F00BDA339 /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BF1A932AE8248F00BDA339 /* DocumentPicker.swift */; };
+		27CFBB3D2BAD0337002F5436 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6CD2A8FF1C800F77F96 /* Keychain.swift */; };
 		27E30B5C2A92CF5700236EAB /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6CC2A8FF1C800F77F96 /* Preferences.swift */; };
 		27E30B5D2A92CF6300236EAB /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6CE2A8FF1C800F77F96 /* AppState.swift */; };
 		27E30B5E2A92CFAD00236EAB /* VaultDisplayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6D32A8FF1C900F77F96 /* VaultDisplayState.swift */; };
@@ -772,6 +773,7 @@
 				27E30B652A92EC2A00236EAB /* VaultItemFactory.swift in Sources */,
 				27E30B682A92EC4C00236EAB /* SecureNoteItem.swift in Sources */,
 				27E30B612A92D4A300236EAB /* Vault.swift in Sources */,
+				27CFBB3D2BAD0337002F5436 /* Keychain.swift in Sources */,
 				27E30B5F2A92D0E400236EAB /* VaultState.swift in Sources */,
 				27E30B692A92ECD300236EAB /* SecureAccessPointItem.swift in Sources */,
 				27E30B632A92EBFB00236EAB /* Importer.swift in Sources */,
