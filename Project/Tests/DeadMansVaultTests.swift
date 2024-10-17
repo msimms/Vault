@@ -1,14 +1,11 @@
 //
-//  DeadMansVaultWatch_Watch_AppTests.swift
-//  DeadMansVaultWatch Watch AppTests
-//
+//  DeadMansVaultTests.swift
 //  Created by Michael Simms on 8/18/23.
 //
 
 import XCTest
-@testable import DeadMansVaultWatch_Watch_App
 
-final class DeadMansVaultWatch_Watch_AppTests: XCTestCase {
+final class DeadMansVaultTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -23,12 +20,12 @@ final class DeadMansVaultWatch_Watch_AppTests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         // Any test you write for XCTest can be annotated as throws and async.
         // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Tests marked async will run the test method on an arbitrary thread managed by the Swift runtime.
+        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
     }
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
-        self.measure {
+        measure {
             // Put the code you want to measure the time of here.
         }
     }

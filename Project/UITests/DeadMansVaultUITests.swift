@@ -1,7 +1,5 @@
 //
 //  DeadMansVaultUITests.swift
-//  DeadMansVaultUITests
-//
 //  Created by Michael Simms on 8/18/23.
 //
 

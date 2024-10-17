@@ -1,7 +1,5 @@
 //
 //  DeadMansVaultWatch_Watch_AppUITests.swift
-//  DeadMansVaultWatch Watch AppUITests
-//
 //  Created by Michael Simms on 8/18/23.
 //
 

@@ -1,13 +1,11 @@
 //
-//  DeadMansVaultWatch_Watch_AppUITestsLaunchTests.swift
-//  DeadMansVaultWatch Watch AppUITests
-//
+//  DeadMansVaultUITestsLaunchTests.swift
 //  Created by Michael Simms on 8/18/23.
 //
 
 import XCTest
 
-final class DeadMansVaultWatch_Watch_AppUITestsLaunchTests: XCTestCase {
+final class DeadMansVaultUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

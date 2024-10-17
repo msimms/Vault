@@ -19,7 +19,7 @@
 		274AA6522A8FD10300F77F96 /* DeadMansVaultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6512A8FD10300F77F96 /* DeadMansVaultTests.swift */; };
 		274AA65C2A8FD10300F77F96 /* DeadMansVaultUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA65B2A8FD10300F77F96 /* DeadMansVaultUITests.swift */; };
 		274AA65E2A8FD10300F77F96 /* DeadMansVaultUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA65D2A8FD10300F77F96 /* DeadMansVaultUITestsLaunchTests.swift */; };
-		274AA6712A8FD32300F77F96 /* DeadMansVaultWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6702A8FD32300F77F96 /* DeadMansVaultWatchApp.swift */; };
+		274AA6712A8FD32300F77F96 /* WatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6702A8FD32300F77F96 /* WatchApp.swift */; };
 		274AA6732A8FD32300F77F96 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6722A8FD32300F77F96 /* ContentView.swift */; };
 		274AA6752A8FD32400F77F96 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 274AA6742A8FD32400F77F96 /* Assets.xcassets */; };
 		274AA6782A8FD32400F77F96 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 274AA6772A8FD32400F77F96 /* Preview Assets.xcassets */; };
@@ -174,7 +174,7 @@
 		274AA65B2A8FD10300F77F96 /* DeadMansVaultUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadMansVaultUITests.swift; sourceTree = "<group>"; };
 		274AA65D2A8FD10300F77F96 /* DeadMansVaultUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadMansVaultUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		274AA66E2A8FD32300F77F96 /* DeadMansVaultWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DeadMansVaultWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		274AA6702A8FD32300F77F96 /* DeadMansVaultWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadMansVaultWatchApp.swift; sourceTree = "<group>"; };
+		274AA6702A8FD32300F77F96 /* WatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchApp.swift; sourceTree = "<group>"; };
 		274AA6722A8FD32300F77F96 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		274AA6742A8FD32400F77F96 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		274AA6772A8FD32400F77F96 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -229,7 +229,7 @@
 		278B82432B2A200300EB7B0A /* HealthStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HealthStatusView.swift; path = Shared/HealthStatusView.swift; sourceTree = SOURCE_ROOT; };
 		27BF1A932AE8248F00BDA339 /* DocumentPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DocumentPicker.swift; path = Shared/DocumentPicker.swift; sourceTree = SOURCE_ROOT; };
 		27E30B5B2A90346200236EAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		27F4CC342B1964A700BE4B12 /* words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = words.txt; path = DeadMansVault/words.txt; sourceTree = "<group>"; };
+		27F4CC342B1964A700BE4B12 /* words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = words.txt; path = App/words.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -294,7 +294,7 @@
 				274AA6452A8FD10300F77F96 /* DeadMansVault.entitlements */,
 				277B18222AABC2240009BC08 /* Launch Screen.storyboard */,
 				27F4CC342B1964A700BE4B12 /* words.txt */,
-				274AA63E2A8FD10200F77F96 /* DeadMansVault */,
+				274AA63E2A8FD10200F77F96 /* App */,
 				274AA6502A8FD10300F77F96 /* Tests */,
 				274AA65A2A8FD10300F77F96 /* UITests */,
 				274AA66F2A8FD32300F77F96 /* Watch App */,
@@ -319,7 +319,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		274AA63E2A8FD10200F77F96 /* DeadMansVault */ = {
+		274AA63E2A8FD10200F77F96 /* App */ = {
 			isa = PBXGroup;
 			children = (
 				27E30B5B2A90346200236EAB /* Info.plist */,
@@ -368,7 +368,7 @@
 				274AA6CB2A8FF1C700F77F96 /* VaultViewModel.swift */,
 				274AA6462A8FD10300F77F96 /* Preview Content */,
 			);
-			path = DeadMansVault;
+			path = App;
 			sourceTree = "<group>";
 		};
 		274AA6462A8FD10300F77F96 /* Preview Content */ = {
@@ -399,7 +399,7 @@
 		274AA66F2A8FD32300F77F96 /* Watch App */ = {
 			isa = PBXGroup;
 			children = (
-				274AA6702A8FD32300F77F96 /* DeadMansVaultWatchApp.swift */,
+				274AA6702A8FD32300F77F96 /* WatchApp.swift */,
 				274AA6722A8FD32300F77F96 /* ContentView.swift */,
 				274AA6742A8FD32400F77F96 /* Assets.xcassets */,
 				274AA6762A8FD32400F77F96 /* Preview Content */,
@@ -609,7 +609,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 274AA6372A8FD10200F77F96 /* Build configuration list for PBXProject "DeadMansVault" */;
+			buildConfigurationList = 274AA6372A8FD10200F77F96 /* Build configuration list for PBXProject "Project" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -768,7 +768,7 @@
 				274AA6732A8FD32300F77F96 /* ContentView.swift in Sources */,
 				27E30B622A92E14A00236EAB /* VaultException.swift in Sources */,
 				2738EFE72AB396530066B3CB /* SecureLicenseItem.swift in Sources */,
-				274AA6712A8FD32300F77F96 /* DeadMansVaultWatchApp.swift in Sources */,
+				274AA6712A8FD32300F77F96 /* WatchApp.swift in Sources */,
 				270B435A2B853739001D1934 /* HealthStatusView.swift in Sources */,
 				27E30B652A92EC2A00236EAB /* VaultItemFactory.swift in Sources */,
 				27E30B682A92EC4C00236EAB /* SecureNoteItem.swift in Sources */,
@@ -1359,7 +1359,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		274AA6372A8FD10200F77F96 /* Build configuration list for PBXProject "DeadMansVault" */ = {
+		274AA6372A8FD10200F77F96 /* Build configuration list for PBXProject "Project" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				274AA65F2A8FD10300F77F96 /* Debug */,
