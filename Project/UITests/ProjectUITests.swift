@@ -1,11 +1,11 @@
 //
-//  DeadMansVaultUITests.swift
+//  ProjectUITests.swift
 //  Created by Michael Simms on 8/18/23.
 //
 
 import XCTest
 
-final class DeadMansVaultUITests: XCTestCase {
+final class ProjectUITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
