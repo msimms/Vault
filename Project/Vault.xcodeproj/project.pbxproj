@@ -23,9 +23,9 @@
 		274AA6732A8FD32300F77F96 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6722A8FD32300F77F96 /* ContentView.swift */; };
 		274AA6752A8FD32400F77F96 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 274AA6742A8FD32400F77F96 /* Assets.xcassets */; };
 		274AA6782A8FD32400F77F96 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 274AA6772A8FD32400F77F96 /* Preview Assets.xcassets */; };
-		274AA6822A8FD32400F77F96 /* Project_Watch_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6812A8FD32400F77F96 /* Project_Watch_AppTests.swift */; };
-		274AA68C2A8FD32400F77F96 /* Project_Watch_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA68B2A8FD32400F77F96 /* Project_Watch_AppUITests.swift */; };
-		274AA68E2A8FD32400F77F96 /* Project_Watch_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA68D2A8FD32400F77F96 /* Project_Watch_AppUITestsLaunchTests.swift */; };
+		274AA6822A8FD32400F77F96 /* DeadMansVaultWatch_Watch_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6812A8FD32400F77F96 /* DeadMansVaultWatch_Watch_AppTests.swift */; };
+		274AA68C2A8FD32400F77F96 /* DeadMansVaultWatch_Watch_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA68B2A8FD32400F77F96 /* DeadMansVaultWatch_Watch_AppUITests.swift */; };
+		274AA68E2A8FD32400F77F96 /* DeadMansVaultWatch_Watch_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA68D2A8FD32400F77F96 /* DeadMansVaultWatch_Watch_AppUITestsLaunchTests.swift */; };
 		274AA6912A8FD32400F77F96 /* DeadMansVaultWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 274AA66E2A8FD32300F77F96 /* DeadMansVaultWatch Watch App.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		274AA6B92A8FD35500F77F96 /* DeadMansVaultBrowser.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 274AA6A02A8FD35400F77F96 /* DeadMansVaultBrowser.appex */; platformFilters = (macos, ); settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		274AA6E12A8FF1CC00F77F96 /* SecureCardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6BF2A8FF1C500F77F96 /* SecureCardItem.swift */; };
@@ -179,10 +179,10 @@
 		274AA6742A8FD32400F77F96 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		274AA6772A8FD32400F77F96 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		274AA67D2A8FD32400F77F96 /* DeadMansVaultWatch Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DeadMansVaultWatch Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		274AA6812A8FD32400F77F96 /* Project_Watch_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project_Watch_AppTests.swift; sourceTree = "<group>"; };
+		274AA6812A8FD32400F77F96 /* DeadMansVaultWatch_Watch_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadMansVaultWatch_Watch_AppTests.swift; sourceTree = "<group>"; };
 		274AA6872A8FD32400F77F96 /* DeadMansVaultWatch Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DeadMansVaultWatch Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		274AA68B2A8FD32400F77F96 /* Project_Watch_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project_Watch_AppUITests.swift; sourceTree = "<group>"; };
-		274AA68D2A8FD32400F77F96 /* Project_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		274AA68B2A8FD32400F77F96 /* DeadMansVaultWatch_Watch_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadMansVaultWatch_Watch_AppUITests.swift; sourceTree = "<group>"; };
+		274AA68D2A8FD32400F77F96 /* DeadMansVaultWatch_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadMansVaultWatch_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		274AA6A02A8FD35400F77F96 /* DeadMansVaultBrowser.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DeadMansVaultBrowser.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		274AA6BE2A8FEBEF00F77F96 /* Project Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Project Watch App.entitlements"; sourceTree = "<group>"; };
 		274AA6BF2A8FF1C500F77F96 /* SecureCardItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecureCardItem.swift; path = Shared/SecureCardItem.swift; sourceTree = SOURCE_ROOT; };
@@ -223,7 +223,7 @@
 		2771DBEE2AA7BF7D00D70021 /* SecureVaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SecureVaultView.swift; path = Shared/SecureVaultView.swift; sourceTree = SOURCE_ROOT; };
 		2771DBF02AA9152400D70021 /* AttachFilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AttachFilesView.swift; path = Shared/AttachFilesView.swift; sourceTree = SOURCE_ROOT; };
 		2771DBF22AAA4C5300D70021 /* PhotoPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoPicker.swift; path = Shared/PhotoPicker.swift; sourceTree = SOURCE_ROOT; };
-		27774DA12A900B1200D288ED /* ProjectBrowser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ProjectBrowser.entitlements; sourceTree = "<group>"; };
+		27774DA12A900B1200D288ED /* Browser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Browser.entitlements; sourceTree = "<group>"; };
 		27774DA22A900C5B00D288ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Shared/Assets.xcassets; sourceTree = "<group>"; };
 		277B18222AABC2240009BC08 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		278B82432B2A200300EB7B0A /* HealthStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HealthStatusView.swift; path = Shared/HealthStatusView.swift; sourceTree = SOURCE_ROOT; };
@@ -289,7 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				27774DA22A900C5B00D288ED /* Assets.xcassets */,
-				27774DA12A900B1200D288ED /* ProjectBrowser.entitlements */,
+				27774DA12A900B1200D288ED /* Browser.entitlements */,
 				274AA6BE2A8FEBEF00F77F96 /* Project Watch App.entitlements */,
 				274AA6452A8FD10300F77F96 /* Project.entitlements */,
 				277B18222AABC2240009BC08 /* Launch Screen.storyboard */,
@@ -418,7 +418,7 @@
 		274AA6802A8FD32400F77F96 /* Watch AppTests */ = {
 			isa = PBXGroup;
 			children = (
-				274AA6812A8FD32400F77F96 /* Project_Watch_AppTests.swift */,
+				274AA6812A8FD32400F77F96 /* DeadMansVaultWatch_Watch_AppTests.swift */,
 			);
 			path = "Watch AppTests";
 			sourceTree = "<group>";
@@ -426,8 +426,8 @@
 		274AA68A2A8FD32400F77F96 /* Watch AppUITests */ = {
 			isa = PBXGroup;
 			children = (
-				274AA68B2A8FD32400F77F96 /* Project_Watch_AppUITests.swift */,
-				274AA68D2A8FD32400F77F96 /* Project_Watch_AppUITestsLaunchTests.swift */,
+				274AA68B2A8FD32400F77F96 /* DeadMansVaultWatch_Watch_AppUITests.swift */,
+				274AA68D2A8FD32400F77F96 /* DeadMansVaultWatch_Watch_AppUITestsLaunchTests.swift */,
 			);
 			path = "Watch AppUITests";
 			sourceTree = "<group>";
@@ -609,7 +609,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 274AA6372A8FD10200F77F96 /* Build configuration list for PBXProject "Project" */;
+			buildConfigurationList = 274AA6372A8FD10200F77F96 /* Build configuration list for PBXProject "Vault" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -791,7 +791,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				274AA6822A8FD32400F77F96 /* Project_Watch_AppTests.swift in Sources */,
+				274AA6822A8FD32400F77F96 /* DeadMansVaultWatch_Watch_AppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -799,8 +799,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				274AA68E2A8FD32400F77F96 /* Project_Watch_AppUITestsLaunchTests.swift in Sources */,
-				274AA68C2A8FD32400F77F96 /* Project_Watch_AppUITests.swift in Sources */,
+				274AA68E2A8FD32400F77F96 /* DeadMansVaultWatch_Watch_AppUITestsLaunchTests.swift in Sources */,
+				274AA68C2A8FD32400F77F96 /* DeadMansVaultWatch_Watch_AppUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -970,12 +970,12 @@
 				CODE_SIGN_ENTITLEMENTS = Project.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_ASSET_PATHS = "\"Project/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"App/Preview Content\"";
 				DEVELOPMENT_TEAM = F42C985T48;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Project/Info.plist;
+				INFOPLIST_FILE = App/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Face ID can be used to unlock vaults";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "HealthKit is used to determine if the vault owner is active or not";
@@ -1014,12 +1014,12 @@
 				CODE_SIGN_ENTITLEMENTS = Project.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_ASSET_PATHS = "\"Project/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"App/Preview Content\"";
 				DEVELOPMENT_TEAM = F42C985T48;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Project/Info.plist;
+				INFOPLIST_FILE = App/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Face ID can be used to unlock vaults";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "HealthKit is used to determine if the vault owner is active or not";
@@ -1293,10 +1293,10 @@
 		274AA6BB2A8FD35500F77F96 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = ProjectBrowser.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Browser.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_ASSET_PATHS = ProjectBrowser.entitlements;
+				DEVELOPMENT_ASSET_PATHS = Browser.entitlements;
 				DEVELOPMENT_TEAM = F42C985T48;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1326,10 +1326,10 @@
 		274AA6BC2A8FD35500F77F96 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = ProjectBrowser.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Browser.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_ASSET_PATHS = ProjectBrowser.entitlements;
+				DEVELOPMENT_ASSET_PATHS = Browser.entitlements;
 				DEVELOPMENT_TEAM = F42C985T48;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1359,7 +1359,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		274AA6372A8FD10200F77F96 /* Build configuration list for PBXProject "Project" */ = {
+		274AA6372A8FD10200F77F96 /* Build configuration list for PBXProject "Vault" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				274AA65F2A8FD10300F77F96 /* Debug */,
