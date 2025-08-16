@@ -1,6 +1,6 @@
 # Vault
 
-A server-less password manager for mac OS and iOS.
+A server-less password manager for macOS and iOS.
 
 ## Rationale
 
