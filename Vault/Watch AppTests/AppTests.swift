@@ -1,12 +1,12 @@
 //
-//  Project_Watch_AppTests.swift
+//  AppTests.swift
 //  Created by Michael Simms on 8/18/23.
 //
 
 import XCTest
 @testable import DeadMansVaultWatch_Watch_App
 
-final class Project_Watch_AppTests: XCTestCase {
+final class AppTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
