@@ -26,8 +26,8 @@
 		274AA6822A8FD32400F77F96 /* AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6812A8FD32400F77F96 /* AppTests.swift */; };
 		274AA68C2A8FD32400F77F96 /* AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA68B2A8FD32400F77F96 /* AppUITests.swift */; };
 		274AA68E2A8FD32400F77F96 /* AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA68D2A8FD32400F77F96 /* AppUITestsLaunchTests.swift */; };
-		274AA6912A8FD32400F77F96 /* DeadMansVaultWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 274AA66E2A8FD32300F77F96 /* DeadMansVaultWatch Watch App.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		274AA6B92A8FD35500F77F96 /* DeadMansVaultBrowser.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 274AA6A02A8FD35400F77F96 /* DeadMansVaultBrowser.appex */; platformFilters = (macos, ); settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		274AA6912A8FD32400F77F96 /* Vaultsy Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 274AA66E2A8FD32300F77F96 /* Vaultsy Watch App.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		274AA6B92A8FD35500F77F96 /* VaultsyBrowser.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 274AA6A02A8FD35400F77F96 /* VaultsyBrowser.appex */; platformFilters = (macos, ); settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		274AA6E12A8FF1CC00F77F96 /* SecureCardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6BF2A8FF1C500F77F96 /* SecureCardItem.swift */; };
 		274AA6E32A8FF1CC00F77F96 /* NewTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6C12A8FF1C500F77F96 /* NewTagView.swift */; };
 		274AA6E42A8FF1CC00F77F96 /* PasswordGeneratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6C22A8FF1C600F77F96 /* PasswordGeneratorView.swift */; };
@@ -140,7 +140,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				274AA6912A8FD32400F77F96 /* DeadMansVaultWatch Watch App.app in Embed Watch Content */,
+				274AA6912A8FD32400F77F96 /* Vaultsy Watch App.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -151,7 +151,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				274AA6B92A8FD35500F77F96 /* DeadMansVaultBrowser.appex in Embed Foundation Extensions */,
+				274AA6B92A8FD35500F77F96 /* VaultsyBrowser.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -164,26 +164,26 @@
 		27212F8B2A9008AF000D54D2 /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resources; sourceTree = "<group>"; };
 		2738EFE32AB37D700066B3CB /* SecureLicenseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecureLicenseView.swift; path = Shared/SecureLicenseView.swift; sourceTree = SOURCE_ROOT; };
 		2738EFE42AB37D700066B3CB /* SecureLicenseItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecureLicenseItem.swift; path = Shared/SecureLicenseItem.swift; sourceTree = SOURCE_ROOT; };
-		274AA63C2A8FD10200F77F96 /* DeadMansVault.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeadMansVault.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		274AA63C2A8FD10200F77F96 /* Vaultsy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vaultsy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		274AA63F2A8FD10200F77F96 /* VaultApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultApp.swift; sourceTree = "<group>"; };
 		274AA6452A8FD10300F77F96 /* Project.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Project.entitlements; sourceTree = "<group>"; };
 		274AA6472A8FD10300F77F96 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		274AA64D2A8FD10300F77F96 /* DeadMansVaultTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeadMansVaultTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		274AA64D2A8FD10300F77F96 /* VaultsyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VaultsyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		274AA6512A8FD10300F77F96 /* ProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTests.swift; sourceTree = "<group>"; };
-		274AA6572A8FD10300F77F96 /* DeadMansVaultUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeadMansVaultUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		274AA6572A8FD10300F77F96 /* VaultsyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VaultsyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		274AA65B2A8FD10300F77F96 /* ProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectUITests.swift; sourceTree = "<group>"; };
 		274AA65D2A8FD10300F77F96 /* ProjectUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		274AA66E2A8FD32300F77F96 /* DeadMansVaultWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DeadMansVaultWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		274AA66E2A8FD32300F77F96 /* Vaultsy Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Vaultsy Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		274AA6702A8FD32300F77F96 /* WatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchApp.swift; sourceTree = "<group>"; };
 		274AA6722A8FD32300F77F96 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		274AA6742A8FD32400F77F96 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		274AA6772A8FD32400F77F96 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		274AA67D2A8FD32400F77F96 /* DeadMansVaultWatch Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DeadMansVaultWatch Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		274AA67D2A8FD32400F77F96 /* Vaultsy Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Vaultsy Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		274AA6812A8FD32400F77F96 /* AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTests.swift; sourceTree = "<group>"; };
-		274AA6872A8FD32400F77F96 /* DeadMansVaultWatch Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DeadMansVaultWatch Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		274AA6872A8FD32400F77F96 /* Vaultsy Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Vaultsy Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		274AA68B2A8FD32400F77F96 /* AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUITests.swift; sourceTree = "<group>"; };
 		274AA68D2A8FD32400F77F96 /* AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		274AA6A02A8FD35400F77F96 /* DeadMansVaultBrowser.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DeadMansVaultBrowser.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		274AA6A02A8FD35400F77F96 /* VaultsyBrowser.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = VaultsyBrowser.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		274AA6BE2A8FEBEF00F77F96 /* Project Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Project Watch App.entitlements"; sourceTree = "<group>"; };
 		274AA6BF2A8FF1C500F77F96 /* SecureCardItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecureCardItem.swift; path = Shared/SecureCardItem.swift; sourceTree = SOURCE_ROOT; };
 		274AA6C12A8FF1C500F77F96 /* NewTagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewTagView.swift; path = Shared/NewTagView.swift; sourceTree = SOURCE_ROOT; };
@@ -308,13 +308,13 @@
 		274AA63D2A8FD10200F77F96 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				274AA63C2A8FD10200F77F96 /* DeadMansVault.app */,
-				274AA64D2A8FD10300F77F96 /* DeadMansVaultTests.xctest */,
-				274AA6572A8FD10300F77F96 /* DeadMansVaultUITests.xctest */,
-				274AA66E2A8FD32300F77F96 /* DeadMansVaultWatch Watch App.app */,
-				274AA67D2A8FD32400F77F96 /* DeadMansVaultWatch Watch AppTests.xctest */,
-				274AA6872A8FD32400F77F96 /* DeadMansVaultWatch Watch AppUITests.xctest */,
-				274AA6A02A8FD35400F77F96 /* DeadMansVaultBrowser.appex */,
+				274AA63C2A8FD10200F77F96 /* Vaultsy.app */,
+				274AA64D2A8FD10300F77F96 /* VaultsyTests.xctest */,
+				274AA6572A8FD10300F77F96 /* VaultsyUITests.xctest */,
+				274AA66E2A8FD32300F77F96 /* Vaultsy Watch App.app */,
+				274AA67D2A8FD32400F77F96 /* Vaultsy Watch AppTests.xctest */,
+				274AA6872A8FD32400F77F96 /* Vaultsy Watch AppUITests.xctest */,
+				274AA6A02A8FD35400F77F96 /* VaultsyBrowser.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -445,9 +445,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		274AA63B2A8FD10200F77F96 /* DeadMansVault */ = {
+		274AA63B2A8FD10200F77F96 /* Vaultsy */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 274AA6612A8FD10300F77F96 /* Build configuration list for PBXNativeTarget "DeadMansVault" */;
+			buildConfigurationList = 274AA6612A8FD10300F77F96 /* Build configuration list for PBXNativeTarget "Vaultsy" */;
 			buildPhases = (
 				274AA6382A8FD10200F77F96 /* Sources */,
 				274AA6392A8FD10200F77F96 /* Frameworks */,
@@ -461,14 +461,14 @@
 				274AA6902A8FD32400F77F96 /* PBXTargetDependency */,
 				274AA6B82A8FD35500F77F96 /* PBXTargetDependency */,
 			);
-			name = DeadMansVault;
+			name = Vaultsy;
 			productName = DeadMansVault;
-			productReference = 274AA63C2A8FD10200F77F96 /* DeadMansVault.app */;
+			productReference = 274AA63C2A8FD10200F77F96 /* Vaultsy.app */;
 			productType = "com.apple.product-type.application";
 		};
-		274AA64C2A8FD10300F77F96 /* DeadMansVaultTests */ = {
+		274AA64C2A8FD10300F77F96 /* VaultsyTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 274AA6642A8FD10300F77F96 /* Build configuration list for PBXNativeTarget "DeadMansVaultTests" */;
+			buildConfigurationList = 274AA6642A8FD10300F77F96 /* Build configuration list for PBXNativeTarget "VaultsyTests" */;
 			buildPhases = (
 				274AA6492A8FD10300F77F96 /* Sources */,
 				274AA64A2A8FD10300F77F96 /* Frameworks */,
@@ -479,14 +479,14 @@
 			dependencies = (
 				274AA64F2A8FD10300F77F96 /* PBXTargetDependency */,
 			);
-			name = DeadMansVaultTests;
+			name = VaultsyTests;
 			productName = DeadMansVaultTests;
-			productReference = 274AA64D2A8FD10300F77F96 /* DeadMansVaultTests.xctest */;
+			productReference = 274AA64D2A8FD10300F77F96 /* VaultsyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		274AA6562A8FD10300F77F96 /* DeadMansVaultUITests */ = {
+		274AA6562A8FD10300F77F96 /* VaultsyUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 274AA6672A8FD10300F77F96 /* Build configuration list for PBXNativeTarget "DeadMansVaultUITests" */;
+			buildConfigurationList = 274AA6672A8FD10300F77F96 /* Build configuration list for PBXNativeTarget "VaultsyUITests" */;
 			buildPhases = (
 				274AA6532A8FD10300F77F96 /* Sources */,
 				274AA6542A8FD10300F77F96 /* Frameworks */,
@@ -497,14 +497,14 @@
 			dependencies = (
 				274AA6592A8FD10300F77F96 /* PBXTargetDependency */,
 			);
-			name = DeadMansVaultUITests;
+			name = VaultsyUITests;
 			productName = DeadMansVaultUITests;
-			productReference = 274AA6572A8FD10300F77F96 /* DeadMansVaultUITests.xctest */;
+			productReference = 274AA6572A8FD10300F77F96 /* VaultsyUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		274AA66D2A8FD32300F77F96 /* DeadMansVaultWatch Watch App */ = {
+		274AA66D2A8FD32300F77F96 /* Vaultsy Watch App */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 274AA6922A8FD32400F77F96 /* Build configuration list for PBXNativeTarget "DeadMansVaultWatch Watch App" */;
+			buildConfigurationList = 274AA6922A8FD32400F77F96 /* Build configuration list for PBXNativeTarget "Vaultsy Watch App" */;
 			buildPhases = (
 				274AA66A2A8FD32300F77F96 /* Sources */,
 				274AA66B2A8FD32300F77F96 /* Frameworks */,
@@ -514,14 +514,14 @@
 			);
 			dependencies = (
 			);
-			name = "DeadMansVaultWatch Watch App";
+			name = "Vaultsy Watch App";
 			productName = "DeadMansVaultWatch Watch App";
-			productReference = 274AA66E2A8FD32300F77F96 /* DeadMansVaultWatch Watch App.app */;
+			productReference = 274AA66E2A8FD32300F77F96 /* Vaultsy Watch App.app */;
 			productType = "com.apple.product-type.application";
 		};
-		274AA67C2A8FD32400F77F96 /* DeadMansVaultWatch Watch AppTests */ = {
+		274AA67C2A8FD32400F77F96 /* Vaultsy Watch AppTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 274AA6962A8FD32400F77F96 /* Build configuration list for PBXNativeTarget "DeadMansVaultWatch Watch AppTests" */;
+			buildConfigurationList = 274AA6962A8FD32400F77F96 /* Build configuration list for PBXNativeTarget "Vaultsy Watch AppTests" */;
 			buildPhases = (
 				274AA6792A8FD32400F77F96 /* Sources */,
 				274AA67A2A8FD32400F77F96 /* Frameworks */,
@@ -532,14 +532,14 @@
 			dependencies = (
 				274AA67F2A8FD32400F77F96 /* PBXTargetDependency */,
 			);
-			name = "DeadMansVaultWatch Watch AppTests";
+			name = "Vaultsy Watch AppTests";
 			productName = "DeadMansVaultWatch Watch AppTests";
-			productReference = 274AA67D2A8FD32400F77F96 /* DeadMansVaultWatch Watch AppTests.xctest */;
+			productReference = 274AA67D2A8FD32400F77F96 /* Vaultsy Watch AppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		274AA6862A8FD32400F77F96 /* DeadMansVaultWatch Watch AppUITests */ = {
+		274AA6862A8FD32400F77F96 /* Vaultsy Watch AppUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 274AA6992A8FD32400F77F96 /* Build configuration list for PBXNativeTarget "DeadMansVaultWatch Watch AppUITests" */;
+			buildConfigurationList = 274AA6992A8FD32400F77F96 /* Build configuration list for PBXNativeTarget "Vaultsy Watch AppUITests" */;
 			buildPhases = (
 				274AA6832A8FD32400F77F96 /* Sources */,
 				274AA6842A8FD32400F77F96 /* Frameworks */,
@@ -550,14 +550,14 @@
 			dependencies = (
 				274AA6892A8FD32400F77F96 /* PBXTargetDependency */,
 			);
-			name = "DeadMansVaultWatch Watch AppUITests";
+			name = "Vaultsy Watch AppUITests";
 			productName = "DeadMansVaultWatch Watch AppUITests";
-			productReference = 274AA6872A8FD32400F77F96 /* DeadMansVaultWatch Watch AppUITests.xctest */;
+			productReference = 274AA6872A8FD32400F77F96 /* Vaultsy Watch AppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		274AA69F2A8FD35400F77F96 /* DeadMansVaultBrowser */ = {
+		274AA69F2A8FD35400F77F96 /* VaultsyBrowser */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 274AA6BA2A8FD35500F77F96 /* Build configuration list for PBXNativeTarget "DeadMansVaultBrowser" */;
+			buildConfigurationList = 274AA6BA2A8FD35500F77F96 /* Build configuration list for PBXNativeTarget "VaultsyBrowser" */;
 			buildPhases = (
 				274AA69C2A8FD35400F77F96 /* Sources */,
 				274AA69D2A8FD35400F77F96 /* Frameworks */,
@@ -567,9 +567,9 @@
 			);
 			dependencies = (
 			);
-			name = DeadMansVaultBrowser;
+			name = VaultsyBrowser;
 			productName = DeadMansVaultBrowser;
-			productReference = 274AA6A02A8FD35400F77F96 /* DeadMansVaultBrowser.appex */;
+			productReference = 274AA6A02A8FD35400F77F96 /* VaultsyBrowser.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -622,13 +622,13 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				274AA63B2A8FD10200F77F96 /* DeadMansVault */,
-				274AA64C2A8FD10300F77F96 /* DeadMansVaultTests */,
-				274AA6562A8FD10300F77F96 /* DeadMansVaultUITests */,
-				274AA66D2A8FD32300F77F96 /* DeadMansVaultWatch Watch App */,
-				274AA67C2A8FD32400F77F96 /* DeadMansVaultWatch Watch AppTests */,
-				274AA6862A8FD32400F77F96 /* DeadMansVaultWatch Watch AppUITests */,
-				274AA69F2A8FD35400F77F96 /* DeadMansVaultBrowser */,
+				274AA63B2A8FD10200F77F96 /* Vaultsy */,
+				274AA64C2A8FD10300F77F96 /* VaultsyTests */,
+				274AA6562A8FD10300F77F96 /* VaultsyUITests */,
+				274AA66D2A8FD32300F77F96 /* Vaultsy Watch App */,
+				274AA67C2A8FD32400F77F96 /* Vaultsy Watch AppTests */,
+				274AA6862A8FD32400F77F96 /* Vaultsy Watch AppUITests */,
+				274AA69F2A8FD35400F77F96 /* VaultsyBrowser */,
 			);
 		};
 /* End PBXProject section */
@@ -817,28 +817,28 @@
 /* Begin PBXTargetDependency section */
 		274AA64F2A8FD10300F77F96 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 274AA63B2A8FD10200F77F96 /* DeadMansVault */;
+			target = 274AA63B2A8FD10200F77F96 /* Vaultsy */;
 			targetProxy = 274AA64E2A8FD10300F77F96 /* PBXContainerItemProxy */;
 		};
 		274AA6592A8FD10300F77F96 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 274AA63B2A8FD10200F77F96 /* DeadMansVault */;
+			target = 274AA63B2A8FD10200F77F96 /* Vaultsy */;
 			targetProxy = 274AA6582A8FD10300F77F96 /* PBXContainerItemProxy */;
 		};
 		274AA67F2A8FD32400F77F96 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 274AA66D2A8FD32300F77F96 /* DeadMansVaultWatch Watch App */;
+			target = 274AA66D2A8FD32300F77F96 /* Vaultsy Watch App */;
 			targetProxy = 274AA67E2A8FD32400F77F96 /* PBXContainerItemProxy */;
 		};
 		274AA6892A8FD32400F77F96 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 274AA66D2A8FD32300F77F96 /* DeadMansVaultWatch Watch App */;
+			target = 274AA66D2A8FD32300F77F96 /* Vaultsy Watch App */;
 			targetProxy = 274AA6882A8FD32400F77F96 /* PBXContainerItemProxy */;
 		};
 		274AA6902A8FD32400F77F96 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			platformFilter = ios;
-			target = 274AA66D2A8FD32300F77F96 /* DeadMansVaultWatch Watch App */;
+			target = 274AA66D2A8FD32300F77F96 /* Vaultsy Watch App */;
 			targetProxy = 274AA68F2A8FD32400F77F96 /* PBXContainerItemProxy */;
 		};
 		274AA6B82A8FD35500F77F96 /* PBXTargetDependency */ = {
@@ -846,7 +846,7 @@
 			platformFilters = (
 				macos,
 			);
-			target = 274AA69F2A8FD35400F77F96 /* DeadMansVaultBrowser */;
+			target = 274AA69F2A8FD35400F77F96 /* VaultsyBrowser */;
 			targetProxy = 274AA6B72A8FD35500F77F96 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1072,7 +1072,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DeadMansVault.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DeadMansVault";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Vaultsy.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Vaultsy";
 			};
 			name = Debug;
 		};
@@ -1095,7 +1095,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DeadMansVault.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DeadMansVault";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Vaultsy.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Vaultsy";
 			};
 			name = Release;
 		};
@@ -1155,7 +1155,7 @@
 				DEVELOPMENT_TEAM = F42C985T48;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = DeadMansVaultWatch;
+				INFOPLIST_KEY_CFBundleDisplayName = Vaultsy;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "HealthKit is used to determine if the vault owner is active or not";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "HealthKit is used to determine if the vault owner is active or not";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -1188,7 +1188,7 @@
 				DEVELOPMENT_TEAM = F42C985T48;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = DeadMansVaultWatch;
+				INFOPLIST_KEY_CFBundleDisplayName = Vaultsy;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "HealthKit is used to determine if the vault owner is active or not";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "HealthKit is used to determine if the vault owner is active or not";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -1225,7 +1225,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DeadMansVaultWatch Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DeadMansVaultWatch Watch App";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Vaultsy Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Vaultsy Watch App";
 				WATCHOS_DEPLOYMENT_TARGET = 9.4;
 			};
 			name = Debug;
@@ -1245,7 +1245,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DeadMansVaultWatch Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DeadMansVaultWatch Watch App";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Vaultsy Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Vaultsy Watch App";
 				VALIDATE_PRODUCT = YES;
 				WATCHOS_DEPLOYMENT_TARGET = 9.4;
 			};
@@ -1302,7 +1302,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Browser Extension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = DeadMansVaultBrowser;
+				INFOPLIST_KEY_CFBundleDisplayName = Vaultsy;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1336,7 +1336,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Browser Extension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = DeadMansVaultBrowser;
+				INFOPLIST_KEY_CFBundleDisplayName = Vaultsy;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1370,7 +1370,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		274AA6612A8FD10300F77F96 /* Build configuration list for PBXNativeTarget "DeadMansVault" */ = {
+		274AA6612A8FD10300F77F96 /* Build configuration list for PBXNativeTarget "Vaultsy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				274AA6622A8FD10300F77F96 /* Debug */,
@@ -1379,7 +1379,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		274AA6642A8FD10300F77F96 /* Build configuration list for PBXNativeTarget "DeadMansVaultTests" */ = {
+		274AA6642A8FD10300F77F96 /* Build configuration list for PBXNativeTarget "VaultsyTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				274AA6652A8FD10300F77F96 /* Debug */,
@@ -1388,7 +1388,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		274AA6672A8FD10300F77F96 /* Build configuration list for PBXNativeTarget "DeadMansVaultUITests" */ = {
+		274AA6672A8FD10300F77F96 /* Build configuration list for PBXNativeTarget "VaultsyUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				274AA6682A8FD10300F77F96 /* Debug */,
@@ -1397,7 +1397,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		274AA6922A8FD32400F77F96 /* Build configuration list for PBXNativeTarget "DeadMansVaultWatch Watch App" */ = {
+		274AA6922A8FD32400F77F96 /* Build configuration list for PBXNativeTarget "Vaultsy Watch App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				274AA6932A8FD32400F77F96 /* Debug */,
@@ -1406,7 +1406,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		274AA6962A8FD32400F77F96 /* Build configuration list for PBXNativeTarget "DeadMansVaultWatch Watch AppTests" */ = {
+		274AA6962A8FD32400F77F96 /* Build configuration list for PBXNativeTarget "Vaultsy Watch AppTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				274AA6972A8FD32400F77F96 /* Debug */,
@@ -1415,7 +1415,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		274AA6992A8FD32400F77F96 /* Build configuration list for PBXNativeTarget "DeadMansVaultWatch Watch AppUITests" */ = {
+		274AA6992A8FD32400F77F96 /* Build configuration list for PBXNativeTarget "Vaultsy Watch AppUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				274AA69A2A8FD32400F77F96 /* Debug */,
@@ -1424,7 +1424,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		274AA6BA2A8FD35500F77F96 /* Build configuration list for PBXNativeTarget "DeadMansVaultBrowser" */ = {
+		274AA6BA2A8FD35500F77F96 /* Build configuration list for PBXNativeTarget "VaultsyBrowser" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				274AA6BB2A8FD35500F77F96 /* Debug */,
