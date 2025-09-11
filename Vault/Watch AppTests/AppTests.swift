@@ -4,7 +4,7 @@
 //
 
 import XCTest
-@testable import DeadMansVaultWatch_Watch_App
+@testable import Vaultsy_Watch_App
 
 final class AppTests: XCTestCase {
 
