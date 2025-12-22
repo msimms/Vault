@@ -89,18 +89,20 @@ struct VaultPrefsView: View {
 			}
 
 			if AppState.shared.isBiometricIdAvailable() {
-				HStack() {
+				HStack(alignment: .top) {
 					Toggle(isOn: self.$biometricAuthEnabled) {
+						Text("Enable Biometric Authorization")
+							.font(.system(size: 24))
+							.bold()
 					}
+					.tint(.blue)
 					.onChange(of: self.biometricAuthEnabled) {
 						if self.biometricAuthEnabled {
 							self.isShowingBiometricToggleError = AppState.shared.isBiometricIdEnabledForCurrentVault()
 						}
 						self.isShowingBiometricToggleError = AppState.shared.disableBiometricAuthenticationForCurrentVault()
 					}
-					Text("Enable Biometric Authorization")
-						.font(.system(size: 24))
-						.bold()
+					.padding()
 				}
 			}
 		}
