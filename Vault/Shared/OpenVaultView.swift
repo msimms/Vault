@@ -276,16 +276,14 @@ struct OpenVaultView: View {
 				}
 			}
 #if !os(macOS)
-			.background(
-
-				// Show a blank view for the user to enter new information.
-				NavigationLink(destination: NewItemView(newItemType: self.$newItemType), isActive: self.$showNewItem) {}
-			)
-			.background(
-				
-				// Show the preferences view.
-				NavigationLink(destination: VaultPrefsView(), isActive: self.$showPrefs) {}
-			)
+			.navigationDestination(
+				isPresented: self.$showNewItem) {
+					NewItemView(newItemType: self.$newItemType)
+				}
+			.navigationDestination(
+				isPresented: self.$showPrefs) {
+					VaultPrefsView()
+				}
 			.navigationBarBackButtonHidden(true)
 #endif
 		}
