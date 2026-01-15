@@ -77,6 +77,7 @@ struct SecureLoginView: View {
 									.foregroundColor(.secondary)
 							}
 						})
+						.border(Color.secondary, width: 1)
 						Text("Additional URLs")
 							.fontWeight(.heavy)
 						VStack(alignment: .leading) {
@@ -90,6 +91,7 @@ struct SecureLoginView: View {
 							})
 							.disabled(self.isReadOnly)
 						}
+						.border(Color.secondary, width: 1)
 						Text("Username")
 							.fontWeight(.heavy)
 						ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
@@ -102,6 +104,7 @@ struct SecureLoginView: View {
 									.foregroundColor(.secondary)
 							}
 						})
+						.border(Color.secondary, width: 1)
 						Text("Email")
 							.fontWeight(.heavy)
 						ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
@@ -114,6 +117,7 @@ struct SecureLoginView: View {
 									.foregroundColor(.secondary)
 							}
 						})
+						.border(Color.secondary, width: 1)
 						Text("Password")
 							.fontWeight(.heavy)
 					}
@@ -122,10 +126,12 @@ struct SecureLoginView: View {
 							if self.showPassword {
 								TextField("Password", text: self.$item.password)
 									.disabled(self.isReadOnly)
+									.border(Color.secondary, width: 1)
 							}
 							else {
 								SecureField("Password", text: self.$item.password)
 									.disabled(self.isReadOnly)
+									.border(Color.secondary, width: 1)
 							}
 							HStack() {
 								if self.isReadOnly == false {
@@ -149,6 +155,7 @@ struct SecureLoginView: View {
 											PasswordGeneratorView(existingPassword: self.$item.password, suggestedPassword: self.item.password)
 										}
 									}
+									.border(Color.secondary, width: 1)
 								}
 								Button(action: {
 									self.showPassword.toggle()
@@ -168,7 +175,9 @@ struct SecureLoginView: View {
 							.fontWeight(.heavy)
 						TextEditor(text: self.$item.note)
 							.disabled(self.isReadOnly)
+							.padding(.vertical, 5)
 							.frame(height: 200)
+							.border(Color.secondary, width: 1)
 					}
 					AttachFilesView(isReadOnly: self.$isReadOnly, item: self.item)
 					TagsView(isReadOnly: self.$isReadOnly, tags: self.$item.tags)

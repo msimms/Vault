@@ -36,6 +36,7 @@ struct PasswordView: View {
 			if self.showPassword {
 				TextField("Password", text: self.$password)
 					.textFieldStyle(RoundedBorderTextFieldStyle())
+					.border(Color.secondary, width: 1)
 					.padding()
 					.onSubmit {
 					}
@@ -43,6 +44,7 @@ struct PasswordView: View {
 			else {
 				SecureField("Password", text: self.$password)
 					.textFieldStyle(RoundedBorderTextFieldStyle())
+					.border(Color.secondary, width: 1)
 					.padding()
 					.onSubmit {
 					}
