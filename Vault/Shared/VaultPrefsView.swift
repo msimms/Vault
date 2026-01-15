@@ -64,30 +64,6 @@ struct VaultPrefsView: View {
 				}
 			}
 
-			if AppState.shared.healthMgr.isHealthDataAvailable() {
-				Text("Set the Recovery Password")
-					.font(.system(size: 24))
-					.bold()
-					.padding(10)
-
-				// Password
-				Label("Password", systemImage: "lock.circle")
-				PasswordView(password: self.$recoveryPassword1)
-
-				// Password Confirmation
-				Label("Confirm Password", systemImage: "lock.circle")
-				PasswordView(password: self.$recoveryPassword2)
-
-				Button("Set") {
-					if self.recoveryPassword1 == self.recoveryPassword2 {
-						AppState.shared.setRecoveryPasswordForTheCurrentVault(password: self.recoveryPassword1)
-					}
-					else {
-						self.isShowingPasswordsDoNotMatch = true
-					}
-				}
-			}
-
 			if AppState.shared.isBiometricIdAvailable() {
 				HStack(alignment: .top) {
 					Toggle(isOn: self.$biometricAuthEnabled) {

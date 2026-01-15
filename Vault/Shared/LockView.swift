@@ -35,7 +35,6 @@ struct LockView: View {
 	@State private var showingNoVaultSelectedAlert: Bool = false
 	@State private var showPassword: Bool = false
 	@State private var showingBiometricSetupAlert: Bool = false
-	@State private var showingHealthStatusView: Bool = false
 	@State private var isBusy: Bool = false
 	@State private var selectedVault: String? = Preferences.defaultVaultName()
 
@@ -177,24 +176,6 @@ struct LockView: View {
 				.frame(width: 32.0, height: 32.0)
 				.buttonStyle(PlainButtonStyle())
 				.padding(10)
-			}
-
-			// Vault owner's health metrics
-			if AppState.shared.healthMgr.isHealthDataAvailable() {
-				Group() {
-					Button(action: {
-						self.showingHealthStatusView = true
-					}) {
-						Image(systemName: "heart")
-							.resizable()
-					}
-					.navigationDestination(isPresented: self.$showingHealthStatusView) {
-						HealthStatusView()
-					}
-					.frame(width: 32.0, height: 32.0)
-					.buttonStyle(PlainButtonStyle())
-					.padding(10)
-				}
 			}
 		}
 		.onAppear() {

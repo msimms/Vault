@@ -37,15 +37,11 @@ class AppState {
 	var hasOpenedAVault: Bool = false // This breaks the potentially infinite loop of automatically re-opening a vault right after it was closed
 	private var viewModel = VaultDisplayState.shared
 	private var setupBiometricAuth: Bool = false
-	var healthMgr = HealthManager.shared
 	private let laContext = LAContext()
 
 	/// Constructor
 	private init() {
 		self.updateState()
-
-		// Initialize HealthKit.
-		self.healthMgr.requestAuthorization()
 	}
 
 	/// Returns True if biometric authentication is available on this device.

@@ -10,7 +10,6 @@ struct ContentView: View {
 	@State private var showingVaultOpenFailedAlert: Bool = false
 	@State private var showPassword: Bool = false
 	@State private var selectedVault: String? = Preferences.defaultVaultName()
-	@State private var showingHealthStatusView: Bool = false
 
 	func vaultIsSelected() -> Bool {
 		return self.selectedVault != nil && self.selectedVault!.count > 0
@@ -88,22 +87,6 @@ struct ContentView: View {
 				}
 				else {
 					Text("No vaults found.")
-				}
-
-				// Vault owner's health metrics
-				Group() {
-					Button(action: {
-						self.showingHealthStatusView = true
-					}) {
-						Image(systemName: "heart")
-							.resizable()
-					}
-					.navigationDestination(isPresented: self.$showingHealthStatusView) {
-						HealthStatusView()
-					}
-					.frame(width: 32.0, height: 32.0)
-					.buttonStyle(PlainButtonStyle())
-					.padding(10)
 				}
 			}
 			.padding()
