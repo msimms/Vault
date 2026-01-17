@@ -111,6 +111,7 @@ struct NewVaultView: View {
 					Image(systemName: "eye")
 						.foregroundColor(.secondary)
 				}
+				.help("View")
 				.padding()
 			})
 
@@ -137,6 +138,7 @@ struct NewVaultView: View {
 					Image(systemName: "eye")
 						.foregroundColor(.secondary)
 				}
+				.help("View")
 				.padding()
 			})
 

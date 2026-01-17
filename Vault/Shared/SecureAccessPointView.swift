@@ -73,6 +73,7 @@ struct SecureAccessPointView: View {
 											Image(systemName: "eye")
 												.foregroundColor(.secondary)
 										}
+										.help("View")
 										.padding(10)
 										ZStack() {
 											Button(action: {

@@ -86,6 +86,7 @@ struct SecureCardView: View {
 									Image(systemName: "doc.on.doc")
 										.foregroundColor(.secondary)
 								}
+								.help("Copy")
 							})
 							Text("Security Code")
 								.fontWeight(.heavy)

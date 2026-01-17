@@ -76,6 +76,7 @@ struct SecureLoginView: View {
 								Image(systemName: "doc.on.doc")
 									.foregroundColor(.secondary)
 							}
+							.help("Copy")
 						})
 						.border(Color.secondary, width: 1)
 						Text("Additional URLs")
@@ -103,6 +104,7 @@ struct SecureLoginView: View {
 								Image(systemName: "doc.on.doc")
 									.foregroundColor(.secondary)
 							}
+							.help("Copy")
 						})
 						.border(Color.secondary, width: 1)
 						Text("Email")
@@ -116,6 +118,7 @@ struct SecureLoginView: View {
 								Image(systemName: "doc.on.doc")
 									.foregroundColor(.secondary)
 							}
+							.help("Copy")
 						})
 						.border(Color.secondary, width: 1)
 						Text("Password")
@@ -163,12 +166,14 @@ struct SecureLoginView: View {
 									Image(systemName: "eye")
 										.foregroundColor(.secondary)
 								}
+								.help("View")
 								Button(action: {
 									copyToPasteboard(value: self.item.password)
 								}) {
 									Image(systemName: "doc.on.doc")
 										.foregroundColor(.secondary)
 								}
+								.help("Copy")
 							}
 						})
 						Text("Notes")

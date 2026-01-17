@@ -108,6 +108,7 @@ struct LockView: View {
 					Image(systemName: "eye")
 						.foregroundColor(.secondary)
 				}
+				.help("View")
 				.padding()
 			})
 
