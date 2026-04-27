@@ -52,6 +52,8 @@ struct SecureAccessPointView: View {
 								.fontWeight(.heavy)
 							TextField("Name", text: self.$item.name)
 								.disabled(self.isReadOnly)
+								.padding(10)
+								.border(Color.secondary, width: 1)
 							Text("Password")
 								.fontWeight(.heavy)
 						}
@@ -61,16 +63,21 @@ struct SecureAccessPointView: View {
 									if self.showPassword {
 										TextField("Password", text: self.$item.password)
 											.disabled(self.isReadOnly)
+											.padding(10)
+											.border(Color.secondary, width: 1)
 									}
 									else {
 										SecureField("Password", text: self.$item.password)
 											.disabled(self.isReadOnly)
+											.padding(10)
+											.border(Color.secondary, width: 1)
 									}
 									HStack() {
 										Button(action: {
 											self.showPassword.toggle()
 										}) {
 											Image(systemName: "eye")
+												.padding(10)
 												.foregroundColor(.secondary)
 										}
 										.help("View")
@@ -85,6 +92,7 @@ struct SecureAccessPointView: View {
 												}
 											}) {
 												Image(systemName: "arrow.clockwise")
+													.padding(10)
 													.foregroundColor(.secondary)
 											}
 											.navigationDestination(isPresented: self.$isShowingPasswordGenerator) {
@@ -102,6 +110,8 @@ struct SecureAccessPointView: View {
 								.fontWeight(.heavy)
 							TextEditor(text: self.$item.note)
 								.disabled(self.isReadOnly)
+								.padding(10)
+								.border(Color.secondary, width: 1)
 								.frame(height: 200)
 						}
 						AttachFilesView(isReadOnly: self.$isReadOnly, item: self.item)

@@ -36,23 +36,23 @@ struct PasswordView: View {
 			if self.showPassword {
 				TextField("Password", text: self.$password)
 					.textFieldStyle(RoundedBorderTextFieldStyle())
+					.padding(10)
 					.border(Color.secondary, width: 1)
-					.padding()
 					.onSubmit {
 					}
 			}
 			else {
 				SecureField("Password", text: self.$password)
 					.textFieldStyle(RoundedBorderTextFieldStyle())
+					.padding(10)
 					.border(Color.secondary, width: 1)
-					.padding()
 					.onSubmit {
 					}
 			}
 			Button(action: { self.showPassword.toggle() }) {
 				Image(systemName: "eye")
 					.foregroundColor(.secondary)
-					.padding()
+					.padding(10)
 			}
 			.help("View")
 			.padding()

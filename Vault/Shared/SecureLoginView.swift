@@ -189,9 +189,8 @@ struct SecureLoginView: View {
 							.fontWeight(.heavy)
 						TextEditor(text: self.$item.note)
 							.disabled(self.isReadOnly)
-							.padding(.vertical, 5)
-							.frame(height: 200)
 							.padding(10)
+							.frame(height: 200)
 							.border(Color.secondary, width: 1)
 					}
 					AttachFilesView(isReadOnly: self.$isReadOnly, item: self.item)
