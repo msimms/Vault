@@ -104,14 +104,16 @@ struct OpenVaultView: View {
 
 			// List of all of the items in the vault.
 			List(self.vault.vaultItems) { item in
-				Image(systemName: iconForVaultItem(item: item))
 				VStack(alignment: .leading) {
 
 					let itemView = createVaultItemView(item: item, isNewItem: false)
 					NavigationLink(destination: itemView) {
 						VStack(alignment: .leading) {
-							Text(title(item: item))
-								.font(.headline)
+							HStack() {
+								Text(title(item: item))
+									.font(.headline)
+								Image(systemName: iconForVaultItem(item: item))
+							}
 							Text(subtitle(item: item))
 								.font(.subheadline)
 						}
