@@ -52,6 +52,7 @@ struct PasswordView: View {
 			Button(action: { self.showPassword.toggle() }) {
 				Image(systemName: "eye")
 					.foregroundColor(.secondary)
+					.padding()
 			}
 			.help("View")
 			.padding()

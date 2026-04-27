@@ -68,11 +68,13 @@ struct SecureLoginView: View {
 						ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
 							TextField("Website", text: self.$item.website)
 								.disabled(self.isReadOnly)
+								.padding(10)
 							Button(action: {
 								copyToPasteboard(value: self.item.website)
 							}) {
 								Image(systemName: "doc.on.doc")
 									.foregroundColor(.secondary)
+									.padding(10)
 							}
 							.help("Copy")
 						})
@@ -83,6 +85,7 @@ struct SecureLoginView: View {
 							ForEach(self.$item.urls, id: \.self) { url in
 								TextField("", text: url)
 									.disabled(self.isReadOnly)
+									.padding(10)
 							}
 							TextField("", text: self.$additionalUrl, onCommit: {
 								self.item.urls.append(self.additionalUrl)
@@ -96,11 +99,13 @@ struct SecureLoginView: View {
 						ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
 							TextField("Username", text: self.$item.username)
 								.disabled(self.isReadOnly)
+								.padding(10)
 							Button(action: {
 								copyToPasteboard(value: self.item.username)
 							}) {
 								Image(systemName: "doc.on.doc")
 									.foregroundColor(.secondary)
+									.padding(10)
 							}
 							.help("Copy")
 						})
@@ -110,11 +115,13 @@ struct SecureLoginView: View {
 						ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
 							TextField("Email", text: self.$item.email)
 								.disabled(self.isReadOnly)
+								.padding(10)
 							Button(action: {
 								copyToPasteboard(value: self.item.email)
 							}) {
 								Image(systemName: "doc.on.doc")
 									.foregroundColor(.secondary)
+									.padding(10)
 							}
 							.help("Copy")
 						})
@@ -127,11 +134,13 @@ struct SecureLoginView: View {
 							if self.showPassword {
 								TextField("Password", text: self.$item.password)
 									.disabled(self.isReadOnly)
+									.padding(10)
 									.border(Color.secondary, width: 1)
 							}
 							else {
 								SecureField("Password", text: self.$item.password)
 									.disabled(self.isReadOnly)
+									.padding(10)
 									.border(Color.secondary, width: 1)
 							}
 							HStack() {
@@ -163,6 +172,7 @@ struct SecureLoginView: View {
 								}) {
 									Image(systemName: "eye")
 										.foregroundColor(.secondary)
+										.padding(10)
 								}
 								.help("View")
 								Button(action: {
@@ -170,6 +180,7 @@ struct SecureLoginView: View {
 								}) {
 									Image(systemName: "doc.on.doc")
 										.foregroundColor(.secondary)
+										.padding(10)
 								}
 								.help("Copy")
 							}
@@ -180,6 +191,7 @@ struct SecureLoginView: View {
 							.disabled(self.isReadOnly)
 							.padding(.vertical, 5)
 							.frame(height: 200)
+							.padding(10)
 							.border(Color.secondary, width: 1)
 					}
 					AttachFilesView(isReadOnly: self.$isReadOnly, item: self.item)

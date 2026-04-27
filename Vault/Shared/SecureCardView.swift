@@ -61,6 +61,7 @@ struct SecureCardView: View {
 								.fontWeight(.heavy)
 							TextField("Title", text: self.$item.name)
 								.disabled(self.isReadOnly)
+								.padding(10)
 								.border(Color.secondary, width: 1)
 						}
 						Group() {
@@ -68,23 +69,27 @@ struct SecureCardView: View {
 								.fontWeight(.heavy)
 							TextField("Card Holder", text: self.$item.cardHolder)
 								.disabled(self.isReadOnly)
+								.padding(10)
 								.border(Color.secondary, width: 1)
 							Text("Card Type")
 								.fontWeight(.heavy)
 							TextField("Card Type", text: self.$item.cardType)
 								.disabled(self.isReadOnly)
+								.padding(10)
 								.border(Color.secondary, width: 1)
 							Text("Number")
 								.fontWeight(.heavy)
 							ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
 								TextField("Number", text: self.$item.number)
 									.disabled(self.isReadOnly)
+									.padding(10)
 									.border(Color.secondary, width: 1)
 								Button(action: {
 									copyToPasteboard(value: self.item.number)
 								}) {
 									Image(systemName: "doc.on.doc")
 										.foregroundColor(.secondary)
+										.padding(10)
 								}
 								.help("Copy")
 							})
@@ -92,6 +97,7 @@ struct SecureCardView: View {
 								.fontWeight(.heavy)
 							TextField("Security Code", value: self.$item.securityCode, formatter: NumberFormatter())
 								.disabled(self.isReadOnly)
+								.padding(10)
 								.border(Color.secondary, width: 1)
 							HStack {
 								Text("Expiry Date")
@@ -103,6 +109,7 @@ struct SecureCardView: View {
 									}
 									.padding(EdgeInsets(top: 2, leading: 10, bottom: 2, trailing: 10))
 									.disabled(self.isReadOnly)
+									.padding(10)
 							}
 							if self.showsDatePicker {
 								DatePicker("", selection: self.$item.expiry, displayedComponents: .date)
@@ -113,7 +120,7 @@ struct SecureCardView: View {
 							.fontWeight(.heavy)
 						TextEditor(text: self.$item.note)
 							.disabled(self.isReadOnly)
-							.padding(.vertical, 5)
+							.padding(10)
 							.frame(height: 200)
 							.border(Color.secondary, width: 1)
 						AttachFilesView(isReadOnly: self.$isReadOnly, item: self.item)
