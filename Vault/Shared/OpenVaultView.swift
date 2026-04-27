@@ -121,16 +121,8 @@ struct OpenVaultView: View {
 			.listStyle(.plain)
 			.padding(10)
 #if os(macOS)
-			.background(
-
-				// Show a blank view for the user to enter new information.
-				NavigationLink(destination: NewItemView(newItemType: self.$newItemType), isActive: self.$showNewItem) {}
-			)
-			.background(
-
-				// Show the preferences view.
-				NavigationLink(destination: VaultPrefsView(), isActive: self.$showPrefs) {}
-			)
+			// On macOS, use NavigationStack with navigationDestination(isPresented:)
+			.background(EmptyView())
 #else
 			.navigationBarTitle(self.vault.name(), displayMode: .inline)
 #endif
@@ -275,6 +267,14 @@ struct OpenVaultView: View {
 					}
 				}
 			}
+#if os(macOS)
+			.navigationDestination(isPresented: self.$showNewItem) {
+				NewItemView(newItemType: self.$newItemType)
+			}
+			.navigationDestination(isPresented: self.$showPrefs) {
+				VaultPrefsView()
+			}
+#endif
 #if !os(macOS)
 			.navigationDestination(
 				isPresented: self.$showNewItem) {
