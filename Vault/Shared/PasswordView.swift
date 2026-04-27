@@ -55,7 +55,6 @@ struct PasswordView: View {
 					.padding(10)
 			}
 			.help("View")
-			.padding()
 		})
     }
 }

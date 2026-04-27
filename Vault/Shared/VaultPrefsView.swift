@@ -45,23 +45,26 @@ struct VaultPrefsView: View {
 					.font(.system(size: 24))
 					.bold()
 					.padding(10)
-				
-				// Password
-				Label("Password", systemImage: "lock.circle")
-				PasswordView(password: self.$changePassword1)
-					.padding(10)
+				Divider()
+				VStack(alignment: .center) {
 
-				// Password Confirmation
-				Label("Confirm Password", systemImage: "lock.circle")
-				PasswordView(password: self.$changePassword2)
-					.padding(10)
+					// Password
+					Label("Password", systemImage: "lock.circle")
+					PasswordView(password: self.$changePassword1)
+						.padding(10)
 
-				Button("Change") {
-					if self.changePassword1 == self.changePassword2 {
-						AppState.shared.changeCurrentVaultPassword(newPassword: self.changePassword1)
-					}
-					else {
-						self.isShowingPasswordsDoNotMatch = true
+					// Password Confirmation
+					Label("Confirm Password", systemImage: "lock.circle")
+					PasswordView(password: self.$changePassword2)
+						.padding(10)
+
+					Button("Change") {
+						if self.changePassword1 == self.changePassword2 {
+							AppState.shared.changeCurrentVaultPassword(newPassword: self.changePassword1)
+						}
+						else {
+							self.isShowingPasswordsDoNotMatch = true
+						}
 					}
 				}
 			}
