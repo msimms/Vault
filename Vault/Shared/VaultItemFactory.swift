@@ -88,6 +88,11 @@ func createVaultItemFromFile(location: URL, masterKey: Data) throws -> SecureVau
 		let newItem = SecureLicenseItem(json: json)
 		newItem.id = outerVaultItem.id
 		return newItem
+	case VaultItemType.server:
+		let json = try JSONDecoder().decode(SecureServerItemEncoding.self, from: decryptedDecodedContents)
+		let newItem = SecureServerItem(json: json)
+		newItem.id = outerVaultItem.id
+		return newItem
 	}
 }
 

@@ -65,6 +65,8 @@
 		2771DBF32AAA4C5300D70021 /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2771DBF22AAA4C5300D70021 /* PhotoPicker.swift */; };
 		27774DA32A90130000D288ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27774DA22A900C5B00D288ED /* Assets.xcassets */; };
 		27774DA52A90132900D288ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27774DA22A900C5B00D288ED /* Assets.xcassets */; };
+		27ABDC392FA10BBE00A2B1C6 /* SecureServerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27ABDC382FA10BB500A2B1C6 /* SecureServerView.swift */; };
+		27ABDC3B2FA10BD000A2B1C6 /* SecureServerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27ABDC3A2FA10BCC00A2B1C6 /* SecureServerItem.swift */; };
 		27BF1A942AE8248F00BDA339 /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BF1A932AE8248F00BDA339 /* DocumentPicker.swift */; };
 		27CFBB3D2BAD0337002F5436 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6CD2A8FF1C800F77F96 /* Keychain.swift */; };
 		27E30B5C2A92CF5700236EAB /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6CC2A8FF1C800F77F96 /* Preferences.swift */; };
@@ -221,6 +223,8 @@
 		27774DA12A900B1200D288ED /* Browser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Browser.entitlements; sourceTree = "<group>"; };
 		27774DA22A900C5B00D288ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Shared/Assets.xcassets; sourceTree = "<group>"; };
 		277B18222AABC2240009BC08 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		27ABDC382FA10BB500A2B1C6 /* SecureServerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureServerView.swift; sourceTree = "<group>"; };
+		27ABDC3A2FA10BCC00A2B1C6 /* SecureServerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureServerItem.swift; sourceTree = "<group>"; };
 		27BF1A932AE8248F00BDA339 /* DocumentPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DocumentPicker.swift; path = Shared/DocumentPicker.swift; sourceTree = SOURCE_ROOT; };
 		27E30B5B2A90346200236EAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		27F4CC342B1964A700BE4B12 /* words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = words.txt; path = App/words.txt; sourceTree = "<group>"; };
@@ -347,6 +351,8 @@
 				274AA6C42A8FF1C600F77F96 /* SecureLoginView.swift */,
 				274AA6C82A8FF1C700F77F96 /* SecureNoteItem.swift */,
 				274AA6DE2A8FF1CB00F77F96 /* SecureNoteView.swift */,
+				27ABDC3A2FA10BCC00A2B1C6 /* SecureServerItem.swift */,
+				27ABDC382FA10BB500A2B1C6 /* SecureServerView.swift */,
 				274AA6DA2A8FF1CA00F77F96 /* SecureVaultItem.swift */,
 				2771DBEE2AA7BF7D00D70021 /* SecureVaultView.swift */,
 				274AA6D22A8FF1C900F77F96 /* TagsView.swift */,
@@ -719,11 +725,13 @@
 				274AA6F92A8FF1CC00F77F96 /* ContentView.swift in Sources */,
 				27BF1A942AE8248F00BDA339 /* DocumentPicker.swift in Sources */,
 				274AA6E42A8FF1CC00F77F96 /* PasswordGeneratorView.swift in Sources */,
+				27ABDC392FA10BBE00A2B1C6 /* SecureServerView.swift in Sources */,
 				2738EFE52AB37D700066B3CB /* SecureLicenseView.swift in Sources */,
 				274AA6F22A8FF1CC00F77F96 /* VaultState.swift in Sources */,
 				274AA6F62A8FF1CC00F77F96 /* SecureAccessPointView.swift in Sources */,
 				274AA6EA2A8FF1CC00F77F96 /* SecureNoteItem.swift in Sources */,
 				2765F9912B8DFE1B00B3E75E /* VaultPrefsView.swift in Sources */,
+				27ABDC3B2FA10BD000A2B1C6 /* SecureServerItem.swift in Sources */,
 				274AA6FF2A8FF1CC00F77F96 /* NewItemView.swift in Sources */,
 				274AA6EE2A8FF1CC00F77F96 /* Preferences.swift in Sources */,
 				274AA6EB2A8FF1CC00F77F96 /* SecureCardView.swift in Sources */,
