@@ -30,6 +30,11 @@ import Foundation
 struct SecureServerLogin: Codable, Hashable {
 	var username: String                       // Login username
 	var password: String                       // Login password
+
+	init(username: String, password: String) {
+		self.username = username
+		self.password = password
+	}
 }
 
 struct SecureServerItemEncoding: Codable, Hashable {
@@ -56,7 +61,7 @@ class SecureServerItem: SecureVaultItem {
 
 	var title: String = ""
 	var uri: String = ""
-	var logins: Array<SecureServerLogin> = []
+	@Published var logins: Array<SecureServerLogin> = []
 	var note: String = ""
 	var tags: Array<String> = []
 	var urls: Array<String> = []

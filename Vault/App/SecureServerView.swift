@@ -32,6 +32,34 @@ import UIKit
 import AppKit
 #endif
 
+struct SecureServerLoginView: View {
+	@State var isReadOnly: Bool = false
+	@State var username: String = ""
+	@State var password: String = ""
+
+	var body: some View {
+
+		VStack(alignment: .leading) {
+			HStack() {
+				Text("Username")
+					.fontWeight(.heavy)
+				TextField("Username", text: self.$username, onCommit: {
+				})
+				.disabled(self.isReadOnly)
+			}
+			HStack() {
+				Text("Password")
+					.fontWeight(.heavy)
+				TextField("Password", text: self.$password, onCommit: {
+				})
+				.disabled(self.isReadOnly)
+			}
+		}
+		.padding(10)
+		.border(Color.secondary, width: 1)
+	}
+}
+
 /// Displays a login item from the vault.
 struct SecureServerView: View {
 	@ObservedObject var item: SecureServerItem
@@ -83,25 +111,16 @@ struct SecureServerView: View {
 					Group() {
 						Text("Credentials")
 							.fontWeight(.heavy)
-						ForEach(self.$item.logins, id: \.self) { login in
-							VStack(alignment: .leading) {
-								HStack() {
-									Text("Username")
-										.fontWeight(.heavy)
-									TextField("Username", text: login.username)
-										.disabled(self.isReadOnly)
-								}
-								HStack() {
-									Text("Password")
-										.fontWeight(.heavy)
-									TextField("Password", text: login.password)
-										.disabled(self.isReadOnly)
-								}
-							}
-							.padding(10)
-							.border(Color.secondary, width: 1)
+						ForEach(Array(self.item.logins), id: \.self) { login in
+							SecureServerLoginView(isReadOnly: self.isReadOnly, username: login.username, password: login.password)
 						}
-						.disabled(self.isReadOnly)
+						Button(action: {
+							self.item.logins.append(SecureServerLogin(username: "", password: ""))
+						}, label: {
+							Label("Add Username/Password", systemImage: "person.badge.key")
+								.labelStyle(.titleAndIcon)
+						})
+						.help("Add a new username / password combination")
 					}
 					Group() {
 						Text("Notes")
