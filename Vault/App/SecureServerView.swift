@@ -65,7 +65,6 @@ struct SecureServerView: View {
 	@ObservedObject var item: SecureServerItem
 	@State var isNewItem: Bool = true
 	@State var isReadOnly: Bool = false
-	@State var additionalUrl: String = ""
 	@State private var isShowingPasswordGenerator: Bool = false
 	@State private var showPassword: Bool = false
 	@State private var cannotShowPasswordGenerator: Bool = false
@@ -111,7 +110,7 @@ struct SecureServerView: View {
 					Group() {
 						Text("Credentials")
 							.fontWeight(.heavy)
-						ForEach(Array(self.item.logins), id: \.self) { login in
+						ForEach(Array(self.item.logins), id: \.id) { login in
 							SecureServerLoginView(isReadOnly: self.isReadOnly, username: login.username, password: login.password)
 						}
 						Button(action: {

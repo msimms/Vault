@@ -27,7 +27,8 @@
 
 import Foundation
 
-struct SecureServerLogin: Codable, Hashable {
+struct SecureServerLogin: Codable, Hashable, Identifiable {
+	var id = UUID()
 	var username: String                       // Login username
 	var password: String                       // Login password
 
