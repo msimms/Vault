@@ -65,6 +65,7 @@
 		2771DBF32AAA4C5300D70021 /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2771DBF22AAA4C5300D70021 /* PhotoPicker.swift */; };
 		27774DA32A90130000D288ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27774DA22A900C5B00D288ED /* Assets.xcassets */; };
 		27774DA52A90132900D288ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27774DA22A900C5B00D288ED /* Assets.xcassets */; };
+		2797BA9E2FA523A80027DEC4 /* SecureServerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27ABDC3A2FA10BCC00A2B1C6 /* SecureServerItem.swift */; };
 		27ABDC392FA10BBE00A2B1C6 /* SecureServerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27ABDC382FA10BB500A2B1C6 /* SecureServerView.swift */; };
 		27ABDC3B2FA10BD000A2B1C6 /* SecureServerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27ABDC3A2FA10BCC00A2B1C6 /* SecureServerItem.swift */; };
 		27BF1A942AE8248F00BDA339 /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BF1A932AE8248F00BDA339 /* DocumentPicker.swift */; };
@@ -778,6 +779,7 @@
 				27E30B5C2A92CF5700236EAB /* Preferences.swift in Sources */,
 				27E30B5D2A92CF6300236EAB /* AppState.swift in Sources */,
 				27E30B672A92EC4900236EAB /* SecureLoginItem.swift in Sources */,
+				2797BA9E2FA523A80027DEC4 /* SecureServerItem.swift in Sources */,
 				27E30B662A92EC4200236EAB /* SecureCardItem.swift in Sources */,
 				27E30B5E2A92CFAD00236EAB /* VaultDisplayState.swift in Sources */,
 			);
