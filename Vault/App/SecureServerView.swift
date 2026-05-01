@@ -34,8 +34,7 @@ import AppKit
 
 struct SecureServerLoginView: View {
 	@State var isReadOnly: Bool = false
-	@State var username: String = ""
-	@State var password: String = ""
+	@Binding var login: SecureServerLogin
 
 	var body: some View {
 
@@ -43,14 +42,14 @@ struct SecureServerLoginView: View {
 			HStack() {
 				Text("Username")
 					.fontWeight(.heavy)
-				TextField("Username", text: self.$username, onCommit: {
+				TextField("Username", text: self.$login.username, onCommit: {
 				})
 				.disabled(self.isReadOnly)
 			}
 			HStack() {
 				Text("Password")
 					.fontWeight(.heavy)
-				TextField("Password", text: self.$password, onCommit: {
+				TextField("Password", text: self.$login.password, onCommit: {
 				})
 				.disabled(self.isReadOnly)
 			}
@@ -110,8 +109,8 @@ struct SecureServerView: View {
 					Group() {
 						Text("Credentials")
 							.fontWeight(.heavy)
-						ForEach(Array(self.item.logins), id: \.id) { login in
-							SecureServerLoginView(isReadOnly: self.isReadOnly, username: login.username, password: login.password)
+						ForEach($item.logins) { $login in
+							SecureServerLoginView(isReadOnly: self.isReadOnly, login: $login)
 						}
 						Button(action: {
 							self.item.logins.append(SecureServerLogin(username: "", password: ""))
@@ -141,3 +140,4 @@ struct SecureServerView: View {
 		}
 	}
 }
+

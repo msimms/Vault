@@ -27,17 +27,6 @@
 
 import Foundation
 
-struct SecureServerLogin: Codable, Hashable, Identifiable {
-	var id = UUID()
-	var username: String                       // Login username
-	var password: String                       // Login password
-
-	init(username: String, password: String) {
-		self.username = username
-		self.password = password
-	}
-}
-
 struct SecureServerItemEncoding: Codable, Hashable {
 	var vaultVersion: UInt8                    // Version of this encoding
 	var title: String?                         // Server title
@@ -47,6 +36,34 @@ struct SecureServerItemEncoding: Codable, Hashable {
 	var tags: Array<String>?                   // Tags (optional)
 	var lastModifiedTime: Date?                // Timestamp of the last update
 	var attachments: Dictionary<String, Data>? // Data for all attachments
+}
+
+class SecureServerLogin: Codable, Hashable, Identifiable {
+	var id = UUID()
+	var username: String                       // Login username
+	var password: String                       // Login password
+
+	init(username: String, password: String) {
+		self.username = username
+		self.password = password
+	}
+
+	/// Encode overrides
+	func encode(to encoder: Encoder) throws {
+		var container = encoder.container(keyedBy: CodingKeys.self)
+		try container.encode(id, forKey: .id)
+		try container.encode(username, forKey: .username)
+		try container.encode(password, forKey: .password)
+	}
+
+	/// Hashable overrides
+	func hash(into hasher: inout Hasher) {
+		hasher.combine(self.id)
+	}
+
+	static func == (lhs: SecureServerLogin, rhs: SecureServerLogin) -> Bool {
+		lhs.username == rhs.username && lhs.password == rhs.password
+	}
 }
 
 class SecureServerItem: SecureVaultItem {
