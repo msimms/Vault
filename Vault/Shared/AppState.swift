@@ -351,7 +351,7 @@ class AppState {
 	}
 
 	/// Exports the current vault to an (unencrypted) file.
-	func exportVaultFromUrl(to: URL) -> Bool {
+	func exportVaultToUrl(to: URL) -> Bool {
 		let exporter = Exporter()
 		exporter.exportToUrl(location: to, vault: self.vault)
 		return false

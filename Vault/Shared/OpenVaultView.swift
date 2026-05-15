@@ -222,7 +222,7 @@ struct OpenVaultView: View {
 								let panel = NSSavePanel()
 
 								if panel.runModal() == .OK {
-									self.showingFailedExportAlert = !AppState.shared.exportVaultFromUrl(to: panel.directoryURL!)
+									self.showingFailedExportAlert = !AppState.shared.exportVaultToUrl(to: panel.url!)
 								}
 							}) {
 								Label("Export...", systemImage: "square.and.arrow.up")

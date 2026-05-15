@@ -30,8 +30,13 @@ import Foundation
 class Exporter {
 
 	func exportToUrl(location: URL, vault: Vault) {
-		
-		for item in vault.vaultItems {
+		let encoder = JSONEncoder()
+		do {
+			let jsonData = try encoder.encode(vault.vaultItems)
+			try jsonData.write(to: location, options: .atomic)
+		}
+		catch {
+			print("Export failed:", error)
 		}
 	}
 }
