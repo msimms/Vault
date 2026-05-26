@@ -93,42 +93,42 @@
 			containerPortal = 274AA6342A8FD10200F77F96 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 274AA63B2A8FD10200F77F96;
-			remoteInfo = DeadMansVault;
+			remoteInfo = Vaultsy;
 		};
 		274AA6582A8FD10300F77F96 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 274AA6342A8FD10200F77F96 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 274AA63B2A8FD10200F77F96;
-			remoteInfo = DeadMansVault;
+			remoteInfo = Vaultsy;
 		};
 		274AA67E2A8FD32400F77F96 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 274AA6342A8FD10200F77F96 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 274AA66D2A8FD32300F77F96;
-			remoteInfo = "DeadMansVaultWatch Watch App";
+			remoteInfo = "VaultsyWatch Watch App";
 		};
 		274AA6882A8FD32400F77F96 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 274AA6342A8FD10200F77F96 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 274AA66D2A8FD32300F77F96;
-			remoteInfo = "DeadMansVaultWatch Watch App";
+			remoteInfo = "VaultsyWatch Watch App";
 		};
 		274AA68F2A8FD32400F77F96 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 274AA6342A8FD10200F77F96 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 274AA66D2A8FD32300F77F96;
-			remoteInfo = "DeadMansVaultWatch Watch App";
+			remoteInfo = "VaultsyWatch Watch App";
 		};
 		274AA6B72A8FD35500F77F96 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 274AA6342A8FD10200F77F96 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 274AA69F2A8FD35400F77F96;
-			remoteInfo = DeadMansVaultBrowser;
+			remoteInfo = VaultsyBrowser;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -461,7 +461,7 @@
 				274AA6B82A8FD35500F77F96 /* PBXTargetDependency */,
 			);
 			name = Vaultsy;
-			productName = DeadMansVault;
+			productName = Vaultsy;
 			productReference = 274AA63C2A8FD10200F77F96 /* Vaultsy.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -479,7 +479,7 @@
 				274AA64F2A8FD10300F77F96 /* PBXTargetDependency */,
 			);
 			name = VaultsyTests;
-			productName = DeadMansVaultTests;
+			productName = VaultsyTests;
 			productReference = 274AA64D2A8FD10300F77F96 /* VaultsyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
@@ -497,7 +497,7 @@
 				274AA6592A8FD10300F77F96 /* PBXTargetDependency */,
 			);
 			name = VaultsyUITests;
-			productName = DeadMansVaultUITests;
+			productName = VaultsyUITests;
 			productReference = 274AA6572A8FD10300F77F96 /* VaultsyUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
@@ -514,7 +514,7 @@
 			dependencies = (
 			);
 			name = "Vaultsy Watch App";
-			productName = "DeadMansVaultWatch Watch App";
+			productName = "VaultsyWatch Watch App";
 			productReference = 274AA66E2A8FD32300F77F96 /* Vaultsy Watch App.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -532,7 +532,7 @@
 				274AA67F2A8FD32400F77F96 /* PBXTargetDependency */,
 			);
 			name = "Vaultsy Watch AppTests";
-			productName = "DeadMansVaultWatch Watch AppTests";
+			productName = "VaultsyWatch Watch AppTests";
 			productReference = 274AA67D2A8FD32400F77F96 /* Vaultsy Watch AppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
@@ -550,7 +550,7 @@
 				274AA6892A8FD32400F77F96 /* PBXTargetDependency */,
 			);
 			name = "Vaultsy Watch AppUITests";
-			productName = "DeadMansVaultWatch Watch AppUITests";
+			productName = "VaultsyWatch Watch AppUITests";
 			productReference = 274AA6872A8FD32400F77F96 /* Vaultsy Watch AppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
@@ -567,7 +567,7 @@
 			dependencies = (
 			);
 			name = VaultsyBrowser;
-			productName = DeadMansVaultBrowser;
+			productName = VaultsyBrowser;
 			productReference = 274AA6A02A8FD35400F77F96 /* VaultsyBrowser.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
@@ -579,7 +579,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1600;
+				LastUpgradeCheck = 2650;
 				TargetAttributes = {
 					274AA63B2A8FD10200F77F96 = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -885,6 +885,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = F42C985T48;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -905,6 +906,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -945,6 +947,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = F42C985T48;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -958,6 +961,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
@@ -970,10 +974,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Project.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"App/Preview Content\"";
-				DEVELOPMENT_TEAM = F42C985T48;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
@@ -992,8 +995,6 @@
 				INFOPLIST_FILE = App/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Face ID can be used to unlock vaults";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "HealthKit is used to determine if the vault owner is active or not";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "HealthKit is used to determine if the vault owner is active or not";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -1004,12 +1005,12 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MACOSX_DEPLOYMENT_TARGET = 15.6;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.DeadMansVault";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.Vaultsy";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -1026,10 +1027,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Project.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"App/Preview Content\"";
-				DEVELOPMENT_TEAM = F42C985T48;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
@@ -1048,8 +1048,6 @@
 				INFOPLIST_FILE = App/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Face ID can be used to unlock vaults";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "HealthKit is used to determine if the vault owner is active or not";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "HealthKit is used to determine if the vault owner is active or not";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -1060,12 +1058,12 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MACOSX_DEPLOYMENT_TARGET = 15.6;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.DeadMansVault";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.Vaultsy";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -1082,12 +1080,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = F42C985T48;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
-				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				MACOSX_DEPLOYMENT_TARGET = 15.6;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.DeadMansVaultTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.VaultsyTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -1105,12 +1102,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = F42C985T48;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
-				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				MACOSX_DEPLOYMENT_TARGET = 15.6;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.DeadMansVaultTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.VaultsyTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -1127,19 +1123,18 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = F42C985T48;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
-				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				MACOSX_DEPLOYMENT_TARGET = 15.6;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.DeadMansVaultUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.VaultsyUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = DeadMansVault;
+				TEST_TARGET_NAME = Vaultsy;
 			};
 			name = Debug;
 		};
@@ -1149,19 +1144,18 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = F42C985T48;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
-				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				MACOSX_DEPLOYMENT_TARGET = 15.6;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.DeadMansVaultUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.VaultsyUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = DeadMansVault;
+				TEST_TARGET_NAME = Vaultsy;
 			};
 			name = Release;
 		};
@@ -1172,29 +1166,26 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Project Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = F42C985T48;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Vaultsy;
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "HealthKit is used to determine if the vault owner is active or not";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "HealthKit is used to determine if the vault owner is active or not";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "com.mjs-software.DeadMansVault";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "com.mjs-software.Vaultsy";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.DeadMansVault.watchkitapp";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.Vaultsy.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 9.4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.6;
 			};
 			name = Debug;
 		};
@@ -1205,22 +1196,19 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Project Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = F42C985T48;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Vaultsy;
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "HealthKit is used to determine if the vault owner is active or not";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "HealthKit is used to determine if the vault owner is active or not";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "com.mjs-software.DeadMansVault";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "com.mjs-software.Vaultsy";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.DeadMansVault.watchkitapp";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.Vaultsy.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1228,7 +1216,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 9.4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.6;
 			};
 			name = Release;
 		};
@@ -1238,17 +1226,16 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = F42C985T48;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.DeadMansVaultWatch-Watch-AppTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.VaultsyWatch-Watch-AppTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Vaultsy Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Vaultsy Watch App";
-				WATCHOS_DEPLOYMENT_TARGET = 9.4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.6;
 			};
 			name = Debug;
 		};
@@ -1258,10 +1245,9 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = F42C985T48;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.DeadMansVaultWatch-Watch-AppTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.VaultsyWatch-Watch-AppTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -1269,7 +1255,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Vaultsy Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Vaultsy Watch App";
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 9.4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.6;
 			};
 			name = Release;
 		};
@@ -1278,17 +1264,16 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = F42C985T48;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.DeadMansVaultWatch-Watch-AppUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.VaultsyWatch-Watch-AppUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				TEST_TARGET_NAME = "DeadMansVaultWatch Watch App";
-				WATCHOS_DEPLOYMENT_TARGET = 9.4;
+				TEST_TARGET_NAME = "VaultsyWatch Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 11.6;
 			};
 			name = Debug;
 		};
@@ -1297,18 +1282,17 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = F42C985T48;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.DeadMansVaultWatch-Watch-AppUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.VaultsyWatch-Watch-AppUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				TEST_TARGET_NAME = "DeadMansVaultWatch Watch App";
+				TEST_TARGET_NAME = "VaultsyWatch Watch App";
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 9.4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.6;
 			};
 			name = Release;
 		};
@@ -1317,10 +1301,9 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Browser.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = Browser.entitlements;
-				DEVELOPMENT_TEAM = F42C985T48;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Browser Extension/Info.plist";
@@ -1331,13 +1314,13 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MACOSX_DEPLOYMENT_TARGET = 15.6;
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.DeadMansVault.DeadMansVaultBrowser";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.Vaultsy.VaultsyBrowser";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -1351,10 +1334,9 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Browser.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = Browser.entitlements;
-				DEVELOPMENT_TEAM = F42C985T48;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Browser Extension/Info.plist";
@@ -1365,13 +1347,13 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MACOSX_DEPLOYMENT_TARGET = 15.6;
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.DeadMansVault.DeadMansVaultBrowser";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mjs-software.Vaultsy.VaultsyBrowser";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
