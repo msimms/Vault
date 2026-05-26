@@ -101,14 +101,19 @@ struct OpenVaultView: View {
 	@State private var showingDeleteVaultAlert: Bool = false
 	@State private var showingFailedImportAlert: Bool = false
 	@State private var showingFailedExportAlert: Bool = false
+	@State private var searchTerm = ""
 	let closeVaultTimer = Timer.publish(every: 600, on: .main, in: .common).autoconnect() // Timer to automatically close the vault
+
+	var results: [SecureVaultItem] {
+		self.searchTerm.isEmpty ? self.vault.vaultItems : self.vault.vaultItems.filter { $0.displayTitle().contains(searchTerm) }
+	}
 
 	var body: some View {
 
 		VStack(alignment: .leading) {
 
 			// List of all of the items in the vault.
-			List(self.vault.vaultItems) { item in
+			List(results) { item in
 				VStack(alignment: .leading) {
 
 					let itemView = createVaultItemView(item: item, isNewItem: false)
@@ -125,6 +130,7 @@ struct OpenVaultView: View {
 					}
 				}
 			}
+			.searchable(text: $searchTerm)
 			.listStyle(.plain)
 			.padding(10)
 #if os(macOS)
