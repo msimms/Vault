@@ -1,6 +1,6 @@
 # Vault
 
-A server-less password manager for macOS and iOS.
+A serverless password manager for macOS and iOS.
 
 ## Rationale
 
@@ -20,13 +20,12 @@ Why develop a password manager when there are other options available, including
 ## Planned Features
 
 * The ability to encrypt a vault with multiple passwords, for sharing a vault.
-* Integration with HealthKit to so that a second user's password will only function when HealthKit hasn't shown any activity from the primary user for an extended period of time (hence the name of the app).
 
 ## User Documentation
 
 ### Creating a vault
 
-TODO
+Vaults are created from the main landing page, presented before a vault has been opened.
 
 ### Enabling Biometric Authentication
 
@@ -34,11 +33,11 @@ TODO
 
 ## Architecture
 
-The application is written in Swift and thus only runs on mac OS, iOS, and iPadOS. Swift was chosen to have one application that works across the entire Apple ecosystem.
+The application is written in Swift and thus only runs on macOS, iOS, and iPadOS. Swift was chosen to have one application that works across the entire Apple ecosystem.
 
 The vaults are stored on the user's iCloud drive. Each subdirectory of the main application directory represents a vault.
 
-Vaults have an main file and a subdirectory of items, where each item in the vault corresponds to one file in the directory.
+Vaults have a main file and a subdirectory of items, where each item in the vault corresponds to one file in the directory.
 
 ![Architecture Diagram](https://github.com/msimms/Vault/blob/master/Docs/Architecture.png?raw=true)
 
@@ -53,4 +52,4 @@ cd Vault
 
 ## Version History
 
-None - still in development
+None - still in development, use at your own risk
