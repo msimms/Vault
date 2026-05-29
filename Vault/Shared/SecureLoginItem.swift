@@ -30,7 +30,7 @@ import Foundation
 struct SecureLoginItemEncoding: Codable {
 	var vaultVersion: UInt8                    // Version of this encoding
 	var title: String?                         // Website title
-	var website: String                        // Website name or URL
+	var website: String?                       // Website name or URL
 	var username: String?                      // Login username (optional)
 	var email: String?                         // Login email (optional)
 	var password: String?                      // Login password (optional)
@@ -88,7 +88,7 @@ class SecureLoginItem: SecureVaultItem {
 		super.init(json: json)
 
 		self.title = json.title ?? ""
-		self.website = json.website
+		self.website = json.website ?? ""
 		self.username = json.username ?? ""
 		self.email = json.email ?? ""
 		self.password = json.password ?? ""
