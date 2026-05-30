@@ -31,7 +31,7 @@ struct SecureCardItemEncoding: Codable {
 	var vaultVersion: UInt8                    // Version of this encoding
 	var name: String                           // Name of this card
 	var cardType: String                       // Type of the card, i.e. "Visa", "MC", etc.
-	var bank: String?                          // Type of the card, i.e. "Visa", "MC", etc.
+	var bank: String?                          // Issuer of the card, i.e. "Visa", "MC", etc.
 	var cardHolder: String                     // Name on the card
 	var number: String                         // Card number
 	var securityCode: Int                      // Card security code
