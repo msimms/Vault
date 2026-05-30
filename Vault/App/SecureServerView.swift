@@ -34,6 +34,7 @@ import AppKit
 
 struct SecureServerLoginView: View {
 	@State var isReadOnly: Bool = false
+	@State var showPassword: Bool = false
 	@Binding var login: SecureServerLogin
 
 	var body: some View {
@@ -49,9 +50,22 @@ struct SecureServerLoginView: View {
 			HStack() {
 				Text("Password")
 					.fontWeight(.heavy)
-				TextField("Password", text: self.$login.password, onCommit: {
+				ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
+					if self.showPassword {
+						TextField("Password", text: self.$login.password, onCommit: {
+						})
+						.disabled(self.isReadOnly)
+					}
+					else {
+						SecureField("Password", text: self.$login.password)
+							.disabled(self.isReadOnly)
+					}
+					Button(action: { self.showPassword.toggle() }) {
+						Image(systemName: "eye")
+							.foregroundColor(.secondary)
+					}
+					.help("View")
 				})
-				.disabled(self.isReadOnly)
 			}
 		}
 		.padding(10)
@@ -110,7 +124,7 @@ struct SecureServerView: View {
 						Text("Credentials")
 							.fontWeight(.heavy)
 						ForEach($item.logins) { $login in
-							SecureServerLoginView(isReadOnly: self.isReadOnly, login: $login)
+							SecureServerLoginView(isReadOnly: self.isReadOnly, showPassword: self.showPassword, login: $login)
 						}
 						Button(action: {
 							self.item.logins.append(SecureServerLogin(username: "", password: ""))

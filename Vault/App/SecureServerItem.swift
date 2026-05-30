@@ -30,7 +30,7 @@ import Foundation
 struct SecureServerItemEncoding: Codable, Hashable {
 	var vaultVersion: UInt8                    // Version of this encoding
 	var title: String?                         // Server title
-	var uri: String                            // Server name or URL
+	var uri: String?                           // Server name or URL
 	var logins: Array<SecureServerLogin>?
 	var note: String?                          // Notes (optional)
 	var tags: Array<String>?                   // Tags (optional)
@@ -105,7 +105,7 @@ class SecureServerItem: SecureVaultItem {
 		super.init(json: json)
 
 		self.title = json.title ?? ""
-		self.uri = json.uri
+		self.uri = json.uri ?? ""
 		self.logins = json.logins ?? []
 		self.note = json.note ?? ""
 		self.tags = json.tags ?? []
