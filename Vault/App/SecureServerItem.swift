@@ -150,7 +150,7 @@ class SecureServerItem: SecureVaultItem {
 		let jsonStr = String(data: jsonData, encoding: .utf8)!
 
 		// Encrypt and write the data.
-		try super.write(locationOfVaultItems: locationOfVaultItems, masterKey: masterKey, contents: jsonStr, itemType: VaultItemType.login)
+		try super.write(locationOfVaultItems: locationOfVaultItems, masterKey: masterKey, contents: jsonStr, itemType: VaultItemType.server)
 	}
 
 	/// Returns the string to use as the title when viewing this item.
