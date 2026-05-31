@@ -35,6 +35,7 @@ import AppKit
 struct SecureServerLoginView: View {
 	@Binding var isReadOnly: Bool
 	@Binding var login: SecureServerLogin
+	let onDeleteRequested: () -> Void
 	@State var showPassword: Bool = false
 
 	var body: some View {
@@ -43,9 +44,19 @@ struct SecureServerLoginView: View {
 			HStack() {
 				Text("Username")
 					.fontWeight(.heavy)
-				TextField("Username", text: self.$login.username, onCommit: {
+				ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
+					TextField("Username", text: self.$login.username, onCommit: {
+					})
+					.disabled(self.isReadOnly)
+					Button(action: {
+						onDeleteRequested()
+					}) {
+						Image(systemName: "trash")
+							.foregroundColor(.secondary)
+					}
+					.disabled(self.isReadOnly)
+					.help("View")
 				})
-				.disabled(self.isReadOnly)
 			}
 			HStack() {
 				Text("Password")
@@ -124,7 +135,9 @@ struct SecureServerView: View {
 						Text("Credentials")
 							.fontWeight(.heavy)
 						ForEach($item.logins) { $login in
-							SecureServerLoginView(isReadOnly: self.$isReadOnly, login: $login)
+							SecureServerLoginView(isReadOnly: self.$isReadOnly, login: $login) {
+								self.item.logins.removeAll(where: { $0.id == $login.id })
+							}
 						}
 						Button(action: {
 							self.item.logins.append(SecureServerLogin(username: "", password: ""))
