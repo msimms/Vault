@@ -33,9 +33,9 @@ import AppKit
 #endif
 
 struct SecureServerLoginView: View {
-	@State var isReadOnly: Bool = false
-	@State var showPassword: Bool = false
+	@Binding var isReadOnly: Bool
 	@Binding var login: SecureServerLogin
+	@State var showPassword: Bool = false
 
 	var body: some View {
 
@@ -124,7 +124,7 @@ struct SecureServerView: View {
 						Text("Credentials")
 							.fontWeight(.heavy)
 						ForEach($item.logins) { $login in
-							SecureServerLoginView(isReadOnly: self.isReadOnly, showPassword: self.showPassword, login: $login)
+							SecureServerLoginView(isReadOnly: self.$isReadOnly, login: $login)
 						}
 						Button(action: {
 							self.item.logins.append(SecureServerLogin(username: "", password: ""))
