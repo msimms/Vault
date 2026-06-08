@@ -102,7 +102,11 @@ struct OpenVaultView: View {
 	@State private var showingFailedImportAlert: Bool = false
 	@State private var showingFailedExportAlert: Bool = false
 	@State private var searchTerm = ""
-	let closeVaultTimer = Timer.publish(every: 600, on: .main, in: .common).autoconnect() // Timer to automatically close the vault
+	@State private var closeVaultTimer = Timer.publish(every: 600, on: .main, in: .common).autoconnect() // Timer to automatically close the vault
+
+	func resetTimer() {
+		self.closeVaultTimer = Timer.publish(every: 600, on: .main, in: .common).autoconnect()
+	}
 
 	var results: [SecureVaultItem] {
 		self.searchTerm.isEmpty ? self.vault.vaultItems : self.vault.vaultItems.filter { $0.displayTitle().contains(searchTerm) }
@@ -129,6 +133,9 @@ struct OpenVaultView: View {
 						}
 					}
 				}
+			}
+			.onChange(of: results, initial: false) { oldValue, newValue in
+				resetTimer()
 			}
 			.searchable(text: $searchTerm)
 			.listStyle(.plain)
