@@ -109,7 +109,10 @@ struct OpenVaultView: View {
 	}
 
 	var results: [SecureVaultItem] {
-		self.searchTerm.isEmpty ? self.vault.vaultItems : self.vault.vaultItems.filter { $0.displayTitle().contains(searchTerm) }
+		let s = self.searchTerm.isEmpty ? self.vault.vaultItems : self.vault.vaultItems.filter { $0.displayTitle().contains(searchTerm) }
+		return s.sorted {
+			$0.displayTitle().localizedCaseInsensitiveCompare($1.displayTitle()) == .orderedAscending
+		}
 	}
 
 	var body: some View {
