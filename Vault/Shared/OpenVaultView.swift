@@ -259,6 +259,8 @@ struct OpenVaultView: View {
 									.labelStyle(.titleAndIcon)
 							})
 
+							Divider()
+
 							// Close the Vault
 							Button(action: {
 								AppState.shared.closeVault()
@@ -272,7 +274,7 @@ struct OpenVaultView: View {
 							Button(action: {
 								self.showingDeleteVaultAlert = true
 							}) {
-								Label("Delete Vault", systemImage: "trash")
+								Label("Delete Vault...", systemImage: "trash")
 									.labelStyle(.titleAndIcon)
 							}
 						}
