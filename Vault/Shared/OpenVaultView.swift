@@ -119,12 +119,11 @@ struct OpenVaultView: View {
 	}
 
 	var body: some View {
-
 		VStack(alignment: .leading) {
 
 			// List of all of the items in the vault.
 			List {
-				let keys = results.keys.sorted()
+				let keys: [String] = results.keys.sorted()
 				ForEach(keys, id: \.self) { key in
 					Section(header: Text(key)) {
 						ForEach(results[key]!) { item in
