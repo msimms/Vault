@@ -99,6 +99,7 @@ struct OpenVaultView: View {
 	@State var newItemType: VaultItemType = VaultItemType.login
 	@State private var showingFailedToDeleteAlert: Bool = false
 	@State private var showingDeleteVaultAlert: Bool = false
+	@State private var showingSuccessfulImportAlert: Bool = false
 	@State private var showingFailedImportAlert: Bool = false
 	@State private var showingFailedExportAlert: Bool = false
 	@State private var searchTerm: String = ""
@@ -228,14 +229,16 @@ struct OpenVaultView: View {
 								panel.canChooseDirectories = false
 
 								if panel.runModal() == .OK {
-									self.showingFailedImportAlert = !AppState.shared.importVaultFromUrl(from: panel.url!)
+									if AppState.shared.importVaultFromUrl(from: panel.url!) {
+										self.showingSuccessfulImportAlert = true
+									}
+									else {
+										self.showingFailedImportAlert = true
+									}
 								}
 							}) {
 								Label("Import...", systemImage: "square.and.arrow.down")
 									.labelStyle(.titleAndIcon)
-							}
-							.alert("Failed to import the data!", isPresented: self.$showingFailedImportAlert) {
-								Button("OK", role: .cancel) { }
 							}
 
 							// Export Data
@@ -301,6 +304,12 @@ struct OpenVaultView: View {
 							.keyboardShortcut(.cancelAction)
 						}
 						.alert("Failed to delete the vault!", isPresented: self.$showingFailedToDeleteAlert) {
+							Button("OK", role: .cancel) { }
+						}
+						.alert("File imported!", isPresented: self.$showingSuccessfulImportAlert) {
+							Button("OK", role: .cancel) { }
+						}
+						.alert("Failed to import the data!", isPresented: self.$showingFailedImportAlert) {
 							Button("OK", role: .cancel) { }
 						}
 					}
