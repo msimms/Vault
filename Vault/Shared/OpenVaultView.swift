@@ -101,7 +101,7 @@ struct OpenVaultView: View {
 	@State private var showingDeleteVaultAlert: Bool = false
 	@State private var showingFailedImportAlert: Bool = false
 	@State private var showingFailedExportAlert: Bool = false
-	@State private var searchTerm = ""
+	@State private var searchTerm: String = ""
 	@State private var closeVaultTimer = Timer.publish(every: 600, on: .main, in: .common).autoconnect() // Timer to automatically close the vault
 
 	func resetTimer() {
@@ -122,9 +122,7 @@ struct OpenVaultView: View {
 			// List of all of the items in the vault.
 			List(results) { item in
 				VStack(alignment: .leading) {
-
-					let itemView = createVaultItemView(item: item, isNewItem: false)
-					NavigationLink(destination: itemView) {
+					NavigationLink(destination: createVaultItemView(item: item, isNewItem: false)) {
 						VStack(alignment: .leading) {
 							HStack() {
 								Text(title(item: item))
