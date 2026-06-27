@@ -108,11 +108,13 @@ struct OpenVaultView: View {
 		self.closeVaultTimer = Timer.publish(every: 600, on: .main, in: .common).autoconnect()
 	}
 
-	var results: [SecureVaultItem] {
-		let s = self.searchTerm.isEmpty ? self.vault.vaultItems : self.vault.vaultItems.filter { $0.displayTitle().contains(searchTerm) }
-		return s.sorted {
-			$0.displayTitle().localizedCaseInsensitiveCompare($1.displayTitle()) == .orderedAscending
+	var results: [String: [SecureVaultItem]] {
+		let items = self.searchTerm.isEmpty ? self.vault.vaultItems : self.vault.vaultItems.filter { $0.displayTitle().lowercased().contains(searchTerm.lowercased())
 		}
+		let grouped = Dictionary(grouping: items) {
+			String($0.displayTitle().first ?? Character(" "))
+		}
+		return grouped
 	}
 
 	var body: some View {
@@ -120,17 +122,22 @@ struct OpenVaultView: View {
 		VStack(alignment: .leading) {
 
 			// List of all of the items in the vault.
-			List(results) { item in
-				VStack(alignment: .leading) {
-					NavigationLink(destination: createVaultItemView(item: item, isNewItem: false)) {
-						VStack(alignment: .leading) {
-							HStack() {
-								Text(title(item: item))
-									.font(.headline)
-								Image(systemName: iconForVaultItem(item: item))
+			List {
+				let keys = results.keys.sorted()
+				ForEach(keys, id: \.self) { key in
+					Section(header: Text(key)) {
+						ForEach(results[key]!) { item in
+							NavigationLink(destination: createVaultItemView(item: item, isNewItem: false)) {
+								VStack(alignment: .leading) {
+									HStack() {
+										Text(title(item: item))
+											.font(.headline)
+										Image(systemName: iconForVaultItem(item: item))
+									}
+									Text(subtitle(item: item))
+										.font(.subheadline)
+								}
 							}
-							Text(subtitle(item: item))
-								.font(.subheadline)
 						}
 					}
 				}
