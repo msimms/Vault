@@ -36,6 +36,7 @@ func createVaultItemView(item: SecureVaultItem, isNewItem: Bool) -> some View {
 	case is SecureAccessPointItem: SecureAccessPointView(item: item as! SecureAccessPointItem, isNewItem: isNewItem, isReadOnly: true)
 	case is SecureLicenseItem: SecureLicenseView(item: item as! SecureLicenseItem, isNewItem: isNewItem, isReadOnly: true)
 	case is SecureServerItem: SecureServerView(item: item as! SecureServerItem, isNewItem: isNewItem, isReadOnly: true)
+	case is SecureMembershipItem: SecureMembershipView(item: item as! SecureMembershipItem, isNewItem: isNewItem, isReadOnly: true)
 	default: EmptyView()
 	}
 }
@@ -48,6 +49,7 @@ func iconForVaultItem(item: SecureVaultItem) -> String {
 	case is SecureAccessPointItem: return "wifi";
 	case is SecureLicenseItem: return "key";
 	case is SecureServerItem: return "server.rack";
+	case is SecureMembershipItem: return "lanyardcard";
 	default: return ""
 	}
 }
@@ -60,6 +62,7 @@ func iconForVaultType(type: VaultItemType) -> String {
 	case .accessPoint: return "wifi";
 	case .license: return "key";
 	case .server: return "server.rack";
+	case .membership: return "lanyardcard";
 	}
 }
 
@@ -71,6 +74,7 @@ func title(item: SecureVaultItem) -> String {
 	case is SecureAccessPointItem: let item2 = item as! SecureAccessPointItem; return item2.displayTitle();
 	case is SecureLicenseItem: let item2 = item as! SecureLicenseItem; return item2.displayTitle();
 	case is SecureServerItem: let item2 = item as! SecureServerItem; return item2.displayTitle();
+	case is SecureMembershipItem: let item2 = item as! SecureMembershipItem; return item2.displayTitle();
 	default: return ""
 	}
 }
@@ -83,6 +87,7 @@ func subtitle(item: SecureVaultItem) -> String {
 	case is SecureAccessPointItem: let item2 = item as! SecureAccessPointItem; return item2.displaySubtitle();
 	case is SecureLicenseItem: let item2 = item as! SecureLicenseItem; return item2.displaySubtitle();
 	case is SecureServerItem: let item2 = item as! SecureServerItem; return item2.displaySubtitle();
+	case is SecureMembershipItem: let item2 = item as! SecureMembershipItem; return item2.displaySubtitle();
 	default: return ""
 	}
 }
@@ -212,6 +217,15 @@ struct OpenVaultView: View {
 								self.showNewItem = true
 							}) {
 								Label("Server", systemImage: iconForVaultType(type: .server))
+									.labelStyle(.titleAndIcon)
+							}
+
+							// New Membership Card
+							Button(action: {
+								self.newItemType = VaultItemType.membership
+								self.showNewItem = true
+							}) {
+								Label("Membership", systemImage: iconForVaultType(type: .membership))
 									.labelStyle(.titleAndIcon)
 							}
 						}

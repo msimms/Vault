@@ -93,6 +93,11 @@ func createVaultItemFromFile(location: URL, masterKey: Data) throws -> SecureVau
 		let newItem = SecureServerItem(json: json)
 		newItem.id = outerVaultItem.id
 		return newItem
+	case VaultItemType.membership:
+		let json = try JSONDecoder().decode(SecureMembershipItemEncoding.self, from: decryptedDecodedContents)
+		let newItem = SecureMembershipItem(json: json)
+		newItem.id = outerVaultItem.id
+		return newItem
 	}
 }
 
@@ -196,6 +201,16 @@ func createLicenseVaultItemFrom1Pif(contents: PifEncoding, note: String, tags: A
 	return SecureLicenseItem(json: vaultData)
 }
 
+func createMembershipVaultItemFrom1Pif(contents: PifEncoding, note: String, tags: Array<String>, lastModifiedTime: Date) throws -> SecureMembershipItem {
+	let secureContents = contents.secureContents
+	let membership_no = secureContents.membership_no ?? ""
+	let member_since_yy = secureContents.member_since_yy ?? ""
+	let member_since_mm = secureContents.member_since_mm ?? ""
+
+	let vaultData = SecureMembershipItemEncoding(vaultVersion: Vault.kCurrentVaultVersion, title: contents.title, membershipNumber: membership_no, memberSinceYY: member_since_yy, memberSinceMM: member_since_mm, note: note, tags: tags, lastModifiedTime: lastModifiedTime)
+	return SecureMembershipItem(json: vaultData)
+}
+
 func createVaultItemFrom1Pif(contents: PifEncoding) throws -> SecureVaultItem {
 	let secureContents = contents.secureContents
 	let note = secureContents.notesPlain ?? ""
@@ -225,6 +240,11 @@ func createVaultItemFrom1Pif(contents: PifEncoding) throws -> SecureVaultItem {
 	}
 	else if contents.typeName == "wallet.computer.License" {
 		return try createLicenseVaultItemFrom1Pif(contents: contents, note: note, tags: tags, lastModifiedTime: lastModifiedTime)
+	}
+	else if contents.typeName == "wallet.membership.Membership" {
+		return try createMembershipVaultItemFrom1Pif(contents: contents, note: note, tags: tags, lastModifiedTime: lastModifiedTime)
+	}
+	else {
 	}
 	throw VaultException.runtimeError("Unknown import type.")
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2713FBD42FFED44C00E5DC15 /* SecureMembershipItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2713FBD32FFED44200E5DC15 /* SecureMembershipItem.swift */; };
+		2713FBD62FFED71100E5DC15 /* SecureMembershipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2713FBD52FFED70E00E5DC15 /* SecureMembershipView.swift */; };
 		27212F8F2A9008B9000D54D2 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27212F8A2A9008AF000D54D2 /* SafariWebExtensionHandler.swift */; };
 		27212F912A9008C5000D54D2 /* Resources in Resources */ = {isa = PBXBuildFile; fileRef = 27212F8B2A9008AF000D54D2 /* Resources */; };
 		2738EFE52AB37D700066B3CB /* SecureLicenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2738EFE32AB37D700066B3CB /* SecureLicenseView.swift */; };
@@ -158,6 +160,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2713FBD32FFED44200E5DC15 /* SecureMembershipItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureMembershipItem.swift; sourceTree = "<group>"; };
+		2713FBD52FFED70E00E5DC15 /* SecureMembershipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureMembershipView.swift; sourceTree = "<group>"; };
 		27212F892A9008AF000D54D2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		27212F8A2A9008AF000D54D2 /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
 		27212F8B2A9008AF000D54D2 /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resources; sourceTree = "<group>"; };
@@ -350,6 +354,8 @@
 				2738EFE32AB37D700066B3CB /* SecureLicenseView.swift */,
 				274AA6CF2A8FF1C800F77F96 /* SecureLoginItem.swift */,
 				274AA6C42A8FF1C600F77F96 /* SecureLoginView.swift */,
+				2713FBD32FFED44200E5DC15 /* SecureMembershipItem.swift */,
+				2713FBD52FFED70E00E5DC15 /* SecureMembershipView.swift */,
 				274AA6C82A8FF1C700F77F96 /* SecureNoteItem.swift */,
 				274AA6DE2A8FF1CB00F77F96 /* SecureNoteView.swift */,
 				27ABDC3A2FA10BCC00A2B1C6 /* SecureServerItem.swift */,
@@ -719,8 +725,10 @@
 				2765F9932B8E52D000B3E75E /* PasswordView.swift in Sources */,
 				274AA7012A8FF1CC00F77F96 /* VaultItemFactory.swift in Sources */,
 				274AA6FB2A8FF1CC00F77F96 /* Exporter.swift in Sources */,
+				2713FBD42FFED44C00E5DC15 /* SecureMembershipItem.swift in Sources */,
 				274AA6EC2A8FF1CC00F77F96 /* ItemButtonView.swift in Sources */,
 				274AA6ED2A8FF1CC00F77F96 /* VaultViewModel.swift in Sources */,
+				2713FBD62FFED71100E5DC15 /* SecureMembershipView.swift in Sources */,
 				274AA6E32A8FF1CC00F77F96 /* NewTagView.swift in Sources */,
 				274AA6FA2A8FF1CC00F77F96 /* PasswordVaultDocument.swift in Sources */,
 				274AA6F92A8FF1CC00F77F96 /* ContentView.swift in Sources */,

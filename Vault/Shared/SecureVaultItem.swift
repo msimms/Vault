@@ -37,6 +37,7 @@ enum VaultItemType: UInt8, Codable {
 	case accessPoint
 	case license
 	case server
+	case membership
 }
 
 /// Encapsulates the data stored in an encrypted vault item file.

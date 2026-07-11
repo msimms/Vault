@@ -120,6 +120,9 @@ struct PifSecureContents: Codable {
 	var notesPlain: String?
 	var name: String?
 	var password: String?
+	var membership_no: String?
+	var member_since_yy: String?
+	var member_since_mm: String?
 	var sections: Array<PifSection>?
 }
 
