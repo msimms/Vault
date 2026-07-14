@@ -21,3 +21,5 @@ xcuserdata
 *.dSYM.zip
 *.dSYM
 
+## Random
+.DS_Store
