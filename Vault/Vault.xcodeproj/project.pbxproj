@@ -71,6 +71,7 @@
 		27ABDC392FA10BBE00A2B1C6 /* SecureServerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27ABDC382FA10BB500A2B1C6 /* SecureServerView.swift */; };
 		27ABDC3B2FA10BD000A2B1C6 /* SecureServerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27ABDC3A2FA10BCC00A2B1C6 /* SecureServerItem.swift */; };
 		27BF1A942AE8248F00BDA339 /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BF1A932AE8248F00BDA339 /* DocumentPicker.swift */; };
+		27C2A2E03006AD340034B74A /* SecureMembershipItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2713FBD32FFED44200E5DC15 /* SecureMembershipItem.swift */; };
 		27CFBB3D2BAD0337002F5436 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6CD2A8FF1C800F77F96 /* Keychain.swift */; };
 		27E30B5C2A92CF5700236EAB /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6CC2A8FF1C800F77F96 /* Preferences.swift */; };
 		27E30B5D2A92CF6300236EAB /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AA6CE2A8FF1C800F77F96 /* AppState.swift */; };
@@ -774,6 +775,7 @@
 				27E30B642A92EC0700236EAB /* Exporter.swift in Sources */,
 				274AA6732A8FD32300F77F96 /* ContentView.swift in Sources */,
 				27E30B622A92E14A00236EAB /* VaultException.swift in Sources */,
+				27C2A2E03006AD340034B74A /* SecureMembershipItem.swift in Sources */,
 				2738EFE72AB396530066B3CB /* SecureLicenseItem.swift in Sources */,
 				274AA6712A8FD32300F77F96 /* WatchApp.swift in Sources */,
 				27E30B652A92EC2A00236EAB /* VaultItemFactory.swift in Sources */,
