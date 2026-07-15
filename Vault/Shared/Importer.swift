@@ -156,16 +156,17 @@ class Importer {
 		for entry in entries {
 
 			// 1Password puts a comment line between each entry.
-			if entry.starts(with: "***") == false {
+			if !entry.isEmpty && entry.starts(with: "***") == false {
 				do {
 					let pifContents = try JSONDecoder().decode(PifEncoding.self, from: entry.data(using: .utf8)!)
 					let vaultItem = try createVaultItemFrom1Pif(contents: pifContents)
-					
+
 					try vault.addItem(item: vaultItem)
 				}
 				catch {
 					print("Error importing " + entry + ".")
 					print(error)
+					throw error
 				}
 			}
 		}
