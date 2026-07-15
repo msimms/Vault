@@ -29,7 +29,7 @@ import Foundation
 
 struct SecureNoteItemEncoding: Codable {
 	var vaultVersion: UInt8                    // Version of this encoding
-	var heading: String                        // Name of this note
+	var heading: String?                       // Name of this note
 	var note: String                           // The note
 	var tags: Array<String>?                   // Tags
 	var lastModifiedTime: Date?                // Timestamp of the last update
@@ -67,7 +67,7 @@ class SecureNoteItem: SecureVaultItem {
 	init(json: SecureNoteItemEncoding) {
 		super.init(json: json)
 		
-		self.heading = json.heading
+		self.heading = json.heading ?? ""
 		self.note = json.note
 		self.tags = json.tags ?? []
 		self.lastModifiedTime = json.lastModifiedTime
