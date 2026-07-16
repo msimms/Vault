@@ -124,9 +124,16 @@ func createLoginVaultItemFrom1Pif(contents: PifEncoding, note: String, tags: Arr
 	}
 	if secureContents.fields != nil {
 		for field in secureContents.fields! {
-			let fieldType = field.type.lowercased()
-			let fieldDesignation = field.designation.lowercased()
-			
+			var fieldType = field.type ?? ""
+			var fieldDesignation = field.designation ?? ""
+
+			if fieldType.isEmpty {
+				continue
+			}
+
+			fieldType = fieldType.lowercased()
+			fieldDesignation = fieldDesignation.lowercased()
+
 			if fieldType == "k" {
 			}
 			else if fieldType == "n" {

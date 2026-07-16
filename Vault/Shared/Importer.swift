@@ -87,8 +87,8 @@ struct PifSectionFields: Codable {
 struct PifSecureContentsFields: Codable {
 	var value: String
 	var name: String
-	var type: String
-	var designation: String
+	var type: String?
+	var designation: String?
 }
 
 struct PifPasswordHistory: Codable {
