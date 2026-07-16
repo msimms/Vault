@@ -170,6 +170,7 @@ struct OpenVaultView: View {
 							Button(action: {
 								self.newItemType = VaultItemType.login
 								self.showNewItem = true
+								self.resetTimer()
 							}) {
 								Label("Login", systemImage: iconForVaultType(type: .login))
 									.labelStyle(.titleAndIcon)
@@ -179,6 +180,7 @@ struct OpenVaultView: View {
 							Button(action: {
 								self.newItemType = VaultItemType.note
 								self.showNewItem = true
+								self.resetTimer()
 							}) {
 								Label("Note", systemImage: iconForVaultType(type: .note))
 									.labelStyle(.titleAndIcon)
@@ -188,6 +190,7 @@ struct OpenVaultView: View {
 							Button(action: {
 								self.newItemType = VaultItemType.card
 								self.showNewItem = true
+								self.resetTimer()
 							}) {
 								Label("Card", systemImage: iconForVaultType(type: .card))
 									.labelStyle(.titleAndIcon)
@@ -197,6 +200,7 @@ struct OpenVaultView: View {
 							Button(action: {
 								self.newItemType = VaultItemType.accessPoint
 								self.showNewItem = true
+								self.resetTimer()
 							}) {
 								Label("Access Point", systemImage: iconForVaultType(type: .accessPoint))
 									.labelStyle(.titleAndIcon)
@@ -206,6 +210,7 @@ struct OpenVaultView: View {
 							Button(action: {
 								self.newItemType = VaultItemType.license
 								self.showNewItem = true
+								self.resetTimer()
 							}) {
 								Label("License Key", systemImage: iconForVaultType(type: .license))
 									.labelStyle(.titleAndIcon)
@@ -215,6 +220,7 @@ struct OpenVaultView: View {
 							Button(action: {
 								self.newItemType = VaultItemType.server
 								self.showNewItem = true
+								self.resetTimer()
 							}) {
 								Label("Server", systemImage: iconForVaultType(type: .server))
 									.labelStyle(.titleAndIcon)
@@ -224,6 +230,7 @@ struct OpenVaultView: View {
 							Button(action: {
 								self.newItemType = VaultItemType.membership
 								self.showNewItem = true
+								self.resetTimer()
 							}) {
 								Label("Membership", systemImage: iconForVaultType(type: .membership))
 									.labelStyle(.titleAndIcon)
