@@ -82,10 +82,12 @@ struct SecureLoginView: View {
 						Text("Additional URLs")
 							.fontWeight(.heavy)
 						VStack(alignment: .leading) {
-							ForEach(self.$item.urls, id: \.self) { url in
-								TextField("", text: url)
-									.disabled(self.isReadOnly)
-									.padding(10)
+							ForEach(self.$item.urls.indices, id: \.self) { index in
+								if !self.item.urls[index].isEmpty {
+									TextField("", text: self.$item.urls[index])
+										.disabled(self.isReadOnly)
+										.padding(10)
+								}
 							}
 							TextField("", text: self.$additionalUrl, onCommit: {
 								self.item.urls.append(self.additionalUrl)
