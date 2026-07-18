@@ -68,6 +68,9 @@ struct LockView: View {
 								.labelStyle(.titleAndIcon)
 						}
 					}
+					if !vaultNames.isEmpty {
+						Divider()
+					}
 					Button(action: {
 						VaultDisplayState.shared.vaultState = VaultState.CreateNewVault
 					}) {

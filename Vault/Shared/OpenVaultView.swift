@@ -128,19 +128,24 @@ struct OpenVaultView: View {
 
 			// List of all of the items in the vault.
 			List {
-				let keys: [String] = results.keys.sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
-				ForEach(keys, id: \.self) { key in
-					Section(header: Text(key)) {
-						ForEach(results[key]!) { item in
-							NavigationLink(destination: createVaultItemView(item: item, isNewItem: false)) {
-								VStack(alignment: .leading) {
-									HStack() {
-										Text(title(item: item))
-											.font(.headline)
-										Image(systemName: iconForVaultItem(item: item))
+				if results.keys.isEmpty {
+					Text("Nothing to display!")
+				}
+				else {
+					let keys: [String] = results.keys.sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
+					ForEach(keys, id: \.self) { key in
+						Section(header: Text(key)) {
+							ForEach(results[key]!) { item in
+								NavigationLink(destination: createVaultItemView(item: item, isNewItem: false)) {
+									VStack(alignment: .leading) {
+										HStack() {
+											Text(title(item: item))
+												.font(.headline)
+											Image(systemName: iconForVaultItem(item: item))
+										}
+										Text(subtitle(item: item))
+											.font(.subheadline)
 									}
-									Text(subtitle(item: item))
-										.font(.subheadline)
 								}
 							}
 						}
