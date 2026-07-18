@@ -180,14 +180,16 @@ func createCardVaultItemFrom1Pif(contents: PifEncoding, note: String, tags: Arra
 			if section.fields != nil {
 				for field in section.fields! {
 					let fieldName = field.n.lowercased()
-					if fieldName == "cardholder" {
-						cardHolder = try field.v!.decodeToString()
-					}
-					else if fieldName == "ccnum" && field.v != nil {
-						cardNum = try field.v!.decodeToString()
-					}
-					else if fieldName == "cvv" && field.v != nil {
-						securityCode = try field.v!.decodeToInt()
+					if field.v != nil {
+						if fieldName == "cardholder" {
+							cardHolder = try field.v!.decodeToString()
+						}
+						else if fieldName == "ccnum" && field.v != nil {
+							cardNum = try field.v!.decodeToString()
+						}
+						else if fieldName == "cvv" && field.v != nil {
+							securityCode = try field.v!.decodeToInt()
+						}
 					}
 				}
 			}
@@ -206,6 +208,11 @@ func createLicenseVaultItemFrom1Pif(contents: PifEncoding, note: String, tags: A
 
 	let vaultData = SecureLicenseItemEncoding(vaultVersion: Vault.kCurrentVaultVersion, title: contents.title, licenseHolder: licenseHolder, licenseKey: licenseKey, licenseEmail: licenseEmail, note: note, tags: tags, lastModifiedTime: lastModifiedTime)
 	return SecureLicenseItem(json: vaultData)
+}
+
+func createServerItemFromPif(contents: PifEncoding, note: String, tags: Array<String>, lastModifiedTime: Date) throws -> SecureServerItem {
+	let vaultData = SecureServerItemEncoding(vaultVersion: Vault.kCurrentVaultVersion, title: contents.title, note: note, tags: tags, lastModifiedTime: lastModifiedTime)
+	return SecureServerItem(json: vaultData)
 }
 
 func createMembershipVaultItemFrom1Pif(contents: PifEncoding, note: String, tags: Array<String>, lastModifiedTime: Date) throws -> SecureMembershipItem {
@@ -232,7 +239,8 @@ func createVaultItemFrom1Pif(contents: PifEncoding) throws -> SecureVaultItem {
 		return createLoginVaultItemFrom1Pif(contents: contents, note: note, tags: tags, lastModifiedTime: lastModifiedTime)
 	}
 	else if contents.typeName == "securenotes.SecureNote" {
-		let vaultData = SecureNoteItemEncoding(vaultVersion: Vault.kCurrentVaultVersion, heading: contents.title, note: secureContents.notesPlain!, tags: tags, lastModifiedTime: lastModifiedTime)
+		let note = secureContents.notesPlain ?? ""
+		let vaultData = SecureNoteItemEncoding(vaultVersion: Vault.kCurrentVaultVersion, heading: contents.title, note: note, tags: tags, lastModifiedTime: lastModifiedTime)
 		return SecureNoteItem(json: vaultData)
 	}
 	else if contents.typeName == "wallet.financial.CreditCard" {
@@ -247,6 +255,9 @@ func createVaultItemFrom1Pif(contents: PifEncoding) throws -> SecureVaultItem {
 	}
 	else if contents.typeName == "wallet.computer.License" {
 		return try createLicenseVaultItemFrom1Pif(contents: contents, note: note, tags: tags, lastModifiedTime: lastModifiedTime)
+	}
+	else if contents.typeName == "wallet.computer.UnixServer" {
+		return try createServerItemFromPif(contents: contents, note: note, tags: tags, lastModifiedTime: lastModifiedTime)
 	}
 	else if contents.typeName == "wallet.membership.Membership" {
 		return try createMembershipVaultItemFrom1Pif(contents: contents, note: note, tags: tags, lastModifiedTime: lastModifiedTime)
