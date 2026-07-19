@@ -145,6 +145,7 @@ struct SecureServerView: View {
 							Label("Add Username/Password", systemImage: "person.badge.key")
 								.labelStyle(.titleAndIcon)
 						})
+						.disabled(self.isReadOnly)
 						.help("Add a new username / password combination")
 					}
 					Group() {
