@@ -50,6 +50,7 @@ func iconForVaultItem(item: SecureVaultItem) -> String {
 	case is SecureLicenseItem: return "key";
 	case is SecureServerItem: return "server.rack";
 	case is SecureMembershipItem: return "lanyardcard";
+	case is SecurePassportItem: return "book.closed";
 	default: return ""
 	}
 }
@@ -63,6 +64,7 @@ func iconForVaultType(type: VaultItemType) -> String {
 	case .license: return "key";
 	case .server: return "server.rack";
 	case .membership: return "lanyardcard";
+	case .passport: return "book.closed";
 	}
 }
 
@@ -75,6 +77,7 @@ func title(item: SecureVaultItem) -> String {
 	case is SecureLicenseItem: let item2 = item as! SecureLicenseItem; return item2.displayTitle();
 	case is SecureServerItem: let item2 = item as! SecureServerItem; return item2.displayTitle();
 	case is SecureMembershipItem: let item2 = item as! SecureMembershipItem; return item2.displayTitle();
+	case is SecurePassportItem: let item2 = item as! SecurePassportItem; return item2.displayTitle();
 	default: return ""
 	}
 }
@@ -88,6 +91,7 @@ func subtitle(item: SecureVaultItem) -> String {
 	case is SecureLicenseItem: let item2 = item as! SecureLicenseItem; return item2.displaySubtitle();
 	case is SecureServerItem: let item2 = item as! SecureServerItem; return item2.displaySubtitle();
 	case is SecureMembershipItem: let item2 = item as! SecureMembershipItem; return item2.displaySubtitle();
+	case is SecurePassportItem: let item2 = item as! SecurePassportItem; return item2.displaySubtitle();
 	default: return ""
 	}
 }
@@ -238,6 +242,16 @@ struct OpenVaultView: View {
 								self.resetTimer()
 							}) {
 								Label("Membership", systemImage: iconForVaultType(type: .membership))
+									.labelStyle(.titleAndIcon)
+							}
+
+							// Passport
+							Button(action: {
+								self.newItemType = VaultItemType.passport
+								self.showNewItem = true
+								self.resetTimer()
+							}) {
+								Label("Passport", systemImage: iconForVaultType(type: .passport))
 									.labelStyle(.titleAndIcon)
 							}
 						}

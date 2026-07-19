@@ -98,6 +98,11 @@ func createVaultItemFromFile(location: URL, masterKey: Data) throws -> SecureVau
 		let newItem = SecureMembershipItem(json: json)
 		newItem.id = outerVaultItem.id
 		return newItem
+	case VaultItemType.passport:
+		let json = try JSONDecoder().decode(SecurePassportItemEncoding.self, from: decryptedDecodedContents)
+		let newItem = SecurePassportItem(json: json)
+		newItem.id = outerVaultItem.id
+		return newItem
 	}
 }
 
@@ -215,6 +220,9 @@ func createServerItemFromPif(contents: PifEncoding, note: String, tags: Array<St
 	return SecureServerItem(json: vaultData)
 }
 
+func createPassportVaultItemFrom1Pif(contents: PifEncoding, note: String, tags: Array<String>, lastModifiedTime: Date) {
+}
+
 func createMembershipVaultItemFrom1Pif(contents: PifEncoding, note: String, tags: Array<String>, lastModifiedTime: Date) throws -> SecureMembershipItem {
 	let secureContents = contents.secureContents
 	let membership_no = secureContents.membership_no ?? ""
@@ -235,17 +243,24 @@ func createVaultItemFrom1Pif(contents: PifEncoding) throws -> SecureVaultItem {
 		tags = contents.openContents?.tags ?? []
 	}
 
+	// Simple password or login
 	if contents.typeName == "passwords.Password" || contents.typeName == "webforms.WebForm" {
 		return createLoginVaultItemFrom1Pif(contents: contents, note: note, tags: tags, lastModifiedTime: lastModifiedTime)
 	}
+
+	// Note
 	else if contents.typeName == "securenotes.SecureNote" {
 		let note = secureContents.notesPlain ?? ""
 		let vaultData = SecureNoteItemEncoding(vaultVersion: Vault.kCurrentVaultVersion, heading: contents.title, note: note, tags: tags, lastModifiedTime: lastModifiedTime)
 		return SecureNoteItem(json: vaultData)
 	}
+
+	// Credit Card
 	else if contents.typeName == "wallet.financial.CreditCard" {
 		return try createCardVaultItemFrom1Pif(contents: contents, note: note, tags: tags, lastModifiedTime: lastModifiedTime)
 	}
+
+	// Wifi
 	else if contents.typeName == "wallet.computer.Router" {
 		let networkName = secureContents.name ?? ""
 		let password = secureContents.password ?? ""
@@ -253,16 +268,26 @@ func createVaultItemFrom1Pif(contents: PifEncoding) throws -> SecureVaultItem {
 		let vaultData = SecureAccessPointItemEncoding(vaultVersion: Vault.kCurrentVaultVersion, name: networkName, password: password, note: note, tags: tags)
 		return SecureAccessPointItem(json: vaultData)
 	}
+
+	// Software license
 	else if contents.typeName == "wallet.computer.License" {
 		return try createLicenseVaultItemFrom1Pif(contents: contents, note: note, tags: tags, lastModifiedTime: lastModifiedTime)
 	}
+
+	// Server credentials
 	else if contents.typeName == "wallet.computer.UnixServer" {
 		return try createServerItemFromPif(contents: contents, note: note, tags: tags, lastModifiedTime: lastModifiedTime)
 	}
+
+	// Passport
+	else if contents.typeName == "wallet.government.Passport" {
+		//return try createPassportVaultItemFrom1Pif(contents: contents, note: note, tags: tags, lastModifiedTime: lastModifiedTime)
+	}
+
+	// Club membership
 	else if contents.typeName == "wallet.membership.Membership" {
 		return try createMembershipVaultItemFrom1Pif(contents: contents, note: note, tags: tags, lastModifiedTime: lastModifiedTime)
 	}
-	else {
-	}
+
 	throw VaultException.runtimeError("Unknown import type.")
 }
