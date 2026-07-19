@@ -57,7 +57,9 @@ struct AttachFilesView: View {
 	@State private var isShowingDeleteConfirmation: Bool = false
 	@State private var isShowingPhotoPicker: Bool = false
 	@State private var isShowingDocPicker: Bool = false
-	
+	@State private var selectedAttachmentName: String = ""
+	@State private var selectedAttachment: VaultAttachment?
+
 	var body: some View {
 		Group() {
 			Text("Attached Files")
@@ -107,6 +109,8 @@ struct AttachFilesView: View {
 						// Item button
 						Button(action: {
 							self.isShowingSavePanel = true
+							self.selectedAttachmentName = attachmentName
+							self.selectedAttachment = VaultAttachment(data: getAttachment(attachmentName: attachmentName))
 						}, label: {
 							HStack() {
 								Image(systemName: "doc")
@@ -115,9 +119,9 @@ struct AttachFilesView: View {
 							}
 						})
 						.fileExporter(isPresented: self.$isShowingSavePanel,
-									  document: VaultAttachment(data: getAttachment(attachmentName: attachmentName)),
+									  document: self.selectedAttachment,
 									  contentType: .data,
-									  defaultFilename: attachmentName) { result in
+									  defaultFilename: self.selectedAttachmentName) { result in
 						}
 						
 						// Delete button
