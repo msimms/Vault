@@ -101,7 +101,7 @@ struct AttachFilesView: View {
 				})
 			}
 #endif
-			VStack() {
+			VStack(alignment: .leading) {
 				ForEach(allKeys, id: \.self) { attachmentName in
 					HStack() {
 						// Item button
