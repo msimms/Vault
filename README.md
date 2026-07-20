@@ -1,6 +1,10 @@
 # Vault
 
-A serverless password manager for macOS and iOS.
+A server-less password manager for macOS and iOS.
+
+## Important Note
+
+This project has not been audited by independent experts. It is for educational and personal use. Using this in production may cause you to regret your life choices.
 
 ## Rationale
 
@@ -11,7 +15,7 @@ Why develop a password manager when there are other options available, including
 
 ## Major Features
 
-* Uses iCloud Drive to sync across devices. The vault is stored as a collection of encrypted files that are written to the user's iCloud Drive.
+* Uses the iCloud Drive to sync across devices. The vault is stored as a collection of encrypted files that are written to the user's iCloud Drive.
 * A password generator to encourage using different passwords for each account.
 * Importing of existing data from 1pif files. Other formats may be added as necessary.
 * Biometric authentication is available to open a vault with Touch ID or Face ID. When using biometric authentication the vault password is stored in the iCloud Keychain and returned by the operating system when biometric authentication succeeds.
@@ -29,7 +33,7 @@ Vaults are created from the main landing page, presented before a vault has been
 
 ### Enabling Biometric Authentication
 
-TODO
+Press the biometric authorization button on the main screen and then enter the password and open the vault. The password will be stored in the iCloud Keychain and will be recalled upon successful biometric authentication.
 
 ## Architecture
 
