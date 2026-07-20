@@ -41,7 +41,7 @@ struct SecurePassportView: View {
 				HStack() {
 					Image(systemName: iconForVaultItem(item: self.item))
 						.imageScale(.large)
-					Text("Note")
+					Text("Passport")
 						.fontWeight(.heavy)
 						.font(.system(size: 32))
 						.multilineTextAlignment(.center)
@@ -63,6 +63,57 @@ struct SecurePassportView: View {
 					Text("Citizenship")
 						.fontWeight(.heavy)
 					TextField("Citizenship", text: self.$item.citizenship)
+						.disabled(self.isReadOnly)
+						.padding(10)
+						.border(Color.secondary, width: 1)
+					Text("Number")
+						.fontWeight(.heavy)
+					TextField("Number", text: self.$item.number)
+						.disabled(self.isReadOnly)
+						.padding(10)
+						.border(Color.secondary, width: 1)
+					Text("Date Of Birth")
+						.fontWeight(.heavy)
+					DatePicker("",
+							selection: Binding<Date>(
+								get: { self.item.dateOfBirth ?? Date() },
+								set: { self.item.dateOfBirth = $0 }
+							),
+							displayedComponents: .date
+						)
+						.labelsHidden()
+						.disabled(self.isReadOnly)
+						.padding(10)
+						.border(Color.secondary, width: 1)
+					Text("Issued On")
+						.fontWeight(.heavy)
+					DatePicker("",
+							selection: Binding<Date>(
+								get: { self.item.issuedOn ?? Date() },
+								set: { self.item.issuedOn = $0 }
+							),
+							displayedComponents: .date
+						)
+						.labelsHidden()
+						.disabled(self.isReadOnly)
+						.padding(10)
+						.border(Color.secondary, width: 1)
+					Text("Expiry Date")
+						.fontWeight(.heavy)
+					DatePicker("",
+						selection: Binding<Date>(
+								get: { self.item.expiryDate ?? Date() },
+								set: { self.item.expiryDate = $0 }
+							),
+							displayedComponents: .date
+						)
+						.labelsHidden()
+						.disabled(self.isReadOnly)
+						.padding(10)
+						.border(Color.secondary, width: 1)
+					Text("Place Of Birth")
+						.fontWeight(.heavy)
+					TextField("Place Of Birth", text: self.$item.placeOfBirth)
 						.disabled(self.isReadOnly)
 						.padding(10)
 						.border(Color.secondary, width: 1)

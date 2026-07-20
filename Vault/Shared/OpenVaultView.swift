@@ -37,6 +37,7 @@ func createVaultItemView(item: SecureVaultItem, isNewItem: Bool) -> some View {
 	case is SecureLicenseItem: SecureLicenseView(item: item as! SecureLicenseItem, isNewItem: isNewItem, isReadOnly: true)
 	case is SecureServerItem: SecureServerView(item: item as! SecureServerItem, isNewItem: isNewItem, isReadOnly: true)
 	case is SecureMembershipItem: SecureMembershipView(item: item as! SecureMembershipItem, isNewItem: isNewItem, isReadOnly: true)
+	case is SecurePassportItem: SecurePassportView(item: item as! SecurePassportItem, isNewItem: isNewItem, isReadOnly: true)
 	default: EmptyView()
 	}
 }

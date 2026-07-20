@@ -220,7 +220,15 @@ func createServerItemFromPif(contents: PifEncoding, note: String, tags: Array<St
 	return SecureServerItem(json: vaultData)
 }
 
-func createPassportVaultItemFrom1Pif(contents: PifEncoding, note: String, tags: Array<String>, lastModifiedTime: Date) {
+func createPassportVaultItemFrom1Pif(contents: PifEncoding, note: String, tags: Array<String>, lastModifiedTime: Date) throws -> SecurePassportItem {
+	let secureContents = contents.secureContents
+	let issuingCountry = secureContents.issuing_country ?? ""
+	let number = secureContents.number ?? ""
+	let fullname = secureContents.fullname ?? ""
+	let birthplace = secureContents.birthplace ?? ""
+
+	let vaultData = SecurePassportItemEncoding(vaultVersion: Vault.kCurrentVaultVersion, title: contents.title, name: fullname, citizenship: issuingCountry, number: number, placeOfBirth: birthplace, note: note, tags: tags, lastModifiedTime: lastModifiedTime)
+	return SecurePassportItem(json: vaultData)
 }
 
 func createMembershipVaultItemFrom1Pif(contents: PifEncoding, note: String, tags: Array<String>, lastModifiedTime: Date) throws -> SecureMembershipItem {
@@ -281,7 +289,7 @@ func createVaultItemFrom1Pif(contents: PifEncoding) throws -> SecureVaultItem {
 
 	// Passport
 	else if contents.typeName == "wallet.government.Passport" {
-		//return try createPassportVaultItemFrom1Pif(contents: contents, note: note, tags: tags, lastModifiedTime: lastModifiedTime)
+		return try createPassportVaultItemFrom1Pif(contents: contents, note: note, tags: tags, lastModifiedTime: lastModifiedTime)
 	}
 
 	// Club membership
