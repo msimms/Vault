@@ -27,7 +27,7 @@
 
 import SwiftUI
 
-/// Displays a login item from the vault.
+/// Displays a membership item from the vault.
 struct SecureMembershipView: View {
 	@State var item: SecureMembershipItem
 	@State var isNewItem: Bool = true

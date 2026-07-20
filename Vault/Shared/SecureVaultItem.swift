@@ -39,6 +39,7 @@ enum VaultItemType: UInt8, Codable {
 	case server
 	case membership
 	case passport
+	case identity
 }
 
 /// Encapsulates the data stored in an encrypted vault item file.

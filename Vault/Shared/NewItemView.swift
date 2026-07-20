@@ -38,6 +38,7 @@ func createNewVaultItemView(itemType: VaultItemType) -> some View {
 	case .server: SecureServerView(item: SecureServerItem(), isNewItem: true, isReadOnly: false)
 	case .membership: SecureMembershipView(item: SecureMembershipItem(), isNewItem: true, isReadOnly: false)
 	case .passport: SecurePassportView(item: SecurePassportItem(), isNewItem: true, isReadOnly: false)
+	case .identity: SecureIdentityView(item: SecureIdentityItem(), isNewItem: true, isReadOnly: false)
 	}
 }
 

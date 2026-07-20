@@ -103,6 +103,11 @@ func createVaultItemFromFile(location: URL, masterKey: Data) throws -> SecureVau
 		let newItem = SecurePassportItem(json: json)
 		newItem.id = outerVaultItem.id
 		return newItem
+	case VaultItemType.identity:
+		let json = try JSONDecoder().decode(SecureIdentityItemEncoding.self, from: decryptedDecodedContents)
+		let newItem = SecureIdentityItem(json: json)
+		newItem.id = outerVaultItem.id
+		return newItem
 	}
 }
 

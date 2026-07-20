@@ -27,7 +27,7 @@
 
 import SwiftUI
 
-/// Displays a login item from the vault.
+/// Displays an access point item from the vault.
 struct SecureAccessPointView: View {
 	@State var item: SecureAccessPointItem
 	@State var isNewItem: Bool = true

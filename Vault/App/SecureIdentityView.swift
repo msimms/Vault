@@ -1,8 +1,7 @@
 //
-//  SecurePassportView.swift
-//  Created by Michael Simms on 7/19/26.
+//  SecureIdentityView.swift
+//  Created by Michael Simms on 7/20/26.
 //
-
 
 //	MIT License
 //
@@ -28,9 +27,9 @@
 
 import SwiftUI
 
-/// Displays a passport item from the vault.
-struct SecurePassportView: View {
-	@State var item: SecurePassportItem
+/// Displays a identity item from the vault.
+struct SecureIdentityView: View {
+	@State var item: SecureIdentityItem
 	@State var isNewItem: Bool = true
 	@State var isReadOnly: Bool = false
 
@@ -41,7 +40,7 @@ struct SecurePassportView: View {
 				HStack() {
 					Image(systemName: iconForVaultItem(item: self.item))
 						.imageScale(.large)
-					Text("Passport")
+					Text("Note")
 						.fontWeight(.heavy)
 						.font(.system(size: 32))
 						.multilineTextAlignment(.center)
@@ -50,75 +49,10 @@ struct SecurePassportView: View {
 				VStack(alignment: .leading) {
 					Text("Title")
 						.fontWeight(.heavy)
-					TextField("Title", text: self.$item.title)
+					TextField("Title", text: self.$item.name)
 						.disabled(self.isReadOnly)
 						.padding(10)
 						.border(Color.secondary, width: 1)
-					Text("Name")
-						.fontWeight(.heavy)
-					TextField("Name", text: self.$item.name)
-						.disabled(self.isReadOnly)
-						.padding(10)
-						.border(Color.secondary, width: 1)
-					Text("Citizenship")
-						.fontWeight(.heavy)
-					TextField("Citizenship", text: self.$item.citizenship)
-						.disabled(self.isReadOnly)
-						.padding(10)
-						.border(Color.secondary, width: 1)
-					Text("Number")
-						.fontWeight(.heavy)
-					TextField("Number", text: self.$item.number)
-						.disabled(self.isReadOnly)
-						.padding(10)
-						.border(Color.secondary, width: 1)
-					Text("Date Of Birth")
-						.fontWeight(.heavy)
-					DatePicker("",
-							selection: Binding<Date>(
-								get: { self.item.dateOfBirth ?? Date() },
-								set: { self.item.dateOfBirth = $0 }
-							),
-							displayedComponents: .date
-						)
-						.labelsHidden()
-						.disabled(self.isReadOnly)
-						.padding(10)
-						.border(Color.secondary, width: 1)
-					Text("Issued On")
-						.fontWeight(.heavy)
-					DatePicker("",
-							selection: Binding<Date>(
-								get: { self.item.issuedOn ?? Date() },
-								set: { self.item.issuedOn = $0 }
-							),
-							displayedComponents: .date
-						)
-						.labelsHidden()
-						.disabled(self.isReadOnly)
-						.padding(10)
-						.border(Color.secondary, width: 1)
-					Text("Expiry Date")
-						.fontWeight(.heavy)
-					DatePicker("",
-						selection: Binding<Date>(
-								get: { self.item.expiryDate ?? Date() },
-								set: { self.item.expiryDate = $0 }
-							),
-							displayedComponents: .date
-						)
-						.labelsHidden()
-						.disabled(self.isReadOnly)
-						.padding(10)
-						.border(Color.secondary, width: 1)
-					Text("Place Of Birth")
-						.fontWeight(.heavy)
-					TextField("Place Of Birth", text: self.$item.placeOfBirth)
-						.disabled(self.isReadOnly)
-						.padding(10)
-						.border(Color.secondary, width: 1)
-					Text("Notes")
-						.fontWeight(.heavy)
 					TextEditor(text: self.$item.note)
 						.disabled(self.isReadOnly)
 						.padding(10)

@@ -37,7 +37,7 @@ struct SecurePassportItemEncoding: Codable {
 	var placeOfBirth: String?                  // Place of birth
 	var issuedOn: Date?                        // Passport issue date
 	var expiryDate: Date?                      // Passport expiry date
-	var note: String                           // The note
+	var note: String?                          // The note
 	var tags: Array<String>?                   // Tags
 	var lastModifiedTime: Date?                // Timestamp of the last update
 	var attachments: Dictionary<String, Data>? // Data for all attachments
@@ -103,7 +103,7 @@ class SecurePassportItem: SecureVaultItem {
 		self.placeOfBirth = json.placeOfBirth ?? ""
 		self.issuedOn = json.issuedOn
 		self.expiryDate = json.expiryDate
-		self.note = json.note
+		self.note = json.note ?? ""
 		self.tags = json.tags ?? []
 		self.lastModifiedTime = json.lastModifiedTime
 		self.attachments = json.attachments ?? [:]

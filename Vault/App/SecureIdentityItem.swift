@@ -1,6 +1,6 @@
 //
-//  SecureMembershipItem.swift
-//  Created by Michael Simms on 7/8/26.
+//  SecureIdentityItem.swift
+//  Created by Michael Simms on 7/20/26.
 //
 
 //	MIT License
@@ -27,34 +27,27 @@
 
 import Foundation
 
-struct SecureMembershipItemEncoding: Codable {
+struct SecureIdentityItemEncoding: Codable {
 	var vaultVersion: UInt8                    // Version of this encoding
-	var title: String                          // Title for this membership card
-	var membershipNumber: String               // Membership number/string/whatever
-	var memberSinceYY: String?                 // Membership since (year)
-	var memberSinceMM: String?                 // Membership since (month)
+	var name: String                           // Name
+	var dateOfBirth: Date?                     // Date of birth
 	var note: String?                          // The note
 	var tags: Array<String>?                   // Tags
 	var lastModifiedTime: Date?                // Timestamp of the last update
 	var attachments: Dictionary<String, Data>? // Data for all attachments
 }
 
-class SecureMembershipItem: SecureVaultItem {
+class SecureIdentityItem: SecureVaultItem {
 	enum CodingKeys: CodingKey {
-		case title
-		case membershipNumber
-		case memberSinceYY
-		case memberSinceMM
+		case name
+		case dateOfBirth
 		case note
 		case tags
 		case lastModifiedTime
 		case attachments
 	}
 
-	var title: String = ""
-	var membershipNumber: String = ""
-	var memberSinceYY: String = ""
-	var memberSinceMM: String = ""
+	var name: String = ""
 	var note: String = ""
 	var tags: Array<String> = []
 	var lastModifiedTime: Date?
@@ -64,10 +57,7 @@ class SecureMembershipItem: SecureVaultItem {
 		try super.init(from: decoder)
 
 		let container = try decoder.container(keyedBy: CodingKeys.self)
-		self.title = try container.decode(String.self, forKey: .title)
-		self.membershipNumber = try container.decode(String.self, forKey: .membershipNumber)
-		self.memberSinceYY = try container.decode(String.self, forKey: .memberSinceYY)
-		self.memberSinceMM = try container.decode(String.self, forKey: .memberSinceMM)
+		self.name = try container.decode(String.self, forKey: .name)
 		self.note = try container.decode(String.self, forKey: .note)
 		self.tags = try container.decode(Array<String>.self, forKey: .tags)
 		self.lastModifiedTime = try container.decode(Date.self, forKey: .lastModifiedTime)
@@ -76,13 +66,10 @@ class SecureMembershipItem: SecureVaultItem {
 	override init() {
 		super.init()
 	}
-	init(json: SecureMembershipItemEncoding) {
+	init(json: SecureIdentityItemEncoding) {
 		super.init(json: json)
 
-		self.title = json.title
-		self.membershipNumber = json.membershipNumber
-		self.memberSinceYY = json.memberSinceYY ?? ""
-		self.memberSinceMM = json.memberSinceMM ?? ""
+		self.name = json.name
 		self.note = json.note ?? ""
 		self.tags = json.tags ?? []
 		self.lastModifiedTime = json.lastModifiedTime
@@ -90,11 +77,8 @@ class SecureMembershipItem: SecureVaultItem {
 	}
 
 	override func copy(from: SecureVaultItem) {
-		let from2 = from as! SecureMembershipItem
-		self.title = from2.title
-		self.membershipNumber = from2.membershipNumber
-		self.memberSinceYY = from2.memberSinceYY
-		self.memberSinceMM = from2.memberSinceMM
+		let from2 = from as! SecureIdentityItem
+		self.name = from2.name
 		self.note = from2.note
 		self.tags = from2.tags
 		self.lastModifiedTime = from2.lastModifiedTime
@@ -106,10 +90,7 @@ class SecureMembershipItem: SecureVaultItem {
 	/// Encode overrides
 	override func encode(to encoder: Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
-		try container.encode(title, forKey: .title)
-		try container.encode(membershipNumber, forKey: .membershipNumber)
-		try container.encode(memberSinceYY, forKey: .memberSinceYY)
-		try container.encode(memberSinceMM, forKey: .memberSinceMM)
+		try container.encode(name, forKey: .name)
 		try container.encode(note, forKey: .note)
 		try container.encode(tags, forKey: .tags)
 		try container.encode(lastModifiedTime, forKey: .lastModifiedTime)
@@ -122,18 +103,18 @@ class SecureMembershipItem: SecureVaultItem {
 	override func write(locationOfVaultItems: URL, masterKey: Data) throws {
 
 		// Encode everything as JSON.
-		let vaultData = SecureMembershipItemEncoding(vaultVersion: self.vaultVersion, title: self.title, membershipNumber: self.membershipNumber, memberSinceYY: self.memberSinceYY, memberSinceMM: self.memberSinceMM, note: self.note, tags: self.tags, lastModifiedTime: self.lastModifiedTime, attachments: self.attachments)
+		let vaultData = SecureIdentityItemEncoding(vaultVersion: self.vaultVersion, name: self.name, note: self.note, tags: self.tags, lastModifiedTime: self.lastModifiedTime, attachments: self.attachments)
 		let encoder = JSONEncoder()
 		let jsonData = try encoder.encode(vaultData)
 		let jsonStr = String(data: jsonData, encoding: .utf8)!
 
 		// Encrypt and write the data.
-		try super.write(locationOfVaultItems: locationOfVaultItems, masterKey: masterKey, contents: jsonStr, itemType: VaultItemType.membership)
+		try super.write(locationOfVaultItems: locationOfVaultItems, masterKey: masterKey, contents: jsonStr, itemType: VaultItemType.identity)
 	}
 
 	/// Returns the string to use as the title when viewing this item.
 	override func displayTitle() -> String {
-		return self.title
+		return self.name
 	}
 
 	/// Called in response to the copy shortcut.. Adds the thing the user would most want to the pasteboard.

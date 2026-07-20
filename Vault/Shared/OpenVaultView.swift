@@ -66,6 +66,7 @@ func iconForVaultType(type: VaultItemType) -> String {
 	case .server: return "server.rack";
 	case .membership: return "lanyardcard";
 	case .passport: return "book.closed";
+	case .identity: return "person";
 	}
 }
 
@@ -79,6 +80,7 @@ func title(item: SecureVaultItem) -> String {
 	case is SecureServerItem: let item2 = item as! SecureServerItem; return item2.displayTitle();
 	case is SecureMembershipItem: let item2 = item as! SecureMembershipItem; return item2.displayTitle();
 	case is SecurePassportItem: let item2 = item as! SecurePassportItem; return item2.displayTitle();
+	case is SecureIdentityItem: let item2 = item as! SecureIdentityItem; return item2.displayTitle();
 	default: return ""
 	}
 }
@@ -93,6 +95,7 @@ func subtitle(item: SecureVaultItem) -> String {
 	case is SecureServerItem: let item2 = item as! SecureServerItem; return item2.displaySubtitle();
 	case is SecureMembershipItem: let item2 = item as! SecureMembershipItem; return item2.displaySubtitle();
 	case is SecurePassportItem: let item2 = item as! SecurePassportItem; return item2.displaySubtitle();
+	case is SecureIdentityItem: let item2 = item as! SecureIdentityItem; return item2.displaySubtitle();
 	default: return ""
 	}
 }
@@ -253,6 +256,16 @@ struct OpenVaultView: View {
 								self.resetTimer()
 							}) {
 								Label("Passport", systemImage: iconForVaultType(type: .passport))
+									.labelStyle(.titleAndIcon)
+							}
+
+							// Identity
+							Button(action: {
+								self.newItemType = VaultItemType.identity
+								self.showNewItem = true
+								self.resetTimer()
+							}) {
+								Label("Identity", systemImage: iconForVaultType(type: .identity))
 									.labelStyle(.titleAndIcon)
 							}
 						}

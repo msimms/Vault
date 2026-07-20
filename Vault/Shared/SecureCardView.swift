@@ -27,7 +27,7 @@
 
 import SwiftUI
 
-/// Displays a login item from the vault.
+/// Displays a credit card item from the vault.
 struct SecureCardView: View {
 	@State var item: SecureCardItem
 	@State var isNewItem: Bool = true
