@@ -38,6 +38,7 @@ func createVaultItemView(item: SecureVaultItem, isNewItem: Bool) -> some View {
 	case is SecureServerItem: SecureServerView(item: item as! SecureServerItem, isNewItem: isNewItem, isReadOnly: true)
 	case is SecureMembershipItem: SecureMembershipView(item: item as! SecureMembershipItem, isNewItem: isNewItem, isReadOnly: true)
 	case is SecurePassportItem: SecurePassportView(item: item as! SecurePassportItem, isNewItem: isNewItem, isReadOnly: true)
+	case is SecureIdentityItem: SecureIdentityView(item: item as! SecureIdentityItem, isNewItem: isNewItem, isReadOnly: true)
 	default: EmptyView()
 	}
 }
@@ -52,6 +53,7 @@ func iconForVaultItem(item: SecureVaultItem) -> String {
 	case is SecureServerItem: return "server.rack";
 	case is SecureMembershipItem: return "lanyardcard";
 	case is SecurePassportItem: return "book.closed";
+	case is SecureIdentityItem: return "person";
 	default: return ""
 	}
 }

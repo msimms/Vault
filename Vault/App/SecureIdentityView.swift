@@ -47,12 +47,6 @@ struct SecureIdentityView: View {
 				}
 				Divider()
 				VStack(alignment: .leading) {
-					Text("Title")
-						.fontWeight(.heavy)
-					TextField("Title", text: self.$item.name)
-						.disabled(self.isReadOnly)
-						.padding(10)
-						.border(Color.secondary, width: 1)
 					Text("Name")
 						.fontWeight(.heavy)
 					TextField("Name", text: self.$item.name)
@@ -81,7 +75,7 @@ struct SecureIdentityView: View {
 							}
 						}
 						.pickerStyle(.menu)
-					Text("Note")
+					Text("Notes")
 						.fontWeight(.heavy)
 					TextEditor(text: self.$item.note)
 						.disabled(self.isReadOnly)
