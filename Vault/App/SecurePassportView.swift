@@ -60,6 +60,15 @@ struct SecurePassportView: View {
 						.disabled(self.isReadOnly)
 						.padding(10)
 						.border(Color.secondary, width: 1)
+					Text("Sex")
+						.fontWeight(.heavy)
+					Picker("Sex", selection: self.$item.sex) {
+							ForEach(SexType.allCases) { sex in
+								Text(sex.displayName)
+									.tag(sex)
+							}
+						}
+						.pickerStyle(.menu)
 					Text("Citizenship")
 						.fontWeight(.heavy)
 					TextField("Citizenship", text: self.$item.citizenship)

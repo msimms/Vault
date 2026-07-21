@@ -57,6 +57,19 @@ struct VaultItemEncoding: Codable {
 	var signature: String
 }
 
+/// Enumeration type used by several vault subitem types.
+enum SexType: String, CaseIterable, Identifiable, Codable {
+	case male
+	case female
+	case nonbinary
+
+	var id: Self { self }
+
+	var displayName: String {
+		rawValue.capitalized
+	}
+}
+
 class SecureVaultItem: Codable, Identifiable, Comparable, Hashable, ObservableObject {
 	enum CodingKeys: CodingKey {
 		case id

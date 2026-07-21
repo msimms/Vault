@@ -40,7 +40,7 @@ struct SecureIdentityView: View {
 				HStack() {
 					Image(systemName: iconForVaultItem(item: self.item))
 						.imageScale(.large)
-					Text("Note")
+					Text("Identity")
 						.fontWeight(.heavy)
 						.font(.system(size: 32))
 						.multilineTextAlignment(.center)
@@ -53,6 +53,36 @@ struct SecureIdentityView: View {
 						.disabled(self.isReadOnly)
 						.padding(10)
 						.border(Color.secondary, width: 1)
+					Text("Name")
+						.fontWeight(.heavy)
+					TextField("Name", text: self.$item.name)
+						.disabled(self.isReadOnly)
+						.padding(10)
+						.border(Color.secondary, width: 1)
+					Text("Date Of Birth")
+						.fontWeight(.heavy)
+					DatePicker("",
+							   selection: Binding<Date>(
+								get: { self.item.dateOfBirth ?? Date() },
+								set: { self.item.dateOfBirth = $0 }
+							   ),
+							   displayedComponents: .date
+						)
+						.labelsHidden()
+						.disabled(self.isReadOnly)
+						.padding(10)
+						.border(Color.secondary, width: 1)
+					Text("Sex")
+						.fontWeight(.heavy)
+					Picker("Sex", selection: self.$item.sex) {
+							ForEach(SexType.allCases) { sex in
+								Text(sex.displayName)
+									.tag(sex)
+							}
+						}
+						.pickerStyle(.menu)
+					Text("Note")
+						.fontWeight(.heavy)
 					TextEditor(text: self.$item.note)
 						.disabled(self.isReadOnly)
 						.padding(10)

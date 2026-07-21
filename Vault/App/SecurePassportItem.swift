@@ -31,6 +31,7 @@ struct SecurePassportItemEncoding: Codable {
 	var vaultVersion: UInt8                    // Version of this encoding
 	var title: String                          // Title for this passport entry
 	var name: String                           // Name on the passport
+	var sex: SexType?                          // Sex declared on the passport
 	var citizenship: String?                   // Issuing country
 	var number: String?                        // Passport number, which might actually not be a numer
 	var dateOfBirth: Date?                     // Date of birth
@@ -47,6 +48,7 @@ class SecurePassportItem: SecureVaultItem {
 	enum CodingKeys: CodingKey {
 		case title
 		case name
+		case sex
 		case citizenship
 		case number
 		case dateOfBirth
@@ -61,6 +63,7 @@ class SecurePassportItem: SecureVaultItem {
 
 	var title: String = ""
 	var name: String = ""
+	var sex: SexType?
 	var citizenship: String = ""
 	var number: String = ""
 	var dateOfBirth: Date?
@@ -78,6 +81,7 @@ class SecurePassportItem: SecureVaultItem {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
 		self.title = try container.decode(String.self, forKey: .title)
 		self.name = try container.decode(String.self, forKey: .name)
+		self.sex = try container.decode(SexType.self, forKey: .sex)
 		self.citizenship = try container.decode(String.self, forKey: .citizenship)
 		self.number = try container.decode(String.self, forKey: .number)
 		self.dateOfBirth = try container.decode(Date.self, forKey: .dateOfBirth)
@@ -97,6 +101,7 @@ class SecurePassportItem: SecureVaultItem {
 
 		self.title = json.title
 		self.name = json.name
+		self.sex = json.sex
 		self.citizenship = json.citizenship ?? ""
 		self.number = json.number ?? ""
 		self.dateOfBirth = json.dateOfBirth
@@ -113,6 +118,7 @@ class SecurePassportItem: SecureVaultItem {
 		let from2 = from as! SecurePassportItem
 		self.title = from2.title
 		self.name = from2.name
+		self.sex = from2.sex
 		self.citizenship = from2.citizenship
 		self.number = from2.number
 		self.dateOfBirth = from2.dateOfBirth
@@ -132,6 +138,7 @@ class SecurePassportItem: SecureVaultItem {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encode(title, forKey: .title)
 		try container.encode(name, forKey: .name)
+		try container.encode(sex, forKey: .sex)
 		try container.encode(citizenship, forKey: .citizenship)
 		try container.encode(number, forKey: .number)
 		try container.encode(dateOfBirth, forKey: .dateOfBirth)
@@ -150,7 +157,7 @@ class SecurePassportItem: SecureVaultItem {
 	override func write(locationOfVaultItems: URL, masterKey: Data) throws {
 
 		// Encode everything as JSON.
-		let vaultData = SecurePassportItemEncoding(vaultVersion: self.vaultVersion, title: self.title, name: self.name, citizenship: self.citizenship, number: self.number, dateOfBirth: self.dateOfBirth, placeOfBirth: self.placeOfBirth, note: self.note, tags: self.tags, lastModifiedTime: self.lastModifiedTime, attachments: self.attachments)
+		let vaultData = SecurePassportItemEncoding(vaultVersion: self.vaultVersion, title: self.title, name: self.name, sex: self.sex, citizenship: self.citizenship, number: self.number, dateOfBirth: self.dateOfBirth, placeOfBirth: self.placeOfBirth, issuedOn: self.issuedOn, expiryDate: self.expiryDate, note: self.note, tags: self.tags, lastModifiedTime: self.lastModifiedTime, attachments: self.attachments)
 		let encoder = JSONEncoder()
 		let jsonData = try encoder.encode(vaultData)
 		let jsonStr = String(data: jsonData, encoding: .utf8)!
