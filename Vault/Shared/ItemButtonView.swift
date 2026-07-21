@@ -86,6 +86,7 @@ struct ItemButtonView: View {
 					}
 				} label: {
 					Label("Cancel", systemImage: "trash")
+						.foregroundColor(.primary)
 				}
 				.opacity(self.isReadOnly ? 0 : 1)
 
@@ -114,6 +115,7 @@ struct ItemButtonView: View {
 					}
 				} label: {
 					Label(self.editUpdateButtonTitle, systemImage: self.editUpdateButtonImage)
+						.foregroundColor(.primary)
 				}
 				.alert("Failed to update the vault item!", isPresented: self.$showingFailedToUpdateAlert) {
 					Button("OK", role: .cancel) { }
@@ -124,6 +126,7 @@ struct ItemButtonView: View {
 					self.showingDeleteVaultItemAlert = true
 				} label: {
 					Label("Delete", systemImage: "trash")
+						.foregroundColor(.primary)
 				}
 				.alert("Are you sure you want to do this? It cannot be undone.", isPresented: self.$showingDeleteVaultItemAlert) {
 					Button("No", role: .cancel) { }
@@ -143,5 +146,6 @@ struct ItemButtonView: View {
 				}
 			}
 		}
+		.padding(10)
 	}
 }
