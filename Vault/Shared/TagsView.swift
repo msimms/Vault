@@ -57,6 +57,7 @@ struct TagsView: View {
 				}
 				else {
 					Text("None")
+						.foregroundColor(Color.gray)
 				}
 
 				// Link for moving to the New Tag view.
