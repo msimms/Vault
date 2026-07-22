@@ -123,7 +123,12 @@ struct AttachFilesView: View {
 									  contentType: .data,
 									  defaultFilename: self.selectedAttachmentName) { result in
 						}
-						
+
+						// View button
+						NavigationLink(destination: ImageView(imageData: getAttachment(attachmentName: attachmentName))) {
+							Label("View...", systemImage: "eye")
+						}
+
 						// Delete button
 						Button(action: {
 							self.isShowingDeleteConfirmation = true

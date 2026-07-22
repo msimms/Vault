@@ -66,6 +66,7 @@
 		275E59C6300EDF0F00D37446 /* SecureIdentityItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275E59C5300EDF0B00D37446 /* SecureIdentityItem.swift */; };
 		275E59C8300EDF1C00D37446 /* SecureIdentityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275E59C7300EDF1800D37446 /* SecureIdentityView.swift */; };
 		275E59C9300EDFD400D37446 /* SecureIdentityItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275E59C5300EDF0B00D37446 /* SecureIdentityItem.swift */; };
+		275E59CB30103FB800D37446 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275E59CA30103FB400D37446 /* ImageView.swift */; };
 		2765F9912B8DFE1B00B3E75E /* VaultPrefsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2765F9902B8DFE1B00B3E75E /* VaultPrefsView.swift */; };
 		2765F9932B8E52D000B3E75E /* PasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2765F9922B8E52D000B3E75E /* PasswordView.swift */; };
 		2771DBEF2AA7BF7D00D70021 /* SecureVaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2771DBEE2AA7BF7D00D70021 /* SecureVaultView.swift */; };
@@ -231,6 +232,7 @@
 		275E59C2300D934200D37446 /* SecurePassportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurePassportView.swift; sourceTree = "<group>"; };
 		275E59C5300EDF0B00D37446 /* SecureIdentityItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureIdentityItem.swift; sourceTree = "<group>"; };
 		275E59C7300EDF1800D37446 /* SecureIdentityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureIdentityView.swift; sourceTree = "<group>"; };
+		275E59CA30103FB400D37446 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		2765F9902B8DFE1B00B3E75E /* VaultPrefsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VaultPrefsView.swift; path = Shared/VaultPrefsView.swift; sourceTree = SOURCE_ROOT; };
 		2765F9922B8E52D000B3E75E /* PasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PasswordView.swift; path = Shared/PasswordView.swift; sourceTree = SOURCE_ROOT; };
 		2771DBEE2AA7BF7D00D70021 /* SecureVaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SecureVaultView.swift; path = Shared/SecureVaultView.swift; sourceTree = SOURCE_ROOT; };
@@ -344,6 +346,7 @@
 				274AA6D92A8FF1CA00F77F96 /* Exporter.swift */,
 				274AA6D12A8FF1C900F77F96 /* Importer.swift */,
 				274AA6CA2A8FF1C700F77F96 /* ItemButtonView.swift */,
+				275E59CA30103FB400D37446 /* ImageView.swift */,
 				274AA6CD2A8FF1C800F77F96 /* Keychain.swift */,
 				274AA6DC2A8FF1CB00F77F96 /* LastModifiedView.swift */,
 				274AA6E02A8FF1CB00F77F96 /* LockView.swift */,
@@ -717,6 +720,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				275E59CB30103FB800D37446 /* ImageView.swift in Sources */,
 				274AA6EF2A8FF1CC00F77F96 /* Keychain.swift in Sources */,
 				274AA6FE2A8FF1CC00F77F96 /* LastModifiedView.swift in Sources */,
 				274AA6E82A8FF1CC00F77F96 /* VaultException.swift in Sources */,
