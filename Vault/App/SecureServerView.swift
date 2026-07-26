@@ -71,11 +71,22 @@ struct SecureServerLoginView: View {
 						SecureField("Password", text: self.$login.password)
 							.disabled(self.isReadOnly)
 					}
-					Button(action: { self.showPassword.toggle() }) {
-						Image(systemName: "eye")
-							.foregroundColor(.secondary)
+					HStack() {
+						Button(action: {
+							self.showPassword.toggle()
+						}) {
+							Image(systemName: "eye")
+								.foregroundColor(.secondary)
+						}
+						.help("View")
+						Button(action: {
+							copyToPasteboard(value: self.login.password)
+						}) {
+							Image(systemName: "doc.on.doc")
+								.foregroundColor(.secondary)
+						}
+						.help("Copy")
 					}
-					.help("View")
 				})
 			}
 		}
