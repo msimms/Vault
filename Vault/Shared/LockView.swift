@@ -180,6 +180,7 @@ struct LockView: View {
 				.frame(width: 32.0, height: 32.0)
 				.buttonStyle(PlainButtonStyle())
 				.padding(10)
+				Text("Configure biometric authentication")
 			}
 		}
 		.onAppear() {
