@@ -41,6 +41,13 @@ struct SecureCardView: View {
 		return df
 	}()
 
+	let secCodeFormatter: NumberFormatter = {
+		let f = NumberFormatter()
+		f.numberStyle = .decimal
+		f.minimumIntegerDigits = 3
+		return f
+	}()
+
 	var body: some View {
 
 		VStack(alignment: .leading) {
@@ -95,7 +102,7 @@ struct SecureCardView: View {
 							})
 							Text("Security Code")
 								.fontWeight(.heavy)
-							TextField("Security Code", value: self.$item.securityCode, formatter: NumberFormatter())
+							TextField("Security Code", value: self.$item.securityCode, formatter: secCodeFormatter)
 								.disabled(self.isReadOnly)
 								.padding(10)
 								.border(Color.secondary, width: 1)
