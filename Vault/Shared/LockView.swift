@@ -45,7 +45,6 @@ struct LockView: View {
 	func openVault() {
 		if AppState.shared.openVault(password: self.password) {
 			self.showingVaultOpenFailedAlert = false
-//			self.dismiss()
 		}
 		else {
 			self.showingVaultOpenFailedAlert = true
@@ -53,140 +52,153 @@ struct LockView: View {
 	}
 
 	var body: some View {
-		VStack(alignment: .center) {
-			// Allow the user to toggle between multiple vaults
-			Label("Vault Selection", systemImage: "lock.circle")
-			ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
-				Menu {
-					let vaultNames = AppState.shared.listVaults()
-					ForEach(vaultNames, id: \.self) { name in
+		if (self.isBusy) {
+			ProgressView("Loading...")
+				.progressViewStyle(CircularProgressViewStyle(tint: .blue))
+				.scaleEffect(1.5)
+				.padding()
+		}
+		else {
+			VStack(alignment: .center) {
+				// Allow the user to toggle between multiple vaults
+				Label("Vault Selection", systemImage: "lock.circle")
+				ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
+					Menu {
+						let vaultNames = AppState.shared.listVaults()
+						ForEach(vaultNames, id: \.self) { name in
+							Button(action: {
+								self.selectedVault = name
+								Preferences.setDefaultVaultName(name: name)
+							}) {
+								Label(name, systemImage: "lock")
+									.labelStyle(.titleAndIcon)
+							}
+						}
+						if !vaultNames.isEmpty {
+							Divider()
+						}
 						Button(action: {
-							self.selectedVault = name
-							Preferences.setDefaultVaultName(name: name)
+							VaultDisplayState.shared.vaultState = VaultState.CreateNewVault
 						}) {
-							Label(name, systemImage: "lock")
+							Label("Create a New Vault", systemImage: "plus")
 								.labelStyle(.titleAndIcon)
 						}
-					}
-					if !vaultNames.isEmpty {
-						Divider()
-					}
-					Button(action: {
-						VaultDisplayState.shared.vaultState = VaultState.CreateNewVault
-					}) {
-						Label("Create a New Vault", systemImage: "plus")
-							.labelStyle(.titleAndIcon)
-					}
-				} label: {
-					if self.vaultIsSelected() {
-						Text("\(self.selectedVault!)")
-					}
-					else {
-						Text("Choose Vault")
-					}
-				}
-				.padding()
-			})
-
-			// Password
-			Label("Password", systemImage: "lock.circle")
-			ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
-				if self.showPassword {
-					TextField("Password", text: self.$password)
-						.textFieldStyle(RoundedBorderTextFieldStyle())
-						.padding()
-						.onSubmit {
-							self.openVault()
+					} label: {
+						if self.vaultIsSelected() {
+							Text("\(self.selectedVault!)")
 						}
-				}
-				else {
-					SecureField("Password", text: self.$password)
-						.textFieldStyle(RoundedBorderTextFieldStyle())
-						.padding()
-						.onSubmit {
-							self.openVault()
+						else {
+							Text("Choose Vault")
 						}
-				}
-				Button(action: { self.showPassword.toggle() }) {
-					Image(systemName: "eye")
-						.foregroundColor(.secondary)
-				}
-				.help("View")
-				.padding()
-			})
-
-			// Opens the vault
-			Button {
-				if self.vaultIsSelected() {
-					self.isBusy = true
-					self.openVault()
-					self.isBusy = false
-				}
-				else {
-					self.showingNoVaultSelectedAlert = true
-				}
-			} label: {
-				Label("Open", systemImage: "lock")
+					}
 					.padding()
-			}
-			.alert("A vault was not specified!", isPresented: self.$showingNoVaultSelectedAlert) {
-				Button("OK", role: .cancel) { }
-					.keyboardShortcut(KeyboardShortcut.defaultAction)
-			}
-			.alert("Failed to open the vault!", isPresented: self.$showingVaultOpenFailedAlert) {
-				Button("OK", role: .cancel) { }
-					.keyboardShortcut(KeyboardShortcut.defaultAction)
-			}
-			.foregroundColor(.white)
-			.background(Color.gray)
-			.cornerRadius(40)
-			.padding()
-#if !os(macOS)
-			.navigationBarBackButtonHidden(true)
-#endif
-			.buttonStyle(PlainButtonStyle())
-			.sheet(isPresented: self.$isBusy) {
-				ProgressView("Loading...")
-			}
+				})
 
-			// Biometric ID
-			if AppState.shared.isBiometricIdAvailable() && self.vaultIsSelected() {
-				let biometricAuthType = AppState.shared.biometricAuthType()
-
-				Button {
-					if AppState.shared.isBiometricIdEnabledForVault(vaultName: self.selectedVault!) {
-						self.openVault()
+				// Password
+				Label("Password", systemImage: "lock.circle")
+				ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
+					if self.showPassword {
+						TextField("Password", text: self.$password)
+							.textFieldStyle(RoundedBorderTextFieldStyle())
+							.padding()
+							.onSubmit {
+								self.isBusy = true
+								self.openVault()
+								self.isBusy = false
+							}
 					}
 					else {
-						self.showingBiometricSetupAlert = true
+						SecureField("Password", text: self.$password)
+							.textFieldStyle(RoundedBorderTextFieldStyle())
+							.padding()
+							.onSubmit {
+								self.isBusy = true
+								self.openVault()
+								self.isBusy = false
+							}
+					}
+					Button(action: { self.showPassword.toggle() }) {
+						Image(systemName: "eye")
+							.foregroundColor(.secondary)
+					}
+					.help("View")
+					.padding()
+				})
+
+				// Opens the vault
+				Button {
+					if self.vaultIsSelected() {
+						self.isBusy = true
+						self.openVault()
+						self.isBusy = false
+					}
+					else {
+						self.showingNoVaultSelectedAlert = true
 					}
 				} label: {
-					if biometricAuthType == .touchID {
-						Image(systemName: "touchid")
-							.resizable()
-					}
-					else if biometricAuthType == .faceID {
-						Image(systemName: "faceid")
-							.resizable()
-					}
+					Label("Open", systemImage: "lock")
+						.padding()
 				}
-				.alert("Do you want to configure biometric authentication for this vault?", isPresented: self.$showingBiometricSetupAlert) {
-					Button("No", role: .cancel) { }
-						.keyboardShortcut(.defaultAction)
-					Button("Yes") {
-						AppState.shared.flagVaultForBiometricAuthSetup(vaultName: self.selectedVault!)
-					}
+				.alert("A vault was not specified!", isPresented: self.$showingNoVaultSelectedAlert) {
+					Button("OK", role: .cancel) { }
+						.keyboardShortcut(KeyboardShortcut.defaultAction)
 				}
-				.frame(width: 32.0, height: 32.0)
+				.alert("Failed to open the vault!", isPresented: self.$showingVaultOpenFailedAlert) {
+					Button("OK", role: .cancel) { }
+						.keyboardShortcut(KeyboardShortcut.defaultAction)
+				}
+				.foregroundColor(.white)
+				.background(Color.gray)
+				.cornerRadius(40)
+				.padding()
+#if !os(macOS)
+				.navigationBarBackButtonHidden(true)
+#endif
 				.buttonStyle(PlainButtonStyle())
-				.padding(10)
-				Text("Configure biometric authentication")
+
+				// Biometric ID
+				if AppState.shared.isBiometricIdAvailable() && self.vaultIsSelected() {
+					let biometricAuthType = AppState.shared.biometricAuthType()
+
+					Button {
+						if AppState.shared.isBiometricIdEnabledForVault(vaultName: self.selectedVault!) {
+							self.isBusy = true
+							self.openVault()
+							self.isBusy = false
+						}
+						else {
+							self.showingBiometricSetupAlert = true
+						}
+					} label: {
+						if biometricAuthType == .touchID {
+							Image(systemName: "touchid")
+								.resizable()
+						}
+						else if biometricAuthType == .faceID {
+							Image(systemName: "faceid")
+								.resizable()
+						}
+					}
+					.alert("Do you want to configure biometric authentication for this vault?", isPresented: self.$showingBiometricSetupAlert) {
+						Button("No", role: .cancel) { }
+							.keyboardShortcut(.defaultAction)
+						Button("Yes") {
+							AppState.shared.flagVaultForBiometricAuthSetup(vaultName: self.selectedVault!)
+						}
+					}
+					.frame(width: 32.0, height: 32.0)
+					.buttonStyle(PlainButtonStyle())
+					.padding(10)
+					Text("Configure biometric authentication")
+				}
 			}
-		}
-		.onAppear() {
-			if AppState.shared.hasOpenedAVault == false && self.vaultIsSelected() {
-				if AppState.shared.isBiometricIdEnabledForVault(vaultName: self.selectedVault!) {
-					self.openVault()
+			.onAppear() {
+				if AppState.shared.hasOpenedAVault == false && self.vaultIsSelected() {
+					if AppState.shared.isBiometricIdEnabledForVault(vaultName: self.selectedVault!) {
+						self.isBusy = true
+						self.openVault()
+						self.isBusy = false
+					}
 				}
 			}
 		}
