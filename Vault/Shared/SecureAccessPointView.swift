@@ -81,6 +81,14 @@ struct SecureAccessPointView: View {
 												.foregroundColor(.secondary)
 										}
 										.help("View")
+										Button(action: {
+											copyToPasteboard(value: self.item.password)
+										}) {
+											Image(systemName: "doc.on.doc")
+												.foregroundColor(.secondary)
+												.padding(10)
+										}
+										.help("Copy")
 										.padding(10)
 										ZStack() {
 											Button(action: {
