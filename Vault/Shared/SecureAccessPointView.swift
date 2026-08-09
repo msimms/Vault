@@ -73,12 +73,35 @@ struct SecureAccessPointView: View {
 											.border(Color.secondary, width: 1)
 									}
 									HStack() {
+										if self.isReadOnly == false {
+											ZStack() {
+												Button(action: {
+													if self.isReadOnly {
+														self.cannotShowPasswordGenerator = true
+													}
+													else {
+														self.isShowingPasswordGenerator = true
+													}
+												}) {
+													Image(systemName: "arrow.clockwise")
+														.foregroundColor(.secondary)
+														.padding(10)
+												}
+												.navigationDestination(isPresented: self.$isShowingPasswordGenerator) {
+													PasswordGeneratorView(existingPassword: self.$item.password, suggestedPassword: self.item.password)
+												}
+												.alert("Cannot generate a new password because the item is read only!", isPresented: self.$cannotShowPasswordGenerator) {
+													Button("OK", role: .cancel) { }
+														.buttonStyle(PlainButtonStyle())
+												}
+											}
+										}
 										Button(action: {
 											self.showPassword.toggle()
 										}) {
 											Image(systemName: "eye")
-												.padding(10)
 												.foregroundColor(.secondary)
+												.padding(10)
 										}
 										.help("View")
 										Button(action: {
@@ -89,28 +112,6 @@ struct SecureAccessPointView: View {
 												.padding(10)
 										}
 										.help("Copy")
-										.padding(10)
-										ZStack() {
-											Button(action: {
-												if self.isReadOnly {
-													self.cannotShowPasswordGenerator = true
-												}
-												else {
-													self.isShowingPasswordGenerator = true
-												}
-											}) {
-												Image(systemName: "arrow.clockwise")
-													.padding(10)
-													.foregroundColor(.secondary)
-											}
-											.navigationDestination(isPresented: self.$isShowingPasswordGenerator) {
-												PasswordGeneratorView(existingPassword: self.$item.password, suggestedPassword: self.item.password)
-											}
-											.alert("Cannot generate a new password because the item is read only!", isPresented: self.$cannotShowPasswordGenerator) {
-												Button("OK", role: .cancel) { }
-													.buttonStyle(PlainButtonStyle())
-											}
-										}
 									}
 								}
 							})

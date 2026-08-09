@@ -158,6 +158,7 @@ struct SecureLoginView: View {
 										}) {
 											Image(systemName: "arrow.clockwise")
 												.foregroundColor(.secondary)
+												.padding(10)
 										}
 										.alert("Cannot generate a new password because the item is read only!", isPresented: self.$cannotShowPasswordGenerator) {
 											Button("OK", role: .cancel) { }
