@@ -34,6 +34,7 @@ import AppKit
 
 /// Displays a login item from the vault.
 struct SecureLoginView: View {
+	@Environment(\.colorScheme) var colorScheme
 	@ObservedObject var item: SecureLoginItem
 	@State var isNewItem: Bool = true
 	@State var isReadOnly: Bool = false
@@ -57,7 +58,7 @@ struct SecureLoginView: View {
 				TextField("Title", text: self.$item.title)
 					.fontWeight(.heavy)
 					.font(.system(size: 24))
-					.foregroundColor(.white)
+					.foregroundColor(colorScheme == .dark ? .white : .black)
 					.multilineTextAlignment(.center)
 					.disabled(self.isReadOnly)
 				Divider()
@@ -67,6 +68,7 @@ struct SecureLoginView: View {
 							.fontWeight(.heavy)
 						ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
 							TextField("Website", text: self.$item.website)
+								.foregroundColor(colorScheme == .dark ? .white : .black)
 								.disabled(self.isReadOnly)
 								.padding(10)
 							Button(action: {
@@ -128,10 +130,10 @@ struct SecureLoginView: View {
 							.help("Copy")
 						})
 						.border(Color.secondary, width: 1)
-						Text("Password")
-							.fontWeight(.heavy)
 					}
 					Group() {
+						Text("Password")
+							.fontWeight(.heavy)
 						ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
 							if self.showPassword {
 								TextField("Password", text: self.$item.password)

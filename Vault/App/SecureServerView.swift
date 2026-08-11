@@ -97,6 +97,7 @@ struct SecureServerLoginView: View {
 
 /// Displays a login item from the vault.
 struct SecureServerView: View {
+	@Environment(\.colorScheme) var colorScheme
 	@ObservedObject var item: SecureServerItem
 	@State var isNewItem: Bool = true
 	@State var isReadOnly: Bool = false
@@ -119,7 +120,7 @@ struct SecureServerView: View {
 				TextField("Title", text: self.$item.title)
 					.fontWeight(.heavy)
 					.font(.system(size: 24))
-					.foregroundColor(.white)
+					.foregroundColor(colorScheme == .dark ? .white : .black)
 					.multilineTextAlignment(.center)
 					.disabled(self.isReadOnly)
 				Divider()
