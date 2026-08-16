@@ -1,17 +1,18 @@
 # Vault
 
-A server-less password manager for macOS and iOS.
+A serverless password manager for macOS and iOS.
 
 ## Important Note
 
-This project has not been audited by independent experts. It is for educational and personal use. Using this in production may cause you to regret your life choices.
+This project has not been audited by independent experts. It is for educational and personal use only. Using this in production may cause you to regret your life choices.
 
 ## Rationale
 
 Why develop a password manager when there are other options available, including open source options?
+* To learn stuff.
 * To have a password manager that works without a centralized database.
-* Some password managers leave metadata unencrypted (ex: the website name or URL). This application encrypts everything that is possible to encrypt.
 * I believe password managers should be open source.
+* Some password managers leave metadata unencrypted (ex: the website name or URL). This application encrypts everything that is possible to encrypt.
 
 ## Major Features
 
@@ -24,6 +25,7 @@ Why develop a password manager when there are other options available, including
 ## Planned Features
 
 * The ability to encrypt a vault with multiple passwords, for sharing a vault.
+* A browser extension.
 
 ## User Documentation
 
