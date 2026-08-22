@@ -37,6 +37,7 @@ struct SecureServerLoginView: View {
 	@Binding var login: SecureServerLogin
 	let onDeleteRequested: () -> Void
 	@State var showPassword: Bool = false
+	@State var showPasswordGen: Bool = false
 
 	var body: some View {
 
@@ -72,6 +73,18 @@ struct SecureServerLoginView: View {
 							.disabled(self.isReadOnly)
 					}
 					HStack() {
+						if self.isReadOnly == false {
+							Button(action: {
+								self.showPasswordGen = true
+							}) {
+								Image(systemName: "arrow.clockwise")
+									.foregroundColor(.secondary)
+							}
+							.navigationDestination(isPresented: self.$showPasswordGen) {
+								PasswordGeneratorView(existingPassword: self.$login.password, suggestedPassword: self.login.password)
+							}
+							.help("New Password")
+						}
 						Button(action: {
 							self.showPassword.toggle()
 						}) {
