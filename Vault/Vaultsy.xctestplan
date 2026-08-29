@@ -1,0 +1,38 @@
+{
+  "configurations" : [
+    {
+      "id" : "4DE7015C-C059-411D-9440-BEFDF00E1FA4",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "performanceAntipatternCheckerEnabled" : true,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Vault\/Vault.xcodeproj",
+      "identifier" : "274AA63B2A8FD10200F77F96",
+      "name" : "Vaultsy"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Vault\/Vault.xcodeproj",
+        "identifier" : "274AA64C2A8FD10300F77F96",
+        "name" : "VaultsyTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Vault\/Vault.xcodeproj",
+        "identifier" : "274AA6562A8FD10300F77F96",
+        "name" : "VaultsyUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
