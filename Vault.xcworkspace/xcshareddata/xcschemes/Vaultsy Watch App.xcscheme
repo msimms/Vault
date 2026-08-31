@@ -85,7 +85,6 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "274AA66D2A8FD32300F77F96"
             BuildableName = "Vaultsy Watch App.app"
-            BlueprintName = "Vaultsy Watch App"
             ReferencedContainer = "container:Vault/Vault.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -102,7 +101,6 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "274AA66D2A8FD32300F77F96"
             BuildableName = "Vaultsy Watch App.app"
-            BlueprintName = "Vaultsy Watch App"
             ReferencedContainer = "container:Vault/Vault.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
