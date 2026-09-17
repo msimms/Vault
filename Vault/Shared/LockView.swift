@@ -52,7 +52,7 @@ struct LockView: View {
 	}
 
 	var body: some View {
-		if (self.isBusy) {
+		if self.isBusy {
 			ProgressView("Loading...")
 				.progressViewStyle(CircularProgressViewStyle(tint: .blue))
 				.scaleEffect(1.5)
@@ -61,7 +61,8 @@ struct LockView: View {
 		else {
 			VStack(alignment: .center) {
 				// Allow the user to toggle between multiple vaults
-				Label("Vault Selection", systemImage: "lock.circle")
+				Label("Vault Selection", systemImage: "lock.rectangle.fill")
+					.font(.system(size: 24))
 				ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
 					Menu {
 						let vaultNames = AppState.shared.listVaults()
@@ -95,7 +96,8 @@ struct LockView: View {
 				})
 
 				// Password
-				Label("Password", systemImage: "lock.circle")
+				Label("Password", systemImage: "key.horizontal.fill")
+					.font(.system(size: 24))
 				ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center), content: {
 					if self.showPassword {
 						TextField("Password", text: self.$password)
@@ -137,6 +139,7 @@ struct LockView: View {
 					}
 				} label: {
 					Label("Open", systemImage: "lock")
+						.font(.system(size: 24))
 						.padding()
 				}
 				.alert("A vault was not specified!", isPresented: self.$showingNoVaultSelectedAlert) {
