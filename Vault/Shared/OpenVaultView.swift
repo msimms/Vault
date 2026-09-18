@@ -26,6 +26,7 @@
 //	SOFTWARE.
 
 import SwiftUI
+import Combine
 
 @ViewBuilder
 func createVaultItemView(item: SecureVaultItem, isNewItem: Bool) -> some View {
