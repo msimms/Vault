@@ -72,7 +72,7 @@ struct LockView: View {
 								Preferences.setDefaultVaultName(name: name)
 							}) {
 								Label(name, systemImage: "lock")
-									.labelStyle(.titleAndIcon)
+									.font(.system(size: 24))
 							}
 						}
 						if !vaultNames.isEmpty {
@@ -102,6 +102,7 @@ struct LockView: View {
 					if self.showPassword {
 						TextField("Password", text: self.$password)
 							.textFieldStyle(RoundedBorderTextFieldStyle())
+							.font(.system(size: 24))
 							.padding()
 							.onSubmit {
 								self.isBusy = true
@@ -112,6 +113,7 @@ struct LockView: View {
 					else {
 						SecureField("Password", text: self.$password)
 							.textFieldStyle(RoundedBorderTextFieldStyle())
+							.font(.system(size: 24))
 							.padding()
 							.onSubmit {
 								self.isBusy = true
