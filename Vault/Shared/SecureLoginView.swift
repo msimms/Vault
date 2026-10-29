@@ -149,28 +149,25 @@ struct SecureLoginView: View {
 							}
 							HStack() {
 								if self.isReadOnly == false {
-									ZStack() {
-										Button(action: {
-											if self.isReadOnly {
-												self.cannotShowPasswordGenerator = true
-											}
-											else {
-												self.isShowingPasswordGenerator = true
-											}
-										}) {
-											Image(systemName: "arrow.clockwise")
-												.foregroundColor(.secondary)
-												.padding(10)
+									Button(action: {
+										if self.isReadOnly {
+											self.cannotShowPasswordGenerator = true
 										}
-										.alert("Cannot generate a new password because the item is read only!", isPresented: self.$cannotShowPasswordGenerator) {
-											Button("OK", role: .cancel) { }
-												.buttonStyle(PlainButtonStyle())
+										else {
+											self.isShowingPasswordGenerator = true
 										}
-										.navigationDestination(isPresented: self.$isShowingPasswordGenerator) {
-											PasswordGeneratorView(existingPassword: self.$item.password, suggestedPassword: self.item.password)
-										}
+									}) {
+										Image(systemName: "arrow.clockwise")
+											.foregroundColor(.secondary)
+											.padding(10)
 									}
-									.border(Color.secondary, width: 1)
+									.alert("Cannot generate a new password because the item is read only!", isPresented: self.$cannotShowPasswordGenerator) {
+										Button("OK", role: .cancel) { }
+											.buttonStyle(PlainButtonStyle())
+									}
+									.navigationDestination(isPresented: self.$isShowingPasswordGenerator) {
+										PasswordGeneratorView(existingPassword: self.$item.password, suggestedPassword: self.item.password)
+									}
 								}
 								Button(action: {
 									self.showPassword.toggle()
